@@ -160,9 +160,14 @@ tr.groep td{background:var(--wash);font:700 10.5px/1.2 var(--fm);letter-spacing:
 .turf td{padding:6px 9px}
 .turf td.streep{width:42%}
 
-/* ---------- sleutel ondersteboven ---------- */
-.sleutel{transform:rotate(180deg);border:2px dashed var(--grey2);padding:9px 12px;font-size:12.5px;display:grid;gap:4px;color:var(--grey)}
-.sleutel b{color:var(--ink)}
+/* ---------- antwoordsleutels ---------- */
+.sleutel td{font-size:13px}
+.sleutel td.soort{width:128px}
+.sleutel td.soort b{display:block}
+.sleutel td.denk{width:34%;background:var(--wash)}
+.sleutel td.denk::before{content:"Denk verder";display:block;font:700 10px/1.3 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--han);margin-bottom:2px}
+.goed{color:#0a7a3a;font-weight:800}
+.fout{color:var(--han);font-weight:800}
 
 /* ---------- docentdeel ---------- */
 .docentdeel{display:grid;gap:36px}
@@ -209,7 +214,9 @@ footer.bron{font-size:13px;color:var(--grey);border-top:var(--bw) solid var(--in
   #blad-3 .kader,#blad-3 .fase{font-size:11px;padding:6px 8px}
   #blad-3 .kader ul{gap:1px}
   #blad-3,#blad-4,#blad-5,#blad-14{gap:7px}
-  #blad-4 td.leeg{height:26px}
+  #blad-4 td.leeg{height:22px}
+  #blad-4 .stappen{gap:1px}
+  #blad-4 .act{gap:5px}
   #blad-4 .tab td{font-size:11px;padding:4px 6px}
   #blad-5 .tab td{padding:3px 8px;font-size:11px}
   #blad-6 .casus{grid-template-columns:1fr 1fr;gap:0 14px}
@@ -264,7 +271,7 @@ footer.bron{font-size:13px;color:var(--grey);border-top:var(--bw) solid var(--in
       <li>Het label zegt met wie je werkt: <span class="vorm alleen">Alleen</span> <span class="vorm duo">Duo</span> <span class="vorm trio">Trio</span> <span class="vorm team">Team</span></li>
       <li>De tijden zijn richttijden. Ben je eerder klaar, doe dan de opdracht bij <b>★ Verder</b>. Loop je achter, sla die dan over. De pauzes en de start van het rollenspel zijn voor iedereen gelijk.</li>
       <li>Ook anderen schrijven in jouw werkboek: je observator vult bij het rollenspel de feedback op jou in. Neem het werkboek mee naar je echte intake.</li>
-      <li>Vastgelopen? Kijk eerst op de spiekbrief (blad 3), vraag het dan je team en daarna de docent.</li>
+      <li>Vastgelopen? Kijk eerst op de spiekbrief (blad 3), vraag het dan je team en daarna de docent. Nakijken doe je zelf, met de antwoordsleutels op blad 17.</li>
     </ol>
   </div>
 
@@ -276,7 +283,7 @@ footer.bron{font-size:13px;color:var(--grey);border-top:var(--bw) solid var(--in
       <tr><td class="t">13:15</td><td class="muted">Pauze · 10 min</td><td></td><td></td></tr>
       <tr><td class="t">13:25</td><td><b>Blok 2 · Rollenspel intake</b> · drie rondes, iedereen speelt elke rol</td><td>trio</td><td>6–10</td></tr>
       <tr><td class="t">14:15</td><td class="muted">Pauze · 15 min</td><td></td><td></td></tr>
-      <tr><td class="t">14:30</td><td><b>Blok 3 · Opdrachtbevestiging</b> · de foute mail, het goede voorbeeld, de checklist</td><td>duo, trio</td><td>11–14</td></tr>
+      <tr><td class="t">14:30</td><td><b>Blok 3 · Opdrachtbevestiging</b> · de foute mail, het goede voorbeeld, de checklist</td><td>trio</td><td>11–14</td></tr>
       <tr><td class="t">15:00</td><td><b>Afsluiting</b> · plan voor jullie intake, groeiblad, check-out</td><td>team, alleen</td><td>15–16</td></tr>
     </tbody>
   </table></div>
@@ -382,7 +389,7 @@ footer.bron{font-size:13px;color:var(--grey);border-top:var(--bw) solid var(--in
     <p class="waarom"><b>Waarom</b>De vorm van je vraag stuurt het antwoord. Na een film van een aanrijding vroegen onderzoekers hoe hard de auto's reden toen ze elkaar "verpletterden": 41 mijl per uur. Bij "aanraakten": 32 (Loftus &amp; Palmer, 1974).</p>
     <ol class="stappen">
       <li>Lees blad 3.</li>
-      <li>Omcirkel bij de vier fasen de valkuil waar jij het snelst in trapt.</li>
+      <li>Kies bij de vier fasen de valkuil waar jij het snelst in trapt. Schrijf op wanneer dat gebeurt.</li>
     </ol>
     <div class="veld"><b>Mijn valkuil, en wanneer ik erin trap</b><i></i></div>
     <p class="klaar"><b>Klaar als</b>je je valkuil in één zin kunt noemen.</p>
@@ -392,8 +399,9 @@ footer.bron{font-size:13px;color:var(--grey);border-top:var(--bw) solid var(--in
     <div class="act-kop"><span class="nr">1.2</span><h3>Vragen keuren</h3><span class="vorm duo">Duo</span><span class="tijd">10 min</span></div>
     <p class="waarom"><b>Waarom</b>Een slechte vraag herken je sneller bij een ander dan bij jezelf. Na deze opdracht hoor je het ook in je eigen gesprek.</p>
     <ol class="stappen">
-      <li>Vul de tabel eerst alleen in (4 min). Welke soort vraag is het (blad 3)? Is hij goed? Zo niet, schrijf een betere.</li>
-      <li>Vergelijk met je duo. Waar verschillen jullie, en wie heeft gelijk?</li>
+      <li>Vorm een duo met iemand uit je team; bij een oneven aantal wordt het één trio. Je werkt de rest van blok 1 samen.</li>
+      <li>Vul de tabel eerst alleen in (4 min): welke soort vraag is het (blad 3), is hij goed, en wat is een betere vraag?</li>
+      <li>Vergelijk met je duo en kijk na met de sleutel op blad 17. Bespreek de vraag bij <b>Denk verder</b>.</li>
     </ol>
     <div class="tab"><table>
       <thead><tr><th></th><th>Vraag aan de teamleider orderverwerking</th><th style="width:15%">Soort</th><th style="width:9%">Goed?</th><th style="width:30%">Betere vraag</th></tr></thead>
@@ -612,9 +620,9 @@ footer.bron{font-size:13px;color:var(--grey);border-top:var(--bw) solid var(--in
   <p class="waarom"><b>Waarom</b>Na de intake stuur je binnen twee werkdagen een opdrachtbevestiging. Daarmee check je of jij en je opdrachtgever hetzelfde bedoelen. Ruim 2.000 projectprofessionals keken naar mislukte projecten. Bij 47% waren de eisen en wensen niet nauwkeurig vastgelegd (PMI, 2014).</p>
 
   <div class="act">
-    <div class="act-kop"><span class="nr">3.1</span><h3>Wat moet erin?</h3><span class="vorm duo">Duo</span><span class="tijd">5 min</span></div>
+    <div class="act-kop"><span class="nr">3.1</span><h3>Wat moet erin?</h3><span class="vorm trio">Trio</span><span class="tijd">5 min</span></div>
     <p class="waarom"><b>Waarom</b>Eerst bedenk je het zelf. Daarna zie je in de checklist wat je vergat, en dat onthoud je beter.</p>
-    <ol class="stappen"><li>Blader nog niet door naar blad 12 tot en met 14.</li><li>Schrijf op wat er volgens jullie in een opdrachtbevestiging moet staan. Probeer er acht te vinden.</li></ol>
+    <ol class="stappen"><li>Werk de hele blok 3 in je trio van blok 2. Blader nog niet door naar blad 12 tot en met 14.</li><li>Schrijf op wat er volgens jullie in een opdrachtbevestiging moet staan. Probeer er acht te vinden.</li></ol>
     <div class="grid2">
       <div class="veld"><i></i><i></i><i></i><i></i></div>
       <div class="veld"><i></i><i></i><i></i><i></i></div>
@@ -631,7 +639,7 @@ footer.bron{font-size:13px;color:var(--grey);border-top:var(--bw) solid var(--in
     <div class="act-kop"><span class="nr">3.2</span><h3>Rollenspel: de foute mail</h3><span class="vorm trio">Trio</span><span class="tijd">12 min</span></div>
     <p class="waarom"><b>Waarom</b>Wat een mail met je opdrachtgever doet, voel je pas als die opdrachtgever reageert. Hier mag hij dat hardop doen.</p>
     <ol class="stappen">
-      <li>Werk in je trio van blok 2 en verdeel drie rollen. De <b>afzender</b> verdedigt de mail. <b>Klaas</b> is de opdrachtgever: hij keurt alles af en mag lekker losgaan. De <b>risicodenker</b> vraagt steeds: waar gaat dit mis als we dit zo versturen?</li>
+      <li>Verdeel in je trio drie rollen. De <b>afzender</b> verdedigt de mail. <b>Klaas</b> is de opdrachtgever: hij keurt alles af en mag lekker losgaan. De <b>risicodenker</b> vraagt steeds: waar gaat dit mis als we dit zo versturen?</li>
       <li>Lees de mail hieronder alleen en zonder te praten (2 min).</li>
       <li>Klaas belt de afzender op. Speel 7 minuten. De risicodenker schrijft de risico's op.</li>
       <li>Nabespreking (3 min): de risicodenker noemt de drie grootste risico's. Zet ze hieronder.</li>
@@ -719,11 +727,12 @@ footer.bron{font-size:13px;color:var(--grey);border-top:var(--bw) solid var(--in
 <article class="blad" id="blad-14">
   <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Werkboek intakegesprek · BKN-C01</span><span class="num">Blad 14 · checklist</span></div>
   <div class="act">
-    <div class="act-kop"><span class="nr">3.3</span><h3>Checklist naast de twee mails</h3><span class="vorm duo">Duo</span><span class="tijd">13 min</span></div>
+    <div class="act-kop"><span class="nr">3.3</span><h3>Checklist naast de twee mails</h3><span class="vorm trio">Trio</span><span class="tijd">13 min</span></div>
     <ol class="stappen">
       <li>Zet een kruis in kolom <b>A</b> bij elk item dat de foute mail (blad 11) fout doet of mist.</li>
       <li>Kies drie items en zoek ze op in het goede voorbeeld (blad 12–13). Schrijf in kolom <b>B</b> het kopje of de zin waar het staat.</li>
       <li>Vergelijk met jullie lijst van opdracht 3.1. Omcirkel de nummers die jullie vergeten waren.</li>
+      <li>Kijk kolom A na met de sleutel op blad 17.</li>
     </ol>
     <p class="small muted">Kolom <b>Eigen</b>: route A controleert nu de eigen (concept)bevestiging, route B gebruikt de kolom straks vóór het versturen.</p>
   </div>
@@ -756,9 +765,6 @@ footer.bron{font-size:13px;color:var(--grey);border-top:var(--bw) solid var(--in
       <tr><td class="nr">20</td><td>De mail is op spelling gecontroleerd en door een teamgenoot gelezen.</td><td class="vakje"><span></span></td><td></td><td class="vakje"><span></span></td></tr>
     </tbody>
   </table></div>
-  <div class="sleutel">
-    <p><b>Antwoordsleutel · draai het blad om.</b> De foute mail doet alles fout of mist het, behalve misschien item 20: dat kun je aan de mail niet zien. Heb je minder dan 15 kruisjes? Kijk dan nog eens naar 4, 5, 12, 13, 15 en 18. Wat er niet in staat, telt ook als fout.</p>
-  </div>
 </article>
 
 <!-- ================= BLAD 15 · AFSLUITING ================= -->
@@ -840,6 +846,33 @@ footer.bron{font-size:13px;color:var(--grey);border-top:var(--bw) solid var(--in
   <p class="small muted">Na jullie echte intake: scoor het gesprek met deel B, C en D van het scoringsinstrument in de manual. Leg de scores naast die van vandaag.</p>
 </article>
 
+
+<!-- ================= BLAD 17 · ANTWOORDSLEUTELS ================= -->
+<article class="blad" id="blad-17">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Werkboek intakegesprek · BKN-C01</span><span class="num">Blad 17 · antwoordsleutels</span></div>
+  <div class="blok"><span class="bn">Nakijken</span><h2>Antwoordsleutels</h2></div>
+  <p class="small">Kijk pas na als je de opdracht zelf gemaakt hebt. Jouw betere vraag hoeft niet gelijk te zijn aan het voorbeeld: hij is goed als hij de fout vermijdt. Bespreek daarna met je duo of trio de vraag bij <b>Denk verder</b>. Daar staat geen antwoord bij: dat moeten jullie zelf beredeneren.</p>
+
+  <h4>Opdracht 1.2 · Vragen keuren</h4>
+  <div class="tab sleutel"><table>
+    <thead><tr><th>Vraag</th><th>Waarom, en een betere vraag</th><th>Reflectie</th></tr></thead>
+    <tbody>
+      <tr><td class="soort"><b>1 · Suggestief</b><span class="fout">niet goed</span></td><td>De consultant vult het probleem al in, en met "ja" is de vraag beantwoord. Ook gesloten.<span class="hint">Beter: "Wat gebeurt er met een order als hij van verkoop naar het magazijn gaat?"</span></td><td class="denk">Stel dat de opdrachtgever "ja" zegt. Wat weet je dan echt? En van wie is de diagnose dan: van de opdrachtgever of van jou?</td></tr>
+      <tr><td class="soort"><b>2 · Open</b><span class="goed">goed</span></td><td>Een brede vraag die het hele proces in beeld brengt, van begin tot eind. Hoort in de verkenning (fase 2).<span class="hint">Hier hoef je niets te verbeteren.</span></td><td class="denk">Wat gaat er mis als je deze vraag als allereerste stelt, nog vóór doel, duur en agenda? En welke vraag stel je als het antwoord "het loopt gewoon stroef" is?</td></tr>
+      <tr><td class="soort"><b>3 · Dubbel</b><span class="fout">niet goed</span></td><td>Twee vragen in één. De opdrachtgever beantwoordt de makkelijkste helft. "Verantwoordelijk" klinkt bovendien als schuld.<span class="hint">Beter: eerst "Hoeveel orders zijn er per week te laat?" Daarna: "Wie zijn er bij die orders betrokken?"</span></td><td class="denk">Welke helft zou de opdrachtgever beantwoorden, en waarom? Wat heb je als procesadviseur meer aan: een naam van een schuldige of een beschrijving van het proces?</td></tr>
+      <tr><td class="soort"><b>4 · Waarom-verwijt</b><span class="fout">niet goed</span></td><td>Klinkt als een oordeel. De opdrachtgever gaat zich verdedigen in plaats van uitleggen.<span class="hint">Beter: "Hoe houden jullie nu bij hoe lang een order erover doet?" of "Hoe is het zo gegroeid?"</span></td><td class="denk">Hoe zou jij reageren als iemand die je net kent je deze vraag stelt? Welke informatie loop je mis zodra de ander in de verdediging schiet?</td></tr>
+      <tr><td class="soort"><b>5 · Hypothetisch</b><span class="fout">niet goed</span></td><td>Mensen zeggen snel ja op "zou u …". En de consultant heeft een oplossing in de vraag gestopt: een scherm.<span class="hint">Beter: "Wanneer wilde u voor het laatst weten waar een order was? Wat deed u toen?"</span></td><td class="denk">Wat is een "ja" op deze vraag waard als er nog niets gemeten is? En wat zegt het over je rol dat de oplossing al in je vraag zit?</td></tr>
+    </tbody>
+  </table></div>
+
+  <h4>Opdracht 3.3 · Checklist, kolom A</h4>
+  <div class="tab sleutel"><table>
+    <tbody>
+      <tr><td>De foute mail doet <b>alles fout of mist het</b>. Alleen item 20 kun je niet beoordelen: of een teamgenoot de mail las, zie je er niet aan. Heb je minder dan 15 kruisjes? Kijk dan nog eens naar 4, 5, 12, 13, 15 en 18. Wat er niet in staat, telt ook als fout.</td><td class="denk">"Hoi Klaas" zie je meteen. Waarom zijn de dingen die ontbreken, zoals afbakening, rollen en planning, op de lange duur gevaarlijker? Wanneer merk je dat ze ontbreken?</td></tr>
+    </tbody>
+  </table></div>
+</article>
+
 </div><!-- /werkboek -->
 
 <!-- ======================================================
@@ -860,7 +893,7 @@ footer.bron{font-size:13px;color:var(--grey);border-top:var(--bw) solid var(--in
 
     <div class="kaders">
       <div class="kader"><h4>Printen en klaarleggen</h4>
-        <ul><li><b>Werkboek</b>: 1 per student, 16 bladen dubbelzijdig, geniet.</li><li><b>Rolkaarten</b>: 1 set van drie per trio, enkelzijdig, in een envelop. Bij 24 studenten 8 sets, bij 30 studenten 10.</li><li>Twee flappen, voorin het lokaal: <b>Lessen uit echte intakes</b> en <b>Take-aways</b>. Post-its en stiften.</li><li>Een klok of timer op het scherm, met de tijden van blad 1.</li></ul>
+        <ul><li><b>Werkboek</b>: 1 per student, 17 bladen dubbelzijdig (blad 17 is de achterkant van het laatste vel), geniet.</li><li><b>Rolkaarten</b>: 1 set van drie per trio, enkelzijdig, in een envelop. Bij 24 studenten 8 sets, bij 30 studenten 10.</li><li>Twee flappen, voorin het lokaal: <b>Lessen uit echte intakes</b> en <b>Take-aways</b>. Post-its en stiften.</li><li>Een klok of timer op het scherm, met de tijden van blad 1.</li></ul>
       </div>
       <div class="kader"><h4>Wat je zegt, en wanneer</h4>
         <ul><li><b>12:15</b> · 2 min: "Het werkboek leidt je vanmiddag. Ik loop rond. Vastgelopen? Eerst de spiekbrief, dan je team, dan ik."</li><li><b>13:15</b> · pauze. <b>13:25</b> · "Vorm je trio, haal een envelop." Deel uit.</li><li><b>14:15</b> · pauze. <b>14:30</b> · "Blok 3, blad 10."</li><li><b>15:00</b> · "Afsluiting, blad 15. Laat me jullie teamstatus zien."</li></ul>
