@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Intake Manual BKN-C01</title>
+<style>
+:root{
+  /* HAN-huisstijl, overgenomen uit archief/voorbeeld-slide-deck.html:
+     één schreeuwende kleur op zwart-wit */
+  --han:#E50056; --han2:#FFE1EC; --ink:#000000; --paper:#FFFFFF;
+  --grey:#454545; --grey2:#767676; --wash:#F2F2F0; --panel2:#E6E6E3;
+  --mens2:#FFE875;
+  --bw:3px; --sh:5px 5px 0 var(--ink);
+  --f:"Avenir Next","Avenir","Nunito Sans","Segoe UI",Helvetica,Arial,sans-serif;
+  --fm:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--wash);color:var(--ink);font:16px/1.55 var(--f);-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;display:grid;gap:44px;padding:32px 16px 64px}
+h1,h2,h3{text-wrap:balance;margin:0}
+h1{font-size:clamp(32px,6vw,56px);line-height:.96;letter-spacing:-.035em;font-weight:800;text-transform:uppercase}
+h2{font-size:clamp(24px,3.4vw,32px);line-height:1.05;letter-spacing:-.025em;font-weight:800;
+  display:flex;align-items:center;gap:12px;padding-bottom:10px;border-bottom:var(--bw) solid var(--ink)}
+h2::before{content:"";flex:none;width:16px;height:16px;background:var(--han)}
+h3{font-size:18px;line-height:1.2;font-weight:800;margin-top:4px}
+p{margin:0;max-width:68ch}
+b,strong{font-weight:700}
+section{display:grid;gap:18px}
+
+/* ---------- logobalk ---------- */
+.topbar,.foot{background:var(--ink);color:var(--paper);display:flex;align-items:center;gap:18px;padding:0 20px 0 max(16px,calc((100% - 908px)/2))}
+.topbar{height:56px;border-bottom:4px solid var(--han)}
+.foot{min-height:52px}
+.logo{flex:none;display:block;height:26px;width:auto}
+.who{font:700 12px/1 var(--fm);letter-spacing:.16em;text-transform:uppercase;opacity:.82}
+.sp{flex:1}
+.num{font:800 13px/1 var(--fm);background:var(--han);color:var(--paper);padding:8px 11px;letter-spacing:.06em;text-transform:uppercase}
+
+/* ---------- kop ---------- */
+header{background:var(--han);color:var(--paper);border:var(--bw) solid var(--ink);box-shadow:10px 10px 0 var(--ink);
+  padding:28px clamp(18px,4vw,40px) 30px;display:grid;gap:16px}
+.eyebrow{justify-self:start;background:var(--ink);color:var(--paper);padding:6px 12px 5px;
+  font:700 12px/1.2 var(--fm);letter-spacing:.14em;text-transform:uppercase}
+header .eyebrow{background:var(--paper);color:var(--ink)}
+.meta{display:flex;flex-wrap:wrap;gap:10px}
+.chip{border:3px solid currentColor;padding:7px 12px;font:700 13px/1.15 var(--fm);letter-spacing:.04em;text-transform:uppercase}
+.lede{font-size:19px;line-height:1.45;font-weight:600;max-width:64ch}
+header .callout{color:var(--ink)}
+
+/* ---------- blokken ---------- */
+.callout{background:var(--mens2);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:14px 18px;display:grid;gap:8px}
+.callout>strong{justify-self:start;background:var(--ink);color:var(--paper);padding:5px 11px 4px;
+  font:700 12px/1.2 var(--fm);letter-spacing:.12em;text-transform:uppercase}
+.callout.han{background:var(--han);color:var(--paper)}
+.callout.han>strong{background:var(--paper);color:var(--han)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.box{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:16px 18px;display:grid;gap:10px;align-content:start}
+.box h3{margin:0}
+ul,ol{margin:0;padding-left:22px;display:grid;gap:6px}
+li{max-width:66ch}
+ul:not(.check){list-style:none;padding-left:24px}
+ul:not(.check) li{position:relative}
+ul:not(.check) li::before{content:"";position:absolute;left:-22px;top:.5em;width:10px;height:10px;background:var(--han)}
+ol li::marker{font:800 14px var(--fm);color:var(--han)}
+.check{list-style:none;padding-left:26px}
+.check li{position:relative}
+.check li::before{content:"";position:absolute;left:-25px;top:4px;width:14px;height:14px;border:2.5px solid var(--ink);background:var(--paper)}
+.muted{color:var(--grey)}
+.small{font-size:14.5px}
+
+/* ---------- tabellen ---------- */
+.tablewrap{overflow-x:auto;background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh)}
+table{border-collapse:collapse;width:100%;min-width:640px}
+th,td{text-align:left;vertical-align:top;padding:12px 14px;border-top:2px solid var(--ink)}
+th{font:700 12px/1.2 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:var(--ink);border-top:0}
+td.t{font:800 14px/1.4 var(--fm);white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--han)}
+td.t span{display:block;color:var(--grey);font-weight:600;font-size:12px}
+tr.brk td{background:var(--wash);color:var(--grey);padding-block:8px;font-weight:600}
+tr.brk td.t{color:var(--ink)}
+td b{font-weight:700}
+.tag{display:inline-block;font:700 11px/1 var(--fm);letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;
+  background:var(--han2);color:var(--ink);border:2px solid var(--ink);margin:4px 4px 0 0;vertical-align:1px}
+.tag.slide{background:var(--ink);color:var(--paper)}
+
+/* ---------- inhoud ---------- */
+.flaws{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.flaw{background:var(--han2);border:2px solid var(--ink);padding:10px 12px;font-size:14.5px}
+.flaw b{color:var(--han)}
+.phases{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));border:var(--bw) solid var(--ink);background:var(--paper);box-shadow:var(--sh)}
+.phase{padding:14px 16px;border-right:2px solid var(--ink);display:grid;gap:4px;align-content:start}
+.phase:last-child{border-right:0}
+.phase .n{justify-self:start;font:700 11px/1 var(--fm);letter-spacing:.12em;text-transform:uppercase;background:var(--han);color:var(--paper);padding:4px 7px}
+.phase b{font-size:18px;font-weight:800}
+.note{background:var(--paper);border:var(--bw) solid var(--ink);border-top:9px solid var(--han);box-shadow:var(--sh);padding:14px 18px;display:grid;gap:8px}
+.note h3{margin:0}
+footer.bron{font-size:13.5px;color:var(--grey);border-top:var(--bw) solid var(--ink);padding-top:16px;display:grid;gap:6px}
+code{font-family:var(--fm);font-size:12.5px}
+.pdfknop{font:700 12px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:transparent;
+  border:2px solid var(--paper);padding:8px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.pdfknop:hover,.pdfknop:focus-visible{background:var(--han);border-color:var(--han);outline:none}
+.pdfknop svg{width:14px;height:14px}
+/* ---------- printbijlagen ---------- */
+a{color:inherit;text-decoration-color:var(--han);text-decoration-thickness:2px;text-underline-offset:3px}
+.knoppen{display:flex;gap:8px}
+@media (max-width:640px){.topbar .who{display:none}.pdfknop{padding:8px 9px;letter-spacing:.04em}}
+@media (max-width:440px){.pdfknop .lbl{display:none}.pdfknop svg{width:16px;height:16px}}
+.bijlage{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:0 0 22px;display:grid;gap:14px;align-content:start}
+.bijlage>*:not(.bkop){margin-inline:clamp(16px,3vw,28px)}
+.bkop{background:var(--ink);color:var(--paper);display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:10px clamp(16px,3vw,28px)}
+.bkop .logo{height:20px}
+.bkop .num{margin-left:auto}
+.bijlage h3{font-size:22px;letter-spacing:-.015em}
+.bijlage .sub{color:var(--grey);font-weight:600}
+.mail{border:var(--bw) solid var(--ink)}
+.mail-head{background:var(--wash);border-bottom:2px solid var(--ink);padding:10px 14px;display:grid;gap:3px;font-size:15px}
+.mail-head b{display:inline-block;min-width:92px;font:700 11px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
+.mail-body{padding:14px 16px;display:grid;gap:10px}
+.mail-body h4{margin:6px 0 -6px;font-size:15px;font-weight:800}
+.lijnen{display:grid;gap:0}
+.lijnen b{font:700 11px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase}
+.lijnen i{display:block;height:30px;border-bottom:2px solid var(--ink)}
+.checktabel{border:var(--bw) solid var(--ink)}
+.checktabel table{min-width:0}
+.checktabel td.nr{width:36px;font:800 13px/1.5 var(--fm);color:var(--han)}
+.checktabel td.vakje{width:64px;text-align:center}
+.checktabel td.vakje span{display:inline-block;width:18px;height:18px;border:2.5px solid var(--ink)}
+.checktabel tr.groep td{background:var(--wash);font:700 11px/1.2 var(--fm);letter-spacing:.12em;text-transform:uppercase;padding-block:7px}
+.hint{display:block;color:var(--grey);font-size:13.5px;margin-top:2px}
+@page{size:A4;margin:14mm 12mm}
+@media print{
+  .pdfknop{display:none}
+  .bijlage{break-before:page;border:0;padding-bottom:0}
+  .bijlage>*:not(.bkop){margin-inline:0}
+  .bijlage{gap:10px}
+  .bkop{flex-wrap:nowrap}
+  .bkop .who{letter-spacing:.06em;font-size:10px}
+  .bkop .num{white-space:nowrap;font-size:12px}
+  #bijlage-c .checktabel td{padding:6px 10px;font-size:12.5px;line-height:1.35}
+  #bijlage-c .hint{font-size:11.5px}
+  #bijlage-c .checktabel tr.groep td{padding-block:5px}
+  body.alleen-bijlagen .topbar,body.alleen-bijlagen .foot,
+  body.alleen-bijlagen .wrap>:not(#bijlagen),
+  body.alleen-bijlagen #bijlagen>:not(.bijlage){display:none}
+  body.alleen-bijlagen .wrap{padding-block:0}
+  body.alleen-bijlagen #bijlagen{margin-top:0}
+  body{background:#fff}
+  .wrap,section{display:block;padding-block:16px}
+  section{padding-block:0;margin-top:26px}
+  section>*+*{margin-top:14px}
+  .grid2,.flaws{break-inside:avoid}
+  header,.box,.tablewrap,.callout,.phases,.note,.bijlage{box-shadow:none}
+  body{font-size:14px}
+  .box,.note,.callout,.phases,.flaw,tr,h3{break-inside:avoid}
+  h2,h3{break-after:avoid}
+  .tablewrap{overflow:visible}
+  table{min-width:0}
+  th,td{padding:9px 10px}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+/* ---------- aanvullingen voor de manual ---------- */
+.toc{display:flex;flex-wrap:wrap;gap:8px}
+.toc a{font:700 12px/1 var(--fm);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+  border:2px solid var(--ink);background:var(--paper);padding:8px 10px}
+.toc a:hover,.toc a:focus-visible{background:var(--ink);color:var(--paper);outline:none}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.lead2{font-size:17px;max-width:68ch}
+.phase .val{font-size:13.5px;color:var(--grey);border-top:2px dashed var(--ink);padding-top:6px;margin-top:4px}
+.phase .val b{font-size:13.5px;color:var(--han)}
+.phase .cc{font:700 11px/1.3 var(--fm);letter-spacing:.06em;color:var(--grey);text-transform:uppercase}
+
+/* bevindingen uit onderzoek */
+.feit{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);display:grid;grid-template-columns:auto 1fr;gap:0}
+.feit .getal{background:var(--ink);color:var(--paper);font:800 30px/1 var(--f);letter-spacing:-.03em;padding:16px 14px;
+  display:grid;align-content:center;justify-items:center;min-width:112px;text-align:center}
+.feit .getal small{font:700 10.5px/1.2 var(--fm);letter-spacing:.08em;text-transform:uppercase;margin-top:6px;color:#ffb3cf}
+.feit .tekst{padding:14px 16px;display:grid;gap:6px;align-content:start}
+.feit .les{font-weight:700}
+.feit .ref{font-size:13px;color:var(--grey)}
+@media (max-width:520px){.feit{grid-template-columns:1fr}.feit .getal{justify-items:start;text-align:left}}
+
+/* werkregels */
+.regels{counter-reset:r;list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:640px){.regels{grid-template-columns:1fr}}
+.regels li{counter-increment:r;background:var(--paper);border:2px solid var(--ink);padding:12px 14px 12px 54px;position:relative;max-width:none}
+.regels li::before{content:counter(r);position:absolute;left:0;top:0;bottom:0;width:40px;background:var(--han);color:var(--paper);
+  font:800 17px/1 var(--fm);display:grid;place-items:center}
+.regels li b{display:block}
+
+/* fragmenten goed/fout */
+.frag{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);display:grid}
+.frag>h3{padding:12px 16px;border-bottom:2px solid var(--ink);display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.frag>h3 .fase{font:700 11px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:4px 7px}
+.frag .ctx{padding:10px 16px;background:var(--wash);border-bottom:2px solid var(--ink);font-size:14.5px}
+.frag .paar{display:grid;grid-template-columns:1fr 1fr}
+.frag .kant{padding:12px 16px;display:grid;gap:8px;align-content:start}
+.frag .kant+.kant{border-left:2px solid var(--ink)}
+.frag .fout{background:var(--han2)}
+.frag .lbl{justify-self:start;font:700 11px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;padding:4px 7px;border:2px solid var(--ink)}
+.frag .fout .lbl{background:var(--han);color:var(--paper);border-color:var(--han)}
+.frag .goed .lbl{background:var(--ink);color:var(--paper)}
+.zeg{display:grid;grid-template-columns:34px 1fr;gap:6px;font-size:15px}
+.zeg>span{font:800 12px/1.6 var(--fm);color:var(--grey)}
+.frag .waarom{font-size:13.5px;color:var(--grey);border-top:2px dashed var(--ink);padding-top:8px}
+@media (max-width:640px){.frag .paar{grid-template-columns:1fr}.frag .kant+.kant{border-left:0;border-top:2px solid var(--ink)}}
+
+/* vraagtypes */
+td.q{font-style:italic}
+.ok{color:#0b6b3a;font-weight:800}
+.nok{color:var(--han);font-weight:800}
+
+/* instrument */
+.instr{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);display:grid;gap:14px;padding:0 0 18px}
+.instr>*:not(.bkop){margin-inline:clamp(14px,3vw,24px)}
+.instr .bkop h3{font-size:17px;color:var(--paper)}
+.instr .bkop .num{margin-left:auto}
+.vak{display:grid;gap:6px}
+.vak label{font-weight:700}
+.vak .hint{margin:0}
+textarea,input[type=number]{font:15px/1.45 var(--f);border:2px solid var(--ink);padding:8px 10px;width:100%;background:var(--paper);color:var(--ink);border-radius:0}
+textarea{resize:vertical}
+input[type=number]{width:72px;text-align:center;font-family:var(--fm);font-weight:700}
+textarea:focus,input:focus{outline:3px solid var(--han);outline-offset:1px}
+.vink{list-style:none;padding:0;display:grid;gap:8px}
+.vink li{max-width:none}
+.vink label{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;cursor:pointer}
+.vink input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--han)}
+.vink b{margin-right:4px}
+
+.rubric table{min-width:760px}
+.rubric td,.rubric th{padding:10px 10px}
+.rubric td.crit{width:150px}
+.rubric td.crit b{display:block}
+.rubric td.crit small{font:700 10.5px/1.3 var(--fm);letter-spacing:.05em;text-transform:uppercase;color:var(--grey)}
+.rubric td.opt{font-size:13.5px;line-height:1.4;padding:0;width:21%}
+.rubric td.opt label{display:grid;gap:4px;padding:10px;cursor:pointer;height:100%;min-height:100%}
+.rubric td.opt input{position:absolute;opacity:0;pointer-events:none}
+.rubric td.opt .pt{font:800 12px/1 var(--fm);border:2px solid var(--ink);width:24px;height:24px;display:grid;place-items:center}
+.rubric td.opt:has(input:checked){background:var(--han2)}
+.rubric td.opt:has(input:checked) .pt{background:var(--han);color:var(--paper);border-color:var(--han)}
+.rubric td.opt:has(input:focus-visible){outline:3px solid var(--han);outline-offset:-3px}
+.rubric td.opt label:hover .pt{background:var(--ink);color:var(--paper)}
+
+.turf table{min-width:520px}
+.turf td{vertical-align:middle}
+.turf td.st{font:700 12px/1.2 var(--fm);text-transform:uppercase;letter-spacing:.06em;width:110px}
+.st.goed{color:#0b6b3a}.st.let{color:var(--han)}
+
+.opbr table{min-width:600px}
+.opbr td{vertical-align:middle}
+.seg{display:inline-flex;border:2px solid var(--ink)}
+.seg label{font:700 12px/1 var(--fm);text-transform:uppercase;letter-spacing:.05em;padding:8px 9px;cursor:pointer;position:relative}
+.seg label+label{border-left:2px solid var(--ink)}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label:has(input:checked){background:var(--ink);color:var(--paper)}
+.seg label:has(input:focus-visible){outline:3px solid var(--han);outline-offset:1px}
+
+.uitslag{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.meter{border:var(--bw) solid var(--ink);padding:12px 14px;display:grid;gap:6px;background:var(--wash)}
+.meter .k{font:700 11px/1.2 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
+.meter .v{font:800 34px/1 var(--f);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.meter .v small{font-size:16px;color:var(--grey);font-weight:700}
+.bar{height:10px;border:2px solid var(--ink);background:var(--paper)}
+.bar i{display:block;height:100%;background:var(--han);width:0;transition:width .2s}
+.oordeel{border:var(--bw) solid var(--ink);padding:14px 16px;display:grid;gap:6px;background:var(--mens2)}
+.oordeel b.kop{font:800 20px/1.15 var(--f)}
+.ko{list-style:none;padding:0;display:grid;gap:8px}
+.ko li{max-width:none}
+.ko label{display:grid;grid-template-columns:22px 1fr;gap:10px;cursor:pointer}
+.ko input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--han)}
+.acties{display:flex;flex-wrap:wrap;gap:10px}
+.knop{font:700 12px/1 var(--fm);letter-spacing:.08em;text-transform:uppercase;border:2px solid var(--ink);background:var(--paper);color:var(--ink);padding:10px 12px;cursor:pointer}
+.knop.hoofd{background:var(--ink);color:var(--paper)}
+.knop:hover,.knop:focus-visible{background:var(--han);color:var(--paper);border-color:var(--han);outline:none}
+.bewaard{font-size:13px;color:var(--grey);align-self:center}
+.stap{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:start}
+.stap .w{font:800 12px/1.5 var(--fm);text-transform:uppercase;letter-spacing:.06em;background:var(--ink);color:var(--paper);padding:3px 8px;justify-self:start}
+ol.bronnen{padding-left:0;list-style:none;gap:8px;font-size:14px}
+ol.bronnen li{padding-left:28px;text-indent:-28px;max-width:none}
+
+@media print{
+  .toc,.acties,.bewaard{display:none}
+  .instr{break-before:page;box-shadow:none}
+  .instr .bkop{flex-wrap:nowrap}
+  .rubric table,.opbr table,.turf table{min-width:0}
+  .rubric td.opt{font-size:11.5px}
+  .frag,.feit,.regels li,.meter{break-inside:avoid;box-shadow:none}
+  textarea{border-width:1.5px;min-height:60px}
+  body.alleen-instrument .topbar,body.alleen-instrument .foot,
+  body.alleen-instrument .wrap>:not(#instrument),
+  body.alleen-instrument #instrument>:not(.instr){display:none}
+  body.alleen-instrument .wrap{padding-block:0}
+  body.alleen-instrument #instrument .instr:first-of-type{break-before:auto}
+}
+ul.vink,ul.ko{padding-left:0}
+ul.vink li::before,ul.ko li::before{content:none}
+</style>
+</head>
+<body>
+<div class="topbar"><svg class="logo" viewBox="0 0 82 34" role="img" aria-label="Logo HAN"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></svg><span class="who">Praktijkopdracht 5 · C-cluster</span><span class="sp"></span><span class="knoppen"><button type="button" class="pdfknop" onclick="printInstrument()" title="Print alleen het scoringsinstrument"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6V1h8v5M4 12H2V6h12v6h-2M4 9h8v6H4z"/></svg><span class="lbl">Print instrument</span></button><button type="button" class="pdfknop" onclick="downloadPdf()" title="Opent het afdrukvenster; kies daar 'Opslaan als PDF'"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 1v9M4 6l4 4 4-4M2 14h12"/></svg><span class="lbl">Download PDF</span></button></span></div>
+<div class="wrap">
+<header>
+  <div class="eyebrow">Manual · Praktijkopdracht 5</div>
+  <h1>Het intake&shy;gesprek met je opdracht&shy;gever</h1>
+  <div class="meta">
+    <span class="chip">BKN-C01</span>
+    <span class="chip">lesweek 4–5</span>
+    <span class="chip">voorbereiden · voeren · meten</span>
+    <span class="chip">LUK 5</span>
+  </div>
+  <p class="lede">Na een goede intake weet je wat het probleem is, wat je opdrachtgever verwacht en wat de volgende stap is. Deze manual zet op een rij wat onderzoek zegt over zulke gesprekken en laat met fragmenten zien hoe het goed en fout gaat. Achterin staat een scoringsinstrument. Dat gebruik je vóór het gesprek om je voor te bereiden en erna om de kwaliteit te meten.</p>
+</header>
+
+<nav class="toc" aria-label="Inhoud">
+  <a href="#effectief">Wanneer werkt het?</a>
+  <a href="#theorie">Theorie</a>
+  <a href="#onderzoek">Wat onderzoek laat zien</a>
+  <a href="#regels">Tien werkregels</a>
+  <a href="#fragmenten">Goed en fout</a>
+  <a href="#instrument">Scoringsinstrument</a>
+  <a href="#bronnen">Bronnen</a>
+</nav>
+
+<section id="effectief">
+  <h2>Wanneer is een intake effectief?</h2>
+  <p class="lead2">Een intake is geslaagd als hij drie dingen oplevert. Adviseurs noemen deze fase <i>contracting</i>: je maakt afspraken over wat jullie van elkaar willen en wat ieder bijdraagt (Block, 2011).</p>
+  <div class="grid3">
+    <div class="box"><h3>Een gedeeld beeld van het probleem</h3><p class="small">Je kunt het probleem navertellen in de woorden van de opdrachtgever, met een recent voorbeeld en een getal. De opdrachtgever zegt daarop: "Ja, zo zit het."</p></div>
+    <div class="box"><h3>Een werkrelatie</h3><p class="small">De opdrachtgever wil jullie terugzien en geeft toegang tot mensen, data en de werkvloer. Zonder die toegang kun je in een Lean-project niets meten. Lean is de verbetermethode van deze praktijkopdracht: je meet eerst hoe een proces loopt, en verbetert dan stap voor stap.</p></div>
+    <div class="box"><h3>Een afgesproken volgende stap</h3><p class="small">Wie doet wat, en wanneer? Bijvoorbeeld: "Wij sturen vrijdag de bevestiging, dinsdag lopen we het proces mee."</p></div>
+  </div>
+  <div class="callout"><strong>De praktijktoets</strong><p>Kun je na het gesprek de opdrachtbevestiging én het formulier <i>Goedkeuring praktijkopdracht</i> invullen zonder te gokken? Dan heeft de intake gewerkt. Deel D van het scoringsinstrument meet precies dat.</p></div>
+</section>
+
+<section id="theorie">
+  <h2>Theorie</h2>
+
+  <h3>Je gesprekspartner: een bedrijf dat advies zoekt</h3>
+  <p>Je voert de intake als bedrijfskundig adviseur. Tegenover je zit iemand die een probleem in de eigen organisatie wil oplossen. Dat kan een eigenaar-directeur zijn, een operationeel manager of een teamleider. In het mkb is dat vaak dezelfde persoon die ook beslist, weinig tijd heeft en snel wil weten wat het oplevert.</p>
+  <p>Het bedrijf betaalt jullie geen honorarium. Het investeert wel: de tijd van de opdrachtgever en medewerkers, toegang tot data, en ruimte om te experimenteren. Leg daarom al in de intake uit wat jullie leveren, hoeveel tijd het van het bedrijf vraagt en wat een studententeam níet kan. Stem je die verwachtingen aan het begin af, dan voorkom je teleurstelling aan het eind. Onderzoek naar adviestrajecten noemt duidelijke opleveringen en het afstemmen van verwachtingen als kern van een goede samenwerking (Appelbaum &amp; Steed, 2005; Nikolova e.a., 2009).</p>
+
+  <h3>Jouw rol: procesadviseur</h3>
+  <p>Schein (1999) onderscheidt drie manieren waarop een adviseur kan helpen. Bij het <b>expertmodel</b> koopt de opdrachtgever kennis in: die weet wat het probleem is en jij levert het antwoord. Bij het <b>arts-patiëntmodel</b> stelt de adviseur een diagnose en schrijft een oplossing voor. Bij <b>procesadvies</b> zoeken opdrachtgever en adviseur samen uit wat er speelt, en blijft de opdrachtgever eigenaar van het probleem.</p>
+  <p>In een Lean-project zit je in dat derde model. Je weet aan het begin niet wat de oplossing is. Die volgt uit meten en experimenteren op de werkvloer. De opdrachtgever komt vaak binnen met een <b>gepresenteerd probleem</b>: de klacht zoals de opdrachtgever die zelf ziet, bijvoorbeeld "mensen moeten gewoon beter werken". Het werkelijke probleem ligt vaak ergens anders. Daarom stellen opdrachtgever en adviseur in Scheins procesmodel samen de diagnose. Schein noemt de houding die daarbij past <i>humble inquiry</i>: vragen stellen waarvan je het antwoord echt niet weet, uit oprechte nieuwsgierigheid (Schein, 2013).</p>
+
+  <h3>Vier fasen</h3>
+  <p>De opleiding werkt met vier fasen. Ze komen overeen met gespreksmodellen uit de geneeskunde, zoals de Calgary-Cambridge Guide (Silverman e.a., 2013) en SEGUE (Makoul, 2001). Ook in adviesmodellen is de eerste fase, de <i>entry</i>, het moment waarop adviseur en opdrachtgever de verwachtingen afstemmen (Kolb &amp; Frohman, 1970). Per fase staat hieronder ook de meest gemaakte fout.</p>
+  <div class="phases">
+    <div class="phase"><span class="n">fase 1</span><b>Opening</b><span class="small">Voorstellen, doel en duur noemen, agenda voorleggen en aanvullen.</span><span class="val"><b>Valkuil:</b> meteen met de inhoud beginnen.</span></div>
+    <div class="phase"><span class="n">fase 2</span><b>Verkenning</b><span class="small">Brede openingsvraag, het verhaal laten uitlopen, context en proces in beeld.</span><span class="val"><b>Valkuil:</b> onderbreken en je eigen lijstje afwerken.</span></div>
+    <div class="phase"><span class="n">fase 3</span><b>Verdieping</b><span class="small">Doorvragen naar voorbeelden, getallen en gevolgen. Samenvatten en controleren.</span><span class="val"><b>Valkuil:</b> een oplossing aandragen.</span></div>
+    <div class="phase"><span class="n">fase 4</span><b>Afronding</b><span class="small">Eindsamenvatting, verwachtingen afstemmen, afspraken met datum.</span><span class="val"><b>Valkuil:</b> "we horen nog van elkaar".</span></div>
+  </div>
+
+  <h3>IPRE: vier lagen in elk gesprek</h3>
+  <p>Een gesprek loopt goed als alle vier lagen kloppen. <b>Inhoud</b>: duidelijk welke onderwerpen besproken worden. <b>Procedure</b>: geen misverstand over tijd, duur, volgorde en doel. <b>Relatie</b>: rollen en verwachtingen helder, sfeer passend. <b>Emotie</b>: beide partijen op hun gemak. Als student let je vooral op de inhoud. Let ook op procedure en relatie. Je opdrachtgever merkt meteen of het gesprek op tijd begint, of het doel duidelijk is en of er echt geluisterd wordt.</p>
+
+  <h3>Vragen stellen</h3>
+  <p>De vorm van een vraag stuurt het antwoord. Onderzoek naar verhoren laat dat scherp zien: proefpersonen zagen een film van een aanrijding. Vroegen de onderzoekers hoe hard de auto's reden toen ze elkaar "verpletterden", dan schatten ze gemiddeld 41 mijl per uur. Bij "aanraakten" was dat 32 (Loftus &amp; Palmer, 1974). Een suggestieve vraag stuurt de ander naar het antwoord dat jij al in gedachten had. Open vragen leveren meer en juistere informatie op dan gesloten of suggestieve vragen (Oxburgh e.a., 2010).</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Soort vraag</th><th>Voorbeeld</th><th>Wanneer</th></tr></thead>
+      <tbody>
+        <tr><td><b>Open vraag</b></td><td class="q">"Hoe verloopt een order vanaf het moment dat hij binnenkomt?"</td><td><span class="ok">Gebruiken</span> in de verkenning. Begint met hoe, wat, welke, of "vertel eens".</td></tr>
+        <tr><td><b>Doorvraag</b></td><td class="q">"Wat bedoelt u met 'blijft hangen'?" / "Wat maakt dat…?"</td><td><span class="ok">Gebruiken</span> zodra je een vaag woord hoort.</td></tr>
+        <tr><td><b>Voorbeeldvraag</b></td><td class="q">"Kunt u de laatste keer beschrijven dat dat gebeurde?"</td><td><span class="ok">Gebruiken</span> om meningen om te zetten in feiten.</td></tr>
+        <tr><td><b>Gesloten vraag</b></td><td class="q">"Houden jullie de levertijd bij?"</td><td><span class="ok">Gebruiken</span> om te controleren, niet om te verkennen.</td></tr>
+        <tr><td><b>Samenvattende vraag</b></td><td class="q">"Als ik het goed begrijp… Klopt dat?"</td><td><span class="ok">Gebruiken</span> na elk onderwerp.</td></tr>
+        <tr><td><b>Suggestieve vraag</b></td><td class="q">"Het ligt toch vooral aan de communicatie?"</td><td><span class="nok">Vermijden.</span> Je stuurt het antwoord.</td></tr>
+        <tr><td><b>Dubbele vraag</b></td><td class="q">"Hoeveel orders zijn te laat en wie is daarvoor verantwoordelijk?"</td><td><span class="nok">Vermijden.</span> De ander beantwoordt alleen de makkelijkste helft.</td></tr>
+        <tr><td><b>Waarom-verwijt</b></td><td class="q">"Waarom hebben jullie dat nooit vastgelegd?"</td><td><span class="nok">Vermijden.</span> Klinkt als een oordeel. Vraag: "Hoe is dat zo gegroeid?"</td></tr>
+        <tr><td><b>Hypothetische vraag</b></td><td class="q">"Zou u een dashboard gebruiken?"</td><td><span class="nok">Vermijden.</span> Mensen zeggen snel ja. Vraag naar wat ze nu al doen (Fitzpatrick, 2013).</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Werk als een <b>trechter</b>: begin breed, ga dan naar specifiek, en sluit af met een controlevraag. Onderzoek naar verkoopgesprekken laat zien waar je op doorvraagt. Rackham (1988) ontdekte dat succesvolle verkopers bij grote opdrachten vooral doorvroegen naar de <b>gevolgen</b> van een probleem en naar de <b>waarde</b> van een oplossing. Vertaald naar jouw intake: situatie → probleem → gevolgen voor kwaliteit, levertijd en kosten → wat het de opdrachtgever waard is als het beter gaat.</p>
+  <p>Een overzicht van onderzoek vergeleek manieren om de wensen van klanten te achterhalen. Het interview, liefst met een vaste structuur, hoorde bij de meest effectieve (Davis e.a., 2006). Gause en Weinberg (1989) raden aan elk verkennend gesprek te beginnen met <b>contextvrije vragen</b>, die bij elke opdracht passen: Wie is de klant van dit proces? Wat is een goede uitkomst? Wie moet er nog meer tevreden zijn? Wat mag de oplossing niet kosten of veranderen?</p>
+
+  <h3>Luisteren, samenvatten, doorvragen (LSD)</h3>
+  <p>LSD ken je uit jaar 1. Rogers en Farson (1957) noemden dit <i>active listening</i>: luisteren naar de betekenis én het gevoel achter wat iemand zegt, en dat teruggeven. Een samenvatting doet drie dingen tegelijk. Je controleert of je het goed begrepen hebt, je ordent het gesprek, en de opdrachtgever merkt dat je luistert. Mensen bij wie goed geluisterd wordt, worden minder defensief en praten genuanceerder over hun eigen standpunt (Itzchakov e.a., 2017). In een eerste gesprek voelen mensen zich beter begrepen door iemand die samenvat en doorvraagt dan door iemand die advies geeft (Weger e.a., 2014).</p>
+  <p>Stilte hoort erbij. Tel na een antwoord in stilte tot drie. Soms komt dan de belangrijkste zin nog.</p>
+
+  <h3>Vertrouwen opbouwen</h3>
+  <p>Maister, Green en Galford (2000) vatten vertrouwen samen in een formule: <b>(deskundigheid + betrouwbaarheid + openheid) ÷ gerichtheid op jezelf</b>. Volgens de auteurs weegt de noemer het zwaarst. Een adviseur die snel een oplossing roept om slim over te komen, verliest vertrouwen. Een adviseur die doorvraagt, wint het. Mensen vinden gesprekspartners die meer vervolgvragen stellen ook aardiger (Huang e.a., 2017). Uit interviews met opdrachtgevers en adviseurs blijkt hoe vertrouwen groeit. De adviseur toont deskundigheid, is eerlijk en zet het belang van de opdrachtgever voorop (Nikolova e.a., 2015).</p>
+
+  <h3>Van gesprek naar bevestiging</h3>
+  <p>Stuur na de intake zo snel mogelijk een opdrachtbevestiging, liefst binnen twee werkdagen. Daarin leg je vast wat je begrepen hebt, en vraag je de opdrachtgever dat te bevestigen. Block (2011) noemt dat het sluitstuk van de contractfase. Het doel is duidelijkheid, niet een document om elkaar aan te houden: kort, direct, bijna als een gesprek. Zolang de wederzijdse verwachtingen niet op papier staan, weet je niet of je dezelfde opdracht voor ogen hebt. Gebruik daarvoor de <i>Checklist opdrachtbevestiging</i> (bijlage C bij de workshop).</p>
+</section>
+
+<section id="onderzoek">
+  <h2>Wat onderzoek laat zien</h2>
+  <p>Over intakegesprekken met een opdrachtgever bestaat weinig direct onderzoek. Er is wel veel bekend over vergelijkbare eerste gesprekken. Denk aan arts en patiënt, analist en klant bij het opstellen van eisen voor software, en verkoper en klant. De lessen zijn steeds dezelfde: laat de ander uitpraten, vraag door naar feiten en gevolgen, en leg vast wat je hebt afgesproken.</p>
+  <div class="feit"><div class="getal">11 s<small>tot de eerste onderbreking</small></div><div class="tekst"><p>In 112 opgenomen consulten vroegen artsen maar in 36% naar de hulpvraag van de patiënt. Als ze het deden, onderbraken ze in twee derde van de gevallen, meestal al na 11 seconden (mediaan). Patiënten die hun verhaal mochten afmaken, hadden daar meestal maar zes seconden voor nodig. Eerdere studies vonden 18 en 23 seconden.</p><p class="les">Laat het openingsverhaal van je opdrachtgever uitlopen. Het kost weinig tijd en je mist minder.</p><p class="ref">Singh Ospina e.a. (2019); Beckman &amp; Frankel (1984); Marvel e.a. (1999)</p></div></div>
+<div class="feit"><div class="getal">78%<small>minder gemiste punten</small></div><div class="tekst"><p>Bij huisartsen die vroegen <i>"Is there something else…?"</i> bleven 78% minder klachten onbesproken dan bij artsen die niets vroegen. De vraag <i>"Is there anything else…?"</i> hielp niet. Eén woord maakte het verschil: de eerste vraag gaat ervan uit dat er meer is.</p><p class="les">Vraag &quot;Wat wilt u nog meer bespreken?&quot; in plaats van &quot;Is er verder nog iets?&quot;</p><p class="ref">Heritage e.a. (2007)</p></div></div>
+<div class="feit"><div class="getal">34<small>soorten beginnersfouten</small></div><div class="tekst"><p>In 28 oefeninterviews van studenten met een klant vonden onderzoekers 34 soorten fouten. De meest voorkomende: vage vragen (in 21 van de 28 interviews), het gesprek slecht afsluiten en geen band opbouwen met de klant. Ook vaak: niet vragen wie er nog meer bij betrokken is, niet doorvragen, en niet vragen hoe het proces nu loopt. In een tweede studie hadden studenten na drie gesprekken nog steeds moeite met de formulering en volgorde van hun vragen.</p><p class="les">Oefenen alleen is niet genoeg. Je hebt feedback nodig op concreet gedrag, en dat levert het scoringsinstrument.</p><p class="ref">Bano e.a. (2018, 2019)</p></div></div>
+<div class="feit"><div class="getal">35.000<small>verkoopgesprekken onderzocht</small></div><div class="tekst"><p>Rackham en zijn team volgden twaalf jaar lang verkoopgesprekken. Bij grote, complexe opdrachten hing succes samen met vragen naar de <b>gevolgen</b> van een probleem en naar de <b>waarde</b> van een oplossing. Bij kleine verkopen gold dat veel minder.</p><p class="les">Vraag door naar wat het probleem kost aan kwaliteit, levertijd en geld. Dan ziet de opdrachtgever zelf waarom het project de moeite waard is.</p><p class="ref">Rackham (1988)</p></div></div>
+<div class="feit"><div class="getal">95%<small>van het mkb gebruikte extern advies</small></div><div class="tekst"><p>Van 2.547 Britse mkb-bedrijven haalde 95% advies van buiten. Ze gingen vooral naar bronnen die ze al vertrouwden: accountant, jurist, klanten, leveranciers en bevriende ondernemers.</p><p class="les">Een mkb-ondernemer kent jullie niet. Het vertrouwen dat een accountant al heeft, moet jij in het eerste gesprek verdienen.</p><p class="ref">Bennett &amp; Robson (1999)</p></div></div>
+<div class="feit"><div class="getal">68%<small>van projectsucces verklaard</small></div><div class="tekst"><p>Bij 102 medewerkers van een telecombedrijf verklaarden zes factoren samen 68% van het verschil in hoe succesvol zij adviesprojecten vonden. Daarbij: duidelijke opleveringen, samenwerking met het team van de opdrachtgever en begrip voor de urgentie.</p><p class="les">Maak in de intake en de bevestiging duidelijk wat je oplevert, en laat merken dat je begrijpt waarom het nu speelt.</p><p class="ref">Appelbaum &amp; Steed (2005)</p></div></div>
+<div class="feit"><div class="getal">47%<small>van mislukte projecten</small></div><div class="tekst"><p>Een enquête onder ruim 2.000 projectprofessionals keek naar mislukte projecten. Bij 47% lag het niet halen van de doelen aan onnauwkeurig vastgelegde eisen en wensen.</p><p class="les">Wat je in de intake niet scherp krijgt, kost later meer. Leg het vast in de opdrachtbevestiging.</p><p class="ref">PMI (2014)</p></div></div>
+  <div class="note"><h3>Een mythe: 7% woorden, 93% lichaamstaal</h3><p class="small">Je komt vaak tegen dat communicatie maar voor een klein deel uit woorden bestaat. Die percentages komen uit twee kleine experimenten van Mehrabian uit 1967. Daarin beoordeelden proefpersonen losse woorden die met een tegenstrijdige toon of gezichtsuitdrukking werden uitgesproken. Het ging alleen over het uiten van gevoelens en houding. Mehrabian zegt zelf dat de cijfers niet gelden voor gewone gesprekken. Voor een intake geldt: je woorden en je vragen doen er wel degelijk toe, en je houding moet ermee kloppen.</p></div>
+</section>
+
+<section id="regels">
+  <h2>Tien werkregels</h2>
+  <p>De regels hieronder vatten de theorie en het onderzoek samen. Ze komen terug in het scoringsinstrument.</p>
+  <ol class="regels">
+    <li><b>Bereid je voor op de organisatie, niet op de oplossing.</b>Lees je in, schrijf je vragen uit en laat een teamgenoot ze controleren.</li>
+    <li><b>Open met doel, duur en agenda.</b>Vraag daarna wat de opdrachtgever zelf wil bespreken.</li>
+    <li><b>Laat het openingsverhaal uitlopen.</b>Onderbreek niet. Vraag "Wat wilt u nog meer bespreken?" tot er niets nieuws komt.</li>
+    <li><b>Vraag naar de laatste keer, niet naar "meestal".</b>Een concreet voorbeeld zegt meer dan een algemene mening.</li>
+    <li><b>Stel één vraag tegelijk.</b>En wacht het antwoord af.</li>
+    <li><b>Vertaal klachten naar gevolgen.</b>Wat kost het aan kwaliteit, levertijd of geld? Wie merkt het?</li>
+    <li><b>Vraag om getallen en wie ze bijhoudt.</b>Zonder data geen nulmeting.</li>
+    <li><b>Vat samen en check.</b>Na elk onderwerp: "Klopt dat, of mis ik iets?"</li>
+    <li><b>Parkeer je oplossing.</b>Noteer ideeën voor jezelf als vraag voor later.</li>
+    <li><b>Sluit af met wie, wat en wanneer.</b>Vraag of je het proces op de werkvloer mag zien.</li>
+  </ol>
+</section>
+
+<section id="fragmenten">
+  <h2>Goed en fout: fragmenten</h2>
+  <p>De fragmenten komen uit de casus van het rollenspel. De opdrachtgever (OG) is teamleider orderverwerking. Klanten klagen over trage levering en orders blijven "hangen". S is de student.</p>
+  <article class="frag"><h3><span class="fase">fase 1</span>Het begin</h3>
+
+<div class="paar"><div class="kant fout"><span class="lbl">Zo niet</span><div class="zeg"><span>S</span><span>"Nou, vertelt u maar: wat is het probleem?"</span></div><p class="waarom">Geen voorstelronde, geen doel, geen tijd. De opdrachtgever weet niet wat jullie komen doen en hoe lang het duurt.</p></div>
+<div class="kant goed"><span class="lbl">Zo wel</span><div class="zeg"><span>S</span><span>"Fijn dat we er zijn. Wij zijn Sanne en Joris, studenten Bedrijfskunde aan de HAN. We hebben drie kwartier. Ons doel: begrijpen wat er speelt in de orderverwerking, zodat we kunnen bepalen of het een geschikte opdracht is. We willen het hebben over de huidige situatie, wat u graag anders ziet en de vervolgstappen. Wat wilt u vandaag in elk geval besproken hebben?"</span></div><p class="waarom">Doel, duur en agenda in één keer (procedure). De slotvraag geeft de opdrachtgever invloed op het gesprek (relatie).</p></div></div></article>
+<article class="frag"><h3><span class="fase">fase 1</span>Wat levert het ons op?</h3>
+<div class="ctx">OG: &quot;Wat hebben wij eraan, eerlijk gezegd? En hoeveel tijd kost het ons?&quot;</div>
+<div class="paar"><div class="kant fout"><span class="lbl">Zo niet</span><div class="zeg"><span>S</span><span>"Nou, we zijn heel gemotiveerd, en we gaan uw proces echt verbeteren!"</span></div><p class="waarom">Enthousiasme in plaats van een antwoord. De vraag naar tijd blijft liggen, en &quot;echt verbeteren&quot; is een belofte zonder basis.</p></div>
+<div class="kant goed"><span class="lbl">Zo wel</span><div class="zeg"><span>S</span><span>"U krijgt een analyse van waar het in het proces vastloopt, met cijfers, en verbetervoorstellen die we samen met uw mensen uitproberen. Het kost u ongeveer een uur per week voor overleg, plus een paar gesprekken met medewerkers. Wat zou het voor u waard zijn als het beter liep?"</span></div><p class="waarom">Concreet over product en tijdsinvestering. De slotvraag haalt op wat de opdrachtgever belangrijk vindt, en daarmee het succescriterium.</p></div></div></article>
+<article class="frag"><h3><span class="fase">fase 2</span>De eerste vraag</h3>
+
+<div class="paar"><div class="kant fout"><span class="lbl">Zo niet</span><div class="zeg"><span>S</span><span>"U heeft dus vooral een communicatieprobleem op de afdeling, toch?"</span></div><p class="waarom">Suggestief: de student vult het probleem al in. Een gesloten vraag die je met &quot;ja&quot; kunt afdoen, en dan weet je nog niets.</p></div>
+<div class="kant goed"><span class="lbl">Zo wel</span><div class="zeg"><span>S</span><span>"Kunt u vertellen wat er met een order gebeurt vanaf het moment dat hij binnenkomt tot hij de deur uit gaat?"</span></div><p class="waarom">Open en neutraal. Je krijgt het proces van begin tot eind, en daarmee de plek waar het misgaat.</p></div></div></article>
+<article class="frag"><h3><span class="fase">fase 3</span>Een vaag woord</h3>
+<div class="ctx">OG: &quot;Orders blijven gewoon hangen.&quot;</div>
+<div class="paar"><div class="kant fout"><span class="lbl">Zo niet</span><div class="zeg"><span>S</span><span>"Oké. En hoe zit het met de planning?"</span></div><p class="waarom">De student noteert het en gaat naar het volgende punt op het lijstje. &quot;Hangen&quot; kan tien dingen betekenen.</p></div>
+<div class="kant goed"><span class="lbl">Zo wel</span><div class="zeg"><span>S</span><span>"Hangen: kunt u de laatste keer beschrijven dat dat gebeurde? Waar bleef de order liggen, en hoe lang?"</span></div><div class="zeg"><span>OG</span><span>"Vorige week lag een spoedorder twee dagen bij de creditcheck, omdat niemand wist dat hij daar lag."</span></div><p class="waarom">Een concreet, recent voorbeeld levert een plek in het proces (de creditcheck), een tijd (twee dagen) en een oorzaak om te onderzoeken.</p></div></div></article>
+<article class="frag"><h3><span class="fase">fase 3</span>De oplossing van de opdrachtgever</h3>
+<div class="ctx">OG: &quot;Eigenlijk moeten mensen gewoon beter werken.&quot;</div>
+<div class="paar"><div class="kant fout"><span class="lbl">Zo niet</span><div class="zeg"><span>S</span><span>"Dan kunnen we misschien een kanbanbord invoeren, of een training geven?"</span></div><p class="waarom">Te snel naar een oplossing. De student neemt het gepresenteerde probleem over en belooft iets waarvan niemand weet of het helpt.</p></div>
+<div class="kant goed"><span class="lbl">Zo wel</span><div class="zeg"><span>S</span><span>"Wat ziet u gebeuren waardoor u dat denkt?"</span></div><div class="zeg"><span>S</span><span>"En stel dat het over een half jaar goed loopt: waaraan merkt u dat dan?"</span></div><p class="waarom">De eerste vraag haalt de waarneming achter het oordeel op. De tweede levert een succescriterium op voor de opdrachtbevestiging.</p></div></div></article>
+<article class="frag"><h3><span class="fase">fase 3</span>De waarom-vraag</h3>
+
+<div class="paar"><div class="kant fout"><span class="lbl">Zo niet</span><div class="zeg"><span>S</span><span>"Waarom hebben jullie het proces nooit beschreven?"</span></div><p class="waarom">Klinkt als een verwijt. De opdrachtgever gaat zich verdedigen in plaats van uitleggen.</p></div>
+<div class="kant goed"><span class="lbl">Zo wel</span><div class="zeg"><span>S</span><span>"Hoe is het zo gegroeid dat iedereen het op zijn eigen manier doet?"</span></div><p class="waarom">Dezelfde informatie, zonder oordeel. De opdrachtgever vertelt de geschiedenis, en daarin zitten vaak de oorzaken.</p></div></div></article>
+<article class="frag"><h3><span class="fase">fase 3</span>Twee vragen tegelijk</h3>
+
+<div class="paar"><div class="kant fout"><span class="lbl">Zo niet</span><div class="zeg"><span>S</span><span>"Hoeveel orders zijn er te laat, en wie is daar eigenlijk verantwoordelijk voor, en hebben jullie daar cijfers van?"</span></div><p class="waarom">Drie vragen in één zin. De opdrachtgever beantwoordt de makkelijkste en de rest blijft liggen.</p></div>
+<div class="kant goed"><span class="lbl">Zo wel</span><div class="zeg"><span>S</span><span>"Hoeveel orders zijn er per week te laat?"</span></div><div class="zeg"><span>OG</span><span>"Een stuk of twintig, denk ik."</span></div><div class="zeg"><span>S</span><span>"Wordt dat ergens bijgehouden?"</span></div><p class="waarom">Eén vraag per keer. Het &quot;denk ik&quot; is een aanleiding om naar data te vragen: zonder data geen nulmeting.</p></div></div></article>
+<article class="frag"><h3><span class="fase">fase 3</span>Samenvatten</h3>
+
+<div class="paar"><div class="kant fout"><span class="lbl">Zo niet</span><div class="zeg"><span>S</span><span>"Oké, duidelijk. Volgende vraag…"</span></div><p class="waarom">&quot;Duidelijk&quot; is geen controle. Als de student het verkeerd begrepen heeft, merkt niemand het vóór de opdrachtbevestiging.</p></div>
+<div class="kant goed"><span class="lbl">Zo wel</span><div class="zeg"><span>S</span><span>"Ik vat even samen. Orders lopen via verkoop, creditcheck en magazijn. Ze blijven vooral hangen tussen verkoop en creditcheck, omdat niet zichtbaar is waar een order ligt. Daardoor zijn er zo&#x27;n twintig per week te laat. Klopt dat, of mis ik iets?"</span></div><div class="zeg"><span>OG</span><span>"Klopt, al gaat het in het magazijn ook weleens mis."</span></div><p class="waarom">De samenvatting ordent het gesprek en levert direct een aanvulling op (het magazijn).</p></div></div></article>
+<article class="frag"><h3><span class="fase">fase 4</span>Een belofte</h3>
+
+<div class="paar"><div class="kant fout"><span class="lbl">Zo niet</span><div class="zeg"><span>S</span><span>"We gaan zorgen dat de levertijd gehalveerd wordt."</span></div><p class="waarom">Een belofte die niemand kan waarmaken vóór er gemeten is. Straks wordt het project hierop afgerekend.</p></div>
+<div class="kant goed"><span class="lbl">Zo wel</span><div class="zeg"><span>S</span><span>"Wat we kunnen beloven: een analyse van waar orders blijven liggen, en verbetervoorstellen die we samen met uw team uitproberen. Hoeveel het oplevert, weten we na de eerste meting."</span></div><p class="waarom">Belooft een product en een werkwijze, geen uitkomst. Dat past bij een Lean-project, waarin meten voorafgaat aan verbeteren.</p></div></div></article>
+<article class="frag"><h3><span class="fase">fase 4</span>Het einde</h3>
+
+<div class="paar"><div class="kant fout"><span class="lbl">Zo niet</span><div class="zeg"><span>S</span><span>"Nou, dan gaan we ermee aan de slag. We horen nog van elkaar!"</span></div><p class="waarom">Geen samenvatting, geen afspraak, geen datum. Het risico: twee weken stilte en een opdrachtgever die het vergeet.</p></div>
+<div class="kant goed"><span class="lbl">Zo wel</span><div class="zeg"><span>S</span><span>"Samengevat: het gaat om de doorlooptijd van orders tussen verkoop en verzending. U bent proceseigenaar. We mogen de teamleiders van verkoop en magazijn spreken. Wij mailen u vrijdag een opdrachtbevestiging. Kunnen we dinsdag een ochtend meelopen in het proces? En hoe was dit gesprek voor u?"</span></div><p class="waarom">Eindsamenvatting en afspraken met datum. Daarna een voorstel om het werk ter plekke te zien (in Lean: de gemba). Tot slot een vraag hoe het gesprek bevallen is.</p></div></div></article>
+</section>
+
+<section id="instrument">
+  <h2>Scoringsinstrument</h2>
+  <p>Het instrument heeft vijf delen. Je vult het in op deze pagina. De totalen rekenen zich vanzelf uit en je invoer blijft bewaard in deze browser. Je kunt het ook printen en op papier invullen.</p>
+  <div class="grid2">
+    <div class="box">
+      <h3>Zo gebruik je het</h3>
+      <div class="stap"><span class="w">Vooraf</span><span class="small">Vul deel A in met je team. Lees deel D: dat is de informatie die je moet ophalen.</span></div>
+      <div class="stap"><span class="w">Tijdens</span><span class="small">De observator turft deel C en houdt deel D bij.</span></div>
+      <div class="stap"><span class="w">Direct na</span><span class="small">Iedereen scoort deel B apart. Vergelijk daarna en bespreek de verschillen. Vul samen deel D in.</span></div>
+      <div class="stap"><span class="w">Daarna</span><span class="small">Lees de uitslag in deel E. Wat ontbreekt uit deel D, vraag je na in de opdrachtbevestiging.</span></div>
+    </div>
+    <div class="box">
+      <h3>Waarom een schaal van 1 tot 4?</h3>
+      <p class="small">Elke score heeft een beschrijving van gedrag dat je kunt zien of horen. Dat helpt twee observatoren om hetzelfde gesprek op dezelfde manier te scoren. Een schaal zonder middenpositie dwingt je te kiezen: net voldoende (3) of nog niet (2).</p>
+      <p class="small">Scoor wat er gebeurde, niet wat je bedoelde. Twijfel je tussen twee scores, kies dan de lagere en noteer waarom.</p>
+    </div>
+  </div>
+  <div class="acties">
+    <button type="button" class="knop hoofd" onclick="printInstrument()">Print alleen het instrument</button>
+    <button type="button" class="knop" id="wisknop" onclick="wisAlles()">Wis alle invoer</button>
+    <span class="bewaard" id="bewaard" aria-live="polite"></span>
+  </div>
+
+  <div class="instr"><div class="bkop"><svg class="logo" viewBox="0 0 82 34" role="img" aria-label="Logo HAN"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></svg><h3>Voorbereiding</h3><span class="num">Deel A · vooraf</span></div>
+<p class="small">Vink af wat klaar is en vul het gespreksplan in. Alles wat openstaat, regel je vóór het gesprek.</p>
+<ul class="vink">
+<li><label><input type="checkbox" id="a1" data-a><span><b>Organisatie.</b>Je kent branche, omvang, klanten en recent nieuws van de organisatie (website, jaarverslag, LinkedIn, lokale krant).</span></label></li>
+<li><label><input type="checkbox" id="a2" data-a><span><b>Opdrachtgever.</b>Je weet welke functie je gesprekspartner heeft en waar die over beslist.</span></label></li>
+<li><label><input type="checkbox" id="a3" data-a><span><b>Waarde.</b>Je kunt in twee zinnen zeggen wat het bedrijf aan jullie heeft, en wat het kost: tijd van de opdrachtgever en medewerkers, toegang tot data.</span></label></li>
+<li><label><input type="checkbox" id="a4" data-a><span><b>Doel.</b>Het doel van dit gesprek staat in één zin op papier. Voorbeeld: &quot;Na afloop weten we welk proces het probleem veroorzaakt en wie we mogen spreken.&quot;</span></label></li>
+<li><label><input type="checkbox" id="a5" data-a><span><b>Agenda.</b>Je hebt een agenda met tijdsindeling en die vooraf gemaild. Er is ruimte voor punten van de opdrachtgever.</span></label></li>
+<li><label><input type="checkbox" id="a6" data-a><span><b>Kaders.</b>Je kunt de eisen van de opleiding in twee zinnen uitleggen: repeterend proces, gevolgen voor kwaliteit, levering of kosten (QDC), tactisch of operationeel niveau.</span></label></li>
+<li><label><input type="checkbox" id="a7" data-a><span><b>Vragen.</b>Je openingsvraag en vijf kernvragen staan uitgeschreven. Een teamgenoot heeft ze gecontroleerd op suggestieve en dubbele vragen.</span></label></li>
+<li><label><input type="checkbox" id="a8" data-a><span><b>Informatielijst.</b>Deel D van dit instrument ligt naast je, zodat je tijdens het gesprek ziet wat nog ontbreekt.</span></label></li>
+<li><label><input type="checkbox" id="a9" data-a><span><b>Rollen.</b>Het team heeft de rollen verdeeld: gespreksleider, notulist en observator (die ook de tijd bewaakt).</span></label></li>
+<li><label><input type="checkbox" id="a10" data-a><span><b>Vervolg.</b>Je weet welke volgende stap je gaat voorstellen, bijvoorbeeld een procesbezoek, gesprekken met medewerkers of toegang tot data.</span></label></li>
+<li><label><input type="checkbox" id="a11" data-a><span><b>Praktisch.</b>Tijd, plek en duur staan vast. Je vraagt aan het begin of je aantekeningen mag maken.</span></label></li>
+</ul><p class="small"><b id="a-tot">0</b> van de 11 punten klaar.</p>
+<h3>Gespreksplan</h3>
+<div class="vak"><label for="plan-doel">Doel van dit gesprek</label><span class="hint">Wat weten we na afloop dat we nu niet weten?</span><textarea id="plan-doel" rows="2"></textarea></div>
+<div class="vak"><label for="plan-weten">Wat we al weten</label><span class="hint">Organisatie, opdrachtgever, eerste signalen over het probleem</span><textarea id="plan-weten" rows="3"></textarea></div>
+<div class="vak"><label for="plan-open">Openingszin en openingsvraag</label><span class="hint">Hoe stel je je voor, hoe leg je het doel uit, welke brede eerste vraag stel je?</span><textarea id="plan-open" rows="3"></textarea></div>
+<div class="vak"><label for="plan-vragen">Vijf kernvragen</label><span class="hint">Open geformuleerd, één vraag per regel</span><textarea id="plan-vragen" rows="5"></textarea></div>
+<div class="vak"><label for="plan-vervolg">Voorstel voor de volgende stap</label><span class="hint">Wat vraag je aan het eind: procesbezoek, gesprekken, data?</span><textarea id="plan-vervolg" rows="2"></textarea></div>
+</div>
+<div class="instr rubric"><div class="bkop"><svg class="logo" viewBox="0 0 82 34" role="img" aria-label="Logo HAN"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></svg><h3>Gespreksscore</h3><span class="num">Deel B · direct na</span></div>
+<p class="small">Klik per criterium de beschrijving aan die het best past bij wat je zag en hoorde. Score 8 tot 32.</p>
+<div class="tablewrap"><table><thead><tr><th>Criterium</th><th>1 · onvoldoende</th><th>2 · in ontwikkeling</th><th>3 · goed</th><th>4 · sterk</th></tr></thead><tbody>
+<tr><td class="crit"><b>Opening en agenda</b><small>Procedure · fase 1</small></td><td class="opt"><label><input type="radio" name="b1" id="b1-1" value="1" data-b><span class="pt">1</span><span>Begint direct met de inhoud. Doel en tijd blijven onbenoemd.</span></label></td><td class="opt"><label><input type="radio" name="b1" id="b1-2" value="2" data-b><span class="pt">2</span><span>Noemt het doel of de tijd, maar niet allebei. Geen agenda.</span></label></td><td class="opt"><label><input type="radio" name="b1" id="b1-3" value="3" data-b><span class="pt">3</span><span>Stelt zich voor en noemt doel, duur en agenda.</span></label></td><td class="opt"><label><input type="radio" name="b1" id="b1-4" value="4" data-b><span class="pt">4</span><span>Als 3, en vraagt wat de opdrachtgever zelf wil bespreken. Die punten komen op de agenda.</span></label></td></tr>
+<tr><td class="crit"><b>Ruimte voor het verhaal</b><small>Inhoud · fase 2</small></td><td class="opt"><label><input type="radio" name="b2" id="b2-1" value="1" data-b><span class="pt">1</span><span>Onderbreekt het openingsverhaal binnen een halve minuut of vult het zelf in.</span></label></td><td class="opt"><label><input type="radio" name="b2" id="b2-2" value="2" data-b><span class="pt">2</span><span>Laat het verhaal grotendeels uitlopen, maar stuurt snel naar een eigen onderwerp.</span></label></td><td class="opt"><label><input type="radio" name="b2" id="b2-3" value="3" data-b><span class="pt">3</span><span>Stelt een brede openingsvraag en laat het verhaal uitlopen.</span></label></td><td class="opt"><label><input type="radio" name="b2" id="b2-4" value="4" data-b><span class="pt">4</span><span>Als 3, en vraagt &quot;Wat wilt u nog meer bespreken?&quot; tot er niets nieuws komt.</span></label></td></tr>
+<tr><td class="crit"><b>Doorvragen tot concreet</b><small>Inhoud · fase 3</small></td><td class="opt"><label><input type="radio" name="b3" id="b3-1" value="1" data-b><span class="pt">1</span><span>Neemt vage woorden over (&quot;het loopt stroef&quot;) zonder door te vragen.</span></label></td><td class="opt"><label><input type="radio" name="b3" id="b3-2" value="2" data-b><span class="pt">2</span><span>Vraagt soms door, maar blijft bij meningen en algemene uitspraken.</span></label></td><td class="opt"><label><input type="radio" name="b3" id="b3-3" value="3" data-b><span class="pt">3</span><span>Vraagt naar recente voorbeelden, getallen en het proces van begin tot eind.</span></label></td><td class="opt"><label><input type="radio" name="b3" id="b3-4" value="4" data-b><span class="pt">4</span><span>Als 3, en maakt de gevolgen zichtbaar voor klant en organisatie (kwaliteit, levertijd, kosten).</span></label></td></tr>
+<tr><td class="crit"><b>Kwaliteit van de vragen</b><small>Inhoud · alle fasen</small></td><td class="opt"><label><input type="radio" name="b4" id="b4-1" value="1" data-b><span class="pt">1</span><span>Vooral gesloten, suggestieve of dubbele vragen.</span></label></td><td class="opt"><label><input type="radio" name="b4" id="b4-2" value="2" data-b><span class="pt">2</span><span>Open en gesloten vragen door elkaar, met meerdere suggestieve of dubbele vragen.</span></label></td><td class="opt"><label><input type="radio" name="b4" id="b4-3" value="3" data-b><span class="pt">3</span><span>Vooral open vragen, één tegelijk. Hooguit één suggestieve vraag.</span></label></td><td class="opt"><label><input type="radio" name="b4" id="b4-4" value="4" data-b><span class="pt">4</span><span>Werkt als een trechter: breed, dan specifiek, dan een controlevraag. Geen suggestieve vragen.</span></label></td></tr>
+<tr><td class="crit"><b>Luisteren en samenvatten</b><small>Relatie · fase 3</small></td><td class="opt"><label><input type="radio" name="b5" id="b5-1" value="1" data-b><span class="pt">1</span><span>Vat niet samen. Reageert op het eigen lijstje in plaats van op het antwoord.</span></label></td><td class="opt"><label><input type="radio" name="b5" id="b5-2" value="2" data-b><span class="pt">2</span><span>Vat één keer samen, zonder te controleren of het klopt.</span></label></td><td class="opt"><label><input type="radio" name="b5" id="b5-3" value="3" data-b><span class="pt">3</span><span>Vat na elk onderwerp samen en vraagt of het klopt.</span></label></td><td class="opt"><label><input type="radio" name="b5" id="b5-4" value="4" data-b><span class="pt">4</span><span>Als 3, en de samenvattingen brengen iets nieuws aan het licht of corrigeren een misverstand.</span></label></td></tr>
+<tr><td class="crit"><b>Oplossingen parkeren</b><small>Inhoud · fase 3 en 4</small></td><td class="opt"><label><input type="radio" name="b6" id="b6-1" value="1" data-b><span class="pt">1</span><span>Stelt een oplossing voor of belooft een resultaat.</span></label></td><td class="opt"><label><input type="radio" name="b6" id="b6-2" value="2" data-b><span class="pt">2</span><span>Laat een oplossing doorschemeren (&quot;misschien is een kanbanbord iets&quot;).</span></label></td><td class="opt"><label><input type="radio" name="b6" id="b6-3" value="3" data-b><span class="pt">3</span><span>Houdt eigen ideeën voor zich en blijft bij het probleem.</span></label></td><td class="opt"><label><input type="radio" name="b6" id="b6-4" value="4" data-b><span class="pt">4</span><span>Als 3, en maakt expliciet dat de oplossing uit analyse en meting moet volgen.</span></label></td></tr>
+<tr><td class="crit"><b>Houding en relatie</b><small>Relatie en emotie</small></td><td class="opt"><label><input type="radio" name="b7" id="b7-1" value="1" data-b><span class="pt">1</span><span>Afwezig, belerend of nerveus. Praat meer dan de opdrachtgever.</span></label></td><td class="opt"><label><input type="radio" name="b7" id="b7-2" value="2" data-b><span class="pt">2</span><span>Beleefd, maar schools: werkt de vragenlijst af.</span></label></td><td class="opt"><label><input type="radio" name="b7" id="b7-3" value="3" data-b><span class="pt">3</span><span>Oprecht geïnteresseerd. Oogcontact, rustig tempo, taal van de opdrachtgever.</span></label></td><td class="opt"><label><input type="radio" name="b7" id="b7-4" value="4" data-b><span class="pt">4</span><span>Als 3, en benoemt het perspectief of de zorg van de opdrachtgever zonder te oordelen.</span></label></td></tr>
+<tr><td class="crit"><b>Afronding en afspraken</b><small>Procedure · fase 4</small></td><td class="opt"><label><input type="radio" name="b8" id="b8-1" value="1" data-b><span class="pt">1</span><span>Het gesprek stopt zonder samenvatting of afspraak.</span></label></td><td class="opt"><label><input type="radio" name="b8" id="b8-2" value="2" data-b><span class="pt">2</span><span>Algemene afspraak (&quot;we horen nog van elkaar&quot;).</span></label></td><td class="opt"><label><input type="radio" name="b8" id="b8-3" value="3" data-b><span class="pt">3</span><span>Eindsamenvatting en een concrete volgende stap: wie, wat, wanneer.</span></label></td><td class="opt"><label><input type="radio" name="b8" id="b8-4" value="4" data-b><span class="pt">4</span><span>Als 3, en kondigt de schriftelijke bevestiging aan met een datum. Vraagt hoe de opdrachtgever het gesprek vond.</span></label></td></tr>
+</tbody></table></div>
+<div class="vak"><label for="b-bewijs">Bewijs bij je laagste score</label><span class="hint">Welke zin of welk moment in het gesprek?</span><textarea id="b-bewijs" rows="2"></textarea></div></div>
+<div class="instr turf"><div class="bkop"><svg class="logo" viewBox="0 0 82 34" role="img" aria-label="Logo HAN"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></svg><h3>Turflijst voor de observator</h3><span class="num">Deel C · tijdens</span></div>
+<p class="small">Zet een streepje op papier of verhoog het getal. De norm geldt voor een gesprek van 30 tot 45 minuten.</p>
+<div class="tablewrap"><table><thead><tr><th>Gedrag van de student</th><th>Aantal</th><th>Norm</th><th>Status</th></tr></thead><tbody>
+<tr><td><label for="c1">Open vragen</label></td><td><input type="number" min="0" step="1" id="c1" data-c data-typ="info" data-norm=""></td><td class="small">meer dan gesloten</td><td class="st" id="c1-st">–</td></tr>
+<tr><td><label for="c2">Gesloten vragen</label></td><td><input type="number" min="0" step="1" id="c2" data-c data-typ="info" data-norm=""></td><td class="small">vooral om te controleren</td><td class="st" id="c2-st">–</td></tr>
+<tr><td><label for="c3">Suggestieve vragen</label></td><td><input type="number" min="0" step="1" id="c3" data-c data-typ="max" data-norm="0"></td><td class="small">0</td><td class="st" id="c3-st">–</td></tr>
+<tr><td><label for="c4">Dubbele vragen (twee in één)</label></td><td><input type="number" min="0" step="1" id="c4" data-c data-typ="max" data-norm="1"></td><td class="small">hoogstens 1</td><td class="st" id="c4-st">–</td></tr>
+<tr><td><label for="c5">Waarom-vragen die als verwijt klinken</label></td><td><input type="number" min="0" step="1" id="c5" data-c data-typ="max" data-norm="0"></td><td class="small">0</td><td class="st" id="c5-st">–</td></tr>
+<tr><td><label for="c6">Samenvattingen met controle (&quot;klopt dat?&quot;)</label></td><td><input type="number" min="0" step="1" id="c6" data-c data-typ="min" data-norm="3"></td><td class="small">minstens 3</td><td class="st" id="c6-st">–</td></tr>
+<tr><td><label for="c7">Keren dat de student de opdrachtgever onderbreekt</label></td><td><input type="number" min="0" step="1" id="c7" data-c data-typ="max" data-norm="1"></td><td class="small">hoogstens 1</td><td class="st" id="c7-st">–</td></tr>
+<tr><td><label for="c8">Adviezen of oplossingen van de student</label></td><td><input type="number" min="0" step="1" id="c8" data-c data-typ="max" data-norm="0"></td><td class="small">0</td><td class="st" id="c8-st">–</td></tr>
+<tr><td><label for="c9">Spreektijd student (schatting in %)</label></td><td><input type="number" min="0" max="100" step="5" id="c9" data-c data-typ="max" data-norm="40"></td><td class="small">hoogstens 40%</td><td class="st" id="c9-st">–</td></tr>
+</tbody></table></div></div>
+<div class="instr opbr"><div class="bkop"><svg class="logo" viewBox="0 0 82 34" role="img" aria-label="Logo HAN"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></svg><h3>Opbrengstcheck</h3><span class="num">Deel D · na afloop</span></div>
+<p class="small">Welke informatie heb je na het gesprek? Ja = 2, deels = 1, nee = 0. Score 0 tot 24. Deze punten heb je nodig voor het formulier <i>Goedkeuring praktijkopdracht</i> en de opdrachtbevestiging.</p>
+<div class="tablewrap"><table><thead><tr><th>Onderwerp</th><th>Wat je moet weten</th><th>Opgehaald?</th></tr></thead><tbody>
+<tr><td><b>Aanleiding</b></td><td class="small">Waarom speelt dit nu? Wat was de druppel?</td><td><span class="seg" role="radiogroup" aria-label="Aanleiding"><label><input type="radio" name="d1" id="d1-2" value="2" data-d>ja</label><label><input type="radio" name="d1" id="d1-1" value="1" data-d>deels</label><label><input type="radio" name="d1" id="d1-0" value="0" data-d>nee</label></span></td></tr>
+<tr><td><b>Probleem</b></td><td class="small">Het probleem in de woorden van de opdrachtgever, met een recent voorbeeld.</td><td><span class="seg" role="radiogroup" aria-label="Probleem"><label><input type="radio" name="d2" id="d2-2" value="2" data-d>ja</label><label><input type="radio" name="d2" id="d2-1" value="1" data-d>deels</label><label><input type="radio" name="d2" id="d2-0" value="0" data-d>nee</label></span></td></tr>
+<tr><td><b>Proces</b></td><td class="small">Start- en eindpunt van het proces en hoe vaak het loopt (dagelijks, wekelijks).</td><td><span class="seg" role="radiogroup" aria-label="Proces"><label><input type="radio" name="d3" id="d3-2" value="2" data-d>ja</label><label><input type="radio" name="d3" id="d3-1" value="1" data-d>deels</label><label><input type="radio" name="d3" id="d3-0" value="0" data-d>nee</label></span></td></tr>
+<tr><td><b>Gevolgen</b></td><td class="small">Wat het probleem kost aan kwaliteit, levertijd of geld, liefst met een getal.</td><td><span class="seg" role="radiogroup" aria-label="Gevolgen"><label><input type="radio" name="d4" id="d4-2" value="2" data-d>ja</label><label><input type="radio" name="d4" id="d4-1" value="1" data-d>deels</label><label><input type="radio" name="d4" id="d4-0" value="0" data-d>nee</label></span></td></tr>
+<tr><td><b>Proceseigenaar</b></td><td class="small">Wie over het proces beslist.</td><td><span class="seg" role="radiogroup" aria-label="Proceseigenaar"><label><input type="radio" name="d5" id="d5-2" value="2" data-d>ja</label><label><input type="radio" name="d5" id="d5-1" value="1" data-d>deels</label><label><input type="radio" name="d5" id="d5-0" value="0" data-d>nee</label></span></td></tr>
+<tr><td><b>Betrokkenen</b></td><td class="small">Wie je verder moet spreken, met namen en beschikbaarheid.</td><td><span class="seg" role="radiogroup" aria-label="Betrokkenen"><label><input type="radio" name="d6" id="d6-2" value="2" data-d>ja</label><label><input type="radio" name="d6" id="d6-1" value="1" data-d>deels</label><label><input type="radio" name="d6" id="d6-0" value="0" data-d>nee</label></span></td></tr>
+<tr><td><b>Data</b></td><td class="small">Wat al wordt gemeten, door wie, en of je erbij mag.</td><td><span class="seg" role="radiogroup" aria-label="Data"><label><input type="radio" name="d7" id="d7-2" value="2" data-d>ja</label><label><input type="radio" name="d7" id="d7-1" value="1" data-d>deels</label><label><input type="radio" name="d7" id="d7-0" value="0" data-d>nee</label></span></td></tr>
+<tr><td><b>Succes</b></td><td class="small">Waaraan de opdrachtgever merkt dat het beter gaat.</td><td><span class="seg" role="radiogroup" aria-label="Succes"><label><input type="radio" name="d8" id="d8-2" value="2" data-d>ja</label><label><input type="radio" name="d8" id="d8-1" value="1" data-d>deels</label><label><input type="radio" name="d8" id="d8-0" value="0" data-d>nee</label></span></td></tr>
+<tr><td><b>Afbakening</b></td><td class="small">Wat buiten de opdracht valt: afdelingen, producten, systemen.</td><td><span class="seg" role="radiogroup" aria-label="Afbakening"><label><input type="radio" name="d9" id="d9-2" value="2" data-d>ja</label><label><input type="radio" name="d9" id="d9-1" value="1" data-d>deels</label><label><input type="radio" name="d9" id="d9-0" value="0" data-d>nee</label></span></td></tr>
+<tr><td><b>Risico&#x27;s</b></td><td class="small">Randvoorwaarden en risico&#x27;s: reorganisatie, nieuw ERP-systeem, weerstand.</td><td><span class="seg" role="radiogroup" aria-label="Risico&#x27;s"><label><input type="radio" name="d10" id="d10-2" value="2" data-d>ja</label><label><input type="radio" name="d10" id="d10-1" value="1" data-d>deels</label><label><input type="radio" name="d10" id="d10-0" value="0" data-d>nee</label></span></td></tr>
+<tr><td><b>Verwachtingen</b></td><td class="small">Wat de opdrachtgever van jullie verwacht, en wat jullie van de organisatie nodig hebben.</td><td><span class="seg" role="radiogroup" aria-label="Verwachtingen"><label><input type="radio" name="d11" id="d11-2" value="2" data-d>ja</label><label><input type="radio" name="d11" id="d11-1" value="1" data-d>deels</label><label><input type="radio" name="d11" id="d11-0" value="0" data-d>nee</label></span></td></tr>
+<tr><td><b>Vervolg</b></td><td class="small">De volgende stap met datum, en wie jullie contactpersoon is.</td><td><span class="seg" role="radiogroup" aria-label="Vervolg"><label><input type="radio" name="d12" id="d12-2" value="2" data-d>ja</label><label><input type="radio" name="d12" id="d12-1" value="1" data-d>deels</label><label><input type="radio" name="d12" id="d12-0" value="0" data-d>nee</label></span></td></tr>
+</tbody></table></div></div>
+<div class="instr"><div class="bkop"><svg class="logo" viewBox="0 0 82 34" role="img" aria-label="Logo HAN"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></svg><h3>Uitslag en reflectie</h3><span class="num">Deel E · uitslag</span></div>
+<h3>Knock-outs</h3><p class="small">Eén van deze drie is genoeg om het gesprek als onvoldoende effectief te beoordelen, ongeacht de scores.</p>
+<ul class="ko">
+<li><label><input type="checkbox" id="ko1" data-ko><span>Er is geen volgende stap met datum afgesproken.</span></label></li>
+<li><label><input type="checkbox" id="ko2" data-ko><span>Er is een oplossing of een resultaat toegezegd.</span></label></li>
+<li><label><input type="checkbox" id="ko3" data-ko><span>Het probleem is niet samengevat en ter controle aan de opdrachtgever voorgelegd.</span></label></li>
+</ul>
+<div class="uitslag">
+<div class="meter"><span class="k">Deel B · gespreksscore</span><span class="v"><span id="b-tot">–</span> <small>/ 32</small></span><div class="bar"><i id="b-bar"></i></div><span class="small" id="b-n"></span></div>
+<div class="meter"><span class="k">Deel D · opbrengst</span><span class="v"><span id="d-tot">–</span> <small>/ 24</small></span><div class="bar"><i id="d-bar"></i></div><span class="small" id="d-n"></span></div>
+<div class="meter"><span class="k">Deel C · aandachtspunten</span><span class="v"><span id="c-tot">–</span></span><span class="small">gedragingen buiten de norm</span></div>
+</div>
+<div class="oordeel" id="oordeel" aria-live="polite"><b class="kop" id="o-kop">Nog niet volledig ingevuld</b><span id="o-tekst" class="small">Vul deel B en D helemaal in om een uitslag te zien.</span></div>
+<div class="tablewrap"><table><thead><tr><th>Uitslag</th><th>Deel B</th><th>Deel D</th><th>Wat je doet</th></tr></thead><tbody>
+<tr><td><b>Sterk</b></td><td>26–32</td><td>20–24</td><td class="small">Schrijf de opdrachtbevestiging. Vraag de enkele open punten daarin na.</td></tr>
+<tr><td><b>Voldoende</b></td><td>20–25</td><td>14–19</td><td class="small">Schrijf de bevestiging en stel de open punten er als vraag in. Plan een kort vervolggesprek als het om data of betrokkenen gaat.</td></tr>
+<tr><td><b>Onvoldoende</b></td><td>&lt; 20</td><td>&lt; 14</td><td class="small">Plan een tweede gesprek voordat je de bevestiging stuurt. Oefen je laagste criterium eerst in een rollenspel.</td></tr>
+</tbody></table></div>
+<p class="small muted">De uitslag telt het laagste van de twee: B = 27 en D = 15 is dus "voldoende". De grenzen zijn een startpunt. Stel ze bij als de groep na een paar gesprekken ervaring heeft met het instrument.</p>
+<h3>Reflectie</h3>
+<div class="vak"><label for="e-goed">Wat ging goed? Noem een concreet moment.</label><textarea id="e-goed" rows="2"></textarea></div>
+<div class="vak"><label for="e-beter">Welk criterium scoorde het laagst, en wat doe je de volgende keer anders?</label><span class="hint">Beschrijf gedrag, bijvoorbeeld: "Na elk onderwerp vat ik samen en vraag ik of het klopt."</span><textarea id="e-beter" rows="2"></textarea></div>
+<div class="vak"><label for="e-na">Welke informatie uit deel D vraag je na in de opdrachtbevestiging?</label><textarea id="e-na" rows="2"></textarea></div>
+</div>
+</section>
+
+<section id="bronnen">
+  <h2>Bronnen</h2>
+  <ol class="bronnen"><li>Appelbaum, S. H., &amp; Steed, A. J. (2005). The critical success factors in the client-consulting relationship. <i>Journal of Management Development, 24</i>(1), 68–93. <a href="https://doi.org/10.1108/02621710510572362">https://doi.org/10.1108/02621710510572362</a></li><li>Bano, M., Zowghi, D., Ferrari, A., Spoletini, P., &amp; Donati, B. (2018). Learning from mistakes: An empirical study of elicitation interviews performed by novices. In <i>2018 IEEE 26th International Requirements Engineering Conference (RE)</i> (pp. 182–193). IEEE. <a href="https://doi.org/10.1109/RE.2018.00027">https://doi.org/10.1109/RE.2018.00027</a></li><li>Bano, M., Zowghi, D., Ferrari, A., Spoletini, P., &amp; Donati, B. (2019). Teaching requirements elicitation interviews: An empirical study of learning from mistakes. <i>Requirements Engineering, 24</i>(3), 259–289. <a href="https://doi.org/10.1007/s00766-019-00313-0">https://doi.org/10.1007/s00766-019-00313-0</a></li><li>Beckman, H. B., &amp; Frankel, R. M. (1984). The effect of physician behavior on the collection of data. <i>Annals of Internal Medicine, 101</i>(5), 692–696. <a href="https://doi.org/10.7326/0003-4819-101-5-692">https://doi.org/10.7326/0003-4819-101-5-692</a></li><li>Bennett, R. J., &amp; Robson, P. J. A. (1999). The use of external business advice by SMEs in Britain. <i>Entrepreneurship &amp; Regional Development, 11</i>(2), 155–180. <a href="https://doi.org/10.1080/089856299283245">https://doi.org/10.1080/089856299283245</a></li><li>Block, P. (2011). <i>Flawless consulting: A guide to getting your expertise used</i> (3rd ed.). Pfeiffer.</li><li>Davis, A., Dieste, O., Hickey, A., Juristo, N., &amp; Moreno, A. M. (2006). Effectiveness of requirements elicitation techniques: Empirical results derived from a systematic review. In <i>14th IEEE International Requirements Engineering Conference (RE'06)</i> (pp. 179–188). IEEE. <a href="https://doi.org/10.1109/RE.2006.17">https://doi.org/10.1109/RE.2006.17</a></li><li>Fitzpatrick, R. (2013). <i>The mom test: How to talk to customers and learn if your business is a good idea when everyone is lying to you</i>. CreateSpace.</li><li>Gause, D. C., &amp; Weinberg, G. M. (1989). <i>Exploring requirements: Quality before design</i>. Dorset House.</li><li>Heritage, J., Robinson, J. D., Elliott, M. N., Beckett, M., &amp; Wilkes, M. (2007). Reducing patients' unmet concerns in primary care: The difference one word can make. <i>Journal of General Internal Medicine, 22</i>(10), 1429–1433. <a href="https://doi.org/10.1007/s11606-007-0279-0">https://doi.org/10.1007/s11606-007-0279-0</a></li><li>Huang, K., Yeomans, M., Brooks, A. W., Minson, J., &amp; Gino, F. (2017). It doesn't hurt to ask: Question-asking increases liking. <i>Journal of Personality and Social Psychology, 113</i>(3), 430–452. <a href="https://doi.org/10.1037/pspi0000097">https://doi.org/10.1037/pspi0000097</a></li><li>Itzchakov, G., Kluger, A. N., &amp; Castro, D. R. (2017). I am aware of my inconsistencies but can tolerate them: The effect of high quality listening on speakers' attitude ambivalence. <i>Personality and Social Psychology Bulletin, 43</i>(1), 105–120. <a href="https://doi.org/10.1177/0146167216675339">https://doi.org/10.1177/0146167216675339</a></li><li>Kolb, D. A., &amp; Frohman, A. L. (1970). An organization development approach to consulting. <i>Sloan Management Review, 12</i>(1), 51–65.</li><li>Loftus, E. F., &amp; Palmer, J. C. (1974). Reconstruction of automobile destruction: An example of the interaction between language and memory. <i>Journal of Verbal Learning and Verbal Behavior, 13</i>(5), 585–589. <a href="https://doi.org/10.1016/S0022-5371(74)80011-3">https://doi.org/10.1016/S0022-5371(74)80011-3</a></li><li>Maister, D. H., Green, C. H., &amp; Galford, R. M. (2000). <i>The trusted advisor</i>. Free Press.</li><li>Makoul, G. (2001). The SEGUE Framework for teaching and assessing communication skills. <i>Patient Education and Counseling, 45</i>(1), 23–34. <a href="https://doi.org/10.1016/S0738-3991(01)00136-7">https://doi.org/10.1016/S0738-3991(01)00136-7</a></li><li>Marvel, M. K., Epstein, R. M., Flowers, K., &amp; Beckman, H. B. (1999). Soliciting the patient's agenda: Have we improved? <i>JAMA, 281</i>(3), 283–287. <a href="https://doi.org/10.1001/jama.281.3.283">https://doi.org/10.1001/jama.281.3.283</a></li><li>Mehrabian, A., &amp; Ferris, S. R. (1967). Inference of attitudes from nonverbal communication in two channels. <i>Journal of Consulting Psychology, 31</i>(3), 248–252. <a href="https://doi.org/10.1037/h0024648">https://doi.org/10.1037/h0024648</a></li><li>Mehrabian, A., &amp; Wiener, M. (1967). Decoding of inconsistent communications. <i>Journal of Personality and Social Psychology, 6</i>(1), 109–114. <a href="https://doi.org/10.1037/h0024532">https://doi.org/10.1037/h0024532</a></li><li>Nikolova, N., Möllering, G., &amp; Reihlen, M. (2015). Trusting as a 'leap of faith': Trust-building practices in client–consultant relationships. <i>Scandinavian Journal of Management, 31</i>(2), 232–245. <a href="https://doi.org/10.1016/j.scaman.2014.09.007">https://doi.org/10.1016/j.scaman.2014.09.007</a></li><li>Nikolova, N., Reihlen, M., &amp; Schlapfner, J.-F. (2009). Client–consultant interaction: Capturing social practices of professional service production. <i>Scandinavian Journal of Management, 25</i>(3), 289–298. <a href="https://doi.org/10.1016/j.scaman.2009.05.004">https://doi.org/10.1016/j.scaman.2009.05.004</a></li><li>Oxburgh, G. E., Myklebust, T., &amp; Grant, T. (2010). The question of question types in police interviews: A review of the literature from a psychological and linguistic perspective. <i>International Journal of Speech, Language and the Law, 17</i>(1), 45–66. <a href="https://doi.org/10.1558/ijsll.v17i1.45">https://doi.org/10.1558/ijsll.v17i1.45</a></li><li>Project Management Institute. (2014). <i>Pulse of the profession in-depth report: Requirements management – A core competency for project and program success</i>. PMI.</li><li>Rackham, N. (1988). <i>SPIN selling</i>. McGraw-Hill.</li><li>Rogers, C. R., &amp; Farson, R. E. (1957). <i>Active listening</i>. Industrial Relations Center, University of Chicago.</li><li>Schein, E. H. (1999). <i>Process consultation revisited: Building the helping relationship</i>. Addison-Wesley.</li><li>Schein, E. H. (2013). <i>Humble inquiry: The gentle art of asking instead of telling</i>. Berrett-Koehler.</li><li>Silverman, J., Kurtz, S., &amp; Draper, J. (2013). <i>Skills for communicating with patients</i> (3rd ed.). Radcliffe.</li><li>Singh Ospina, N., Phillips, K. A., Rodriguez-Gutierrez, R., Castaneda-Guarderas, A., Gionfriddo, M. R., Branda, M. E., &amp; Montori, V. M. (2019). Eliciting the patient's agenda: Secondary analysis of recorded clinical encounters. <i>Journal of General Internal Medicine, 34</i>(1), 36–40. <a href="https://doi.org/10.1007/s11606-018-4540-5">https://doi.org/10.1007/s11606-018-4540-5</a></li><li>Weger, H., Jr., Castle Bell, G., Minei, E. M., &amp; Robinson, M. C. (2014). The relative effectiveness of active listening in initial interactions. <i>International Journal of Listening, 28</i>(1), 13–31. <a href="https://doi.org/10.1080/10904018.2013.813234">https://doi.org/10.1080/10904018.2013.813234</a></li></ol>
+</section>
+
+<footer class="bron"><p>Opgesteld 22 september 2026 voor de workshop intakegesprek (BKN-C01, lesweek 4). Sluit aan op de slides <i>Intake met opdrachtgever</i>, het rollenspelscript en de <i>Checklist opdrachtbevestiging</i>.</p></footer>
+</div>
+<div class="foot"><svg class="logo" viewBox="0 0 82 34" role="img" aria-label="Logo HAN"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></svg><span class="who">Hogeschool van Arnhem en Nijmegen</span><span class="sp"></span><span class="num">BKN-C01 · intake</span></div>
+<script>/* Totalen en uitslag van het scoringsinstrument. Invoer blijft bewaard in deze browser. */
+const SLEUTEL = 'intake-manual-bknc01';
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+function gekozen(naam){ const r = document.querySelector(`input[name="${naam}"]:checked`); return r ? +r.value : null; }
+
+function reken(){
+  $('#a-tot').textContent = $$('[data-a]').filter(x => x.checked).length;
+
+  const bNamen = [...new Set($$('[data-b]').map(x => x.name))];
+  const bVals = bNamen.map(gekozen).filter(v => v !== null);
+  const bSom = bVals.reduce((a, b) => a + b, 0);
+  $('#b-tot').textContent = bVals.length ? bSom : '–';
+  $('#b-bar').style.width = (bSom / 32 * 100) + '%';
+  $('#b-n').textContent = `${bVals.length} van ${bNamen.length} criteria gescoord`;
+
+  const dNamen = [...new Set($$('[data-d]').map(x => x.name))];
+  const dVals = dNamen.map(gekozen).filter(v => v !== null);
+  const dSom = dVals.reduce((a, b) => a + b, 0);
+  $('#d-tot').textContent = dVals.length ? dSom : '–';
+  $('#d-bar').style.width = (dSom / 24 * 100) + '%';
+  $('#d-n').textContent = `${dVals.length} van ${dNamen.length} onderwerpen ingevuld`;
+
+  let buiten = 0, ingevuld = 0;
+  const open = +($('#c1').value || 0), dicht = +($('#c2').value || 0);
+  $$('[data-c]').forEach(inp => {
+    const st = $('#' + inp.id + '-st');
+    if (inp.value === '') { st.textContent = '–'; st.className = 'st'; return; }
+    ingevuld++;
+    const v = +inp.value, n = inp.dataset.norm === '' ? null : +inp.dataset.norm, typ = inp.dataset.typ;
+    let ok = true;
+    if (typ === 'max') ok = v <= n;
+    if (typ === 'min') ok = v >= n;
+    if (inp.id === 'c1' || inp.id === 'c2') ok = open > dicht || ($('#c1').value === '' || $('#c2').value === '');
+    if (!ok) buiten++;
+    st.textContent = ok ? 'binnen norm' : 'let op';
+    st.className = 'st ' + (ok ? 'goed' : 'let');
+  });
+  $('#c-tot').textContent = ingevuld ? buiten : '–';
+
+  const ko = $$('[data-ko]').filter(x => x.checked).length;
+  const kop = $('#o-kop'), tekst = $('#o-tekst');
+  if (bVals.length < bNamen.length || dVals.length < dNamen.length) {
+    kop.textContent = 'Nog niet volledig ingevuld';
+    tekst.textContent = 'Vul deel B en D helemaal in om een uitslag te zien.';
+  } else if (ko) {
+    kop.textContent = 'Onvoldoende effectief (knock-out)';
+    tekst.textContent = 'Los eerst de knock-out op: neem contact op met de opdrachtgever voordat je de opdrachtbevestiging stuurt.';
+  } else {
+    const nivB = bSom >= 26 ? 2 : bSom >= 20 ? 1 : 0;
+    const nivD = dSom >= 20 ? 2 : dSom >= 14 ? 1 : 0;
+    const niv = Math.min(nivB, nivD);
+    kop.textContent = ['Onvoldoende', 'Voldoende', 'Sterk'][niv];
+    tekst.textContent = [
+      'Plan een tweede gesprek voordat je de bevestiging stuurt. Oefen je laagste criterium eerst in een rollenspel.',
+      'Schrijf de bevestiging en stel de open punten uit deel D er als vraag in.',
+      'Schrijf de opdrachtbevestiging. Vraag de enkele open punten daarin na.'][niv];
+  }
+}
+
+function bewaar(){
+  const data = {};
+  $$('#instrument input, #instrument textarea').forEach(x => {
+    if (x.type === 'radio') { if (x.checked) data[x.name] = x.value; }
+    else if (x.type === 'checkbox') data[x.id] = x.checked;
+    else data[x.id] = x.value;
+  });
+  try { localStorage.setItem(SLEUTEL, JSON.stringify(data)); $('#bewaard').textContent = 'Bewaard in deze browser'; } catch (e) {}
+}
+
+function laad(){
+  let data = null;
+  try { data = JSON.parse(localStorage.getItem(SLEUTEL) || 'null'); } catch (e) {}
+  if (!data) return;
+  $$('#instrument input, #instrument textarea').forEach(x => {
+    if (x.type === 'radio') x.checked = data[x.name] === x.value;
+    else if (x.type === 'checkbox') x.checked = !!data[x.id];
+    else if (data[x.id] !== undefined) x.value = data[x.id];
+  });
+}
+
+let wisKlaar = false;
+function wisAlles(){
+  const knop = document.getElementById('wisknop');
+  if (!wisKlaar) {
+    wisKlaar = true; knop.textContent = 'Klik nogmaals om alles te wissen';
+    setTimeout(() => { wisKlaar = false; knop.textContent = 'Wis alle invoer'; }, 4000);
+    return;
+  }
+  wisKlaar = false; knop.textContent = 'Wis alle invoer';
+  $$('#instrument input, #instrument textarea').forEach(x => {
+    if (x.type === 'radio' || x.type === 'checkbox') x.checked = false; else x.value = '';
+  });
+  try { localStorage.removeItem(SLEUTEL); } catch (e) {}
+  $('#bewaard').textContent = 'Alles gewist';
+  reken();
+}
+
+function downloadPdf(){
+  const titel = document.title;
+  document.title = 'Manual_intakegesprek_BKN-C01';
+  window.addEventListener('afterprint', () => { document.title = titel }, { once: true });
+  window.print();
+}
+function printInstrument(){
+  const titel = document.title;
+  document.body.classList.add('alleen-instrument');
+  document.title = 'Scoringsinstrument_intakegesprek_BKN-C01';
+  window.addEventListener('afterprint', () => { document.body.classList.remove('alleen-instrument'); document.title = titel }, { once: true });
+  window.print();
+}
+
+document.addEventListener('input', e => { if (e.target.closest('#instrument')) { reken(); bewaar(); } });
+document.addEventListener('change', e => { if (e.target.closest('#instrument')) { reken(); bewaar(); } });
+laad();
+reken();
+</script>
+</body>
+</html>

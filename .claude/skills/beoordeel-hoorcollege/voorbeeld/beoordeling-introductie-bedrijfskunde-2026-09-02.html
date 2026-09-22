@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>De gereedschapskist, één dia later</title>
+<style>
+/* HAN-huisstijl, overgenomen uit introductie-bedrijfskunde.html — niet aanpassen per rapport */
+:root{
+  --han:#E50056; --ink:#000000; --paper:#FFFFFF; --grey:#454545; --grey2:#767676;
+  --wash:#F2F2F0; --panel2:#E6E6E3; --line2:#C9C9C4;
+  --goed:#0038FF;  --goed2:#DCE4FF;   /* opgelost / blijft   */
+  --let:#8A6A00;   --let2:#FFE875;    /* vraagt aandacht     */
+  --fout:#E50056;  --fout2:#FFE1EC;   /* fout / blokkeert    */
+  --bw:3px; --sh:5px 5px 0 var(--ink);
+  --f:"Avenir Next","Avenir","Nunito Sans","Segoe UI",Helvetica,Arial,sans-serif;
+  --fm:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  --measure:70ch;
+}
+*{box-sizing:border-box}
+html{color-scheme:light}
+body{margin:0;background:var(--wash);color:var(--ink);font:18px/1.5 var(--f);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:4px solid var(--han);outline-offset:3px}
+h1,h2,h3,h4{margin:0;text-wrap:balance;font-weight:800;letter-spacing:-.02em;line-height:1.05}
+h2{font-size:clamp(28px,4vw,42px)}
+h2 em{font-style:normal;color:var(--han)}
+h3{font-size:23px;margin-block:26px 10px}
+p{margin:0 0 1em;max-inline-size:var(--measure)}
+.page{max-inline-size:1140px;margin:0 auto;padding:0 clamp(18px,4vw,48px) 90px}
+section{padding-block:50px;border-block-start:var(--bw) solid var(--ink)}
+section:first-of-type{border-block-start:none}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;margin:0 0 16px;background:var(--ink);color:var(--paper);padding:7px 13px 6px;font:700 13px/1 var(--fm);letter-spacing:.16em;text-transform:uppercase}
+.eyebrow b{color:var(--han)}
+header.mast{background:var(--han);color:var(--paper);border:var(--bw) solid var(--ink);box-shadow:10px 10px 0 rgba(0,0,0,.22);margin-block:40px 0;padding:clamp(28px,5vw,56px)}
+header.mast .eyebrow{background:var(--paper);color:var(--ink)}
+header.mast .eyebrow b{color:var(--han)}
+header.mast h1{font-size:clamp(40px,7vw,86px);text-transform:uppercase;line-height:.94;letter-spacing:-.035em;max-inline-size:14ch}
+header.mast .lead{font-size:clamp(19px,2.4vw,25px);line-height:1.34;font-weight:600;max-inline-size:58ch;margin:22px 0 0}
+.hdr{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border:3px solid var(--paper);margin-block-start:28px}
+.hdr div{padding:10px 14px;border:1.5px solid var(--paper)}
+.hdr dt{font:700 11px/1.2 var(--fm);letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin-block-end:4px}
+.hdr dd{margin:0;font-size:15.5px;line-height:1.35}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:22px 0 30px}
+.tile{border:var(--bw) solid var(--ink);background:var(--ink);color:var(--paper);padding:22px 18px 18px;display:grid;gap:8px;box-shadow:var(--sh)}
+.tile em{font-style:normal;font-size:clamp(40px,5vw,56px);line-height:.9;font-weight:800;color:var(--han);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.tile span{font:700 13px/1.35 var(--fm);letter-spacing:.08em;text-transform:uppercase;opacity:.82}
+.tile i{font-style:normal;font-size:16px;line-height:1.35}
+.tw{overflow-x:auto;margin:16px 0 24px;border:var(--bw) solid var(--ink);background:var(--paper);box-shadow:var(--sh)}
+table.t{inline-size:100%;border-collapse:collapse;font-size:16px;background:var(--paper);min-inline-size:720px}
+table.t th{text-align:left;font:700 12px/1.2 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:9px 12px;vertical-align:bottom}
+table.t td{padding:10px 12px;border-block-start:2px solid var(--ink);vertical-align:top;line-height:1.38}
+table.t tr:first-child td{border-block-start:none}
+table.t td.n{font:700 14px/1.3 var(--fm);white-space:nowrap}
+table.t td.m{font:600 14px/1.35 var(--fm);font-variant-numeric:tabular-nums;white-space:nowrap}
+table.t tr.sub td{background:var(--panel2);font:700 12px/1.2 var(--fm);letter-spacing:.1em;text-transform:uppercase;padding:6px 12px}
+.chip{display:inline-block;font:800 11.5px/1 var(--fm);letter-spacing:.12em;text-transform:uppercase;padding:6px 9px 5px;border:2px solid var(--ink);white-space:nowrap}
+.chip.goed{background:var(--goed2);border-color:var(--goed)}
+.chip.let{background:var(--let2);border-color:var(--let)}
+.chip.fout{background:var(--fout2);border-color:var(--fout)}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--paper);border:var(--bw) solid var(--ink);padding:16px 18px;box-shadow:var(--sh)}
+.card>b{display:block;font-size:20px;line-height:1.16;margin-block-end:6px;font-weight:800}
+.card>p{font-size:16.5px;line-height:1.42;margin:0;max-inline-size:none}
+.card.k{border-block-start:9px solid var(--kc,var(--ink));background:var(--kbg,var(--paper))}
+.k-goed{--kc:var(--goed);--kbg:var(--goed2)}
+.k-let{--kc:var(--let);--kbg:var(--let2)}
+.k-fout{--kc:var(--fout);--kbg:var(--fout2)}
+/* het college in één beeld: één staaf per dia */
+.viz{border:var(--bw) solid var(--ink);background:var(--paper);padding:16px 18px;box-shadow:var(--sh);margin:16px 0}
+.viz svg{display:block;inline-size:100%;block-size:auto}
+.viz svg text{font-family:var(--f);font-weight:600}
+.legend{display:flex;flex-wrap:wrap;gap:6px 20px;font:600 15px/1.2 var(--f);margin:12px 0 0}
+.legend>span{display:inline-flex;align-items:center;gap:8px}
+.legend i{inline-size:14px;block-size:14px;background:var(--kc,var(--ink));border:2px solid var(--ink);flex:none}
+/* figuren: schermafbeelding met aantekening */
+figure{margin:22px 0;border:var(--bw) solid var(--ink);background:var(--paper);box-shadow:var(--sh)}
+figure img{display:block;inline-size:100%;block-size:auto;border-block-end:var(--bw) solid var(--ink)}
+figcaption{padding:12px 16px;font-size:16px;line-height:1.42}
+figcaption b{font:800 12px/1 var(--fm);letter-spacing:.12em;text-transform:uppercase;display:block;margin-block-end:6px}
+pre{font:600 13.5px/1.45 var(--fm);background:var(--ink);color:var(--paper);padding:14px 18px;overflow-x:auto;margin:12px 0 18px;border:var(--bw) solid var(--ink)}
+.bevestiging{border:var(--bw) dashed var(--ink);padding:16px 18px;margin:18px 0;display:grid;grid-template-columns:auto 1fr;gap:8px 18px;font-size:16px}
+.bevestiging b{font:800 12px/1.3 var(--fm);letter-spacing:.12em;text-transform:uppercase}
+.small{font-size:16px;color:var(--grey)}
+@media print{body{background:#fff;font-size:11.5pt}.page{max-inline-size:none;padding:0}header.mast,.card,.tile,.tw,.viz,figure{box-shadow:none}.tw{overflow:visible}table.t{min-inline-size:0;font-size:9.5pt}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="mast">
+  <div class="eyebrow">Collegebeoordeling <b>·</b> Introductie Bedrijfskunde <b>·</b> HBO Bedrijfskunde, jaar 1 · 2026-27</div>
+  <h1>De gereedschapskist, één dia later</h1>
+  <p class="lead">Herbeoordeling van het hoorcollege Introductie Bedrijfskunde (versie 1 september 2026, met de nieuwe dia 3 „Wie staat hier") op de dertien criteria van de huismeetlat, naast de beoordeling van 28 augustus.</p>
+  <dl class="hdr">
+    <div><dt>Bestand</dt><dd>introductie-bedrijfskunde.html (1 sep 2026, 12:44)</dd></div>
+    <div><dt>Omvang</dt><dd>32 dia's · was 31</dd></div>
+    <div><dt>Doelgroep</dt><dd>Jaar 1 HBO Bedrijfskunde, week 1</dd></div>
+    <div><dt>Collegeduur</dt><dd>90 minuten (dia 1 „±90 minuten", dia 2 „anderhalf uur")</dd></div>
+    <div><dt>Voorstel eindoordeel</dt><dd>3,77 / 5,00 · was 4,55</dd></div>
+    <div><dt>Status</dt><dd>niet opleverbaar (7 script-gates rood, waarvan 2 uit het college zelf)</dd></div>
+  </dl>
+</header>
+
+<section id="s1">
+  <div class="eyebrow">1 <b>·</b> Het oordeel in het kort</div>
+  <h2>Een <em>sterk college</em> dat door één toegevoegde dia drie kleine, echte fouten heeft gekregen — samen drie kwartier werk</h2>
+  <div class="tiles">
+    <div class="tile"><em>3,77</em><span>van 5,00 · 83 van 110 punten</span><i>goed · deler 22 (geen deckcontract) · was 4,55</i></div>
+    <div class="tile"><em>7</em><span>script-gates rood</span><i>2 uit het college (D3, D4) · 5 uit het ontbrekende deckcontract</i></div>
+    <div class="tile"><em>17,5 min</em><span>studentwerk</span><i>14 getimede momenten op 13 dia's</i></div>
+  </div>
+  <p><b>Eerst het eerlijke antwoord op je vraag.</b> Dit is een goed college en je kunt het morgen geven. Het verhaal (één directievraag, vier begrippen, een casus die één begrip laat sneuvelen) staat als een huis, de activering is ruim boven de norm en de dia's zijn achterin de zaal leesbaar. Op de huismeetlat komt het uit op <b>3,77 van 5</b> — band „goed" — en niet meer op de 4,55 van 28 augustus. Dat verschil komt niet doordat het college slechter is geworden, maar door twee dingen: de meetlat is sinds 2 september strenger (een script-FAIL op een hard criterium plafonneert dat criterium op 3), en de toegevoegde dia 3 heeft drie kleine dingen kapotgemaakt die eerder klopten.</p>
+  <p><b>De drie punten voor vanavond, op volgorde van rendement:</b></p>
+  <p>1 · <b>Dia 32 verwijst naar de verkeerde dia's.</b> „Inleiding bedrijfskunde: dia 3 t/m 11", „Organisatiestromingen: dia 12 en 13", „Bedrijfskunde nu en straks: dia 14 en 15" — dat klopte toen er 31 dia's waren. Nu is dia 3 „Wie staat hier", dia 12 „De 6 Capitals" en dia 14 „Acht stromingen". Het moet 4 t/m 12, 13 en 14, 15 en 16 zijn. Dit is een fout, geen keuze; twee minuten werk, en het scheelt vijf punten (D6 van 3 naar 5, S6 van 4 naar 5).</p>
+  <p>2 · <b>De opening heeft nu vijf dia's zonder opdracht</b> (1 t/m 5); de norm is vier en dat haalde de vorige versie precies. Dia 3 is de oorzaak. Geef dia 3 een getimed moment — bijvoorbeeld „Handen omhoog · 45 seconden: wie heeft in een bijbaan al eens gezien dat een besluit misging?" — dan sluit het aan op wat je notities daar al willen („één concreet moment") en is het gat weer vier. Tien minuten, zes punten (D4 van 3 naar 5, gewicht ×3).</p>
+  <p>3 · <b>Dia 22 (197 woorden) en dia 24 (178) zitten boven de harde grens van 170.</b> Dat stond ook al in de beoordeling van augustus, maar toen kostte het geen punten; nu plafonneert het D3 op 3. Dia 22 is de zwaarste tekening van het college (twintig elementen, in één keer getoond). Zet de lopende tekst onder de tekening in de notities en laat de tekening in twee stappen opkomen (team binnen het kader, dan de poortwachter en buiten het team). Twintig tot dertig minuten, vier punten. Als dat vanavond te veel is: laat het liggen, het college wordt er morgen niet slechter van — alleen de gate blijft rood.</p>
+  <p>Met de eerste twee punten staat het college op 4,27 („goed"); met alle drie op 4,45. De 4,55 van augustus komt terug als je daarna ook de afkortingen op dia 15 uitschrijft en een begrippenlijst toevoegt (sectie 6). Formeel is het college „niet opleverbaar" zolang D3 en D4 rood staan — dat is de regel van de meetlat, en ik meld hem, maar ik zou hem morgen om 9:00 niet als reden zien om het niet te geven.</p>
+</section>
+
+<section id="s2">
+  <div class="eyebrow">2 <b>·</b> Het college in één beeld</div>
+  <h2>Elke staaf is één dia, in volgorde</h2>
+  <div class="viz">
+    <svg viewBox="0 0 1000 220" role="img" aria-label="Activering per dia: staafhoogte is de toegemeten opdrachttijd"><rect x="3.0" y="162.0" width="25.2" height="18.0" fill="#000000" stroke="#000" stroke-width="1.5"/>
+<text x="15.6" y="198" font-size="12" text-anchor="middle">1</text>
+<rect x="34.2" y="162.0" width="25.2" height="18.0" fill="#000000" stroke="#000" stroke-width="1.5"/>
+<rect x="65.5" y="162.0" width="25.2" height="18.0" fill="#000000" stroke="#000" stroke-width="1.5"/>
+<text x="78.1" y="198" font-size="12" text-anchor="middle">3</text>
+<rect x="96.8" y="162.0" width="25.2" height="18.0" fill="#000000" stroke="#000" stroke-width="1.5"/>
+<rect x="128.0" y="162.0" width="25.2" height="18.0" fill="#000000" stroke="#000" stroke-width="1.5"/>
+<rect x="159.2" y="106.0" width="25.2" height="74.0" fill="#0038FF" stroke="#000" stroke-width="1.5"/>
+<text x="171.9" y="101.0" font-size="11" text-anchor="middle">1:00</text>
+<rect x="190.5" y="25.0" width="25.2" height="155.0" fill="#0038FF" stroke="#000" stroke-width="1.5"/>
+<text x="203.1" y="20.0" font-size="11" text-anchor="middle">2:30</text>
+<rect x="221.8" y="162.0" width="25.2" height="18.0" fill="#000000" stroke="#000" stroke-width="1.5"/>
+<text x="234.4" y="198" font-size="12" text-anchor="middle">8</text>
+<rect x="253.0" y="162.0" width="25.2" height="18.0" fill="#000000" stroke="#000" stroke-width="1.5"/>
+<rect x="284.2" y="106.0" width="25.2" height="74.0" fill="#0038FF" stroke="#000" stroke-width="1.5"/>
+<text x="296.9" y="101.0" font-size="11" text-anchor="middle">1:00</text>
+<rect x="315.5" y="162.0" width="25.2" height="18.0" fill="#000000" stroke="#000" stroke-width="1.5"/>
+<rect x="346.8" y="106.0" width="25.2" height="74.0" fill="#0038FF" stroke="#000" stroke-width="1.5"/>
+<text x="359.4" y="101.0" font-size="11" text-anchor="middle">1:00</text>
+<rect x="378.0" y="162.0" width="25.2" height="18.0" fill="#000000" stroke="#000" stroke-width="1.5"/>
+<rect x="409.2" y="79.0" width="25.2" height="101.0" fill="#0038FF" stroke="#000" stroke-width="1.5"/>
+<text x="421.9" y="74.0" font-size="11" text-anchor="middle">1:30</text>
+<rect x="440.5" y="162.0" width="25.2" height="18.0" fill="#000000" stroke="#000" stroke-width="1.5"/>
+<rect x="471.8" y="119.5" width="25.2" height="60.5" fill="#0038FF" stroke="#000" stroke-width="1.5"/>
+<text x="484.4" y="114.5" font-size="11" text-anchor="middle">0:45</text>
+<text x="484.4" y="198" font-size="12" text-anchor="middle">16</text>
+<rect x="503.0" y="162.0" width="25.2" height="18.0" fill="#E6E6E3" stroke="#000" stroke-width="1.5"/>
+<text x="515.6" y="198" font-size="12" text-anchor="middle">17</text>
+<rect x="534.2" y="162.0" width="25.2" height="18.0" fill="#E6E6E3" stroke="#000" stroke-width="1.5"/>
+<rect x="565.5" y="106.0" width="25.2" height="74.0" fill="#0038FF" stroke="#000" stroke-width="1.5"/>
+<text x="578.1" y="101.0" font-size="11" text-anchor="middle">1:00</text>
+<rect x="596.8" y="162.0" width="25.2" height="18.0" fill="#000000" stroke="#000" stroke-width="1.5"/>
+<rect x="628.0" y="162.0" width="25.2" height="18.0" fill="#000000" stroke="#000" stroke-width="1.5"/>
+<rect x="659.2" y="162.0" width="25.2" height="18.0" fill="#000000" stroke="#000" stroke-width="1.5"/>
+<text x="671.9" y="198" font-size="12" text-anchor="middle">22</text>
+<rect x="690.5" y="119.5" width="25.2" height="60.5" fill="#0038FF" stroke="#000" stroke-width="1.5"/>
+<text x="703.1" y="114.5" font-size="11" text-anchor="middle">0:45</text>
+<rect x="721.8" y="162.0" width="25.2" height="18.0" fill="#000000" stroke="#000" stroke-width="1.5"/>
+<text x="734.4" y="198" font-size="12" text-anchor="middle">24</text>
+<rect x="753.0" y="106.0" width="25.2" height="74.0" fill="#0038FF" stroke="#000" stroke-width="1.5"/>
+<text x="765.6" y="101.0" font-size="11" text-anchor="middle">1:00</text>
+<rect x="784.2" y="162.0" width="25.2" height="18.0" fill="#000000" stroke="#000" stroke-width="1.5"/>
+<rect x="815.5" y="79.0" width="25.2" height="101.0" fill="#0038FF" stroke="#000" stroke-width="1.5"/>
+<text x="828.1" y="74.0" font-size="11" text-anchor="middle">1:30</text>
+<rect x="846.8" y="79.0" width="25.2" height="101.0" fill="#0038FF" stroke="#000" stroke-width="1.5"/>
+<text x="859.4" y="74.0" font-size="11" text-anchor="middle">1:30</text>
+<rect x="878.0" y="52.0" width="25.2" height="128.0" fill="#0038FF" stroke="#000" stroke-width="1.5"/>
+<text x="890.6" y="47.0" font-size="11" text-anchor="middle">2:00</text>
+<rect x="909.2" y="52.0" width="25.2" height="128.0" fill="#0038FF" stroke="#000" stroke-width="1.5"/>
+<text x="921.9" y="47.0" font-size="11" text-anchor="middle">2:00</text>
+<rect x="940.5" y="162.0" width="25.2" height="18.0" fill="#000000" stroke="#000" stroke-width="1.5"/>
+<rect x="971.8" y="162.0" width="25.2" height="18.0" fill="#000000" stroke="#000" stroke-width="1.5"/>
+<text x="984.4" y="198" font-size="12" text-anchor="middle">32</text>
+<line x1="0" y1="180" x2="1000" y2="180" stroke="#000" stroke-width="2"/>
+<rect x="63.5" y="30" width="29.2" height="150" fill="none" stroke="#E50056" stroke-width="2" stroke-dasharray="5 4"/>
+<text x="78.1" y="25" font-size="11" text-anchor="middle" fill="#E50056">nieuw</text></svg>
+    <div class="legend">
+      <span><i style="--kc:var(--goed)"></i> getimede opdracht (13 dia's, 14 momenten)</span>
+      <span><i style="--kc:var(--ink)"></i> uitleg door de docent (17 dia's)</span>
+      <span><i style="--kc:var(--panel2)"></i> pauze en deeltitel (2 dia's)</span>
+      <span><i style="--kc:var(--fout);background:none"></i> nieuw sinds 28 augustus (dia 3)</span>
+    </div>
+  </div>
+  <div class="tiles">
+    <div class="tile"><em>17,5 min</em><span>van de 90 gaat naar werk van de student</span><i>ongeveer een vijfde; norm 15–20</i></div>
+    <div class="tile"><em>5</em><span>dia's is de langste reeks zonder opdracht</span><i>dia 1 t/m 5 — was 4, norm ≤ 4</i></div>
+    <div class="tile"><em>41%</em><span>van de dia's draagt een opdracht met tijd</span><i>8 werkvormen op het etiket; 0 in data-vorm</i></div>
+  </div>
+  <p>De activering wordt zwaarder naarmate het college vordert: 45 tot 90 seconden in deel 1, twee keer twee minuten aan het eind van deel 2 (dia 29 en 30). Dat is precies goed — de zaal heeft dan de begrippen om iets mee te doen. Het enige gat dat de norm overschrijdt zit vooraan: de nieuwe dia 3 schuift het eerste moment (dia 6) één plaats op. Het tweede lange stuk, dia 20–22, is drie dia's uitleg over de casusstructuur en valt binnen de norm.</p>
+</section>
+
+<section id="s3">
+  <div class="eyebrow">3 <b>·</b> De scores, met bewijs</div>
+  <h2>Dertien criteria, dezelfde gewichten als het parallelle college</h2>
+  <p class="small">Schaal 1–5. Kolom „was" is de beoordeling van 28 augustus 2026 (31 dia's). Bewijs met dianummers; bij script-criteria de gemeten waarde en de drempel. Een script-FAIL die uit het college komt (niet uit het ontbrekende deckcontract) plafonneert het criterium op 3.</p>
+  <div class="tw"><table class="t">
+    <tr><th>#</th><th>Criterium</th><th>Was</th><th>Nu</th><th>Gew.</th><th>Waarop dit oordeel rust</th></tr>
+    <tr class="sub"><td colspan="6">Deel A — didactische kwaliteit</td></tr>
+    <tr><td class="n">D1</td><td>Leerdoelen en alignment</td><td class="m">4</td><td class="m">4</td><td class="m">×2</td><td>Twee leeruitkomsten op dia 1 als „Na dit college kun je …" en woordelijk terug op dia 31 („Wat je na dit college kunt"), met de toetsvorm ernaast (digitale kennistoets). Niet gekoppeld aan toetscriteria per leeruitkomst, en op de voorlaatste in plaats van de laatste dia. Script-FAIL (0/7 data-lo) komt volledig uit het ontbrekende contract.</td></tr>
+    <tr><td class="n">D2</td><td>Rode draad en segmentering</td><td class="m">5</td><td class="m">5</td><td class="m">×2</td><td>Twee benoemde delen, tussendia 18, pauzedia 17. Drie lussen die dichtgaan: de vier zwarte vakjes „nodig · 1–4" op dia 2 gaan open op dia 20; de belofte „één regel houdt geen stand" (dia 16, voorspelmoment) wordt ingelost op dia 29; het eigen antwoord van dia 19 komt terug op dia 30 („pak je notitie van het begin erbij"). Dia 3 verstoort dit niet — de notities leggen uit waarom hij ná de vraag staat.</td></tr>
+    <tr><td class="n">D3</td><td>Cognitieve belasting en beeld</td><td class="m">5</td><td class="m">3</td><td class="m">×2</td><td>Script: gem. 107 w/dia (norm ≤ 110) maar max 197 op dia 22 en 178 op dia 24 (norm ≤ 170) → FAIL uit het college, plafond 3. Beeld: dia 22 toont een tekening met ~20 elementen in één keer, wél met legenda; de kop is een bewering („geen informele laag"). Alle koppen zijn beweringen. In augustus stonden dezelfde twee dia's boven de 170 en kreeg D3 toch een 5; de meetlat van 2 september laat dat niet meer toe.</td></tr>
+    <tr><td class="n">D4</td><td>Activatie en ophaalmomenten</td><td class="m">5</td><td class="m">3</td><td class="m">×3</td><td>Script: 14 momenten (≥ 10), 41% van de dia's (≥ 35%), 17,5 min (15–20), maar langste gat 5 (norm ≤ 4) → FAIL uit het college, plafond 3. „0 vormen" komt uit het ontbrekende data-vorm; op het etiket staan acht werkvormen (even denken, overleg in tweetallen, handen omhoog, denken–delen, voorspel, alleen · schrijf op, stem met je hand, slotvraag). Het gat is dia 1–5 en is ontstaan door de invoeging van dia 3.</td></tr>
+    <tr><td class="n">D5</td><td>Voorbeelden en transfer</td><td class="m">4</td><td class="m">4</td><td class="m">×2</td><td>Ongewijzigd. Eén casus (autodealer met AI-agents, dia 19–30): echt, actueel, niet op te zoeken. Contrast in kleine voorbeelden (ziekenhuis dia 7 en 8, studievereniging dia 6, stage/bijbaan dia 14 en 27), maar geen tweede casus waarin de vier aspecten opnieuw vallen.</td></tr>
+    <tr><td class="n">D5-n</td><td>Houdbaarheid benoemd</td><td class="m">–</td><td class="m">niet gemeten</td><td class="m">×2</td><td>Geen deckcontract (geen data-model, data-houdbaarheid, data-bronjaar, data-casus); de script-FAIL „0/14 modellen" leest bovendien de IM-inhoudsopgave en zegt niets over dit IB-college. Deler 22.</td></tr>
+    <tr><td class="n">D6</td><td>Modelgebruik en opbouw</td><td class="m">5</td><td class="m">3</td><td class="m">×2</td><td>Elk begrip van deel 2 is in deel 1 ingevoerd (vier kenmerken dia 6 → dia 20; drie niveaus dia 9 → dia 28; zes kapitalen dia 12 → dia 30). Bronvermelding op de dia (McKinsey dia 21, Deming dia 27, Integrated Reporting dia 12). Maar: <b>drie verwijzingsfouten op dia 32</b> — „dia 3 t/m 11", „dia 12 en 13", „dia 14 en 15" wijzen sinds de invoeging van dia 3 één dia te vroeg. De meetlat zegt: één verwijzingsfout is een 3.</td></tr>
+    <tr><td class="n">D7</td><td>Afsluiting en doorkijk</td><td class="m">4</td><td class="m">4</td><td class="m">×1</td><td>Huiswerk bij naam (dia 32: P1 · Week 1 op Edumundo, vier onderdelen), doorkijk naar volgende week (dia 32) en naar de toets (dia 31). Ophaalcheck alleen in de notities van dia 31 („welke van deze twee kun je nu?"), zonder klok en zonder onthulling. Script-FAIL komt uit ontbrekende data-check/huiswerk/doorkijk.</td></tr>
+    <tr class="sub"><td colspan="6">Deel B — studentervaring</td></tr>
+    <tr><td class="n">S1</td><td>Relevantie en motivatie</td><td class="m">5</td><td class="m">5</td><td class="m">×2</td><td>Dia 1: „een vraag waar een echte directie geen antwoord op heeft. En jij ook niet — nog niet." Dia 2 legt de vraag letterlijk op tafel en belooft vier dingen; de notities van dia 1 bevatten een tweede, mondelinge belofte (één begrip sneuvelt) die op dia 29 wordt ingelost. Dia 3 komt nadat de spanning staat — goed geplaatst.</td></tr>
+    <tr><td class="n">S2</td><td>Taal en begrijpelijkheid</td><td class="m">4</td><td class="m">3</td><td class="m">×1</td><td>De lopende tekst is kort en leesbaar in één keer. Maar ESG, CSRD, IoT en KPI staan op dia 15 onverklaard op de dia en alleen in de notities uitgeschreven — dat is letterlijk de omschrijving van een 3. Wel goed: R/A/C/I op dia 24 in het Nederlands verklaard op de dia zelf, poka-yoke op dia 27 met omschrijving, 7S op dia 21 als „voor wie het al kent".</td></tr>
+    <tr><td class="n">S3</td><td>Leesbaarheid en toegankelijkheid</td><td class="m">4</td><td class="m">4</td><td class="m">×2</td><td>Script PASS, maar op het randje: 27,3% van de woorden onder 14 pt (norm ≤ 30%), 28,2% op 18 pt of meer (norm ≥ 28%). Op beeld: de kolomkoppen van de RACI-tabel op dia 24 (~9 pt) en de tijdlijnlabels op dia 13 zijn achterin niet te lezen; de tabel op dia 23 is groter en draagt de inhoud. Contrast in dia 22: okergele gate-labels en grijze „wachtrij" op wit, beide leesbaar; niet gemeten.</td></tr>
+    <tr><td class="n">S4</td><td>Tempo en pauzering</td><td class="m">4</td><td class="m">4</td><td class="m">×1</td><td>Duur bevestigd op dia 1 (±90) en dia 2 (anderhalf uur); pauzedia 17 met „15 minuten" en „deel 2 duurt ±40 minuten"; notities dia 17 dragen op de eindtijd op het bord te zetten. Geen tijdbudget per blok in de notities en geen data-eind/data-minuten; de script-FAIL komt uit het contract. Geen generale repetitie gezien.</td></tr>
+    <tr><td class="n">S5</td><td>Studeerbaarheid achteraf</td><td class="m">4</td><td class="m">3</td><td class="m">×1</td><td>Script: 4.279 notitiewoorden (≥ 3.000), elke dia een notitie, <b>geen begrippenlijst</b> → FAIL, en dat laatste komt uit het college (er is geen lijst, ook niet zonder attribuut), dus plafond 3. De notities zijn regie-notities (waarom de dia er staat, wat je hardop zegt) en geen herhaling van de dia — dat is de goede soort. Pdf-export niet gedraaid.</td></tr>
+    <tr><td class="n">S6</td><td>Consistentie en uitstraling</td><td class="m">5</td><td class="m">4</td><td class="m">×1</td><td>Eén ontwerpsysteem, ook op de nieuwe dia 3; legenda op dia 22, 23 en 26; paginanummering n/32 klopt. Eén punt af voor de dianummers op dia 32 die niet meer kloppen — dezelfde fout als bij D6, hier omdat de meetlat „kloppende nummering" onder S6 zet.</td></tr>
+    <tr><td class="n">—</td><td><b>Gewogen eindscore</b></td><td class="m">4,55</td><td class="m"><b>3,77</b></td><td class="m">22</td><td>83 van 110 · band goed (≥ 3,75) · na punt 1 en 2 uit sectie 6: 4,27 · na punt 1–3: 4,45</td></tr>
+  </table></div>
+</section>
+
+<section id="s4">
+  <div class="eyebrow">4 <b>·</b> Bevindingen in beeld</div>
+  <h2>Vier dia's die het oordeel dragen</h2>
+  <p>De dia's zijn gerenderd uit het bestand zelf (1280 × 720); dit is wat er geprojecteerd wordt. Blauw is wat goed staat of is opgelost, oker wat aandacht vraagt, magenta wat fout is.</p>
+  <figure>
+    <img src="schermen/dia-32.png" alt="dia 32, Wat je deze week doet">
+    <figcaption><b>Figuur 1 · dia 32 · <span class="chip fout">fout</span></b>„Inleiding bedrijfskunde — dia 3 t/m 11", „Organisatiestromingen — dia 12 en 13", „Bedrijfskunde nu en in de toekomst — dia 14 en 15". Alle drie één te laag sinds dia 3 „Wie staat hier" erin zit: het moet 4 t/m 12, 13 en 14, 15 en 16 zijn. Een student die dit thuis naast Edumundo legt, komt bij „De 6 Capitals" uit als hij organisatiestromingen zoekt. Twee minuten werk.</figcaption>
+  </figure>
+  <figure>
+    <img src="schermen/dia-03.png" alt="dia 3, Wie staat hier">
+    <figcaption><b>Figuur 2 · dia 3 · <span class="chip let">aandacht</span></b>De nieuwe dia: twee vragen, verder leeg, bewust een prompt voor de docent. Op zichzelf goed geplaatst (na de vraag, niet ervoor) en in het systeem. Maar hij maakt de opening vijf dia's zonder opdracht. Een klok op deze dia — 45 seconden handen omhoog, aansluitend op het „ene concrete moment" uit de notities — lost dat op zonder dat de dia zijn karakter verliest.</figcaption>
+  </figure>
+  <figure>
+    <img src="schermen/dia-22.png" alt="dia 22, Structuur">
+    <figcaption><b>Figuur 3 · dia 22 · <span class="chip let">aandacht</span></b>197 woorden, de zwaarste dia van het college en de enige tekening met meer dan acht elementen die in één keer verschijnt: elf stations, vijf gates, de regelaar, buiten het team, plus twee regels lopende tekst en een legenda. De legenda is goed en de kop is een bewering. Wat het lichter maakt: de twee regels onder de tekening naar de notities (dat haalt hem onder de 170) en de tekening in twee stappen opbouwen — eerst het kader, dan de poortwachter en de gates.</figcaption>
+  </figure>
+  <figure>
+    <img src="schermen/dia-02.png" alt="dia 2, De vraag van vandaag">
+    <figcaption><b>Figuur 4 · dia 2 · <span class="chip goed">blijft</span></b>De opening die het hele college draagt: de directievraag letterlijk op de dia, vier zwarte vakjes met een vraagteken die op dia 20 opengaan, en „je hoeft nu niets te bedenken". Dit is de lus waar S1 en D2 hun 5 aan ontlenen. Niet aankomen.</figcaption>
+  </figure>
+</section>
+
+<section id="s5">
+  <div class="eyebrow">5 <b>·</b> De maat die het cijfer drukte</div>
+  <h2>Het langste gat: van 4 naar 5 dia's, en dat kost negen punten op ×3</h2>
+  <p>De meting die het verschil met augustus het meest verklaart is <b>D4, langste gat 5</b> (norm ≤ 4). Alle andere D4-cijfers zijn ruim binnen de norm: 14 momenten, 41% van de dia's, 17,5 minuten, acht werkvormen. Eén ingevoegde dia zonder klok, vooraan, is de hele oorzaak. Omdat D4 het enige criterium met gewicht ×3 is, kost het plafond van 3 hier zes punten — meer dan de twee te zware dia's (D3, vier punten) en de verwijzingsfout (D6, vier punten). Was het gat 4 gebleven, dan stond het college op 4,05 in plaats van 3,77.</p>
+  <p>De les voor een volgende herziening: een dia toevoegen is nooit alleen een dia toevoegen. Dia 3 kostte in één keer een gat (D4), drie verwijzingen (D6, S6) en de precisie van „dia 3 t/m 11" op de laatste dia. De meetlat vangt dat nu op; de vorige versie had dat geluk niet nodig.</p>
+</section>
+
+<section id="s6">
+  <div class="eyebrow">6 <b>·</b> Wat er nog open staat</div>
+  <h2>Vijf punten, op volgorde van rendement</h2>
+  <div class="grid g2">
+    <div class="card k k-fout"><b>01 · Dianummers op dia 32 herstellen</b><p>„dia 3 t/m 11" → 4 t/m 12; „dia 12 en 13" → 13 en 14; „dia 14 en 15" → 15 en 16. Raakt D6 (3 → 5) en S6 (4 → 5). Dit is een fout, geen keuze.</p><p class="small">+5 punten · 2 minuten · vanavond</p></div>
+    <div class="card k k-fout"><b>02 · Een klok op dia 3</b><p>Bijvoorbeeld „Handen omhoog · 45 seconden — wie heeft in een bijbaan al eens een besluit zien misgaan?" Sluit aan op de notities („één concreet moment") en brengt het langste gat terug naar 4. Raakt D4 (3 → 5, ×3).</p><p class="small">+6 punten · 10 minuten · vanavond</p></div>
+    <div class="card k k-let"><b>03 · Dia 22 en 24 onder de 170 woorden</b><p>Dia 22: de twee regels lopende tekst naar de notities en de tekening in twee stappen. Dia 24: de onderste alinea (functiescheiding) inkorten tot één zin; de rest staat al in de notities. Raakt D3 (3 → 5).</p><p class="small">+4 punten · 20–30 minuten · vanavond als het lukt, anders volgende week</p></div>
+    <div class="card k k-let"><b>04 · Afkortingen op dia 15 uitschrijven</b><p>ESG (milieu, sociaal, bestuur), CSRD (Europese duurzaamheidsrapportage), IoT (verbonden apparaten), KPI (prestatie-indicator) — kort tussen haakjes op de dia zelf; de tekst staat al in de notities. Raakt S2 (3 → 4).</p><p class="small">+1 punt · 10 minuten · volgende week</p></div>
+    <div class="card k k-let"><b>05 · Begrippenlijst</b><p>Eén extra dia of een blok in de notities van dia 32 met de twintig begrippen van vandaag (organisatie, onderneming, strategisch management, zes kapitalen, contingentie, RACI, functiescheiding, single/double/triple loop …). Raakt S5 (3 → 4) en is het studeermateriaal dat studenten in week 1 het meest missen.</p><p class="small">+1 punt · 30–45 minuten · volgende week</p></div>
+  </div>
+  <p class="small">Na 01 en 02: 94 van 110 = 4,27 (goed). Na 01–03: 98 van 110 = 4,45 (goed). Na alle vijf: 100 van 110 = 4,55 (uitstekend), het niveau van augustus. Los daarvan blijft de status „niet opleverbaar" staan tot D3 en D4 groen zijn — en de vijf contract-gates blijven rood tot het deck het deckcontract van het LRD krijgt, wat voor dit voorbeelddeck geen doel is.</p>
+</section>
+
+<section id="s7">
+  <div class="eyebrow">7 <b>·</b> Naast het parallelle college</div>
+  <h2>Niet opnieuw vergeleken</h2>
+  <p>De beoordeling van 28 augustus zette dit college (4,55) naast het parallelle college (2,55, „voldoende"). Ik heb het parallelle college vanavond niet opnieuw bekeken; de vergelijking van augustus blijft de referentie. Ook op 3,77 ligt dit college op elk criterium behalve D5 (gelijk, 4) boven het parallelle college, en de drie dalingen van vanavond (D3, D4, D6) zijn herstelbaar in één avond.</p>
+</section>
+
+<section id="s8">
+  <div class="eyebrow">8 <b>·</b> Wat er beslist moet blijven</div>
+  <h2>Waar een volgende herziening van af moet blijven</h2>
+  <div class="grid g2">
+    <div class="card k k-goed"><b>De vraag vóór de theorie (dia 2)</b><p>De directievraag letterlijk op de dia, met vier zwarte vakjes die pas op dia 20 opengaan. Dit is de reden dat deel 1 geen half uur theorie zonder aanleiding is. Wie dia 2 verplaatst of de vakjes invult, sloopt D2 en S1.</p></div>
+    <div class="card k k-goed"><b>De mondelinge belofte in de notities van dia 1</b><p>„Eén van de concepten houdt géén stand" — niet op de dia, wel hardop, ingelost op dia 16 (voorspel) en dia 29. De notities zeggen zelf dat de belofte verdwijnt als je hem niet uitspreekt. Laat die regel in de notities staan.</p></div>
+    <div class="card k k-goed"><b>Opdrachten die zwaarder worden (dia 6 → 30)</b><p>Van 60 seconden „even denken" naar twee keer twee minuten aan het eind, en de slotvraag op dia 30 grijpt terug op de eigen notitie van dia 19. Dat is een ontwerp, geen toeval — niet inkorten om tijd te winnen.</p></div>
+    <div class="card k k-goed"><b>De notities als regie, niet als herhaling</b><p>Elke dia zegt in de notities waarom hij er staat, wat je hardop zegt en wat je niet moet verklappen (dia 1, 2, 3, 17, 31, 32). Dat is wat S5 draagt. Een volgende herziening moet dat niet vervangen door samenvattingen van de dia.</p></div>
+    <div class="card k k-goed"><b>Dia 3 zelf</b><p>Twee vragen, verder leeg, ná de vraag en niet ervoor — de notities leggen uit waarom. Houd hem; geef hem alleen een klok.</p></div>
+  </div>
+</section>
+
+<section id="s9">
+  <div class="eyebrow">9 <b>·</b> Verantwoording en meetgegevens</div>
+  <h2>Hoe er gemeten is, en wat niet</h2>
+  <p>Meting met <code>meet_college.py</code> (1 px = 0,75 pt op 1280 × 720; tekeningen met hun schaalfactor), 2 september 2026, met render en 32 schermafbeeldingen. Uitvoer letterlijk:</p>
+<pre>D1   FAIL  0/7  [7/7 op dia 1 = slotdia]
+D3   FAIL  gem. 107 w/dia · max 197 (dia 22)  [≤110 gem. · ≤170 max]
+D4   FAIL  14 momenten · 41% dia's · gat 5 · 0 vormen · 17.5 min  [≥10 · ≥35% · gat ≤4 · ≥4 vormen · 15–20 min]
+D5n  FAIL  0/14 modellen · NL-casus: nee · 1.1 ontbreekt, 1.2 ontbreekt, 1.3 ontbreekt, 1.4 ontbreekt, 1.5 ontbreekt, 2.1 ontbreekt, 2.2 ontbreekt, 2.3 ontbreekt, 3.1 ontbreekt, 3.2 ontbreekt, 3.3 ontbreekt, 4.1 ontbreekt, 4.2 ontbreekt, 4.3 ontbreekt, geen NL-casus  [14/14 met oordeel · bron ≥ 2023 · NL-casus]
+D7   FAIL  ophaalcheck: nee · huiswerk: nee · doorkijk: nee  [ophaalcheck, huiswerk en doorkijk op de laatste drie dia's]
+S3   PASS  &lt;14pt: 27.3% · 14–18pt: 44.6% · ≥18pt: 28.2%  [&lt;14pt ≤30% · ≥18pt ≥28%]
+S4   FAIL  pauze zonder eindtijd · blokken 0/90 min  [pauzedia met eindtijd · blokken = 90 min]
+S5   FAIL  notities 4.279 w · begrippenlijst: nee  [≥3.000 w · elke dia · begrippenlijst]
+→ 7 van 8 harde gates rood; geen oplevering.
+32 schermafbeeldingen in /private/tmp/claude-501/-Users-witoldtenhove-Documents-HAN-C-CLUSTER-NIEUW-2026-27-IM/4c1e348d-ffaf-4098-811f-d9d6f2c30ecd/scratchpad/green/schermen/
+meting geschreven: meting.json</pre>
+  <p><b>Uit het ontbrekende deckcontract</b> (het deck heeft alleen data-part en data-title): D1 (geen data-lo), D5-n (geen data-model; het script leest bovendien de IM-inhoudsopgave, niet een IB-syllabus — deler 22), D7 (geen data-check/huiswerk/doorkijk), S4 (geen data-eind/data-minuten), en in D4 de „0 vormen" (geen data-vorm) en in S5 „begrippenlijst: nee" voor zover het om het attribuut gaat. <b>Uit het college zelf</b>: D3 (dia 22 = 197 en dia 24 = 178 woorden boven 170), D4 (langste gat 5, dia 1–5), en het feit dat er inhoudelijk geen begrippenlijst is (S5). Alleen die drie hebben een plafond gekregen.</p>
+  <p>Vergelijkingsbasis: <code>beoordeling-introductie-bedrijfskunde.html</code> (28 augustus 2026), waaruit de kolom „was" komt. Die beoordeling gaf D3 een 5 bij dezelfde twee dia's boven 170; de meetlat van 2 september (criteriabestand) plafonneert dat op 3. Het verschil in D3 is dus een verschil in meetlat, niet in deck.</p>
+  <h3>Wat niet is gedaan</h3>
+  <p>Niet in een zaal gezien; geen generale repetitie; pdf- en pptx-export niet gedraaid; contrast niet gemeten (op beeld beoordeeld voor dia 22 en 24); het parallelle college niet opnieuw bekeken; de studiehandleiding niet naast dia 31 en 32 gelegd (de notities vragen daar zelf om — doe dat morgenochtend); het LRD Informatiemanagement niet als gate-bron gelezen omdat het over een ander vak gaat; de 32 dia's beoordeeld op contactvel plus vier dia's op ware grootte, niet alle 32 afzonderlijk. Tijd: circa 35 minuten, op verzoek van de collega.</p>
+  <h3>Bevestiging door de reviewer</h3>
+  <div class="bevestiging">
+    <b>Reviewer</b><span>… (niet de maker)</span>
+    <b>Datum</b><span>…</span>
+    <b>Voorstel overgenomen</b><span>ja / nee</span>
+    <b>Afwijkingen</b><span>criterium: voorgesteld → bevestigd, reden</span>
+  </div>
+  <p class="small">Dit rapport is een voorstel van een AI-lezer. De scores gelden pas na bevestiging; afwijkingen worden hier vastgelegd, zodat over een jaar te zien is wat een besluit was en wat een omissie. De schaal is 1–5 gewogen; de collega vroeg om een cijfer op 10 — omgerekend is 3,77 grofweg een 7,5, maar dat getal is niet vergelijkbaar met de beoordeling van augustus of het parallelle college en staat daarom niet in de kop.</p>
+</section>
+
+</div>
+</body>
+</html>

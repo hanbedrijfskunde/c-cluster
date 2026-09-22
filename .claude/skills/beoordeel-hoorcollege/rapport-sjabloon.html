@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITEL — naam van het rapport, bv. „De gereedschapskist doorgelicht"}}</title>
+<style>
+/* HAN-huisstijl, overgenomen uit introductie-bedrijfskunde.html — niet aanpassen per rapport */
+:root{
+  --han:#E50056; --ink:#000000; --paper:#FFFFFF; --grey:#454545; --grey2:#767676;
+  --wash:#F2F2F0; --panel2:#E6E6E3; --line2:#C9C9C4;
+  --goed:#0038FF;  --goed2:#DCE4FF;   /* opgelost / blijft   */
+  --let:#8A6A00;   --let2:#FFE875;    /* vraagt aandacht     */
+  --fout:#E50056;  --fout2:#FFE1EC;   /* fout / blokkeert    */
+  --bw:3px; --sh:5px 5px 0 var(--ink);
+  --f:"Avenir Next","Avenir","Nunito Sans","Segoe UI",Helvetica,Arial,sans-serif;
+  --fm:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  --measure:70ch;
+}
+*{box-sizing:border-box}
+html{color-scheme:light}
+body{margin:0;background:var(--wash);color:var(--ink);font:18px/1.5 var(--f);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:4px solid var(--han);outline-offset:3px}
+h1,h2,h3,h4{margin:0;text-wrap:balance;font-weight:800;letter-spacing:-.02em;line-height:1.05}
+h2{font-size:clamp(28px,4vw,42px)}
+h2 em{font-style:normal;color:var(--han)}
+h3{font-size:23px;margin-block:26px 10px}
+p{margin:0 0 1em;max-inline-size:var(--measure)}
+.page{max-inline-size:1140px;margin:0 auto;padding:0 clamp(18px,4vw,48px) 90px}
+section{padding-block:50px;border-block-start:var(--bw) solid var(--ink)}
+section:first-of-type{border-block-start:none}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;margin:0 0 16px;background:var(--ink);color:var(--paper);padding:7px 13px 6px;font:700 13px/1 var(--fm);letter-spacing:.16em;text-transform:uppercase}
+.eyebrow b{color:var(--han)}
+header.mast{background:var(--han);color:var(--paper);border:var(--bw) solid var(--ink);box-shadow:10px 10px 0 rgba(0,0,0,.22);margin-block:40px 0;padding:clamp(28px,5vw,56px)}
+header.mast .eyebrow{background:var(--paper);color:var(--ink)}
+header.mast .eyebrow b{color:var(--han)}
+header.mast h1{font-size:clamp(40px,7vw,86px);text-transform:uppercase;line-height:.94;letter-spacing:-.035em;max-inline-size:14ch}
+header.mast .lead{font-size:clamp(19px,2.4vw,25px);line-height:1.34;font-weight:600;max-inline-size:58ch;margin:22px 0 0}
+.hdr{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border:3px solid var(--paper);margin-block-start:28px}
+.hdr div{padding:10px 14px;border:1.5px solid var(--paper)}
+.hdr dt{font:700 11px/1.2 var(--fm);letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin-block-end:4px}
+.hdr dd{margin:0;font-size:15.5px;line-height:1.35}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:22px 0 30px}
+.tile{border:var(--bw) solid var(--ink);background:var(--ink);color:var(--paper);padding:22px 18px 18px;display:grid;gap:8px;box-shadow:var(--sh)}
+.tile em{font-style:normal;font-size:clamp(40px,5vw,56px);line-height:.9;font-weight:800;color:var(--han);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.tile span{font:700 13px/1.35 var(--fm);letter-spacing:.08em;text-transform:uppercase;opacity:.82}
+.tile i{font-style:normal;font-size:16px;line-height:1.35}
+.tw{overflow-x:auto;margin:16px 0 24px;border:var(--bw) solid var(--ink);background:var(--paper);box-shadow:var(--sh)}
+table.t{inline-size:100%;border-collapse:collapse;font-size:16px;background:var(--paper);min-inline-size:720px}
+table.t th{text-align:left;font:700 12px/1.2 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:9px 12px;vertical-align:bottom}
+table.t td{padding:10px 12px;border-block-start:2px solid var(--ink);vertical-align:top;line-height:1.38}
+table.t tr:first-child td{border-block-start:none}
+table.t td.n{font:700 14px/1.3 var(--fm);white-space:nowrap}
+table.t td.m{font:600 14px/1.35 var(--fm);font-variant-numeric:tabular-nums;white-space:nowrap}
+table.t tr.sub td{background:var(--panel2);font:700 12px/1.2 var(--fm);letter-spacing:.1em;text-transform:uppercase;padding:6px 12px}
+.chip{display:inline-block;font:800 11.5px/1 var(--fm);letter-spacing:.12em;text-transform:uppercase;padding:6px 9px 5px;border:2px solid var(--ink);white-space:nowrap}
+.chip.goed{background:var(--goed2);border-color:var(--goed)}
+.chip.let{background:var(--let2);border-color:var(--let)}
+.chip.fout{background:var(--fout2);border-color:var(--fout)}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--paper);border:var(--bw) solid var(--ink);padding:16px 18px;box-shadow:var(--sh)}
+.card>b{display:block;font-size:20px;line-height:1.16;margin-block-end:6px;font-weight:800}
+.card>p{font-size:16.5px;line-height:1.42;margin:0;max-inline-size:none}
+.card.k{border-block-start:9px solid var(--kc,var(--ink));background:var(--kbg,var(--paper))}
+.k-goed{--kc:var(--goed);--kbg:var(--goed2)}
+.k-let{--kc:var(--let);--kbg:var(--let2)}
+.k-fout{--kc:var(--fout);--kbg:var(--fout2)}
+/* het college in één beeld: één staaf per dia */
+.viz{border:var(--bw) solid var(--ink);background:var(--paper);padding:16px 18px;box-shadow:var(--sh);margin:16px 0}
+.viz svg{display:block;inline-size:100%;block-size:auto}
+.viz svg text{font-family:var(--f);font-weight:600}
+.legend{display:flex;flex-wrap:wrap;gap:6px 20px;font:600 15px/1.2 var(--f);margin:12px 0 0}
+.legend>span{display:inline-flex;align-items:center;gap:8px}
+.legend i{inline-size:14px;block-size:14px;background:var(--kc,var(--ink));border:2px solid var(--ink);flex:none}
+/* figuren: schermafbeelding met aantekening */
+figure{margin:22px 0;border:var(--bw) solid var(--ink);background:var(--paper);box-shadow:var(--sh)}
+figure img{display:block;inline-size:100%;block-size:auto;border-block-end:var(--bw) solid var(--ink)}
+figcaption{padding:12px 16px;font-size:16px;line-height:1.42}
+figcaption b{font:800 12px/1 var(--fm);letter-spacing:.12em;text-transform:uppercase;display:block;margin-block-end:6px}
+pre{font:600 13.5px/1.45 var(--fm);background:var(--ink);color:var(--paper);padding:14px 18px;overflow-x:auto;margin:12px 0 18px;border:var(--bw) solid var(--ink)}
+.bevestiging{border:var(--bw) dashed var(--ink);padding:16px 18px;margin:18px 0;display:grid;grid-template-columns:auto 1fr;gap:8px 18px;font-size:16px}
+.bevestiging b{font:800 12px/1.3 var(--fm);letter-spacing:.12em;text-transform:uppercase}
+.small{font-size:16px;color:var(--grey)}
+@media print{body{background:#fff;font-size:11.5pt}.page{max-inline-size:none;padding:0}header.mast,.card,.tile,.tw,.viz,figure{box-shadow:none}.tw{overflow:visible}table.t{min-inline-size:0;font-size:9.5pt}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- Vul elke {{…}} in. Elke sectie is verplicht; „niet van toepassing" is een geldige inhoud, weglaten niet. -->
+
+<header class="mast">
+  <div class="eyebrow">Collegebeoordeling <b>·</b> {{vak}} <b>·</b> {{opleiding en jaar}}</div>
+  <h1>{{Titel}}</h1>
+  <p class="lead">{{Eén zin: wat is beoordeeld, met welke meetlat, en welke versie.}}</p>
+  <dl class="hdr">
+    <div><dt>Bestand</dt><dd>{{deck.html}}</dd></div>
+    <div><dt>Omvang</dt><dd>{{n}} dia's{{ · was m}}</dd></div>
+    <div><dt>Doelgroep</dt><dd>{{jaar en opleiding}}</dd></div>
+    <div><dt>Collegeduur</dt><dd>{{90 minuten (bevestigd / aangenomen)}}</dd></div>
+    <div><dt>Voorstel eindoordeel</dt><dd>{{4,55}} / 5,00{{ · was 3,77}}</dd></div>
+    <div><dt>Status</dt><dd>{{opleverbaar / niet opleverbaar (n script-gates rood)}}</dd></div>
+  </dl>
+</header>
+
+<section id="s1">
+  <div class="eyebrow">1 <b>·</b> Het oordeel in het kort</div>
+  <h2>{{Kop die het oordeel in één bewering samenvat}}</h2>
+  <div class="tiles">
+    <div class="tile"><em>{{4,55}}</em><span>van 5,00 · {{100}} van {{120}} punten</span><i>{{band}} · deler {{24 of 22}}</i></div>
+    <div class="tile"><em>{{n}}</em><span>script-gates rood</span><i>{{welke, of „alle groen"}}</i></div>
+    <div class="tile"><em>{{17,5 min}}</em><span>studentwerk</span><i>{{k}} getimede momenten op {{l}} dia's</i></div>
+  </div>
+  <p>{{Drie tot vijf alinea's: wat het college goed doet, wat het cijfer drukt, wat er moet gebeuren vóór het gegeven wordt. Bij een herziening: wat er steeg, wat er zakte, wat gelijk bleef.}}</p>
+</section>
+
+<section id="s2">
+  <div class="eyebrow">2 <b>·</b> Het college in één beeld</div>
+  <h2>Elke staaf is één dia, in volgorde</h2>
+  <div class="viz">
+    <!-- SVG: per dia een staaf; hoogte = toegemeten opdrachttijd voor getimede momenten, vaste lage staaf voor uitleg, lichte staaf voor pauze/deeltitel. viewBox breed genoeg voor n dia's; labels voor dia 1, en elke 8e dia. -->
+    <svg viewBox="0 0 1000 220" role="img" aria-label="Activering per dia">{{staven}}</svg>
+    <div class="legend">
+      <span><i style="--kc:var(--goed)"></i> getimede opdracht ({{k}} dia's, {{m}} momenten)</span>
+      <span><i style="--kc:var(--ink)"></i> uitleg door de docent ({{u}} dia's)</span>
+      <span><i style="--kc:var(--panel2)"></i> pauze en deeltitel ({{p}} dia's)</span>
+    </div>
+  </div>
+  <div class="tiles">
+    <div class="tile"><em>{{17,5 min}}</em><span>van de {{90}} gaat naar werk van de student</span><i>{{ongeveer een vijfde}}</i></div>
+    <div class="tile"><em>{{4}}</em><span>dia's is de langste reeks zonder opdracht</span><i>{{waar}}</i></div>
+    <div class="tile"><em>{{42%}}</em><span>van de dia's draagt een opdracht met tijd</span><i>{{w}} werkvormen</i></div>
+  </div>
+  <p>{{Wat dit beeld laat zien: waar de activering zit, waar ze ontbreekt, of de opdrachten zwaarder worden naarmate het college vordert.}}</p>
+</section>
+
+<section id="s3">
+  <div class="eyebrow">3 <b>·</b> De scores, met bewijs</div>
+  <h2>Dertien criteria, dezelfde gewichten als het parallelle college</h2>
+  <p class="small">Schaal 1–5. Kolom „was" is de vorige versie, als die er is. Bewijs met dianummers; bij script-criteria de gemeten waarde en de drempel.</p>
+  <div class="tw"><table class="t">
+    <tr><th>#</th><th>Criterium</th><th>Was</th><th>Nu</th><th>Gew.</th><th>Waarop dit oordeel rust</th></tr>
+    <tr class="sub"><td colspan="6">Deel A — didactische kwaliteit</td></tr>
+    <tr><td class="n">D1</td><td>Leerdoelen en alignment</td><td class="m">{{–}}</td><td class="m">{{4}}</td><td class="m">×2</td><td>{{bewijs met dianummers}}</td></tr>
+    <tr><td class="n">D2</td><td>Rode draad en segmentering</td><td class="m">{{–}}</td><td class="m">{{5}}</td><td class="m">×2</td><td>{{bewijs: de lussen met dianummers}}</td></tr>
+    <tr><td class="n">D3</td><td>Cognitieve belasting en beeld</td><td class="m">{{–}}</td><td class="m">{{5}}</td><td class="m">×2</td><td>{{script: gem. en max · oordeel: tekeningen}}</td></tr>
+    <tr><td class="n">D4</td><td>Activatie en ophaalmomenten</td><td class="m">{{–}}</td><td class="m">{{5}}</td><td class="m">×3</td><td>{{script: momenten, aandeel, gat, vormen, minuten}}</td></tr>
+    <tr><td class="n">D5</td><td>Voorbeelden en transfer</td><td class="m">{{–}}</td><td class="m">{{4}}</td><td class="m">×2</td><td>{{casus, actualiteit, contrast}}</td></tr>
+    <tr><td class="n">D5-n</td><td>Houdbaarheid benoemd</td><td class="m">{{–}}</td><td class="m">{{niet gemeten}}</td><td class="m">×2</td><td>{{script: modellen met oordeel, bronjaar, NL-casus — of: geen deckcontract, deler 22}}</td></tr>
+    <tr><td class="n">D6</td><td>Modelgebruik en opbouw</td><td class="m">{{–}}</td><td class="m">{{5}}</td><td class="m">×2</td><td>{{model vóór toepassing; bronvermelding; consistentiefouten met dianummer}}</td></tr>
+    <tr><td class="n">D7</td><td>Afsluiting en doorkijk</td><td class="m">{{–}}</td><td class="m">{{4}}</td><td class="m">×1</td><td>{{script: check, huiswerk, doorkijk}}</td></tr>
+    <tr class="sub"><td colspan="6">Deel B — studentervaring</td></tr>
+    <tr><td class="n">S1</td><td>Relevantie en motivatie</td><td class="m">{{–}}</td><td class="m">{{5}}</td><td class="m">×2</td><td>{{de opening, de belofte}}</td></tr>
+    <tr><td class="n">S2</td><td>Taal en begrijpelijkheid</td><td class="m">{{–}}</td><td class="m">{{4}}</td><td class="m">×1</td><td>{{termen en afkortingen met dianummer}}</td></tr>
+    <tr><td class="n">S3</td><td>Leesbaarheid en toegankelijkheid</td><td class="m">{{–}}</td><td class="m">{{4}}</td><td class="m">×2</td><td>{{script: % <14 pt, % ≥18 pt · oordeel: contrast, tekeningen}}</td></tr>
+    <tr><td class="n">S4</td><td>Tempo en pauzering</td><td class="m">{{–}}</td><td class="m">{{4}}</td><td class="m">×1</td><td>{{script: pauze, tijdbudget · oordeel}}</td></tr>
+    <tr><td class="n">S5</td><td>Studeerbaarheid achteraf</td><td class="m">{{–}}</td><td class="m">{{4}}</td><td class="m">×1</td><td>{{script: notitiewoorden, dia's zonder, begrippenlijst}}</td></tr>
+    <tr><td class="n">S6</td><td>Consistentie en uitstraling</td><td class="m">{{–}}</td><td class="m">{{5}}</td><td class="m">×1</td><td>{{ontwerpsysteem, nummering, legenda's}}</td></tr>
+    <tr><td class="n">—</td><td><b>Gewogen eindscore</b></td><td class="m">{{–}}</td><td class="m"><b>{{4,55}}</b></td><td class="m">{{24}}</td><td>{{punten}} van {{max}} · band {{uitstekend}}</td></tr>
+  </table></div>
+</section>
+
+<section id="s4">
+  <div class="eyebrow">4 <b>·</b> Bevindingen in beeld</div>
+  <h2>{{n}} dia's die het oordeel dragen</h2>
+  <p>De dia's zijn gerenderd uit het bestand zelf (1280 × 720); dit is wat er geprojecteerd wordt. Blauw is wat goed staat of is opgelost, oker wat aandacht vraagt, magenta wat fout is.</p>
+  <!-- Per figuur, hooguit tien. Bed de PNG in als data-URI (base64) zodat het rapport één bestand blijft;
+       de overige schermen blijven in schermen/ naast het rapport. -->
+  <figure>
+    <img src="data:image/png;base64,{{base64 van schermen/dia-06.png}}" alt="{{dia 6}}">
+    <figcaption><b>Figuur {{1}} · dia {{6}} · <span class="chip {{goed|let|fout}}">{{opgelost / aandacht / fout}}</span></b>{{Wat er te zien is, waarom het het oordeel draagt, wat ermee moet.}}</figcaption>
+  </figure>
+</section>
+
+<section id="s5">
+  <div class="eyebrow">5 <b>·</b> De maat die het cijfer drukte</div>
+  <h2>{{Eén meting verklaart het meeste verschil}}</h2>
+  <p>{{Welke meting, welke waarde, welke drempel, en wat het zou schelen als hij gehaald werd. Met de tabel of het cijfer erbij.}}</p>
+</section>
+
+<section id="s6">
+  <div class="eyebrow">6 <b>·</b> Wat er nog open staat</div>
+  <h2>{{n}} punten, op volgorde van rendement</h2>
+  <div class="grid g2">
+    <div class="card k k-let"><b>{{01 · Kop}}</b><p>{{Wat, waarom, welk criterium het raakt en hoeveel het oplevert.}}</p><p class="small">{{+2 punten · 2–3 uur}}</p></div>
+  </div>
+</section>
+
+<section id="s7">
+  <div class="eyebrow">7 <b>·</b> Naast het parallelle college</div>
+  <h2>{{Dezelfde criteria, dezelfde gewichten}}</h2>
+  <p>{{Vergelijking per criterium waar het verschil groter is dan één punt — of: er is geen parallel college beoordeeld.}}</p>
+</section>
+
+<section id="s8">
+  <div class="eyebrow">8 <b>·</b> Wat er beslist moet blijven</div>
+  <h2>Waar een volgende herziening van af moet blijven</h2>
+  <div class="grid g2">
+    <div class="card k k-goed"><b>{{Wat}}</b><p>{{Waarom het werkt, met dianummer.}}</p></div>
+  </div>
+</section>
+
+<section id="s9">
+  <div class="eyebrow">9 <b>·</b> Verantwoording en meetgegevens</div>
+  <h2>Hoe er gemeten is, en wat niet</h2>
+  <p>Meting met <code>meet_college.py</code> (1 px = 0,75 pt op 1280 × 720; tekeningen met hun schaalfactor). Uitvoer letterlijk:</p>
+<pre>{{scriptuitvoer}}</pre>
+  <p>{{Welke FAILs uit het ontbrekende deckcontract komen en welke uit het college.}}</p>
+  <h3>Wat niet is gedaan</h3>
+  <p>{{Niet in een zaal gezien; export niet gedraaid; contrast niet gemeten; … — wat geldt.}}</p>
+  <h3>Bevestiging door de reviewer</h3>
+  <div class="bevestiging">
+    <b>Reviewer</b><span>{{naam — niet de maker}}</span>
+    <b>Datum</b><span>{{datum}}</span>
+    <b>Voorstel overgenomen</b><span>{{ja / nee}}</span>
+    <b>Afwijkingen</b><span>{{criterium: voorgesteld → bevestigd, reden}}</span>
+  </div>
+  <p class="small">Dit rapport is een voorstel van een AI-lezer. De scores gelden pas na bevestiging; afwijkingen worden hier vastgelegd, zodat over een jaar te zien is wat een besluit was en wat een omissie.</p>
+</section>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{
+ "deck": "introductie-bedrijfskunde.html",
+ "datum": "2026-09-02",
+ "dias": 32,
+ "gates": [
+  {
+   "code": "D1",
+   "ok": false,
+   "waarde": "0/7",
+   "drempel": "7/7 op dia 1 = slotdia",
+   "gemeten": true
+  },
+  {
+   "code": "D3",
+   "ok": false,
+   "waarde": "gem. 107 w/dia · max 197 (dia 22)",
+   "drempel": "≤110 gem. · ≤170 max",
+   "gemeten": true
+  },
+  {
+   "code": "D4",
+   "ok": false,
+   "waarde": "14 momenten · 41% dia's · gat 5 · 0 vormen · 17.5 min",
+   "drempel": "≥10 · ≥35% · gat ≤4 · ≥4 vormen · 15–20 min",
+   "gemeten": true
+  },
+  {
+   "code": "D5n",
+   "ok": false,
+   "waarde": "0/14 modellen · NL-casus: nee · 1.1 ontbreekt, 1.2 ontbreekt, 1.3 ontbreekt, 1.4 ontbreekt, 1.5 ontbreekt, 2.1 ontbreekt, 2.2 ontbreekt, 2.3 ontbreekt, 3.1 ontbreekt, 3.2 ontbreekt, 3.3 ontbreekt, 4.1 ontbreekt, 4.2 ontbreekt, 4.3 ontbreekt, geen NL-casus",
+   "drempel": "14/14 met oordeel · bron ≥ 2023 · NL-casus",
+   "gemeten": true
+  },
+  {
+   "code": "D7",
+   "ok": false,
+   "waarde": "ophaalcheck: nee · huiswerk: nee · doorkijk: nee",
+   "drempel": "ophaalcheck, huiswerk en doorkijk op de laatste drie dia's",
+   "gemeten": true
+  },
+  {
+   "code": "S3",
+   "ok": true,
+   "waarde": "<14pt: 27.3% · 14–18pt: 44.6% · ≥18pt: 28.2%",
+   "drempel": "<14pt ≤30% · ≥18pt ≥28%",
+   "gemeten": true
+  },
+  {
+   "code": "S4",
+   "ok": false,
+   "waarde": "pauze zonder eindtijd · blokken 0/90 min",
+   "drempel": "pauzedia met eindtijd · blokken = 90 min",
+   "gemeten": true
+  },
+  {
+   "code": "S5",
+   "ok": false,
+   "waarde": "notities 4.279 w · begrippenlijst: nee",
+   "drempel": "≥3.000 w · elke dia · begrippenlijst",
+   "gemeten": true
+  }
+ ]
+}

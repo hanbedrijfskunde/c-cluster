@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Checklist Opdrachtbevestiging Getoetst</title>
+<style>
+:root{
+  /* HAN-huisstijl, overgenomen uit archief/voorbeeld-slide-deck.html:
+     één schreeuwende kleur op zwart-wit */
+  --han:#E50056; --han2:#FFE1EC; --ink:#000000; --paper:#FFFFFF;
+  --grey:#454545; --grey2:#767676; --wash:#F2F2F0; --panel2:#E6E6E3;
+  --mens2:#FFE875;
+  --bw:3px; --sh:5px 5px 0 var(--ink);
+  --f:"Avenir Next","Avenir","Nunito Sans","Segoe UI",Helvetica,Arial,sans-serif;
+  --fm:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--wash);color:var(--ink);font:16px/1.55 var(--f);-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;display:grid;gap:44px;padding:32px 16px 64px}
+h1,h2,h3{text-wrap:balance;margin:0}
+h1{font-size:clamp(32px,6vw,56px);line-height:.96;letter-spacing:-.035em;font-weight:800;text-transform:uppercase}
+h2{font-size:clamp(24px,3.4vw,32px);line-height:1.05;letter-spacing:-.025em;font-weight:800;
+  display:flex;align-items:center;gap:12px;padding-bottom:10px;border-bottom:var(--bw) solid var(--ink)}
+h2::before{content:"";flex:none;width:16px;height:16px;background:var(--han)}
+h3{font-size:18px;line-height:1.2;font-weight:800;margin-top:4px}
+p{margin:0;max-width:68ch}
+b,strong{font-weight:700}
+section{display:grid;gap:18px}
+
+/* ---------- logobalk ---------- */
+.topbar,.foot{background:var(--ink);color:var(--paper);display:flex;align-items:center;gap:18px;padding:0 20px 0 max(16px,calc((100% - 908px)/2))}
+.topbar{height:56px;border-bottom:4px solid var(--han)}
+.foot{min-height:52px}
+.logo{flex:none;display:block;height:26px;width:auto}
+.who{font:700 12px/1 var(--fm);letter-spacing:.16em;text-transform:uppercase;opacity:.82}
+.sp{flex:1}
+.num{font:800 13px/1 var(--fm);background:var(--han);color:var(--paper);padding:8px 11px;letter-spacing:.06em;text-transform:uppercase}
+
+/* ---------- kop ---------- */
+header{background:var(--han);color:var(--paper);border:var(--bw) solid var(--ink);box-shadow:10px 10px 0 var(--ink);
+  padding:28px clamp(18px,4vw,40px) 30px;display:grid;gap:16px}
+.eyebrow{justify-self:start;background:var(--ink);color:var(--paper);padding:6px 12px 5px;
+  font:700 12px/1.2 var(--fm);letter-spacing:.14em;text-transform:uppercase}
+header .eyebrow{background:var(--paper);color:var(--ink)}
+.meta{display:flex;flex-wrap:wrap;gap:10px}
+.chip{border:3px solid currentColor;padding:7px 12px;font:700 13px/1.15 var(--fm);letter-spacing:.04em;text-transform:uppercase}
+.lede{font-size:19px;line-height:1.45;font-weight:600;max-width:64ch}
+header .callout{color:var(--ink)}
+
+/* ---------- blokken ---------- */
+.callout{background:var(--mens2);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:14px 18px;display:grid;gap:8px}
+.callout>strong{justify-self:start;background:var(--ink);color:var(--paper);padding:5px 11px 4px;
+  font:700 12px/1.2 var(--fm);letter-spacing:.12em;text-transform:uppercase}
+.callout.han{background:var(--han);color:var(--paper)}
+.callout.han>strong{background:var(--paper);color:var(--han)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.box{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:16px 18px;display:grid;gap:10px;align-content:start}
+.box h3{margin:0}
+ul,ol{margin:0;padding-left:22px;display:grid;gap:6px}
+li{max-width:66ch}
+ul:not(.check){list-style:none;padding-left:24px}
+ul:not(.check) li{position:relative}
+ul:not(.check) li::before{content:"";position:absolute;left:-22px;top:.5em;width:10px;height:10px;background:var(--han)}
+ol li::marker{font:800 14px var(--fm);color:var(--han)}
+.check{list-style:none;padding-left:26px}
+.check li{position:relative}
+.check li::before{content:"";position:absolute;left:-25px;top:4px;width:14px;height:14px;border:2.5px solid var(--ink);background:var(--paper)}
+.muted{color:var(--grey)}
+.small{font-size:14.5px}
+
+/* ---------- tabellen ---------- */
+.tablewrap{overflow-x:auto;background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh)}
+table{border-collapse:collapse;width:100%;min-width:640px}
+th,td{text-align:left;vertical-align:top;padding:12px 14px;border-top:2px solid var(--ink)}
+th{font:700 12px/1.2 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:var(--ink);border-top:0}
+td.t{font:800 14px/1.4 var(--fm);white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--han)}
+td.t span{display:block;color:var(--grey);font-weight:600;font-size:12px}
+tr.brk td{background:var(--wash);color:var(--grey);padding-block:8px;font-weight:600}
+tr.brk td.t{color:var(--ink)}
+td b{font-weight:700}
+.tag{display:inline-block;font:700 11px/1 var(--fm);letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;
+  background:var(--han2);color:var(--ink);border:2px solid var(--ink);margin:4px 4px 0 0;vertical-align:1px}
+.tag.slide{background:var(--ink);color:var(--paper)}
+
+/* ---------- inhoud ---------- */
+.flaws{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.flaw{background:var(--han2);border:2px solid var(--ink);padding:10px 12px;font-size:14.5px}
+.flaw b{color:var(--han)}
+.phases{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));border:var(--bw) solid var(--ink);background:var(--paper);box-shadow:var(--sh)}
+.phase{padding:14px 16px;border-right:2px solid var(--ink);display:grid;gap:4px;align-content:start}
+.phase:last-child{border-right:0}
+.phase .n{justify-self:start;font:700 11px/1 var(--fm);letter-spacing:.12em;text-transform:uppercase;background:var(--han);color:var(--paper);padding:4px 7px}
+.phase b{font-size:18px;font-weight:800}
+.note{background:var(--paper);border:var(--bw) solid var(--ink);border-top:9px solid var(--han);box-shadow:var(--sh);padding:14px 18px;display:grid;gap:8px}
+.note h3{margin:0}
+footer.bron{font-size:13.5px;color:var(--grey);border-top:var(--bw) solid var(--ink);padding-top:16px;display:grid;gap:6px}
+code{font-family:var(--fm);font-size:12.5px}
+.pdfknop{font:700 12px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:transparent;
+  border:2px solid var(--paper);padding:8px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.pdfknop:hover,.pdfknop:focus-visible{background:var(--han);border-color:var(--han);outline:none}
+.pdfknop svg{width:14px;height:14px}
+/* ---------- printbijlagen ---------- */
+a{color:inherit;text-decoration-color:var(--han);text-decoration-thickness:2px;text-underline-offset:3px}
+.knoppen{display:flex;gap:8px}
+@media (max-width:640px){.topbar .who{display:none}.pdfknop{padding:8px 9px;letter-spacing:.04em}}
+@media (max-width:440px){.pdfknop .lbl{display:none}.pdfknop svg{width:16px;height:16px}}
+.bijlage{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:0 0 22px;display:grid;gap:14px;align-content:start}
+.bijlage>*:not(.bkop){margin-inline:clamp(16px,3vw,28px)}
+.bkop{background:var(--ink);color:var(--paper);display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:10px clamp(16px,3vw,28px)}
+.bkop .logo{height:20px}
+.bkop .num{margin-left:auto}
+.bijlage h3{font-size:22px;letter-spacing:-.015em}
+.bijlage .sub{color:var(--grey);font-weight:600}
+.mail{border:var(--bw) solid var(--ink)}
+.mail-head{background:var(--wash);border-bottom:2px solid var(--ink);padding:10px 14px;display:grid;gap:3px;font-size:15px}
+.mail-head b{display:inline-block;min-width:92px;font:700 11px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
+.mail-body{padding:14px 16px;display:grid;gap:10px}
+.mail-body h4{margin:6px 0 -6px;font-size:15px;font-weight:800}
+.lijnen{display:grid;gap:0}
+.lijnen b{font:700 11px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase}
+.lijnen i{display:block;height:30px;border-bottom:2px solid var(--ink)}
+.checktabel{border:var(--bw) solid var(--ink)}
+.checktabel table{min-width:0}
+.checktabel td.nr{width:36px;font:800 13px/1.5 var(--fm);color:var(--han)}
+.checktabel td.vakje{width:64px;text-align:center}
+.checktabel td.vakje span{display:inline-block;width:18px;height:18px;border:2.5px solid var(--ink)}
+.checktabel tr.groep td{background:var(--wash);font:700 11px/1.2 var(--fm);letter-spacing:.12em;text-transform:uppercase;padding-block:7px}
+.hint{display:block;color:var(--grey);font-size:13.5px;margin-top:2px}
+@page{size:A4;margin:14mm 12mm}
+@media print{
+  .pdfknop{display:none}
+  .bijlage{break-before:page;border:0;padding-bottom:0}
+  .bijlage>*:not(.bkop){margin-inline:0}
+  .bijlage{gap:10px}
+  .bkop{flex-wrap:nowrap}
+  .bkop .who{letter-spacing:.06em;font-size:10px}
+  .bkop .num{white-space:nowrap;font-size:12px}
+  #bijlage-c .checktabel td{padding:6px 10px;font-size:12.5px;line-height:1.35}
+  #bijlage-c .hint{font-size:11.5px}
+  #bijlage-c .checktabel tr.groep td{padding-block:5px}
+  body.alleen-bijlagen .topbar,body.alleen-bijlagen .foot,
+  body.alleen-bijlagen .wrap>:not(#bijlagen),
+  body.alleen-bijlagen #bijlagen>:not(.bijlage){display:none}
+  body.alleen-bijlagen .wrap{padding-block:0}
+  body.alleen-bijlagen #bijlagen{margin-top:0}
+  body{background:#fff}
+  .wrap,section{display:block;padding-block:16px}
+  section{padding-block:0;margin-top:26px}
+  section>*+*{margin-top:14px}
+  .grid2,.flaws{break-inside:avoid}
+  header,.box,.tablewrap,.callout,.phases,.note,.bijlage{box-shadow:none}
+  body{font-size:14px}
+  .box,.note,.callout,.phases,.flaw,tr,h3{break-inside:avoid}
+  h2,h3{break-after:avoid}
+  .tablewrap{overflow:visible}
+  table{min-width:0}
+  th,td{padding:9px 10px}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+.uitslag{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.meter{border:var(--bw) solid var(--ink);padding:12px 14px;display:grid;gap:6px;background:var(--paper);box-shadow:var(--sh)}
+.meter .k{font:700 11px/1.2 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
+.meter .v{font:800 34px/1 var(--f);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.meter .v small{font-size:16px;color:var(--grey);font-weight:700}
+.matrix table{min-width:820px}
+.matrix td,.matrix th{padding:9px 10px}
+.matrix th.c,.matrix td.c{text-align:center;width:80px}
+.matrix td.c{font-size:18px;line-height:1.2}
+.matrix td.cl{background:var(--han2);font-weight:800}
+.matrix td.cl small{display:block;font:700 10.5px/1.2 var(--fm);color:var(--grey)}
+.matrix tr.gat td.cl{background:var(--han);color:var(--paper)}
+.matrix tr.gat td.cl small{color:var(--paper)}
+.matrix td .u{display:block;font-size:13px;color:var(--grey)}
+.matrix td .t{display:block;font-size:13px;margin-top:4px;border-left:3px solid var(--han);padding-left:8px}
+.ja{font-weight:800}.nee{color:var(--han);font-weight:800}.deels{font-weight:700;color:var(--grey)}
+.voorstel table{min-width:0}
+.voorstel td.nr{width:36px;font:800 13px/1.5 var(--fm);color:var(--han)}
+.voorstel tr.groep td{background:var(--wash);font:700 11px/1.2 var(--fm);letter-spacing:.12em;text-transform:uppercase;padding-block:7px}
+.voorstel .tag.nieuw{background:var(--han);color:var(--paper);border-color:var(--han)}
+.voorstel .tag.aangescherpt{background:var(--mens2)}
+.voorstel td.stt{width:120px}
+ol.bronnen{padding-left:0;list-style:none;gap:8px;font-size:14px}
+ol.bronnen li{padding-left:28px;text-indent:-28px;max-width:none}
+@media print{.matrix table{min-width:0}.matrix td,.matrix th{padding:5px 6px;font-size:11.5px}.meter{box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="topbar"><svg class="logo" viewBox="0 0 82 34" role="img" aria-label="Logo HAN"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></svg><span class="who">Praktijkopdracht 5 · C-cluster</span><span class="sp"></span><span class="knoppen"><button type="button" class="pdfknop" onclick="downloadPdf()" title="Opent het afdrukvenster; kies daar 'Opslaan als PDF'"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 1v9M4 6l4 4 4-4M2 14h12"/></svg><span class="lbl">Download PDF</span></button></span></div>
+<div class="wrap">
+<header>
+  <div class="eyebrow">Analyse · voor tutoren</div>
+  <h1>Hoe compleet is de checklist opdracht&shy;bevestiging?</h1>
+  <div class="meta">
+    <span class="chip">Bijlage C · 12 items</span>
+    <span class="chip">BKN-C01 · week 4</span>
+    <span class="chip">22 sept 2026</span>
+  </div>
+  <p class="lede">De checklist is sterk op vorm, toon en het vermijden van de fouten uit de foute voorbeeldmail. Voor een bedrijfskundige adviesopdracht mist hij onderdelen die zowel de adviesliteratuur als het eigen goedkeuringsformulier wel vragen: een succescriterium, de inzet die het bedrijf moet leveren, betrokkenen, risico's en vertrouwelijkheid.</p>
+</header>
+
+<section id="oordeel">
+  <h2>Oordeel in het kort</h2>
+  <div class="uitslag">
+    <div class="meter"><span class="k">Onderdelen uit de literatuur</span><span class="v">9 <small>volledig</small></span><span class="small">4 deels, 7 ontbreken, van 20 onderdelen</span></div>
+    <div class="meter"><span class="k">HAN-structuur (10 onderdelen)</span><span class="v">7 <small>volledig</small></span><span class="small">probleemstelling, rollen en planning maar deels</span></div>
+    <div class="meter"><span class="k">"Goede" voorbeeldmail (bijlage B)</span><span class="v">8 <small>/ 11</small></span><span class="small">zakt op afzender, afbakening en vervolg</span></div>
+  </div>
+  <div class="grid2">
+    <div class="box"><h3>Wat de checklist goed doet</h3>
+      <ul class="small">
+        <li>Elk foutvoorbeeld komt uit bijlage A. Studenten herkennen de fout die ze net zelf hebben gevonden.</li>
+        <li>Items 5 en 6 dwingen tot neutraliteit: het probleem in de woorden van de opdrachtgever, geen oplossing die al vaststaat. Dat sluit aan op Schein (1999) en op de Lean-gedachte dat de oplossing uit meting volgt.</li>
+        <li>Items 9 en 11 regelen verwachtingen en akkoord, de kern van wat Block (2011) de contractfase noemt.</li>
+        <li>Items 1 tot en met 4 over vorm en toon ontbreken in de adviesliteratuur, maar zijn voor studenten nodig.</li>
+      </ul>
+    </div>
+    <div class="box"><h3>Wat ontbreekt of te zwak is</h3>
+      <ul class="small">
+        <li><b>Succescriterium.</b> Het goedkeuringsformulier vraagt het, de checklist niet. Zonder criterium geen nulmeting en geen maat voor de big win.</li>
+        <li><b>Inzet van het bedrijf.</b> Tijd, data en toegang tot de werkvloer staan nergens. Een Lean-project met metingen kan niet zonder.</li>
+        <li><b>Rollen en betrokkenen.</b> Item 10 vraagt alleen naar de contactpersoon, niet naar de proceseigenaar of naar wie het team mag spreken.</li>
+        <li><b>Risico's en vertrouwelijkheid.</b> Nergens staat dat docenten en assessoren het verslag lezen.</li>
+        <li><b>Planning.</b> Item 10 vraagt wanneer het team terugkoppelt, niet hoe het project loopt.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="kaders">
+  <h2>Waarmee is vergeleken?</h2>
+  <p>Deze analyse legt de checklist naast vijf kaders. Drie komen uit de internationale literatuur over adviestrajecten en projecten, twee uit de eigen cursus.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Kader</th><th>Wat het is</th><th>Waarom relevant</th></tr></thead>
+      <tbody>
+        <tr><td><b>Block (2011)<br><span class='small muted'>Flawless Consulting</span></b></td><td class='small'>Negen elementen van een adviescontract: grenzen van de analyse, doelen, benodigde informatie, rol van de adviseur, het product, steun en betrokkenheid van de klant, planning, vertrouwelijkheid, en feedback aan de adviseur. Schriftelijk vastleggen is er "for clarity, not enforcement": kort, direct, bijna als een gesprek.</td><td class='small'>Veelgebruikt standaardwerk over de contractfase in advieswerk. De opdrachtbevestiging is precies dit document.</td></tr><tr><td><b>Kubr (2002)<br><span class='small muted'>ILO, Management Consulting</span></b></td><td class='small'>Een adviestraject heeft vijf fasen; de eerste is de instap. Het opdrachtvoorstel aan de klant bestaat uit vier delen: technische aspecten (probleem, doelen, aanpak, werkplan), bemensing, achtergrond van de adviseur, en financiële en overige voorwaarden.</td><td class='small'>Internationaal naslagwerk voor het adviesberoep, met een uitgewerkte lijst van wat een opdrachtvoorstel bevat.</td></tr><tr><td><b>PMI (2017)<br><span class='small muted'>Project charter, PMBOK 6e ed.</span></b></td><td class='small'>Het startdocument van een project: doel, meetbare doelen en succescriteria, globale eisen, risico's, mijlpalen, budget, belanghebbenden, rollen en goedkeuring.</td><td class='small'>Het gangbare startdocument van een project. Studenten volgen in dezelfde week een training projectmanagement.</td></tr><tr><td><b>Structuur bevestiging intakegesprek<br><span class='small muted'>HAN, Brightspace</span></b></td><td class='small'>Tien onderdelen: aanleiding, probleemstelling, doel, scope, aanpak, rollen, planning, afspraken, vervolgstappen, akkoord.</td><td class='small'>De eigen norm van de cursus. De checklist hoort hier minstens mee overeen te komen.</td></tr><tr><td><b>Goedkeuring praktijkopdracht<br><span class='small muted'>HAN, formulier</span></b></td><td class='small'>Bedrijf, opdrachtgever, basisvraag, context in QDC-termen, proces met start- en eindpunt, proceseigenaar, stakeholders, SMART-succescriteria, randvoorwaarden en risico's.</td><td class='small'>Gaat naar de tutoren, niet naar de opdrachtgever. Maar studenten halen de inhoud uit dezelfde intake.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="matrix">
+  <h2>Dekkingsmatrix</h2>
+  <p>Per onderdeel: staat het in de checklist, en in welke kaders komt het terug? <b>●</b> volledig, <b>◐</b> deels, leeg = ontbreekt.</p>
+  <div class="tablewrap matrix">
+    <table>
+      <thead><tr><th>Onderdeel</th><th class="c">Checklist</th><th class="c">Block</th><th class="c">Kubr</th><th class="c">Project&shy;charter</th><th class="c">HAN-structuur</th><th class="c">Goed&shy;keuring</th></tr></thead>
+      <tbody>
+        <tr class=""><td><b>Aanleiding</b><span class="u">Waarom speelt dit nu?</span></td><td class="c cl">●<small>item 5</small></td><td class="c">◐</td><td class="c">●</td><td class="c">●</td><td class="c">●</td><td class="c">●</td></tr>
+<tr class=""><td><b>Probleem met feiten</b><span class="u">Proces, frequentie, gevolgen in kwaliteit, levertijd of kosten</span><span class=t>Item 5 vraagt het probleem in de woorden van de opdrachtgever. Feiten en getallen uit het gesprek vraagt het niet.</span></td><td class="c cl">◐<small>item 5</small></td><td class="c">◐</td><td class="c">●</td><td class="c">◐</td><td class="c">●</td><td class="c">●</td></tr>
+<tr class=""><td><b>Doel en opbrengst</b><span class="u">Wat de opdracht oplevert</span></td><td class="c cl">●<small>item 6</small></td><td class="c">●</td><td class="c">●</td><td class="c">●</td><td class="c">●</td><td class="c">●</td></tr>
+<tr class="gat"><td><b>Succescriterium</b><span class="u">Waaraan de opdrachtgever merkt dat het beter gaat</span><span class=t>Het goedkeuringsformulier vraagt succescriteria &quot;zo SMART mogelijk&quot;. De checklist niet. De docentinstructie noemt het ontbreken van een meetbaar doel ook als gat in de goede voorbeeldmail.</span></td><td class="c cl">–<small>ontbreekt</small></td><td class="c">◐</td><td class="c">●</td><td class="c">●</td><td class="c">◐</td><td class="c">●</td></tr>
+<tr class=""><td><b>Afbakening</b><span class="u">Wat wel en niet binnen de opdracht valt</span></td><td class="c cl">●<small>item 7</small></td><td class="c">●</td><td class="c">●</td><td class="c">●</td><td class="c">●</td><td class="c">◐</td></tr>
+<tr class=""><td><b>Aanpak</b><span class="u">Voorlopige werkwijze</span></td><td class="c cl">●<small>item 8</small></td><td class="c">◐</td><td class="c">●</td><td class="c">◐</td><td class="c">●</td><td class="c"></td></tr>
+<tr class=""><td><b>Opleveringen</b><span class="u">Welke producten, in welke vorm</span><span class=t>Item 6 noemt &quot;inzicht, aanbevelingen&quot; als voorbeeld, maar vraagt niet welk product de opdrachtgever krijgt en wanneer.</span></td><td class="c cl">◐<small>item 6</small></td><td class="c">●</td><td class="c">●</td><td class="c">●</td><td class="c"></td><td class="c"></td></tr>
+<tr class=""><td><b>Rollen</b><span class="u">Opdrachtgever, proceseigenaar, contactpersoon, team</span><span class=t>Item 10 vraagt alleen de contactpersoon.</span></td><td class="c cl">◐<small>item 10</small></td><td class="c">●</td><td class="c">●</td><td class="c">●</td><td class="c">●</td><td class="c">●</td></tr>
+<tr class="gat"><td><b>Betrokkenen</b><span class="u">Wie het team spreekt, met beschikbaarheid</span></td><td class="c cl">–<small>ontbreekt</small></td><td class="c">◐</td><td class="c">◐</td><td class="c">●</td><td class="c"></td><td class="c">●</td></tr>
+<tr class="gat"><td><b>Inzet van het bedrijf</b><span class="u">Tijd, data, toegang tot de werkvloer</span><span class=t>Block noemt dit apart: wat de adviseur van de opdrachtgever nodig heeft. Voor een Lean-project met metingen is het een voorwaarde.</span></td><td class="c cl">–<small>ontbreekt</small></td><td class="c">●</td><td class="c">●</td><td class="c">◐</td><td class="c"></td><td class="c">●</td></tr>
+<tr class=""><td><b>Planning</b><span class="u">Start, belangrijke momenten, oplevering</span><span class=t>Item 10 vraagt wanneer het team terugkoppelt, niet de planning van het project.</span></td><td class="c cl">◐<small>item 10</small></td><td class="c">●</td><td class="c">●</td><td class="c">●</td><td class="c">●</td><td class="c"></td></tr>
+<tr class="gat"><td><b>Randvoorwaarden en risico&#x27;s</b><span class="u">Reorganisatie, ERP-systeem, weerstand</span></td><td class="c cl">–<small>ontbreekt</small></td><td class="c"></td><td class="c">●</td><td class="c">●</td><td class="c"></td><td class="c">●</td></tr>
+<tr class="gat"><td><b>Vertrouwelijkheid</b><span class="u">Gebruik van bedrijfsgegevens in verslag en beoordeling</span><span class=t>Bij een studentenproject lezen docenten en assessoren het verslag. Dat hoort de opdrachtgever vooraf te weten.</span></td><td class="c cl">–<small>ontbreekt</small></td><td class="c">●</td><td class="c">●</td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+<tr class=""><td><b>Verwachtingen</b><span class="u">Geen beloftes die je niet kunt waarmaken</span></td><td class="c cl">●<small>item 9</small></td><td class="c">●</td><td class="c">●</td><td class="c">◐</td><td class="c"></td><td class="c"></td></tr>
+<tr class=""><td><b>Afspraken en vervolg</b><span class="u">Volgende stap, contact, terugkoppeling</span></td><td class="c cl">●<small>item 10</small></td><td class="c">●</td><td class="c">●</td><td class="c">◐</td><td class="c">●</td><td class="c"></td></tr>
+<tr class=""><td><b>Verzoek om akkoord</b><span class="u">Opdrachtgever bevestigt dat het klopt</span></td><td class="c cl">●<small>item 11</small></td><td class="c">●</td><td class="c">●</td><td class="c">●</td><td class="c">●</td><td class="c"></td></tr>
+<tr class="gat"><td><b>Open punten</b><span class="u">Wat in het gesprek nog niet duidelijk werd</span><span class=t>Een intake levert zelden alles op. Een bevestiging die open punten als vraag noemt, haalt de ontbrekende informatie alsnog op.</span></td><td class="c cl">–<small>ontbreekt</small></td><td class="c"></td><td class="c">◐</td><td class="c">◐</td><td class="c"></td><td class="c"></td></tr>
+<tr class="gat"><td><b>Datum, deelnemers, termijn</b><span class="u">Wanneer het gesprek was, met wie, en verzonden binnen twee werkdagen</span></td><td class="c cl">–<small>ontbreekt</small></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+<tr class=""><td><b>Vorm, toon, afzender</b><span class="u">Onderwerp, aanhef, afzender, opbouw</span><span class=t>Hier is de checklist sterker dan de literatuur. De adviesliteratuur gaat ervan uit dat een professional dit beheerst; studenten moeten het nog leren.</span></td><td class="c cl">●<small>item 1–4</small></td><td class="c"></td><td class="c">◐</td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+<tr class=""><td><b>Kwaliteitscontrole</b><span class="u">Spelling, meelezen door een teamgenoot</span></td><td class="c cl">●<small>item 12</small></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">De kolom "HAN-structuur" is de <i>Structuur bevestiging intakegesprek</i> met tien onderdelen, zoals de docentinstructie die noemt. "Goedkeuring" is het formulier <i>Goedkeuring praktijkopdracht</i>. Dat formulier gaat naar de tutoren, niet naar de opdrachtgever. Het staat erin omdat studenten de inhoud uit dezelfde intake halen: wat in het formulier moet, hoort de opdrachtgever ook te bevestigen.</p>
+</section>
+
+<section id="toets">
+  <h2>Toets: de checklist op de eigen voorbeelden</h2>
+  <p>Een checklist is pas bruikbaar als hij de foute mail afkeurt en de goede goedkeurt. Bijlage A haalt terecht geen enkel item. Bijlage B, de "goede" mail, haalt 8 van de 11 items die je aan de mail zelf kunt zien.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>#</th><th>Item</th><th>Bijlage A</th><th>Bijlage B</th><th>Toelichting bij B</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Onderwerp concreet</td><td class="nee">nee</td><td class="ja">ja</td><td class="small"></td></tr><tr><td>2</td><td>Aanhef en afsluiting zakelijk</td><td class="nee">nee</td><td class="ja">ja</td><td class="small"></td></tr><tr><td>3</td><td>Eén afzender met naam en contactgegevens</td><td class="nee">nee</td><td class="deels">deels</td><td class="small">Naam als plaatshouder, geen telefoon of e-mail.</td></tr><tr><td>4</td><td>Heldere opbouw</td><td class="nee">nee</td><td class="ja">ja</td><td class="small"></td></tr><tr><td>5</td><td>Aanleiding zonder eigen oordeel</td><td class="nee">nee</td><td class="ja">ja</td><td class="small"></td></tr><tr><td>6</td><td>Doel zonder vaststaande oplossing</td><td class="nee">nee</td><td class="ja">ja</td><td class="small"></td></tr><tr><td>7</td><td>Afbakening</td><td class="nee">nee</td><td class="nee">nee</td><td class="small">&quot;Binnen de organisatie&quot;: geen proces of afdeling genoemd.</td></tr><tr><td>8</td><td>Voorlopige aanpak, ook zo benoemd</td><td class="nee">nee</td><td class="ja">ja</td><td class="small"></td></tr><tr><td>9</td><td>Geen onhaalbare beloftes</td><td class="nee">nee</td><td class="ja">ja</td><td class="small"></td></tr><tr><td>10</td><td>Volgende stap, contactpersoon, moment van terugkoppeling</td><td class="nee">nee</td><td class="nee">nee</td><td class="small">&quot;Op een later moment&quot;: geen datum, geen contactpersoon.</td></tr><tr><td>11</td><td>Expliciet verzoek om bevestiging</td><td class="nee">nee</td><td class="ja">ja</td><td class="small"></td></tr><tr><td>12</td><td>Spelling gecontroleerd, teamgenoot heeft meegelezen</td><td class="">n.v.t.</td><td class="">n.v.t.</td><td class="small">Niet te zien aan de mail zelf.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout"><strong>Gevolg voor de les</strong><p>Studenten krijgen bijlage B als goed voorbeeld en bijlage C als norm, terwijl B zakt op C. De docentinstructie signaleert dit al ("De goede voorbeeldmail is niet af"). Twee opties: pas B aan zodat hij de checklist haalt, of maak het expliciet tot opdracht: "Leg B naast C. Welke drie items haalt deze mail niet?" De tweede optie kost geen voorbereiding en leert studenten de checklist kritisch te gebruiken.</p></div>
+</section>
+
+<section id="instrument">
+  <h2>De checklist als meetinstrument</h2>
+  <div class="grid2">
+    <div class="note"><h3>Aanwezig is nog niet goed</h3><p class="small">De kolom heet "klopt", maar studenten vinken af of iets <i>aanwezig</i> is. Een vaag doel ("inzicht krijgen in de problemen") haalt item 6. Een schaal van 0 tot 2 (ontbreekt, aanwezig, concreet en controleerbaar) of een norm per item ("met datum", "met naam") maakt het verschil zichtbaar.</p></div>
+    <div class="note"><h3>Eén item, drie vragen</h3><p class="small">Item 10 vraagt drie dingen tegelijk: volgende stap, contactpersoon en moment van terugkoppeling. Een student die er één van heeft, kan het item toch afvinken. Splits het item, of neem de drie elementen op als deelvinkjes.</p></div>
+    <div class="note"><h3>Aanhef: "Beste" is ook zakelijk</h3><p class="small">Item 2 noemt "Hoi Klaas" en "Groet" als fout. Dat klopt. In het Nederlandse bedrijfsleven is "Beste [naam]" met "Met vriendelijke groet" ook gangbaar. Een student die "Geachte" als enige juiste vorm ziet, klinkt bij een mkb-ondernemer soms stijf. Het item kan "passend bij de toon van het gesprek" toevoegen.</p></div>
+    <div class="note"><h3>Eén document of twee?</h3><p class="small">Met alle ontbrekende onderdelen wordt een mail te lang. Block (2011) adviseert een kort, direct document. Een werkbare vorm: een korte mail met een opdrachtomschrijving van één A4 als bijlage. Als die bijlage dezelfde kopjes gebruikt als het goedkeuringsformulier, doen studenten het werk één keer.</p></div>
+  </div>
+</section>
+
+<section id="voorstel">
+  <h2>Voorstel: herziene checklist</h2>
+  <p>20 items in vier groepen. De twaalf bestaande items komen allemaal terug. Item 10 is gesplitst in afspraken en planning, en vier items zijn aangescherpt. Daarnaast zijn er zeven nieuwe items. Elk item sluit aan op deel D van het scoringsinstrument in de manual: wat een student in de intake ophaalt, komt in de bevestiging terug.</p>
+  <div class="checktabel voorstel">
+    <table>
+      <thead><tr><th>#</th><th>Onderdeel</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr class="groep"><td colspan="3">Vorm en toon</td></tr>
+<tr><td class="nr">1</td><td>Het onderwerp is concreet, bijvoorbeeld &quot;Bevestiging intakegesprek en opdracht [bedrijf]&quot;.</td><td class="stt"><span class="small muted">bestaand</span></td></tr>
+<tr><td class="nr">2</td><td>Aanhef en afsluiting zijn zakelijk en passen bij de opdrachtgever.</td><td class="stt"><span class="small muted">bestaand</span></td></tr>
+<tr><td class="nr">3</td><td>Er is één afzender met naam, telefoonnummer en e-mailadres.</td><td class="stt"><span class="small muted">bestaand</span></td></tr>
+<tr><td class="nr">4</td><td>De mail is binnen twee werkdagen na het gesprek verstuurd en noemt datum en deelnemers van het gesprek.</td><td class="stt"><span class="tag nieuw">nieuw</span></td></tr>
+<tr><td class="nr">5</td><td>De mail is kort. De opdrachtomschrijving staat in een bijlage van één A4 met kopjes.</td><td class="stt"><span class="tag aangescherpt">aangescherpt</span></td></tr>
+<tr class="groep"><td colspan="3">Probleem en doel</td></tr>
+<tr><td class="nr">6</td><td>Aanleiding: het probleem staat erin zoals de opdrachtgever het verwoordde, zonder eigen oordeel.</td><td class="stt"><span class="small muted">bestaand</span></td></tr>
+<tr><td class="nr">7</td><td>Feiten: het proces (start- en eindpunt, hoe vaak) en de gevolgen voor kwaliteit, levertijd of kosten, met een getal of &quot;nog te meten&quot;.</td><td class="stt"><span class="tag nieuw">nieuw</span></td></tr>
+<tr><td class="nr">8</td><td>Doel: wat de opdracht oplevert, zonder oplossing die al vaststaat.</td><td class="stt"><span class="small muted">bestaand</span></td></tr>
+<tr><td class="nr">9</td><td>Succescriterium: waaraan de opdrachtgever merkt dat het beter gaat. Voorlopig en zo meetbaar mogelijk.</td><td class="stt"><span class="tag nieuw">nieuw</span></td></tr>
+<tr><td class="nr">10</td><td>Afbakening: welk proces of welke afdeling wel en niet onder de opdracht valt.</td><td class="stt"><span class="small muted">bestaand</span></td></tr>
+<tr class="groep"><td colspan="3">Werkwijze</td></tr>
+<tr><td class="nr">11</td><td>Aanpak en opleveringen: voorlopige aanpak, en welk product de opdrachtgever wanneer krijgt.</td><td class="stt"><span class="tag aangescherpt">aangescherpt</span></td></tr>
+<tr><td class="nr">12</td><td>Rollen: opdrachtgever, proceseigenaar, contactpersoon en de betrokkenen die jullie spreken, met hun beschikbaarheid.</td><td class="stt"><span class="tag nieuw">nieuw</span></td></tr>
+<tr><td class="nr">13</td><td>Inzet van het bedrijf: hoeveel tijd, welke data en welke toegang jullie nodig hebben.</td><td class="stt"><span class="tag nieuw">nieuw</span></td></tr>
+<tr><td class="nr">14</td><td>Planning: start, belangrijkste momenten en oplevering van het project.</td><td class="stt"><span class="tag aangescherpt">aangescherpt</span></td></tr>
+<tr><td class="nr">15</td><td>Randvoorwaarden, risico&#x27;s en vertrouwelijkheid: wat het project kan vertragen, en wie het verslag leest.</td><td class="stt"><span class="tag nieuw">nieuw</span></td></tr>
+<tr><td class="nr">16</td><td>Verwachtingen: geen resultaten beloofd die je nog niet kunt waarmaken.</td><td class="stt"><span class="small muted">bestaand</span></td></tr>
+<tr class="groep"><td colspan="3">Afsluiting</td></tr>
+<tr><td class="nr">17</td><td>Afspraken: de volgende stap met datum, en wanneer je terugkoppelt.</td><td class="stt"><span class="small muted">bestaand</span></td></tr>
+<tr><td class="nr">18</td><td>Open punten uit het gesprek staan erin als concrete vraag.</td><td class="stt"><span class="tag nieuw">nieuw</span></td></tr>
+<tr><td class="nr">19</td><td>Je vraagt de opdrachtgever expliciet, met een termijn, om te bevestigen dat de weergave klopt en volledig is.</td><td class="stt"><span class="tag aangescherpt">aangescherpt</span></td></tr>
+<tr><td class="nr">20</td><td>De mail is op spelling gecontroleerd en door een teamgenoot gelezen.</td><td class="stt"><span class="small muted">bestaand</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="bronnen">
+  <h2>Bronnen</h2>
+  <ol class="bronnen"><li>Appelbaum, S. H., &amp; Steed, A. J. (2005). The critical success factors in the client-consulting relationship. <i>Journal of Management Development, 24</i>(1), 68–93. <a href="https://doi.org/10.1108/02621710510572362">https://doi.org/10.1108/02621710510572362</a></li><li>Block, P. (2011). <i>Flawless consulting: A guide to getting your expertise used</i> (3rd ed.). Pfeiffer.</li><li>Kubr, M. (Ed.). (2002). <i>Management consulting: A guide to the profession</i> (4th ed.). International Labour Office.</li><li>Nikolova, N., Reihlen, M., &amp; Schlapfner, J.-F. (2009). Client–consultant interaction: Capturing social practices of professional service production. <i>Scandinavian Journal of Management, 25</i>(3), 289–298. <a href="https://doi.org/10.1016/j.scaman.2009.05.004">https://doi.org/10.1016/j.scaman.2009.05.004</a></li><li>Project Management Institute. (2014). <i>Pulse of the profession in-depth report: Requirements management – A core competency for project and program success</i>. PMI.</li><li>Project Management Institute. (2017). <i>A guide to the project management body of knowledge (PMBOK guide)</i> (6th ed.). PMI.</li><li>Schein, E. H. (1999). <i>Process consultation revisited: Building the helping relationship</i>. Addison-Wesley.</li><li>HAN Bedrijfskunde (2026). <i>Docentinstructie workshop intakegesprek BKN-C01</i>, met bijlage A (foute opdrachtbevestiging), B (goede opdrachtbevestiging) en C (checklist opdrachtbevestiging).</li><li>HAN Bedrijfskunde (2026). <i>Intakegesprek: voorbereiding en format Goedkeuring projectopdracht</i> en <i>Structuur bevestiging intakegesprek</i>. Brightspace, Praktijkopdracht 5.</li></ol>
+</section>
+
+<footer class="bron"><p>Opgesteld 22 september 2026. Vergeleken is bijlage C uit de docentinstructie <i>Workshop intakegesprek BKN-C01</i> (12 items), met bijlage A en B uit dezelfde instructie.</p></footer>
+</div>
+<div class="foot"><svg class="logo" viewBox="0 0 82 34" role="img" aria-label="Logo HAN"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></svg><span class="who">Hogeschool van Arnhem en Nijmegen</span><span class="sp"></span><span class="num">BKN-C01 · analyse</span></div>
+<script>
+function downloadPdf(){
+  const titel=document.title;
+  document.title='Vergelijking_checklist_opdrachtbevestiging_BKN-C01';
+  window.addEventListener('afterprint',()=>{document.title=titel},{once:true});
+  window.print();
+}
+</script>
+</body>
+</html>

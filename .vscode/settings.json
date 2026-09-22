@@ -1,0 +1,21 @@
+{
+    "windowColor.themeColors": {
+        "dark": "#3ea3a3",
+        "light": "#4ebcbc"
+    },
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground": "#3ea3a3",
+        "titleBar.activeForeground": "#15202b",
+        "titleBar.inactiveBackground": "#529898",
+        "titleBar.inactiveForeground": "#15202b99",
+        "titleBar.border": "#36898b",
+        "commandCenter.background": "#3a9697",
+        "commandCenter.foreground": "#15202b",
+        "commandCenter.border": "#348285",
+        "commandCenter.activeBackground": "#36898b",
+        "commandCenter.activeForeground": "#15202b",
+        "commandCenter.activeBorder": "#2e6f73",
+        "commandCenter.inactiveForeground": "#15202bb3",
+        "commandCenter.inactiveBorder": "#388f91"
+    }
+}

@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Workshop intakegesprek BKN-C01</title>
+<style>
+:root{
+  /* HAN-huisstijl, overgenomen uit archief/voorbeeld-slide-deck.html:
+     één schreeuwende kleur op zwart-wit */
+  --han:#E50056; --han2:#FFE1EC; --ink:#000000; --paper:#FFFFFF;
+  --grey:#454545; --grey2:#767676; --wash:#F2F2F0; --panel2:#E6E6E3;
+  --mens2:#FFE875;
+  --bw:3px; --sh:5px 5px 0 var(--ink);
+  --f:"Avenir Next","Avenir","Nunito Sans","Segoe UI",Helvetica,Arial,sans-serif;
+  --fm:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--wash);color:var(--ink);font:16px/1.55 var(--f);-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;display:grid;gap:44px;padding:32px 16px 64px}
+h1,h2,h3{text-wrap:balance;margin:0}
+h1{font-size:clamp(32px,6vw,56px);line-height:.96;letter-spacing:-.035em;font-weight:800;text-transform:uppercase}
+h2{font-size:clamp(24px,3.4vw,32px);line-height:1.05;letter-spacing:-.025em;font-weight:800;
+  display:flex;align-items:center;gap:12px;padding-bottom:10px;border-bottom:var(--bw) solid var(--ink)}
+h2::before{content:"";flex:none;width:16px;height:16px;background:var(--han)}
+h3{font-size:18px;line-height:1.2;font-weight:800;margin-top:4px}
+p{margin:0;max-width:68ch}
+b,strong{font-weight:700}
+section{display:grid;gap:18px}
+
+/* ---------- logobalk ---------- */
+.topbar,.foot{background:var(--ink);color:var(--paper);display:flex;align-items:center;gap:18px;padding:0 20px 0 max(16px,calc((100% - 908px)/2))}
+.topbar{height:56px;border-bottom:4px solid var(--han)}
+.foot{min-height:52px}
+.logo{flex:none;display:block;height:26px;width:auto}
+.who{font:700 12px/1 var(--fm);letter-spacing:.16em;text-transform:uppercase;opacity:.82}
+.sp{flex:1}
+.num{font:800 13px/1 var(--fm);background:var(--han);color:var(--paper);padding:8px 11px;letter-spacing:.06em;text-transform:uppercase}
+
+/* ---------- kop ---------- */
+header{background:var(--han);color:var(--paper);border:var(--bw) solid var(--ink);box-shadow:10px 10px 0 var(--ink);
+  padding:28px clamp(18px,4vw,40px) 30px;display:grid;gap:16px}
+.eyebrow{justify-self:start;background:var(--ink);color:var(--paper);padding:6px 12px 5px;
+  font:700 12px/1.2 var(--fm);letter-spacing:.14em;text-transform:uppercase}
+header .eyebrow{background:var(--paper);color:var(--ink)}
+.meta{display:flex;flex-wrap:wrap;gap:10px}
+.chip{border:3px solid currentColor;padding:7px 12px;font:700 13px/1.15 var(--fm);letter-spacing:.04em;text-transform:uppercase}
+.lede{font-size:19px;line-height:1.45;font-weight:600;max-width:64ch}
+header .callout{color:var(--ink)}
+
+/* ---------- blokken ---------- */
+.callout{background:var(--mens2);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:14px 18px;display:grid;gap:8px}
+.callout>strong{justify-self:start;background:var(--ink);color:var(--paper);padding:5px 11px 4px;
+  font:700 12px/1.2 var(--fm);letter-spacing:.12em;text-transform:uppercase}
+.callout.han{background:var(--han);color:var(--paper)}
+.callout.han>strong{background:var(--paper);color:var(--han)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.box{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:16px 18px;display:grid;gap:10px;align-content:start}
+.box h3{margin:0}
+ul,ol{margin:0;padding-left:22px;display:grid;gap:6px}
+li{max-width:66ch}
+ul:not(.check){list-style:none;padding-left:24px}
+ul:not(.check) li{position:relative}
+ul:not(.check) li::before{content:"";position:absolute;left:-22px;top:.5em;width:10px;height:10px;background:var(--han)}
+ol li::marker{font:800 14px var(--fm);color:var(--han)}
+.check{list-style:none;padding-left:26px}
+.check li{position:relative}
+.check li::before{content:"";position:absolute;left:-25px;top:4px;width:14px;height:14px;border:2.5px solid var(--ink);background:var(--paper)}
+.muted{color:var(--grey)}
+.small{font-size:14.5px}
+
+/* ---------- tabellen ---------- */
+.tablewrap{overflow-x:auto;background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh)}
+table{border-collapse:collapse;width:100%;min-width:640px}
+th,td{text-align:left;vertical-align:top;padding:12px 14px;border-top:2px solid var(--ink)}
+th{font:700 12px/1.2 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:var(--ink);border-top:0}
+td.t{font:800 14px/1.4 var(--fm);white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--han)}
+td.t span{display:block;color:var(--grey);font-weight:600;font-size:12px}
+tr.brk td{background:var(--wash);color:var(--grey);padding-block:8px;font-weight:600}
+tr.brk td.t{color:var(--ink)}
+td b{font-weight:700}
+.tag{display:inline-block;font:700 11px/1 var(--fm);letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;
+  background:var(--han2);color:var(--ink);border:2px solid var(--ink);margin:4px 4px 0 0;vertical-align:1px}
+.tag.slide{background:var(--ink);color:var(--paper)}
+
+/* ---------- inhoud ---------- */
+.flaws{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.flaw{background:var(--han2);border:2px solid var(--ink);padding:10px 12px;font-size:14.5px}
+.flaw b{color:var(--han)}
+.phases{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));border:var(--bw) solid var(--ink);background:var(--paper);box-shadow:var(--sh)}
+.phase{padding:14px 16px;border-right:2px solid var(--ink);display:grid;gap:4px;align-content:start}
+.phase:last-child{border-right:0}
+.phase .n{justify-self:start;font:700 11px/1 var(--fm);letter-spacing:.12em;text-transform:uppercase;background:var(--han);color:var(--paper);padding:4px 7px}
+.phase b{font-size:18px;font-weight:800}
+.note{background:var(--paper);border:var(--bw) solid var(--ink);border-top:9px solid var(--han);box-shadow:var(--sh);padding:14px 18px;display:grid;gap:8px}
+.note h3{margin:0}
+footer.bron{font-size:13.5px;color:var(--grey);border-top:var(--bw) solid var(--ink);padding-top:16px;display:grid;gap:6px}
+code{font-family:var(--fm);font-size:12.5px}
+.pdfknop{font:700 12px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:transparent;
+  border:2px solid var(--paper);padding:8px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.pdfknop:hover,.pdfknop:focus-visible{background:var(--han);border-color:var(--han);outline:none}
+.pdfknop svg{width:14px;height:14px}
+/* ---------- printbijlagen ---------- */
+a{color:inherit;text-decoration-color:var(--han);text-decoration-thickness:2px;text-underline-offset:3px}
+.knoppen{display:flex;gap:8px}
+@media (max-width:640px){.topbar .who{display:none}.pdfknop{padding:8px 9px;letter-spacing:.04em}}
+@media (max-width:440px){.pdfknop .lbl{display:none}.pdfknop svg{width:16px;height:16px}}
+.bijlage{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:0 0 22px;display:grid;gap:14px;align-content:start}
+.bijlage>*:not(.bkop){margin-inline:clamp(16px,3vw,28px)}
+.bkop{background:var(--ink);color:var(--paper);display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:10px clamp(16px,3vw,28px)}
+.bkop .logo{height:20px}
+.bkop .num{margin-left:auto}
+.bijlage h3{font-size:22px;letter-spacing:-.015em}
+.bijlage .sub{color:var(--grey);font-weight:600}
+.mail{border:var(--bw) solid var(--ink)}
+.mail-head{background:var(--wash);border-bottom:2px solid var(--ink);padding:10px 14px;display:grid;gap:3px;font-size:15px}
+.mail-head b{display:inline-block;min-width:92px;font:700 11px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
+.mail-body{padding:14px 16px;display:grid;gap:10px}
+.mail-body h4{margin:6px 0 -6px;font-size:15px;font-weight:800}
+.lijnen{display:grid;gap:0}
+.lijnen b{font:700 11px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase}
+.lijnen i{display:block;height:30px;border-bottom:2px solid var(--ink)}
+.checktabel{border:var(--bw) solid var(--ink)}
+.checktabel table{min-width:0}
+.checktabel td.nr{width:36px;font:800 13px/1.5 var(--fm);color:var(--han)}
+.checktabel td.vakje{width:64px;text-align:center}
+.checktabel td.vakje span{display:inline-block;width:18px;height:18px;border:2.5px solid var(--ink)}
+.checktabel tr.groep td{background:var(--wash);font:700 11px/1.2 var(--fm);letter-spacing:.12em;text-transform:uppercase;padding-block:7px}
+.hint{display:block;color:var(--grey);font-size:13.5px;margin-top:2px}
+@page{size:A4;margin:14mm 12mm}
+@media print{
+  .pdfknop{display:none}
+  .bijlage{break-before:page;border:0;padding-bottom:0}
+  .bijlage>*:not(.bkop){margin-inline:0}
+  .bijlage{gap:10px}
+  .bkop{flex-wrap:nowrap}
+  .bkop .who{letter-spacing:.06em;font-size:10px}
+  .bkop .num{white-space:nowrap;font-size:12px}
+  #bijlage-c .checktabel td{padding:6px 10px;font-size:12.5px;line-height:1.35}
+  #bijlage-c .hint{font-size:11.5px}
+  #bijlage-c .checktabel tr.groep td{padding-block:5px}
+  body.alleen-bijlagen .topbar,body.alleen-bijlagen .foot,
+  body.alleen-bijlagen .wrap>:not(#bijlagen),
+  body.alleen-bijlagen #bijlagen>:not(.bijlage){display:none}
+  body.alleen-bijlagen .wrap{padding-block:0}
+  body.alleen-bijlagen #bijlagen{margin-top:0}
+  body{background:#fff}
+  .wrap,section{display:block;padding-block:16px}
+  section{padding-block:0;margin-top:26px}
+  section>*+*{margin-top:14px}
+  .grid2,.flaws{break-inside:avoid}
+  header,.box,.tablewrap,.callout,.phases,.note,.bijlage{box-shadow:none}
+  body{font-size:14px}
+  .box,.note,.callout,.phases,.flaw,tr,h3{break-inside:avoid}
+  h2,h3{break-after:avoid}
+  .tablewrap{overflow:visible}
+  table{min-width:0}
+  th,td{padding:9px 10px}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar"><svg class="logo" viewBox="0 0 82 34" role="img" aria-label="Logo HAN"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></svg><span class="who">Praktijkopdracht 5 · C-cluster</span><span class="sp"></span><span class="knoppen"><button type="button" class="pdfknop" onclick="printBijlagen()" aria-label="Print bijlagen" title="Print alleen bijlage A, B en C"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6V1h8v5M4 12H2V6h12v6h-2M4 9h8v6H4z"/></svg><span class="lbl">Print bijlagen</span></button><button type="button" class="pdfknop" onclick="downloadPdf()" aria-label="Download PDF" title="Opent het afdrukvenster; kies daar 'Opslaan als PDF'"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 1v9M4 6l4 4 4-4M2 14h12"/></svg><span class="lbl">Download PDF</span></button></span></div>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Docentinstructie · Workshop</div>
+  <h1>Workshop intakegesprek met de opdrachtgever</h1>
+  <div class="meta">
+    <span class="chip">PRAKOP01-TUT2</span>
+    <span class="chip">BKN-C01</span>
+    <span class="chip">wo 23 sept 2026 · lesweek 4</span>
+    <span class="chip">12:15–15:15 · 3 lesuren</span>
+    <span class="chip">LUK 5</span>
+  </div>
+  <p class="lede">Studenten zijn op zoek naar een praktijkorganisatie of hebben er net een gevonden. Vandaag leren ze een intakegesprek structureren én de uitkomst schriftelijk en professioneel bevestigen. Als tutor bewaak je vandaag ook de <b>goedkeuring praktijkopdracht</b>. Die moet uiterlijk deze week binnen zijn, want in week 5 starten de teams bij de organisatie.</p>
+  <div class="callout small">
+    <strong>Check vooraf:</strong> de tijden hieronder gaan uit van je vaste TUT2-slot (12:15–15:15, na PO). Het lesplan noemt de sessie "week 4, dag 1 – projectdag 1 deel 2"; controleer lokaal en tijd in het rooster.
+  </div>
+</header>
+
+<section>
+  <h2>Leerdoelen</h2>
+  <p>Na afloop kan de student:</p>
+  <ol>
+    <li>de structuur van een intakegesprek toepassen (opening → verkenning → verdieping → afronding);</li>
+    <li>LSD inzetten — luisteren, samenvatten, doorvragen (herhaling jaar 1);</li>
+    <li>een gesprek professioneel opstarten en afsluiten;</li>
+    <li>de opdracht en gemaakte afspraken helder en professioneel schriftelijk bevestigen;</li>
+    <li>bewust omgaan met houding en gespreksvaardigheden.</li>
+  </ol>
+  <p class="small muted">Koppeling LUK 5 – Ontwikkelen tot bedrijfskundig professional: feedback ophalen, reflecteren op eigen gedrags- en communicatievoorkeuren en de invloed daarvan in de beroepspraktijk.</p>
+</section>
+
+<section>
+  <h2>Voorbereiding</h2>
+  <div class="grid2">
+    <div class="box">
+      <h3>Printen &amp; meenemen</h3>
+      <ul class="check">
+        <li><b>Script – intakegesprek met opdrachtgever</b>, 8 sets (rolbeschrijving + consultantscript + observatieformulier)</li>
+        <li><b><a href="#bijlage-a">Bijlage A – foute opdrachtbevestiging</a></b>, 8×</li>
+        <li><b><a href="#bijlage-b">Bijlage B – goede opdrachtbevestiging</a></b>, 8×</li>
+        <li><b><a href="#bijlage-c">Bijlage C – checklist opdrachtbevestiging</a></b>, 1× per student</li>
+        <li>Slides <i>Intake met opdrachtgeverversie_aangepast</i> (27 slides): de <b>aangepaste versie</b> van je collega, niet de _DEF op Brightspace</li>
+        <li>Flip-over of smartboard voor de woordenwolk en de "5–10 lessen" bij de opening</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Voor studenten</h3>
+      <ul>
+        <li>Geen voorbereiding vereist.</li>
+        <li>Wijs tijdens de les op <b>Voorbereiding intake met opdrachtgever</b> en <b>Goedkeuring projectopdracht</b> (Brightspace › Training intakegesprekken).</li>
+        <li>Handig als teams hun (concept-)goedkeuringsformulier bij zich hebben: dan kun je het in de buffer aan het eind bekijken.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Draaiboek</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Tijd</th><th>Onderdeel</th><th>Wat je doet</th></tr></thead>
+    <tbody>
+      <tr><td class="t">12:15<span>20 min</span></td><td><b>Opening, reflectie &amp; voorkennis</b><br><span class="tag slide">sl 1–4</span><span class="tag">nieuw</span></td><td><b>Start met slide 3: "Wie heeft de intake al gevoerd?"</b> Laat die studenten reflecteren. Wat ging goed en wat was lastig? Welke vraag werkte verrassend goed, welke informatie hadden ze nog willen ophalen en wat doen ze de volgende keer anders? Zet samen <b>5–10 geleerde lessen</b> op de flap. Die hang je op en daar verwijs je de rest van de middag naar terug. Heeft nog niemand een intake gehad, sla de slide dan over en houd 5 min extra buffer. Daarna vraag je: <i>"Wat is een intakegesprek volgens jullie?"</i> Laat woorden roepen en schrijf ze op. Doorvragen: wat maakt een intake lastig, wat gaat vaak mis? Kort samenvatten en leerdoelen tonen. LSD kennen ze uit jaar 1, maar in de praktijk blijft het lastig — daarom vandaag veel oefenen.</td></tr>
+      <tr><td class="t">12:35<span>15 min</span></td><td><b>Theorie intakegesprek</b><br><span class="tag slide">sl 5–10</span></td><td>Houd het interactief. Eerst: <i>"Wat levert een intake concreet op?"</i> (anders dan de openingsvraag). Daarna: geen tweede kans op een eerste indruk → voorbereiden op opdracht, organisatie, randvoorwaarden BK, opdrachtgever, actualiteit en het gesprek zelf. Herhaal de vier fasen en het IPRE-model en koppel ze waar het kan aan de lessen op de flap. Werk met "stel je voor dat…"-vragen, zoals: <i>"Wat gebeurt er als je direct met de inhoud begint?"</i></td></tr>
+      <tr><td class="t">12:50<span>10 min</span></td><td><b>Goede vs. slechte vragen</b><br><span class="tag slide">sl 11–16</span></td><td>Loop de vijf voorbeeldvragen langs: goed of niet, waarom, hoe beter? Sluit af met slide 16: iedereen bedenkt individueel een slechte intakevraag aan de eigen opdrachtgever en verbetert die.</td></tr>
+      <tr><td class="t">13:00<span>15 min</span></td><td><b>Vragenspel in duo's</b><br><span class="tag slide">sl 17</span></td><td>A vertelt 5 min over een situatie (bijv. een samenwerkingsprobleem in het groepje); B stelt <b>alleen</b> open vragen en vraagt door, geeft geen advies. Na 5 min wisselen. Loop rond en geef korte feedback. Nabespreking: wat was moeilijk, wanneer viel je stil?</td></tr>
+      <tr class="brk"><td class="t">13:15</td><td colspan="2">Pauze · 10 min <span class="tag slide">sl 18</span></td></tr>
+      <tr><td class="t">13:25<span>45 min</span></td><td><b>Rollenspel intakegesprek in trio's</b><br><span class="tag slide">sl 19</span><span class="tag">script</span></td><td>5 min instructie en uitdelen. Rollen: A consultant, B opdrachtgever (teamleider orderverwerking), C observator. Drie rondes van 10 min. <b>Aangepast:</b> studenten die hun intake al gevoerd hebben, spelen opdrachtgever of observator. Als opdrachtgever mogen ze casusinformatie uit hun eigen praktijkopdracht gebruiken. Studenten die de intake nog moeten voeren, oefenen zo vaak mogelijk als consultant. Maak de trio's daarom gemengd. De observator let op soorten vragen, samenvattingen en non-verbaal gedrag en vult het formulier in (6 criteria, schaal 1–5). Laatste 10 min plenair: wat viel op, wat werkte goed?</td></tr>
+      <tr><td class="t">14:10<span>5 min</span></td><td><b>Van gesprek naar bevestiging</b><br><span class="tag slide">sl 20</span></td><td>Plenair: wat doe je ná een intake? Waarom een bevestiging, wat gaat er mis zonder? Opdrachtgevers verwachten een opdrachtbeschrijving: daarmee check je of je elkaar goed begrepen hebt.</td></tr>
+      <tr><td class="t">14:15<span>5 min</span></td><td><b>Wat moet erin?</b><br><span class="tag slide">sl 21</span></td><td>Duo's maken een mini-analyse. Verzamel klassikaal en vul aan: doel, aanleiding/probleem, afbakening, verwachtingen/resultaat, afspraken (planning, contact).</td></tr>
+      <tr class="brk"><td class="t">14:20</td><td colspan="2">Pauze · 15 min <span class="tag slide">sl 22</span></td></tr>
+      <tr><td class="t">14:35<span>15 min</span></td><td><b>Rollenspel: foute opdrachtbevestiging</b><br><span class="tag slide">sl 23–24</span></td><td>Trio's (eventueel nieuw samengesteld): student, opdrachtgever, observator-als-risicodenker. Iedereen leest de foute mail (bijlage A) <b>zonder</b> die vooraf te bespreken; de discussie ontstaat pas in het spel. De opdrachtgever keurt alles af en mag lekker losgaan. De observator vraagt zich af: waar gaat dit mis als we dit zo versturen? Nabespreking met de observatoren (zie de fouten hieronder).</td></tr>
+      <tr><td class="t">14:50<span>10 min</span></td><td><b>Theorie opdrachtbevestiging</b><br><span class="tag slide">sl 25–26</span></td><td>Vier functies: probleemverheldering, doelen en verwachtingen, afspraken en afbakening, relatie en vertrouwen. Deel de goede voorbeeldmail (bijlage B) en de checklist (bijlage C) uit. De opdrachtbevestiging is voor <b>iedereen</b> relevant, ook voor wie de intake al gehad heeft. Maak bij slide 26 expliciet dat de <b>goedkeuring praktijkopdracht een ander document</b> is (zie "Twee documenten" hieronder). Dat formulier moet vóór week 5 goedgekeurd zijn.</td></tr>
+      <tr><td class="t">15:00<span>5 min</span></td><td><b>Check-out</b><br><span class="tag slide">sl 27</span></td><td>Rondje: wat is jouw belangrijkste take-away van vandaag?</td></tr>
+      <tr><td class="t">15:05<span>10 min</span></td><td><b>Buffer / goedkeuringen</b></td><td>Het lesplan telt hier 15 min "pauze" (het is geschreven voor een ochtendsessie); 5 min daarvan is naar de reflectie aan het begin gegaan. Gebruik de rest als uitloop en haal per team de status op: is er een organisatie, en is het goedkeuringsformulier ingeleverd? Noteer dit meteen voor het overzicht van Rob (zie hieronder).</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>Kern van de inhoud</h2>
+  <div class="phases">
+    <div class="phase"><span class="n">fase 1</span><b>Opening</b><span class="small">Contact maken, doel van het gesprek uitleggen.</span></div>
+    <div class="phase"><span class="n">fase 2</span><b>Verkenning</b><span class="small">Opdracht en context: vragen stellen, luisteren.</span></div>
+    <div class="phase"><span class="n">fase 3</span><b>Verdieping</b><span class="small">Doorvragen op oorzaken, samenvatten.</span></div>
+    <div class="phase"><span class="n">fase 4</span><b>Afronding</b><span class="small">Samenvatten, verwachtingen managen, afspraken maken.</span></div>
+  </div>
+  <div class="grid2">
+    <div class="box">
+      <h3>IPRE — een gesprek is goed verlopen als…</h3>
+      <ul>
+        <li><b>Inhoud</b>: duidelijk welke onderwerpen besproken worden.</li>
+        <li><b>Procedure</b>: geen misverstand over tijd, duur, volgorde, doel.</li>
+        <li><b>Relatie</b>: verwachtingen en rollen helder, sfeer passend.</li>
+        <li><b>Emotie</b>: gesprekspartners op hun gemak, gesprek constructief.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Rollenspel: de casus</h3>
+      <p class="small">Teamleider orderverwerking. Klanten klagen over trage levering, orders blijven "hangen", medewerkers wijzen naar elkaar en er is geen procesoverzicht. Wil het "sneller en soepeler", heeft geen oplossing en vindt dat mensen "gewoon beter moeten werken". <b>Geeft alleen informatie als erom gevraagd wordt.</b></p>
+      <p class="small muted">Consultantscript: opening → huidige situatie → doorvragen ("wat maakt dat…?") → samenvatten en checken → impact → gewenste situatie → afronden met voorstel voor een volgende stap.</p>
+    </div>
+  </div>
+
+  <h3>Wat studenten in de foute mail moeten vinden</h3>
+  <div class="flaws">
+    <div class="flaw"><b>Te vaag</b> — "probleem met communicatie", "iets aan doen"</div>
+    <div class="flaw"><b>Aannames</b> — "ligt aan hoe mensen met elkaar omgaan"</div>
+    <div class="flaw"><b>Geen afbakening</b> van proces of afdeling</div>
+    <div class="flaw"><b>Geen concreet doel</b> of succescriterium</div>
+    <div class="flaw"><b>Geen afspraken</b> — "planning en zo komen we later nog wel"</div>
+    <div class="flaw"><b>Onprofessionele toon</b> — "Hoi", "zo wel goed"</div>
+    <div class="flaw"><b>Geen check op begrip</b> — "laat maar weten als het niet klopt"</div>
+    <div class="flaw"><b>Geen structuur</b> en oplossing al ingevuld</div>
+  </div>
+
+  <div class="box">
+    <h3>Checkvragen na elke intake (slide 25)</h3>
+    <ul class="check">
+      <li>Heb ik het probleem echt scherp gekregen?</li>
+      <li>Zijn doelen en verwachtingen expliciet gemaakt?</li>
+      <li>Zijn er duidelijke afspraken en is de opdracht afgebakend?</li>
+      <li>Hebben we gebouwd aan de relatie en is er vertrouwen?</li>
+      <li>Is er een duidelijke volgende stap afgesproken?</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Jouw tutortaak: goedkeuring praktijkopdracht</h2>
+  <p>Volgens het studentdocument leveren teams het format <i>Goedkeuring projectopdracht</i> "zo snel mogelijk, uiterlijk in week 4" in bij de tutoren. Dit is dus de week. Toets per team snel op deze punten:</p>
+  <div class="grid2">
+    <div class="box">
+      <h3>Past de opdracht?</h3>
+      <ul class="check">
+        <li>Eenvoudig proces of organisatievraagstuk, <b>tactisch/operationeel</b> niveau</li>
+        <li>Concreet en urgent probleem, te relateren aan <b>Q</b>uality, <b>D</b>elivery en/of <b>C</b>ost</li>
+        <li><b>Oplossing zit niet in de opdracht</b> ("verbeter de aanlevering…", niet "richt een kanban in")</li>
+        <li>Proces is <b>repeterend</b> (liefst dagelijks/wekelijks) en loopt tijdens het project, zodat er gemeten en geëxperimenteerd kan worden</li>
+        <li>Voldoende urgentie en commitment; weerstand staat expliciet benoemd</li>
+        <li>Data beschikbaar of te verzamelen; stakeholders beschikbaar voor interviews en sessies</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Is het formulier compleet?</h3>
+      <ol class="small">
+        <li>Contactgegevens studenten</li>
+        <li>Bedrijf (branche, omvang, ervaring met Lean)</li>
+        <li>Opdrachtgever / bedrijfsbegeleider</li>
+        <li>Basisvraag: <i>"Hoe zorgen we ervoor dat… door…"</i></li>
+        <li>Context: last van klant en opdrachtgever (QDC), frequentie, proces met start- en eindpunt, doorlooptijd</li>
+        <li>Proceseigenaar</li>
+        <li>Overige stakeholders, met namen en beschikbaarheid</li>
+        <li>Succescriteria, zo SMART mogelijk</li>
+        <li>Randvoorwaarden en risico's (lopende reorganisaties, ERP, data)</li>
+      </ol>
+    </div>
+  </div>
+  <h3>Twee documenten die studenten door elkaar halen</h3>
+  <div class="grid2">
+    <div class="box">
+      <h3>Opdrachtbevestiging</h3>
+      <p class="small"><b>Van:</b> het team · <b>aan:</b> de opdrachtgever</p>
+      <p class="small">Een mail of brief na de intake. Daarmee checkt het team of het de opdrachtgever goed begrepen heeft. Erin staan aanleiding, probleem, doel, afbakening, aanpak, planning en afspraken, en een verzoek om akkoord. De bevestiging bouwt de relatie op en legt verwachtingen vast.</p>
+    </div>
+    <div class="box">
+      <h3>Goedkeuring praktijkopdracht</h3>
+      <p class="small"><b>Van:</b> het team · <b>aan:</b> de tutoren</p>
+      <p class="small">Een formulier waarmee de tutoren beoordelen of de opdracht geschikt is voor een <b>quick win en een big win</b>. Ze kijken naar Lean-procesverbetering, QDC, een repeterend proces en de beschikbaarheid van data en stakeholders. Zonder goedkeuring mag een team niet starten met de praktijkopdracht.</p>
+    </div>
+  </div>
+  <p class="small muted">Slide 25 verwijst naar het document "intakegesprek I voorbereiding en format Goedkeuring projectopdracht". Die combinatie in één naam werkt de verwarring in de hand, dus benoem het verschil hardop. Studenten die hun intake al gevoerd hebben, zijn waarschijnlijk nu met het goedkeuringsformulier bezig.</p>
+  <div class="callout han">
+    <strong>Actie deze week: overzicht voor Rob</strong>
+    <p class="small">Rob vraagt de tutoren om in <i>Bedrijven en opdrachten C cluster 2026-2027.xlsx</i> in te vullen welke studenten wél en géén praktijkopdracht hebben gevonden. Zo weet het team welke groepen nog hulp nodig hebben. Haal dit tijdens de sessie per groep op en vul het uiterlijk vrijdag in. Het Excelbestand heeft per klas een tabblad met 6 groepen van ongeveer 5 regels (één regel per student). Een lege kolom "Naam bedrijf" betekent: nog geen opdracht.</p>
+    <p class="small"><b>Let op:</b> het bestand heeft tabbladen BKAA01, BKAA02 en BKNA01 t/m BKNA05, maar geen tabblad <b>BKN-C01</b>. Vraag Rob in welk tabblad jouw klas hoort, of voeg er zelf een toe.</p>
+  </div>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Groep</th><th>Naam studenten</th><th>Naam bedrijf</th><th>Contactpersoon</th><th>Telefoon &amp; e-mail</th><th>Onderwerp opdracht</th><th>Status (eigen notitie)</th></tr></thead>
+    <tbody>
+      <tr><td class="t">Groep 1</td><td>&nbsp;<br>&nbsp;<br>&nbsp;</td><td></td><td></td><td></td><td></td><td class="small muted">ja / nee / in gesprek<br>formulier: ingeleverd / concept / nog niet</td></tr>
+      <tr><td class="t">Groep 2</td><td>&nbsp;<br>&nbsp;<br>&nbsp;</td><td></td><td></td><td></td><td></td><td class="small muted">ja / nee / in gesprek<br>formulier: ingeleverd / concept / nog niet</td></tr>
+      <tr><td class="t">Groep 3</td><td>&nbsp;<br>&nbsp;<br>&nbsp;</td><td></td><td></td><td></td><td></td><td class="small muted">ja / nee / in gesprek<br>formulier: ingeleverd / concept / nog niet</td></tr>
+      <tr><td class="t">Groep 4</td><td>&nbsp;<br>&nbsp;<br>&nbsp;</td><td></td><td></td><td></td><td></td><td class="small muted">ja / nee / in gesprek<br>formulier: ingeleverd / concept / nog niet</td></tr>
+      <tr><td class="t">Groep 5</td><td>&nbsp;<br>&nbsp;<br>&nbsp;</td><td></td><td></td><td></td><td></td><td class="small muted">ja / nee / in gesprek<br>formulier: ingeleverd / concept / nog niet</td></tr>
+      <tr><td class="t">Groep 6</td><td>&nbsp;<br>&nbsp;<br>&nbsp;</td><td></td><td></td><td></td><td></td><td class="small muted">ja / nee / in gesprek<br>formulier: ingeleverd / concept / nog niet</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="small muted">De eerste zes kolommen zijn gelijk aan die in het Excelbestand van Rob, zodat je ze één op één kunt overnemen. De statuskolom is voor jezelf: daarin houd je de goedkeuring bij.</p>
+</section>
+
+<section>
+  <h2>Kanttekeningen voor jou</h2>
+  <div class="note">
+    <h3>De "goede" voorbeeldmail is niet af</h3>
+    <p class="small">Die mail is netjes van toon, maar schuift planning ("op een later moment") en een meetbaar doel en afbakening nog steeds voor zich uit. Leg hem naast de <b>Structuur bevestiging intakegesprek</b> (10 onderdelen: aanleiding, probleemstelling, doel, scope, aanpak, rollen, planning, afspraken, vervolgstappen, akkoord) en vraag: <i>wat ontbreekt hier nog?</i> Studenten zien dan dat een beleefde mail nog geen goede bevestiging is.</p>
+  </div>
+  <div class="note">
+    <h3>Het percentage in het voorbereidingsdocument klopt niet</h3>
+    <p class="small">Het document zegt dat communicatie voor 45% uit lichaamstaal, 30% uit intonatie en 25% uit inhoud bestaat. Dat is een veelgemaakte misinterpretatie van Mehrabians onderzoek, dat alleen over het uiten van gevoelens ging. Neem het niet over, of gebruik het juist als voorbeeld van een bewering die je kritisch checkt.</p>
+  </div>
+  <div class="note">
+    <h3>Maak de brug naar hun eigen opdrachtgever</h3>
+    <p class="small">De casus is fictief, maar de meeste teams voeren deze of volgende week hun echte intake. Laat ze na het rollenspel één vraag uit het voorbereidingsdocument kiezen die ze zeker aan hún opdrachtgever gaan stellen. Denk aan vragen over scope, data, stakeholders of de brownpapersessie van ±2 uur.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Wat hierna komt</h2>
+  <div class="grid2">
+    <div class="box">
+      <h3>Rest van week 4</h3>
+      <ul class="small">
+        <li>TUT1: Business game (PhoneVentures), dag 3</li>
+        <li>Vakdocent: training projectmanagement X / Yellow Belt Y</li>
+        <li>Theorie: werkcollege OM</li>
+        <li>Extern: acquisitie</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Week 5 — start bij de organisatie</h3>
+      <ul class="small">
+        <li>TUT2: terugblik business game → case opdrachtgever; A3 introductie &amp; onderzoeksvaardigheden; A3 1. Achtergrond deel 1 – plaatsing</li>
+        <li>TUT1: A3 1. Achtergrond deel 2–3 – weging en SIPOC</li>
+        <li>Eerste projectdag extern; 1e kans toets SM/OM (woensdag)</li>
+        <li>PO: coaching</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="bijlagen">
+  <h2>Printbijlagen</h2>
+  <p>Drie bijlagen voor studenten, elk op een eigen A4. Met de knop <b>Print bijlagen</b> bovenaan print je alleen deze pagina's, zonder de docentinstructie.</p>
+
+  <article class="bijlage" id="bijlage-a">
+    <div class="bkop"><svg class="logo" viewBox="0 0 82 34" role="img" aria-label="Logo HAN"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></svg><span class="who">Training intakegesprekken · BKN-C01 · week 4</span><span class="num">Bijlage A · 8× printen</span></div>
+    <h3>Mailbericht aan opdrachtgever n.a.v. intakegesprek</h3>
+    <p class="sub">Lees deze mail in je trio. Bespreek hem nog niet: dat doen jullie straks in het rollenspel.</p>
+    <div class="mail">
+      <div class="mail-head">
+        <div><b>Van</b> Projectgroep D</div>
+        <div><b>Aan</b> Klaas</div>
+        <div><b>Onderwerp</b> Intake</div>
+      </div>
+      <div class="mail-body">
+        <p>Hoi Klaas,</p>
+        <p>Bedankt voor het gesprek net. Volgens mij was het wel duidelijk wat er moet gebeuren. Jullie hebben een probleem met communicatie en daar gaan wij iets aan doen. Wij denken dat het vooral ligt aan hoe mensen met elkaar omgaan en dat daar verbetering in nodig is.</p>
+        <p>Wij gaan binnenkort beginnen met onderzoeken wat er precies aan de hand is en dan komen wij met een oplossing (procesverbetering). Het lijkt ons handig als wij gewoon wat mensen gaan spreken en misschien een enquête uitzetten.</p>
+        <p>Wij verwachten dat wij hier wel een goed resultaat uit halen en dat het probleem dan opgelost kan worden. Over de planning en zo komen we later nog wel.</p>
+        <p>Laat maar weten als het niet klopt, maar volgens ons zit het zo wel goed.</p>
+        <p>Groet,<br>Projectgroep D<br>Lies<br>Annelou<br>Maarten<br>Hans</p>
+      </div>
+    </div>
+    <div class="lijnen"><b>Aantekeningen</b><i></i><i></i><i></i><i></i></div>
+  </article>
+
+  <article class="bijlage" id="bijlage-b">
+    <div class="bkop"><svg class="logo" viewBox="0 0 82 34" role="img" aria-label="Logo HAN"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></svg><span class="who">Training intakegesprekken · BKN-C01 · week 4</span><span class="num">Bijlage B · 8× printen</span></div>
+    <h3>Voorbeeld: goede opdrachtbevestiging (mail)</h3>
+    <p class="sub">Dezelfde casus, maar nu zoals een opdrachtgever hem graag ontvangt.</p>
+    <div class="mail">
+      <div class="mail-head">
+        <div><b>Van</b> [Naam], namens de projectgroep</div>
+        <div><b>Aan</b> [Naam opdrachtgever]</div>
+        <div><b>Onderwerp</b> Bevestiging intakegesprek en opdracht</div>
+      </div>
+      <div class="mail-body">
+        <p>Geachte [naam],</p>
+        <p>Hartelijk dank voor het prettige gesprek van vandaag. Graag bevestigen wij de besproken opdracht, zoals wij dit hebben begrepen.</p>
+        <h4>Aanleiding</h4>
+        <p>Tijdens het intakegesprek gaf u aan dat er binnen de organisatie knelpunten worden ervaren in de onderlinge communicatie. Deze knelpunten lijken invloed te hebben op de samenwerking tussen medewerkers.</p>
+        <h4>Doel van de opdracht</h4>
+        <p>Het doel van de opdracht is om inzicht te krijgen in de aard en oorzaken van deze communicatieproblemen en op basis daarvan aanbevelingen te formuleren ter verbetering van de samenwerking en het proces.</p>
+        <h4>Aanpak (voorlopig)</h4>
+        <p>Om dit in kaart te brengen, zullen wij gesprekken voeren met betrokken medewerkers en mogelijk een aanvullende inventarisatie (bijvoorbeeld via een korte vragenlijst) uitvoeren.</p>
+        <h4>Afspraken en vervolg</h4>
+        <p>We hebben afgesproken dat we op een later moment de planning en verdere afstemming concretiseren. Zodra wij een eerste voorstel hebben, zullen wij dit met u delen.</p>
+        <p>Graag horen wij of bovenstaande weergave correct en volledig is, of dat u nog aanvullingen of opmerkingen heeft.</p>
+        <p>Met vriendelijke groet,<br>[Naam]</p>
+      </div>
+    </div>
+  </article>
+
+  <article class="bijlage" id="bijlage-c">
+    <div class="bkop"><svg class="logo" viewBox="0 0 82 34" role="img" aria-label="Logo HAN"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></svg><span class="who">Training intakegesprekken · BKN-C01 · week 4</span><span class="num">Bijlage C · 1× per student</span></div>
+    <h3>Checklist opdrachtbevestiging</h3>
+    <p class="sub">Leg deze checklist naast je eigen opdrachtbevestiging voordat je hem verstuurt. Vink af wat erin staat. Alles wat openstaat, pas je eerst aan.</p>
+    <div class="checktabel"><table>
+      <thead><tr><th></th><th>Onderdeel</th><th>Klopt</th></tr></thead>
+      <tbody>
+      <tr class="groep"><td colspan="3">Vorm en toon</td></tr>
+      <tr><td class="nr">1</td><td>Het onderwerp is concreet, bijvoorbeeld "Bevestiging intakegesprek en opdracht".<span class="hint">Fout voorbeeld: "Intake"</span></td><td class="vakje"><span></span></td></tr>
+      <tr><td class="nr">2</td><td>De aanhef en afsluiting zijn zakelijk en afgestemd op de opdrachtgever.<span class="hint">Fout voorbeeld: "Hoi Klaas", "Groet"</span></td><td class="vakje"><span></span></td></tr>
+      <tr><td class="nr">3</td><td>Er is één duidelijke afzender met naam en contactgegevens, niet alleen een groepsnaam.</td><td class="vakje"><span></span></td></tr>
+      <tr><td class="nr">4</td><td>De mail heeft een heldere opbouw met kopjes of alinea's per onderdeel.</td><td class="vakje"><span></span></td></tr>
+      <tr class="groep"><td colspan="3">Inhoud</td></tr>
+      <tr><td class="nr">5</td><td><b>Aanleiding:</b> het probleem staat erin zoals de opdrachtgever het verwoordde, zonder eigen oordeel.<span class="hint">Fout voorbeeld: "het ligt vooral aan hoe mensen met elkaar omgaan"</span></td><td class="vakje"><span></span></td></tr>
+      <tr><td class="nr">6</td><td><b>Doel:</b> er staat in wat de opdracht moet opleveren (inzicht, aanbevelingen), niet een oplossing die al vaststaat.</td><td class="vakje"><span></span></td></tr>
+      <tr><td class="nr">7</td><td><b>Afbakening:</b> duidelijk is welk proces of welke afdeling wel en niet onder de opdracht valt.</td><td class="vakje"><span></span></td></tr>
+      <tr><td class="nr">8</td><td><b>Aanpak:</b> een voorlopige aanpak is beschreven en ook zo benoemd.</td><td class="vakje"><span></span></td></tr>
+      <tr><td class="nr">9</td><td><b>Verwachtingen:</b> er worden geen resultaten beloofd die je nog niet kunt waarmaken.<span class="hint">Fout voorbeeld: "het probleem kan dan opgelost worden"</span></td><td class="vakje"><span></span></td></tr>
+      <tr><td class="nr">10</td><td><b>Afspraken en vervolg:</b> de volgende stap, de contactpersoon en wanneer je terugkoppelt staan erin.<span class="hint">Fout voorbeeld: "over de planning en zo komen we later nog wel"</span></td><td class="vakje"><span></span></td></tr>
+      <tr class="groep"><td colspan="3">Afsluiting</td></tr>
+      <tr><td class="nr">11</td><td>Je vraagt de opdrachtgever expliciet om te bevestigen dat de weergave klopt en volledig is.<span class="hint">Fout voorbeeld: "volgens ons zit het zo wel goed"</span></td><td class="vakje"><span></span></td></tr>
+      <tr><td class="nr">12</td><td>De mail is op spelling gecheckt en door een teamgenoot gelezen.</td><td class="vakje"><span></span></td></tr>
+      </tbody>
+    </table></div>
+  </article>
+</section>
+
+<footer class="bron">
+  <div>Gebaseerd op Brightspace <i>Praktijkopdracht 5 (2026 P1N)</i>: Docentendomein › Training Intakegesprekken (lesplan intakegesprek P1W1D1_DEF, script intakegesprek, voorbeeldmails), de aangepaste slides <i>Intake met opdrachtgeverversie_aangepast</i> met de toelichting van een collega-tutor, Training intakegesprekken (slides, voorbereiding, bevestiging, goedkeuring projectopdracht) en Docentendomein › Rolverdeling en opbouw C-cluster.</div>
+  <div>Opgesteld 22 sept 2026.</div>
+</footer>
+
+</div>
+
+<div class="foot"><svg class="logo" viewBox="0 0 82 34" role="img" aria-label="Logo HAN"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></svg><span class="who">Hogeschool van Arnhem en Nijmegen</span><span class="sp"></span><span class="num">BKN-C01 · week 4</span></div>
+<script>
+/* De browser maakt de PDF via het afdrukvenster ("Opslaan als PDF"); zo blijft
+   de tekst selecteerbaar. De paginatitel wordt tijdelijk de bestandsnaam. */
+function downloadPdf(){
+  const titel=document.title;
+  document.title='Docentinstructie_intakegesprek_BKN-C01';
+  window.addEventListener('afterprint',()=>{document.title=titel},{once:true});
+  window.print();
+}
+function printBijlagen(){
+  const titel=document.title;
+  document.body.classList.add('alleen-bijlagen');
+  document.title='Printbijlagen_opdrachtbevestiging_BKN-C01';
+  window.addEventListener('afterprint',()=>{
+    document.body.classList.remove('alleen-bijlagen');document.title=titel},{once:true});
+  window.print();
+}
+</script>
+</body>
+</html>
