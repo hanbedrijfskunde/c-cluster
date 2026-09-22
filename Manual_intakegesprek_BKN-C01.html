@@ -151,6 +151,23 @@ a{color:inherit;text-decoration-color:var(--han);text-decoration-thickness:2px;t
   #bijlage-d .obs-b{break-before:page}
   #bijlage-d .obs-rubric td{font-size:10.5px;padding:5px 6px}
 }
+.rol h4,.bijlage h4.obs-kop{font-size:15px;font-weight:800;margin:0 0 6px}
+.rol ul{font-size:14px}
+.checktabel.rolfeiten td{font-size:13.5px;padding:7px 10px}
+.checktabel.rolfeiten td.nr{width:110px;font:700 11px/1.5 var(--fm);text-transform:uppercase;letter-spacing:.06em;color:var(--han)}
+.checktabel.script td{font-size:13.5px;padding:8px 10px}
+.checktabel.script td.stap{width:150px}
+.checktabel.script td.stap b{display:block}
+.checktabel.script td.stap small{font:700 10.5px/1.3 var(--fm);text-transform:uppercase;letter-spacing:.06em;color:var(--grey)}
+.checktabel.script ul.zinnen{list-style:none;padding:0;gap:3px}
+.checktabel.script ul.zinnen li{font-style:italic;padding-left:0}
+.checktabel.script ul.zinnen li::before{content:none}
+@media print{
+  body #script .rol ul{font-size:12px;gap:3px}
+  body .checktabel.rolfeiten td{font-size:11.5px;padding:4px 8px}
+  body .checktabel.script td{font-size:11.5px;padding:5px 8px}
+  body .checktabel.script .hint{font-size:10.5px;font-weight:600}
+}
 @page{size:A4;margin:14mm 12mm}
 @media print{
   .pdfknop{display:none}
@@ -231,6 +248,17 @@ a{color:inherit;text-decoration-color:var(--han);text-decoration-thickness:2px;t
 .zeg>span{font:800 12px/1.6 var(--fm);color:var(--grey)}
 .frag .waarom{font-size:13.5px;color:var(--grey);border-top:2px dashed var(--ink);padding-top:8px}
 @media (max-width:640px){.frag .paar{grid-template-columns:1fr}.frag .kant+.kant{border-left:0;border-top:2px solid var(--ink)}}
+
+/* gespreksleidraad */
+.leidraad table{min-width:640px}
+.leidraad td.stap{width:150px}
+.leidraad td.stap b{display:block}
+.leidraad td.stap small{font:700 10.5px/1.3 var(--fm);letter-spacing:.06em;text-transform:uppercase;color:var(--grey)}
+.leidraad ul.zinnen{list-style:none;padding:0;gap:4px}
+.leidraad ul.zinnen li{padding-left:0;font-style:italic}
+.leidraad ul.zinnen li::before{content:none}
+.leidraad .tip{display:block;font-size:13.5px;color:var(--grey);margin-top:6px}
+.leidraad td.op .tag{margin:0 4px 4px 0}
 
 /* vraagtypes */
 td.q{font-style:italic}
@@ -316,6 +344,7 @@ ol.bronnen li{padding-left:28px;text-indent:-28px;max-width:none}
   textarea{border-width:1.5px;min-height:60px}
   .vak{display:block;break-inside:avoid;page-break-inside:avoid}
   .vak label,.vak .hint{display:block;margin-bottom:6px;break-after:avoid;page-break-after:avoid}
+  .leidraad tr{break-inside:avoid}
   body.alleen-instrument .topbar,body.alleen-instrument .foot,
   body.alleen-instrument .wrap>:not(#instrument),
   body.alleen-instrument #instrument>:not(.instr){display:none}
@@ -345,6 +374,7 @@ ul.vink li::before,ul.ko li::before{content:none}
   <a href="#effectief">Wanneer werkt het?</a>
   <a href="#theorie">Theorie</a>
   <a href="#onderzoek">Wat onderzoek laat zien</a>
+  <a href="#leidraad">Gespreksleidraad</a>
   <a href="#regels">Tien werkregels</a>
   <a href="#fragmenten">Goed en fout</a>
   <a href="#instrument">Scoringsinstrument</a>
@@ -415,6 +445,25 @@ ul.vink li::before,ul.ko li::before{content:none}
 
   <h3>Van gesprek naar bevestiging</h3>
   <p>Stuur na de intake zo snel mogelijk een opdrachtbevestiging, liefst binnen twee werkdagen. Daarin leg je vast wat je begrepen hebt, en vraag je de opdrachtgever dat te bevestigen. Block (2011) noemt dat het sluitstuk van de contractfase. Het doel is duidelijkheid, niet een document om elkaar aan te houden: kort, direct, bijna als een gesprek. Zolang de wederzijdse verwachtingen niet op papier staan, weet je niet of je dezelfde opdracht voor ogen hebt. Gebruik daarvoor de <i>Checklist opdrachtbevestiging</i> (bijlage C bij de workshop).</p>
+</section>
+
+<section id="leidraad">
+  <h2>Gespreksleidraad</h2>
+  <p>Zeven stappen, verdeeld over de vier fasen. De voorbeeldzinnen komen uit de casus van het rollenspel: een teamleider orderverwerking. Pas ze aan op je eigen opdracht en zet ze in je gespreksplan (deel A). Gebruik de leidraad als geheugensteun, niet als tekst om voor te lezen. Volg het verhaal van de opdrachtgever en kijk aan het eind of je alles hebt opgehaald.</p>
+  <div class="tablewrap leidraad">
+    <table>
+      <thead><tr><th>Stap</th><th>Voorbeeldzinnen</th><th>Je haalt op (deel D)</th></tr></thead>
+      <tbody>
+        <tr><td class="stap"><b>1. Opening</b><small>fase 1</small></td><td><ul class="zinnen"><li>“Dank voor uw tijd. We hebben drie kwartier.”</li><li>“Mijn doel vandaag: goed begrijpen wat er speelt, zodat we samen kunnen bepalen of en hoe wij kunnen helpen.”</li><li>“Ik wil het hebben over hoe het nu loopt, wat u anders wilt en de volgende stap. Wat wilt u vandaag in elk geval besproken hebben?”</li></ul><span class="tip">Noem doel, duur en agenda, en vraag wat de opdrachtgever wil bespreken.</span></td><td class="op"><span class="tag">agenda</span></td></tr>
+<tr><td class="stap"><b>2. Huidige situatie</b><small>fase 2</small></td><td><ul class="zinnen"><li>“Kunt u beschrijven hoe een order nu door het proces loopt, van binnenkomst tot verzending?”</li><li>“Welke stappen en afdelingen komt een order tegen?”</li><li>“Wie zijn daarbij betrokken?”</li></ul><span class="tip">Laat het verhaal uitlopen. Vraag &quot;Wat nog meer?&quot; tot er niets nieuws komt.</span></td><td class="op"><span class="tag">Proces</span><span class="tag">Betrokkenen</span></td></tr>
+<tr><td class="stap"><b>3. Doorvragen op knelpunten</b><small>fase 3</small></td><td><ul class="zinnen"><li>“Waar loopt het vast?”</li><li>“Kunt u de laatste keer beschrijven dat een order bleef hangen? Waar lag hij, en hoe lang?”</li><li>“Wat maakt dat het daar blijft liggen?”</li></ul><span class="tip">Vraag naar een recent voorbeeld en een oorzaak, niet naar een mening.</span></td><td class="op"><span class="tag">Probleem</span></td></tr>
+<tr><td class="stap"><b>4. Samenvatten</b><small>fase 3</small></td><td><ul class="zinnen"><li>“Als ik het goed begrijp: orders blijven vooral hangen bij [stap], omdat [oorzaak]. Klopt dat, of mis ik iets?”</li></ul><span class="tip">Controleer altijd of je samenvatting klopt.</span></td><td class="op"><span class="small muted">controle</span></td></tr>
+<tr><td class="stap"><b>5. Gevolgen en urgentie</b><small>fase 3</small></td><td><ul class="zinnen"><li>“Wat merken uw klanten hiervan?”</li><li>“Hoeveel orders zijn er per week te laat? Wordt dat ergens bijgehouden?”</li><li>“Waarom speelt dit juist nu?”</li></ul><span class="tip">Vertaal klachten naar kwaliteit, levertijd en kosten, liefst met een getal.</span></td><td class="op"><span class="tag">Aanleiding</span><span class="tag">Gevolgen</span><span class="tag">Data</span></td></tr>
+<tr><td class="stap"><b>6. Gewenste situatie en grenzen</b><small>fase 3</small></td><td><ul class="zinnen"><li>“Stel dat het over een half jaar goed loopt: waaraan merkt u dat?”</li><li>“Wie beslist er over dit proces?”</li><li>“Wat valt buiten deze vraag? En wat kan het project in de weg zitten?”</li></ul><span class="tip">Het antwoord op de eerste vraag is je succescriterium.</span></td><td class="op"><span class="tag">Succes</span><span class="tag">Proceseigenaar</span><span class="tag">Afbakening</span><span class="tag">Risico&#x27;s</span></td></tr>
+<tr><td class="stap"><b>7. Afronding</b><small>fase 4</small></td><td><ul class="zinnen"><li>“Samengevat: … Als eerste stap willen we het proces in kaart brengen en meten waar orders blijven liggen.”</li><li>“Mogen we daarvoor een ochtend meelopen, en wie kunnen we spreken?”</li><li>“Wij sturen u vrijdag een opdrachtbevestiging. Hoe was dit gesprek voor u?”</li></ul><span class="tip">Stel een volgende stap voor, geen oplossing. Spreek wie, wat en wanneer af.</span></td><td class="op"><span class="tag">Verwachtingen</span><span class="tag">Vervolg</span></td></tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 <section id="onderzoek">

@@ -151,6 +151,23 @@ a{color:inherit;text-decoration-color:var(--han);text-decoration-thickness:2px;t
   #bijlage-d .obs-b{break-before:page}
   #bijlage-d .obs-rubric td{font-size:10.5px;padding:5px 6px}
 }
+.rol h4,.bijlage h4.obs-kop{font-size:15px;font-weight:800;margin:0 0 6px}
+.rol ul{font-size:14px}
+.checktabel.rolfeiten td{font-size:13.5px;padding:7px 10px}
+.checktabel.rolfeiten td.nr{width:110px;font:700 11px/1.5 var(--fm);text-transform:uppercase;letter-spacing:.06em;color:var(--han)}
+.checktabel.script td{font-size:13.5px;padding:8px 10px}
+.checktabel.script td.stap{width:150px}
+.checktabel.script td.stap b{display:block}
+.checktabel.script td.stap small{font:700 10.5px/1.3 var(--fm);text-transform:uppercase;letter-spacing:.06em;color:var(--grey)}
+.checktabel.script ul.zinnen{list-style:none;padding:0;gap:3px}
+.checktabel.script ul.zinnen li{font-style:italic;padding-left:0}
+.checktabel.script ul.zinnen li::before{content:none}
+@media print{
+  body #script .rol ul{font-size:12px;gap:3px}
+  body .checktabel.rolfeiten td{font-size:11.5px;padding:4px 8px}
+  body .checktabel.script td{font-size:11.5px;padding:5px 8px}
+  body .checktabel.script .hint{font-size:10.5px;font-weight:600}
+}
 @page{size:A4;margin:14mm 12mm}
 @media print{
   .pdfknop{display:none}
@@ -186,7 +203,7 @@ a{color:inherit;text-decoration-color:var(--han);text-decoration-thickness:2px;t
 </head>
 <body>
 
-<div class="topbar"><svg class="logo" viewBox="0 0 82 34" role="img" aria-label="Logo HAN"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></svg><span class="who">Praktijkopdracht 5 · C-cluster</span><span class="sp"></span><span class="knoppen"><button type="button" class="pdfknop" onclick="printBijlagen()" aria-label="Print bijlagen" title="Print alleen bijlage A tot en met D"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6V1h8v5M4 12H2V6h12v6h-2M4 9h8v6H4z"/></svg><span class="lbl">Print bijlagen</span></button><button type="button" class="pdfknop" onclick="downloadPdf()" aria-label="Download PDF" title="Opent het afdrukvenster; kies daar 'Opslaan als PDF'"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 1v9M4 6l4 4 4-4M2 14h12"/></svg><span class="lbl">Download PDF</span></button></span></div>
+<div class="topbar"><svg class="logo" viewBox="0 0 82 34" role="img" aria-label="Logo HAN"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></svg><span class="who">Praktijkopdracht 5 · C-cluster</span><span class="sp"></span><span class="knoppen"><button type="button" class="pdfknop" onclick="printBijlagen()" aria-label="Print bijlagen" title="Print het script en bijlage A tot en met D"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6V1h8v5M4 12H2V6h12v6h-2M4 9h8v6H4z"/></svg><span class="lbl">Print bijlagen</span></button><button type="button" class="pdfknop" onclick="downloadPdf()" aria-label="Download PDF" title="Opent het afdrukvenster; kies daar 'Opslaan als PDF'"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 1v9M4 6l4 4 4-4M2 14h12"/></svg><span class="lbl">Download PDF</span></button></span></div>
 
 <div class="wrap">
 
@@ -225,7 +242,7 @@ a{color:inherit;text-decoration-color:var(--han);text-decoration-thickness:2px;t
     <div class="box">
       <h3>Printen &amp; meenemen</h3>
       <ul class="check">
-        <li><b>Script – intakegesprek met opdrachtgever</b>, 8 sets (rolbeschrijving + consultantscript). Het observatieformulier uit het script vervalt: gebruik bijlage D.</li>
+        <li><b><a href="#script">Script – rolkaart opdrachtgever en consultantscript</a></b>, 8 sets, enkelzijdig: de opdrachtgever mag het consultantscript niet zien en andersom. Vervangt het script op Brightspace, ook het observatieformulier daarin (gebruik bijlage D).</li>
         <li><b><a href="#bijlage-a">Bijlage A – foute opdrachtbevestiging</a></b>, 8×</li>
         <li><b><a href="#bijlage-b">Bijlage B – goede opdrachtbevestiging</a></b>, 8×, dubbelzijdig (mail + opdrachtomschrijving)</li>
         <li><b><a href="#bijlage-c">Bijlage C – checklist opdrachtbevestiging</a></b>, 1× per student</li>
@@ -257,7 +274,7 @@ a{color:inherit;text-decoration-color:var(--han);text-decoration-thickness:2px;t
       <tr><td class="t">12:50<span>10 min</span></td><td><b>Goede vs. slechte vragen</b><br><span class="tag slide">sl 11–16</span></td><td>Loop de vijf voorbeeldvragen langs: goed of niet, waarom, hoe beter? Sluit af met slide 16: iedereen bedenkt individueel een slechte intakevraag aan de eigen opdrachtgever en verbetert die.</td></tr>
       <tr><td class="t">13:00<span>15 min</span></td><td><b>Vragenspel in duo's</b><br><span class="tag slide">sl 17</span></td><td>A vertelt 5 min over een situatie (bijv. een samenwerkingsprobleem in het groepje); B stelt <b>alleen</b> open vragen en vraagt door, geeft geen advies. Na 5 min wisselen. Loop rond en geef korte feedback. Nabespreking: wat was moeilijk, wanneer viel je stil?</td></tr>
       <tr class="brk"><td class="t">13:15</td><td colspan="2">Pauze · 10 min <span class="tag slide">sl 18</span></td></tr>
-      <tr><td class="t">13:25<span>45 min</span></td><td><b>Rollenspel intakegesprek in trio's</b><br><span class="tag slide">sl 19</span><span class="tag">script</span></td><td>5 min instructie en uitdelen. Rollen: A consultant, B opdrachtgever (teamleider orderverwerking), C observator. Drie rondes van 10 min: 8 min gesprek, 2 min feedback. <b>Aangepast:</b> studenten die hun intake al gevoerd hebben, spelen opdrachtgever of observator. Als opdrachtgever mogen ze casusinformatie uit hun eigen praktijkopdracht gebruiken. Studenten die de intake nog moeten voeren, oefenen zo vaak mogelijk als consultant. Maak de trio's daarom gemengd. De observator vult bijlage D in: de gespreksscore (8 criteria, schaal 1–4) en de turflijst uit de manual. In de 2 min feedback noemt de observator het laagst gescoorde criterium en het moment waarop dat bleek. Laatste 10 min plenair: wat viel op, wat werkte goed?</td></tr>
+      <tr><td class="t">13:25<span>45 min</span></td><td><b>Rollenspel intakegesprek in trio's</b><br><span class="tag slide">sl 19</span><span class="tag">script</span></td><td>5 min instructie en uitdelen van het script (rolkaart en consultantscript) en bijlage D. Rollen: A consultant, B opdrachtgever (teamleider orderverwerking), C observator. Drie rondes van 10 min: 8 min gesprek, 2 min feedback. <b>Aangepast:</b> studenten die hun intake al gevoerd hebben, spelen opdrachtgever of observator. Als opdrachtgever mogen ze casusinformatie uit hun eigen praktijkopdracht gebruiken. Studenten die de intake nog moeten voeren, oefenen zo vaak mogelijk als consultant. Maak de trio's daarom gemengd. De observator vult bijlage D in: de gespreksscore (8 criteria, schaal 1–4) en de turflijst uit de manual. In de 2 min feedback noemt de observator het laagst gescoorde criterium en het moment waarop dat bleek. Laatste 10 min plenair: wat viel op, wat werkte goed? Laat de opdrachtgevers vertellen welke van de tien feiten op hun rolkaart de consultant níet heeft opgehaald.</td></tr>
       <tr><td class="t">14:10<span>5 min</span></td><td><b>Van gesprek naar bevestiging</b><br><span class="tag slide">sl 20</span></td><td>Plenair: wat doe je ná een intake? Waarom een bevestiging, wat gaat er mis zonder? Opdrachtgevers verwachten een opdrachtbeschrijving: daarmee check je of je elkaar goed begrepen hebt.</td></tr>
       <tr><td class="t">14:15<span>5 min</span></td><td><b>Wat moet erin?</b><br><span class="tag slide">sl 21</span></td><td>Duo's maken een mini-analyse. Verzamel klassikaal en vul aan: aanleiding/probleem, doel, <b>succescriterium</b>, afbakening, <b>rollen en betrokkenen</b>, <b>inzet van het bedrijf</b> (tijd, data, toegang), verwachtingen, afspraken (planning, contact). De vetgedrukte drie vraagt het goedkeuringsformulier wel, en ze staan nu ook in de checklist (bijlage C).</td></tr>
       <tr class="brk"><td class="t">14:20</td><td colspan="2">Pauze · 15 min <span class="tag slide">sl 22</span></td></tr>
@@ -291,7 +308,7 @@ a{color:inherit;text-decoration-color:var(--han);text-decoration-thickness:2px;t
     <div class="box">
       <h3>Rollenspel: de casus</h3>
       <p class="small">Teamleider orderverwerking. Klanten klagen over trage levering, orders blijven "hangen", medewerkers wijzen naar elkaar en er is geen procesoverzicht. Wil het "sneller en soepeler", heeft geen oplossing en vindt dat mensen "gewoon beter moeten werken". <b>Geeft alleen informatie als erom gevraagd wordt.</b></p>
-      <p class="small muted">Consultantscript: opening → huidige situatie → doorvragen ("wat maakt dat…?") → samenvatten en checken → impact → gewenste situatie → afronden met voorstel voor een volgende stap.</p>
+      <p class="small muted">Script in zeven stappen: opening → huidige situatie → doorvragen op knelpunten → samenvatten → gevolgen en urgentie → gewenste situatie en grenzen → afronding met een volgende stap. De rolkaart geeft de opdrachtgever tien feiten die hij of zij alleen op een gerichte vraag prijsgeeft. Zie <a href="#script">het script</a> bij de printbijlagen.</p>
     </div>
   </div>
 
@@ -393,6 +410,17 @@ a{color:inherit;text-decoration-color:var(--han);text-decoration-thickness:2px;t
     <p class="small">Bijlage B volgt de herziene checklist: de mail en de opdrachtomschrijving halen alle twintig items. Alleen de planning bevat nog twee keer <i>[week]</i>, voor de analyse en de eindpresentatie. Vul die in volgens de projectplanning van de C-cluster voordat je print. De telefoon en het e-mailadres van de afzender zijn bewust plaatshouders.</p>
   </div>
   <div class="note">
+    <h3>Wat er in het script is veranderd</h3>
+    <p class="small">Het script op Brightspace is herzien en staat nu bij de printbijlagen. De belangrijkste verschillen:</p>
+    <ul class="small">
+      <li>De opening noemt ook de duur en de agenda, en vraagt wat de opdrachtgever wil bespreken.</li>
+      <li>Nieuwe voorbeeldvragen naar de laatste keer dat het misging, naar getallen en data, naar wie beslist en naar wat buiten de opdracht valt.</li>
+      <li>De afronding stelt een volgende stap voor, geen oplossing. Het oude observatieformulier beloonde "Komt met passende eerste richting/oplossing". Dat botst met de manual en is vervangen door bijlage D.</li>
+      <li>De rolkaart bevat nu feiten die de opdrachtgever alleen op een gerichte vraag geeft, en twee gedragsopdrachten: enthousiast reageren op een oplossing, en vragen wat het project oplevert en kost.</li>
+      <li>De rol heet overal <i>teamleider orderverwerking</i>. Slide 19 zegt nog <i>teamleider operations</i>.</li>
+    </ul>
+  </div>
+  <div class="note">
     <h3>Het percentage in het voorbereidingsdocument klopt niet</h3>
     <p class="small">Het document zegt dat communicatie voor 45% uit lichaamstaal, 30% uit intonatie en 25% uit inhoud bestaat. Dat is een veelgemaakte misinterpretatie van Mehrabians onderzoek, dat alleen over het uiten van gevoelens ging. Neem het niet over, of gebruik het juist als voorbeeld van een bewering die je kritisch checkt.</p>
   </div>
@@ -428,7 +456,30 @@ a{color:inherit;text-decoration-color:var(--han);text-decoration-thickness:2px;t
 
 <section id="bijlagen">
   <h2>Printbijlagen</h2>
-  <p>Vier bijlagen voor studenten. A en C passen op één A4; B en D beslaan twee pagina's en print je dubbelzijdig. Met de knop <b>Print bijlagen</b> bovenaan print je alleen deze pagina's, zonder de docentinstructie.</p>
+  <p>Het script en vier bijlagen voor studenten. Het script bestaat uit twee losse pagina's: print die enkelzijdig. A en C passen op één A4; B en D beslaan twee pagina's en print je dubbelzijdig. Met de knop <b>Print bijlagen</b> bovenaan print je alleen deze pagina's, zonder de docentinstructie.</p>
+
+  <article class="bijlage" id="script">
+    <div class="bkop"><svg class="logo" viewBox="0 0 82 34" role="img" aria-label="Logo HAN"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></svg><span class="who">Training intakegesprekken · BKN-C01 · week 4</span><span class="num">Script · rolkaart · 8×</span></div>
+    <h3>Rolkaart opdrachtgever (student B)</h3>
+    <p class="sub">Alleen voor de opdrachtgever. Laat deze kaart niet aan de consultant zien. Rollen: A consultant, B opdrachtgever, C observator. Doel van het gesprek: het probleem achterhalen en de opdracht verhelderen.</p>
+    <div class="grid2 rol">
+      <div><h4>Situatie</h4><ul><li>Je bent teamleider orderverwerking bij een technische groothandel.</li><li>Klanten klagen over trage levering.</li><li>Orders blijven &quot;hangen&quot; in het proces.</li><li>Medewerkers wijzen naar elkaar.</li><li>Er is geen duidelijk overzicht van het proces.</li></ul></div>
+      <div><h4>Zo speel je de rol</h4><ul><li>Je wilt dat het &quot;sneller en soepeler&quot; gaat, maar je hebt nog geen duidelijke oplossing.</li><li>Je vindt dat medewerkers soms &quot;gewoon beter moeten werken&quot;. Zeg dat vroeg in het gesprek.</li><li>Geef informatie alleen als de consultant ernaar vraagt. Op een vage vraag geef je een vaag antwoord, op een concrete vraag een concreet antwoord.</li><li>Stelt de consultant een oplossing voor, reageer dan enthousiast: &quot;Goed idee, doen!&quot;</li><li>Vraag ergens halverwege: &quot;Wat hebben wij eraan, en hoeveel tijd kost het ons?&quot;</li></ul></div>
+    </div>
+    <h4 class="obs-kop">Feiten: alleen vertellen als de consultant er gericht naar vraagt</h4>
+    <div class="checktabel rolfeiten"><table><tbody><tr><td class="nr">Proces</td><td>Een order komt binnen bij verkoop, gaat naar de creditcheck (financiële administratie) en daarna naar het magazijn, dat pakt en verzendt. Het gaat om ongeveer 150 orders per week.</td></tr><tr><td class="nr">Voorbeeld</td><td>Vorige week lag een spoedorder twee dagen bij de creditcheck, omdat niemand wist dat hij daar lag.</td></tr><tr><td class="nr">Oorzaak</td><td>Verkoop zet orders soms onvolledig in het systeem. De creditcheck wacht dan op informatie, maar meldt dat niet.</td></tr><tr><td class="nr">Gevolgen</td><td>Volgens jouw schatting zijn ongeveer twintig orders per week te laat. Precies bijhouden doet niemand.</td></tr><tr><td class="nr">Data</td><td>Het ERP-systeem legt per orderstap vast wanneer die klaar is, maar niemand kijkt ernaar.</td></tr><tr><td class="nr">Aanleiding</td><td>Vorige maand dreigde een grote klant af te haken vanwege late leveringen.</td></tr><tr><td class="nr">Rollen</td><td>Jij bent eigenaar van het proces. De teamleider magazijn (dinsdag en donderdag aanwezig) en een medewerker van de creditcheck weten er veel van.</td></tr><tr><td class="nr">Succes</td><td>Minder klachten, en dat je op elk moment kunt zien waar een order is.</td></tr><tr><td class="nr">Afbakening</td><td>Retouren en inkoop horen er niet bij. Aan het ERP-systeem zelf mag niets veranderen.</td></tr><tr><td class="nr">Risico</td><td>In november is het piekseizoen. Dan hebben medewerkers weinig tijd voor gesprekken.</td></tr></tbody></table></div>
+    <p class="small muted">Heb je je eigen intake al gevoerd? Dan mag je feiten uit je eigen praktijkopdracht gebruiken.</p>
+  </article>
+
+  <article class="bijlage" id="script-consultant">
+    <div class="bkop"><svg class="logo" viewBox="0 0 82 34" role="img" aria-label="Logo HAN"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></svg><span class="who">Training intakegesprekken · BKN-C01 · week 4</span><span class="num">Script · consultant · 8×</span></div>
+    <h3>Script consultant (student A)</h3>
+    <p class="sub">Gebruik dit als leidraad, niet om voor te lezen. Volg het verhaal van de opdrachtgever; de volgorde mag schuiven. Na het gesprek krijg je feedback van de observator (bijlage D).</p>
+    <div class="checktabel script"><table>
+      <thead><tr><th>Stap</th><th>Voorbeeldzinnen en tip</th></tr></thead>
+      <tbody><tr><td class="stap"><b>1. Opening</b><small>fase 1</small></td><td><ul class="zinnen"><li>“Dank voor uw tijd. We hebben drie kwartier.”</li><li>“Mijn doel vandaag: goed begrijpen wat er speelt, zodat we samen kunnen bepalen of en hoe wij kunnen helpen.”</li><li>“Ik wil het hebben over hoe het nu loopt, wat u anders wilt en de volgende stap. Wat wilt u vandaag in elk geval besproken hebben?”</li></ul><span class="hint">Noem doel, duur en agenda, en vraag wat de opdrachtgever wil bespreken.</span></td></tr><tr><td class="stap"><b>2. Huidige situatie</b><small>fase 2</small></td><td><ul class="zinnen"><li>“Kunt u beschrijven hoe een order nu door het proces loopt, van binnenkomst tot verzending?”</li><li>“Welke stappen en afdelingen komt een order tegen?”</li><li>“Wie zijn daarbij betrokken?”</li></ul><span class="hint">Laat het verhaal uitlopen. Vraag &quot;Wat nog meer?&quot; tot er niets nieuws komt.</span></td></tr><tr><td class="stap"><b>3. Doorvragen op knelpunten</b><small>fase 3</small></td><td><ul class="zinnen"><li>“Waar loopt het vast?”</li><li>“Kunt u de laatste keer beschrijven dat een order bleef hangen? Waar lag hij, en hoe lang?”</li><li>“Wat maakt dat het daar blijft liggen?”</li></ul><span class="hint">Vraag naar een recent voorbeeld en een oorzaak, niet naar een mening.</span></td></tr><tr><td class="stap"><b>4. Samenvatten</b><small>fase 3</small></td><td><ul class="zinnen"><li>“Als ik het goed begrijp: orders blijven vooral hangen bij [stap], omdat [oorzaak]. Klopt dat, of mis ik iets?”</li></ul><span class="hint">Controleer altijd of je samenvatting klopt.</span></td></tr><tr><td class="stap"><b>5. Gevolgen en urgentie</b><small>fase 3</small></td><td><ul class="zinnen"><li>“Wat merken uw klanten hiervan?”</li><li>“Hoeveel orders zijn er per week te laat? Wordt dat ergens bijgehouden?”</li><li>“Waarom speelt dit juist nu?”</li></ul><span class="hint">Vertaal klachten naar kwaliteit, levertijd en kosten, liefst met een getal.</span></td></tr><tr><td class="stap"><b>6. Gewenste situatie en grenzen</b><small>fase 3</small></td><td><ul class="zinnen"><li>“Stel dat het over een half jaar goed loopt: waaraan merkt u dat?”</li><li>“Wie beslist er over dit proces?”</li><li>“Wat valt buiten deze vraag? En wat kan het project in de weg zitten?”</li></ul><span class="hint">Het antwoord op de eerste vraag is je succescriterium.</span></td></tr><tr><td class="stap"><b>7. Afronding</b><small>fase 4</small></td><td><ul class="zinnen"><li>“Samengevat: … Als eerste stap willen we het proces in kaart brengen en meten waar orders blijven liggen.”</li><li>“Mogen we daarvoor een ochtend meelopen, en wie kunnen we spreken?”</li><li>“Wij sturen u vrijdag een opdrachtbevestiging. Hoe was dit gesprek voor u?”</li></ul><span class="hint">Stel een volgende stap voor, geen oplossing. Spreek wie, wat en wanneer af.</span></td></tr></tbody>
+    </table></div>
+  </article>
 
   <article class="bijlage" id="bijlage-a">
     <div class="bkop"><svg class="logo" viewBox="0 0 82 34" role="img" aria-label="Logo HAN"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></svg><span class="who">Training intakegesprekken · BKN-C01 · week 4</span><span class="num">Bijlage A · 8× printen</span></div>
@@ -480,7 +531,7 @@ a{color:inherit;text-decoration-color:var(--han);text-decoration-thickness:2px;t
       </div>
       <div class="mail-body">
         <h4>Aanleiding</h4>
-        <p>Klanten klagen over late leveringen. Volgens u blijven orders "hangen" en is niet te zien waar een order zich bevindt. U wilt dat de orderverwerking "sneller en soepeler" loopt.</p>
+        <p>Klanten klagen over late leveringen, en vorige maand dreigde een grote klant af te haken. Volgens u blijven orders "hangen" en is niet te zien waar een order zich bevindt. U wilt dat de orderverwerking "sneller en soepeler" loopt.</p>
         <h4>Probleem in feiten</h4>
         <p>Het proces loopt van de binnenkomst van een order bij verkoop, via de creditcheck, tot verzending uit het magazijn. Het draait elke werkdag. Volgens uw schatting zijn ongeveer twintig orders per week te laat. Hoe groot de vertraging is en waar die ontstaat, is nog niet gemeten.</p>
         <h4>Doel en succescriterium</h4>
@@ -535,7 +586,7 @@ a{color:inherit;text-decoration-color:var(--han);text-decoration-thickness:2px;t
 
 <footer class="bron">
   <div>Gebaseerd op Brightspace <i>Praktijkopdracht 5 (2026 P1N)</i>: Docentendomein › Training Intakegesprekken (lesplan intakegesprek P1W1D1_DEF, script intakegesprek, voorbeeldmails), de aangepaste slides <i>Intake met opdrachtgeverversie_aangepast</i> met de toelichting van een collega-tutor, Training intakegesprekken (slides, voorbereiding, bevestiging, goedkeuring projectopdracht) en Docentendomein › Rolverdeling en opbouw C-cluster.</div>
-  <div>Aangevuld met de <i>Manual intakegesprek BKN-C01</i> en de analyse <i>Hoe compleet is de checklist opdrachtbevestiging?</i> (Silverman e.a., 2013; Block, 2011; Singh Ospina e.a., 2019; zie de bronnenlijst van de manual).</div>
+  <div>Het script is een herziening van <i>Workshop intakegesprek – script intakegesprek met opdrachtgever</i> (Brightspace). Aangevuld met de <i>Manual intakegesprek BKN-C01</i> en de analyse <i>Hoe compleet is de checklist opdrachtbevestiging?</i> (Silverman e.a., 2013; Block, 2011; Singh Ospina e.a., 2019; zie de bronnenlijst van de manual).</div>
   <div>Opgesteld 22 sept 2026. Bijgewerkt 22 sept 2026: bijlage A, B en C vervangen (één casus: orderverwerking), bijlage D toegevoegd als observatieformulier.</div>
 </footer>
 
