@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Goedkeuring projectopdracht C-cluster</title>
+<style>
+:root{
+  /* HAN-huisstijl, gelijk aan de docentinstructie en de manual */
+  --han:#E50056; --han2:#FFE1EC; --ink:#000000; --paper:#FFFFFF;
+  --grey:#454545; --grey2:#767676; --wash:#F2F2F0; --panel2:#E6E6E3;
+  --mens2:#FFE875;
+  --bw:3px; --sh:5px 5px 0 var(--ink);
+  --f:"Avenir Next","Avenir","Nunito Sans","Segoe UI",Helvetica,Arial,sans-serif;
+  --fm:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--wash);color:var(--ink);font:15px/1.5 var(--f);-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;display:grid;gap:36px;padding:32px 16px 64px}
+h1,h2,h3,h4{text-wrap:balance;margin:0}
+h1{font-size:clamp(32px,6vw,52px);line-height:.96;letter-spacing:-.035em;font-weight:800;text-transform:uppercase}
+h2{font-size:clamp(22px,3.2vw,28px);line-height:1.05;letter-spacing:-.025em;font-weight:800}
+h3{font-size:17px;line-height:1.2;font-weight:800}
+h4{font-size:14.5px;font-weight:800}
+p{margin:0;max-width:72ch}
+b,strong{font-weight:700}
+a{color:inherit;text-decoration-color:var(--han);text-decoration-thickness:2px;text-underline-offset:3px}
+ul,ol{margin:0;padding-left:22px;display:grid;gap:5px}
+ul{list-style:none;padding-left:22px}
+ul li{position:relative}
+ul li::before{content:"";position:absolute;left:-20px;top:.5em;width:9px;height:9px;background:var(--han)}
+ol li::marker{font:800 13px var(--fm);color:var(--han)}
+.muted{color:var(--grey)}
+.small{font-size:13.5px}
+
+/* ---------- balken ---------- */
+.topbar,.foot{background:var(--ink);color:var(--paper);display:flex;align-items:center;gap:18px;padding:0 20px 0 max(16px,calc((100% - 828px)/2))}
+.topbar{height:56px;border-bottom:4px solid var(--han)}
+.foot{min-height:52px}
+.logo{flex:none;display:block;height:26px;width:62px}
+.who{font:700 12px/1 var(--fm);letter-spacing:.14em;text-transform:uppercase;opacity:.82}
+.sp{flex:1}
+.num{font:800 13px/1 var(--fm);background:var(--han);color:var(--paper);padding:8px 11px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.knoppen{display:flex;gap:8px}
+.pdfknop{font:700 12px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:transparent;
+  border:2px solid var(--paper);padding:8px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.pdfknop:hover,.pdfknop:focus-visible{background:var(--han);border-color:var(--han);outline:none}
+.pdfknop svg{width:14px;height:14px}
+@media (max-width:640px){.topbar .who{display:none}.pdfknop{padding:8px 9px;letter-spacing:.04em}}
+@media (max-width:440px){.pdfknop .lbl{display:none}.pdfknop svg{width:16px;height:16px}}
+
+/* ---------- blad = één A4 ---------- */
+.blad{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:0 0 22px;display:grid;gap:14px;align-content:start}
+.blad>*:not(.bkop){margin-inline:clamp(14px,3vw,26px)}
+.bkop{background:var(--ink);color:var(--paper);display:flex;align-items:center;gap:14px;padding:9px clamp(14px,3vw,26px)}
+.bkop .logo{height:18px;width:44px}
+.bkop .num{margin-left:auto}
+.bkop .who{font-size:11px}
+.sectiekop{font:700 12px/1.2 var(--fm);letter-spacing:.14em;text-transform:uppercase;color:var(--grey);border-bottom:var(--bw) solid var(--ink);padding:6px 0 4px}
+
+/* ---------- omslag ---------- */
+.omslag{background:var(--han);color:var(--paper);border:var(--bw) solid var(--ink);padding:24px 24px 26px;display:grid;gap:14px}
+.eyebrow{justify-self:start;background:var(--paper);color:var(--ink);padding:6px 12px 5px;font:700 12px/1.2 var(--fm);letter-spacing:.14em;text-transform:uppercase}
+.meta{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:3px solid currentColor;padding:6px 10px;font:700 12px/1.15 var(--fm);letter-spacing:.04em;text-transform:uppercase}
+.lede{font-size:17px;line-height:1.45;font-weight:600;max-width:64ch}
+.naamvelden{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px 22px}
+
+/* ---------- blokkop ---------- */
+.blok{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:var(--bw) solid var(--ink);padding-bottom:8px}
+.blok::before{content:"";flex:none;width:14px;height:14px;background:var(--han)}
+.blok .bn{font:800 12px/1 var(--fm);letter-spacing:.12em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:6px 8px}
+.blok .bt{margin-left:auto;font:800 13px/1 var(--fm);color:var(--han);font-variant-numeric:tabular-nums}
+
+/* ---------- opdracht ---------- */
+.act{border:var(--bw) solid var(--ink);display:grid;gap:9px;padding:0 0 12px}
+.act>*:not(.act-kop){margin-inline:14px}
+.act-kop{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--wash);border-bottom:2px solid var(--ink);padding:7px 14px}
+.act-kop .nr{font:800 13px/1 var(--fm);color:var(--han)}
+.act-kop h3{margin-right:auto}
+.vorm,.tijd{font:700 11px/1 var(--fm);letter-spacing:.08em;text-transform:uppercase;padding:5px 7px;border:2px solid var(--ink);white-space:nowrap}
+.vorm.alleen{background:var(--paper)}
+.vorm.duo{background:var(--mens2)}
+.vorm.trio{background:var(--han2)}
+.vorm.team{background:var(--ink);color:var(--paper)}
+.tijd{border-color:transparent;padding-inline:0;color:var(--grey)}
+.waarom,.klaar,.verder{font-size:14px}
+.waarom b,.klaar b,.verder b{font:700 11px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;margin-right:6px;padding:3px 5px;vertical-align:1px}
+.waarom b{background:var(--han);color:var(--paper)}
+.klaar b{background:var(--ink);color:var(--paper)}
+.verder{border-top:2px dashed var(--grey2);padding-top:8px}
+.verder b{background:var(--mens2);border:2px solid var(--ink)}
+.stappen{font-size:14px}
+
+/* ---------- schrijfruimte ---------- */
+.veld{display:grid;gap:0}
+.veld>b{font:700 11px/1.3 var(--fm);letter-spacing:.08em;text-transform:uppercase;color:var(--grey)}
+.veld>span{font-size:12.5px;color:var(--grey)}
+.veld i{display:block;height:27px;border-bottom:1.5px solid var(--ink)}
+.omslag .veld>b{color:var(--paper)}
+.omslag .veld i{border-color:var(--paper)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px 18px}
+.keuze{display:inline-flex;gap:14px;flex-wrap:wrap;font-size:13.5px}
+.keuze span::before{content:"";display:inline-block;width:13px;height:13px;border:2px solid var(--ink);margin-right:6px;vertical-align:-2px}
+
+/* ---------- tabellen ---------- */
+.tab{border:var(--bw) solid var(--ink)}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;vertical-align:top;padding:7px 9px;border-top:1.5px solid var(--ink);font-size:13.5px}
+th{font:700 11px/1.2 var(--fm);letter-spacing:.08em;text-transform:uppercase;color:var(--paper);background:var(--ink);border-top:0}
+td.leeg{height:34px}
+td.t{font:800 13px/1.4 var(--fm);white-space:nowrap;color:var(--han);font-variant-numeric:tabular-nums}
+td.nr{width:30px;font:800 12px/1.5 var(--fm);color:var(--han)}
+td.vakje{width:54px;text-align:center}
+td.vakje span{display:inline-block;width:16px;height:16px;border:2px solid var(--ink)}
+tr.groep td{background:var(--wash);font:700 10.5px/1.2 var(--fm);letter-spacing:.1em;text-transform:uppercase;padding-block:5px}
+.hint{display:block;color:var(--grey);font-size:12px;margin-top:1px}
+.pt{display:inline-grid;place-items:center;width:20px;height:20px;border:2px solid var(--ink);border-radius:50%;font:800 11px/1 var(--fm);margin-right:5px;vertical-align:-4px}
+.schaal{white-space:nowrap}
+.schaal .pt{margin-right:3px}
+
+/* ---------- spiekbrief ---------- */
+.fasen{display:grid;grid-template-columns:repeat(4,1fr);border:var(--bw) solid var(--ink)}
+.fase{padding:9px 10px;border-right:2px solid var(--ink);display:grid;gap:3px;align-content:start;font-size:12.5px;line-height:1.35}
+.fase:last-child{border-right:0}
+.fase .n{justify-self:start;font:700 10px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;background:var(--han);color:var(--paper);padding:3px 6px}
+.fase b{font-size:15px;font-weight:800}
+.fase em{font-style:normal;color:var(--han);font-weight:700}
+@media (max-width:620px){.fasen{grid-template-columns:1fr 1fr}.fase:nth-child(2){border-right:0}.fase:nth-child(-n+2){border-bottom:2px solid var(--ink)}}
+.kaders{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.kader{border:2px solid var(--ink);padding:9px 11px;display:grid;gap:5px;align-content:start;font-size:13px}
+.kader ul{gap:3px}
+.vraagsoorten td{font-size:12.5px;padding:5px 8px}
+.vraagsoorten td:first-child{font-weight:700;white-space:nowrap}
+.vraagsoorten tr.mijden td:first-child{color:var(--han)}
+
+/* ---------- routes ---------- */
+.routes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.routes{grid-template-columns:1fr}}
+.route{border:var(--bw) solid var(--ink);padding:10px 12px;display:grid;gap:5px;align-content:start;font-size:13.5px}
+.route h4::before{content:"";display:inline-block;width:14px;height:14px;border:2.5px solid var(--ink);margin-right:8px;vertical-align:-2px;background:var(--paper)}
+.route.a{background:var(--han2)}
+.route.b{background:var(--mens2)}
+
+/* ---------- mails ---------- */
+.mail{border:var(--bw) solid var(--ink)}
+.mail-head{background:var(--wash);border-bottom:2px solid var(--ink);padding:8px 12px;display:grid;gap:2px;font-size:13.5px}
+.mail-head b{display:inline-block;min-width:86px;font:700 10.5px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
+.mail-body{padding:12px 14px;display:grid;gap:8px;font-size:14px}
+.mail-body h4{margin:4px 0 -5px;font-size:13.5px}
+
+/* ---------- rubric ---------- */
+.rubric td{font-size:11.5px;line-height:1.33;padding:5px 6px}
+.rubric td.crit{width:112px}
+.rubric td.crit b{display:block;font-size:12px}
+.rubric td.crit small{font:700 9.5px/1.3 var(--fm);text-transform:uppercase;letter-spacing:.04em;color:var(--grey)}
+.rubric th.sc,.rubric td.sc{width:44px;text-align:center;border-left:2px solid var(--ink)}
+.rubric td.sc{background:var(--wash)}
+.turf td{padding:6px 9px}
+.turf td.streep{width:42%}
+
+/* ---------- antwoordsleutels ---------- */
+.sleutel td{font-size:13px}
+.sleutel td.soort{width:128px}
+.sleutel td.soort b{display:block}
+.sleutel td.denk{width:34%;background:var(--wash)}
+.sleutel td.denk::before{content:"Denk verder";display:block;font:700 10px/1.3 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--han);margin-bottom:2px}
+.goed{color:#0a7a3a;font-weight:800}
+.fout{color:var(--han);font-weight:800}
+
+/* ---------- docentdeel ---------- */
+.docentdeel{display:grid;gap:36px}
+.scheiding{background:var(--ink);color:var(--paper);padding:16px 20px;display:grid;gap:6px;border:var(--bw) solid var(--ink)}
+.scheiding h2{color:var(--paper)}
+.scheiding p{font-size:14px;opacity:.9}
+.fac .kader{font-size:13px}
+.rolkaart .grid2 ul{font-size:13.5px}
+.feiten td{font-size:13px;padding:6px 9px}
+.feiten td.nr{width:104px;font:700 10.5px/1.5 var(--fm);text-transform:uppercase;letter-spacing:.06em;color:var(--han)}
+.geheim{background:var(--han);color:var(--paper);font:700 12px/1.3 var(--fm);letter-spacing:.08em;text-transform:uppercase;padding:8px 12px}
+footer.bron{font-size:13px;color:var(--grey);border-top:var(--bw) solid var(--ink);padding-top:14px;display:grid;gap:6px}
+
+/* ---------- print ---------- */
+@page{size:A4;margin:11mm 11mm}
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#fff;font-size:12.5px}
+  .topbar,.foot,.pdfknop,.scheiding,footer.bron{display:none}
+  .wrap{display:block;padding:0;max-width:none}
+  .blad{break-before:page;border:0;box-shadow:none;padding:0;display:block}
+  .blad>*+*{margin-top:8px}
+  .blad:first-child{break-before:auto}
+  .blad>*:not(.bkop){margin-inline:0}
+  .docentdeel{display:block}
+  .act,.kader,.route,.tab tr,.fasen,.mail,.veld{break-inside:avoid}
+  .act{gap:6px;padding-bottom:8px}
+  .act-kop{padding:5px 12px}
+  .act>*:not(.act-kop){margin-inline:12px}
+  .waarom,.klaar,.verder,.stappen{font-size:12.5px}
+  th,td{font-size:12px;padding:5px 8px}
+  .veld i{height:24px}
+  .omslag{padding:20px 22px}
+  .rubric td{font-size:10.5px;padding:4px 5px}
+  .mail-body{font-size:12.5px;gap:6px}
+  .mail-head{font-size:12px}
+  /* standaard print = werkboek; #docent = facilitatorkaart en rolkaarten */
+  body:not(.print-docent) .docentdeel{display:none}
+  body.print-docent .werkboek{display:none}
+  body.print-docent .docentdeel .blad:first-of-type{break-before:auto}
+
+}
+
+
+/* ---------- aanvullend voor dit formulier ---------- */
+ul.check{padding-left:26px}
+ul.check li::before{content:"";width:13px;height:13px;border:2px solid var(--ink);background:var(--paper);left:-24px;top:.3em}
+.let{background:var(--mens2);border:var(--bw) solid var(--ink);padding:11px 14px;display:grid;gap:6px;font-size:13.5px}
+.let>b{justify-self:start;background:var(--ink);color:var(--paper);padding:4px 9px 3px;font:700 11px/1.2 var(--fm);letter-spacing:.12em;text-transform:uppercase}
+.mail{border:var(--bw) solid var(--ink)}
+.mail-head{background:var(--wash);border-bottom:2px solid var(--ink);padding:9px 12px;display:grid;gap:3px;font-size:13px}
+.mail-head b{display:inline-block;min-width:74px;font:700 10.5px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
+.mail-body{padding:12px 14px;display:grid;gap:9px;font-size:13.5px}
+.rol-tab td.rol{width:52%}
+.docentdeel{display:none}
+body.toon-docent .docentdeel{display:grid}
+@media print{
+  #blad-1{gap:9px}
+  #blad-1 .omslag{padding:18px 20px}
+  #blad-1 .let{padding:9px 12px;gap:4px}
+  #blad-1 .act{gap:6px;padding-bottom:9px}
+  /* blad 3 is het volst: iets krapper zodat B4 meekomt */
+  #blad-3 .veld i{height:21px}
+  #blad-3 .tab td{padding:4px 8px;font-size:12px}
+  #blad-3 td.leeg{height:25px}
+  #blad-3 .act{gap:5px;padding-bottom:8px}
+  #blad-3 .act-kop{padding:5px 12px}
+  #blad-3{gap:8px}
+  body:not(.print-docent) .docentdeel{display:none}
+  body.print-docent .studentdeel{display:none}
+  body.print-docent .docentdeel{display:block}
+  body.print-docent .docentdeel .blad:first-of-type{break-before:auto}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="hanlogo" viewBox="0 0 82 34"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></symbol></svg>
+<div class="topbar"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Praktijkopdracht 5 &middot; C-cluster</span><span class="sp"></span><span class="knoppen"><button type="button" class="pdfknop" onclick="printDeel('student')" title="Print blad 1 tot en met 4"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6V1h8v5M4 12H2V6h12v6h-2M4 9h8v6H4z"/></svg><span class="lbl">Print formulier</span></button><button type="button" class="pdfknop" onclick="printDeel('docent')" title="Print alleen het docentdeel"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6V1h8v5M4 12H2V6h12v6h-2M4 9h8v6H4z"/></svg><span class="lbl">Print docentdeel</span></button></span></div>
+
+<div class="wrap">
+<div class="studentdeel">
+<!-- ================= BLAD 1 · VOOR HET TEAM ================= -->
+<article class="blad" id="blad-1">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Goedkeuring projectopdracht &middot; C-cluster</span><span class="num">Blad 1</span></div>
+  <div class="omslag">
+    <div class="eyebrow">Formulier &middot; C-cluster</div>
+    <h1>Goedkeuring projectopdracht</h1>
+    <p class="lede">Met dit formulier beoordeelt je tutor of jullie opdracht geschikt is voor de praktijkopdracht. Bespreek het uiterlijk in week 4 met je tutor, anders start je team in week 5 niet.</p>
+    <div class="naamvelden">
+      <div class="veld"><b>Teamnummer</b><i></i></div>
+      <div class="veld"><b>Datum</b><i></i></div>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">1</span><h3>Zo werkt het</h3><span class="vorm team">Team</span></div>
+    <ol class="stappen">
+      <li><b>Vul dit formulier in.</b> Rollen en functies, geen namen; zie het kader hieronder.</li>
+      <li><b>Mail het formulier naar je opdrachtgever, met je tutor in de cc.</b> Het sjabloon staat op blad 4. Vraag je opdrachtgever om met <i>allen beantwoorden</i> te reageren vanaf het zakelijke adres.</li>
+      <li><b>Bespreek het formulier met je tutor.</b> Die heeft het dan al via de cc gezien, toetst het aan negen criteria en besluit of jullie kunnen starten.</li>
+    </ol>
+    <p class="small muted">Waarom die mail? Je tutor moet kunnen vaststellen dat de opdracht echt bestaat; dat hoort bij de examinering. Een mail van het bedrijf zelf toont dat, een ingevuld formulier niet.</p>
+  </div>
+
+  <div class="let">
+    <b>Geen namen op dit formulier</b>
+    <p>Vul overal <b>functies en rollen</b> in, geen namen van personen. Dus "teamleider magazijn", niet "Peter de Vries". Dat geldt ook voor de proceseigenaar en de betrokkenen bij het proces.</p>
+    <p>Beschrijf knelpunten, weerstand en metingen op het niveau van het proces of de afdeling. Dus "ongeveer twintig orders per week te laat", niet "medewerker X maakt de meeste fouten".</p>
+    <p class="small">Waarom: die mensen weten niet dat hun naam in een schoolopdracht terechtkomt, en voor de beoordeling is de rol genoeg. Het contactgegeven van je opdrachtgever komt via de mail binnen.</p>
+  </div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">2</span><h3>Waaraan je tutor toetst</h3></div>
+    <ul class="small">
+      <li>Eenvoudig proces of organisatievraagstuk op tactisch of operationeel niveau.</li>
+      <li>Concreet en urgent probleem, te relateren aan kwaliteit, levertijd of kosten (QDC).</li>
+      <li>De oplossing zit niet al in de opdracht.</li>
+      <li>Het proces herhaalt zich, liefst dagelijks of wekelijks, en loopt tijdens het project.</li>
+      <li>Er is urgentie en commitment; weerstand staat er expliciet in.</li>
+      <li>Data zijn beschikbaar of te verzamelen, en betrokkenen zijn beschikbaar.</li>
+    </ul>
+  </div>
+</article>
+
+<!-- ================= BLAD 2 · FORMULIER, DEEL 1 ================= -->
+<article class="blad" id="blad-2">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Goedkeuring projectopdracht &middot; C-cluster</span><span class="num">Blad 2</span></div>
+  <div class="blok"><span class="bn">Deel A</span><h2>Bedrijf en opdracht</h2></div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">A1</span><h3>Het bedrijf</h3></div>
+    <div class="tab"><table><tbody>
+      <tr><td style="width:38%">Naam bedrijf</td><td class="leeg"></td></tr>
+      <tr><td>Website</td><td class="leeg"></td></tr>
+      <tr><td>Branche</td><td class="leeg"></td></tr>
+      <tr><td>Aantal werknemers</td><td class="leeg"></td></tr>
+      <tr><td>Korte omschrijving van de organisatie</td><td class="leeg"></td></tr>
+      <tr><td>Ervaring met Lean<span class="hint">geen &middot; enige &middot; ruim</span></td><td class="leeg"></td></tr>
+      <tr><td>Functie van de opdrachtgever<span class="hint">geen naam; die staat in de bevestigingsmail</span></td><td class="leeg"></td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">A2</span><h3>Basisvraag</h3></div>
+    <p class="waarom"><b>Waarom</b>Het project in één zin. Zo merken jullie zelf of de opdracht scherp genoeg is.</p>
+    <p class="small">Begin met: <i>"Hoe zorgen we ervoor dat&hellip; [succescriterium] &hellip; door &hellip; [knelpunt uit de context weg te nemen]"</i>. Zet er geen oplossing in.</p>
+    <div class="veld"><i></i></div>
+    <div class="veld"><i></i></div>
+  </div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">A3</span><h3>Context</h3></div>
+    <p class="small">Waar heeft de klant last van, en waar de opdrachtgever? Relateer aan kwaliteit, levertijd en kosten. Hoe vaak komt het voor en hoe erg gaat het dan mis? Welke marktontwikkelingen spelen er?</p>
+    <div class="veld"><i></i></div>
+    <div class="veld"><i></i></div>
+    <div class="veld"><i></i></div>
+    <div class="veld"><i></i></div>
+    <div class="veld"><i></i></div>
+  </div>
+</article>
+
+<!-- ================= BLAD 3 · FORMULIER, DEEL 2 ================= -->
+<article class="blad" id="blad-3">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Goedkeuring projectopdracht &middot; C-cluster</span><span class="num">Blad 3</span></div>
+  <div class="blok"><span class="bn">Deel B</span><h2>Proces, betrokkenen en doelen</h2></div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">B1</span><h3>Het proces</h3></div>
+    <div class="tab"><table><tbody>
+      <tr><td style="width:38%">Naam van het proces</td><td class="leeg"></td></tr>
+      <tr><td>Startpunt en eindpunt</td><td class="leeg"></td></tr>
+      <tr><td>Globale doorlooptijd</td><td class="leeg"></td></tr>
+      <tr><td>Hoe vaak wordt het uitgevoerd<span class="hint">per dag, week of maand</span></td><td class="leeg"></td></tr>
+      <tr><td>Welk product of welke dienst</td><td class="leeg"></td></tr>
+      <tr><td>Rol van de proceseigenaar<span class="hint">wie beslist over dit proces? functie, geen naam</span></td><td class="leeg"></td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">B2</span><h3>Betrokkenen bij het proces</h3></div>
+    <p class="small">Noteer <b>functies</b>, geen namen. Wie werken in het proces, welke ondersteunende diensten raken eraan, en welke processtappen zitten ervoor en erna?</p>
+    <div class="tab"><table class="rol-tab">
+      <thead><tr><th>Functie of rol</th><th>Beschikbaar voor vragen?</th></tr></thead>
+      <tbody>
+        <tr><td class="rol leeg"></td><td><span class="keuze"><span>ja</span><span>nee</span></span></td></tr>
+        <tr><td class="rol leeg"></td><td><span class="keuze"><span>ja</span><span>nee</span></span></td></tr>
+        <tr><td class="rol leeg"></td><td><span class="keuze"><span>ja</span><span>nee</span></span></td></tr>
+        <tr><td class="rol leeg"></td><td><span class="keuze"><span>ja</span><span>nee</span></span></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">B3</span><h3>Succescriteria</h3></div>
+    <p class="small">Wanneer is het succesvol voor de klant, de organisatie en de medewerkers? Zo SMART mogelijk; een indicatie mag in deze fase.</p>
+    <div class="veld"><i></i></div>
+    <div class="veld"><i></i></div>
+  </div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">B4</span><h3>Randvoorwaarden en risico's</h3></div>
+    <p class="small">Voorwaarden aan de oplossing of aan de inzet van mensen en middelen. Lopende ontwikkelingen zoals een reorganisatie, een groot project of een ERP-implementatie. Beschikbaarheid van data. Ondervinden jullie weerstand, schrijf dat hier op.</p>
+    <div class="veld"><i></i></div>
+    <div class="veld"><i></i></div>
+    <div class="veld"><i></i></div>
+  </div>
+</article>
+
+<!-- ================= BLAD 4 · MAILSJABLOON ================= -->
+<article class="blad" id="blad-4">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Goedkeuring projectopdracht &middot; C-cluster</span><span class="num">Blad 4 &middot; mailsjabloon</span></div>
+  <div class="blok"><span class="bn">Deel C</span><h2>Vraag je opdrachtgever om een bevestiging</h2></div>
+
+  <p class="small">Stuur onderstaande mail naar je opdrachtgever en zet <b>je tutor in de cc</b>. Hang het ingevulde formulier eraan vast. Vul de stukken tussen haken in. Door de cc ziet je tutor zowel het formulier als het antwoord van je opdrachtgever.</p>
+
+  <div class="mail">
+    <div class="mail-head">
+      <div><b>Aan</b> [e-mailadres van je opdrachtgever]</div>
+      <div><b>Cc</b> [e-mailadres van je tutor]</div>
+      <div><b>Onderwerp</b> Bevestiging projectopdracht &ndash; [naam bedrijf] &ndash; team [nummer]</div>
+      <div><b>Bijlage</b> Goedkeuring projectopdracht &ndash; team [nummer].pdf</div>
+    </div>
+    <div class="mail-body">
+      <p>Beste [aanspreekvorm opdrachtgever],</p>
+      <p>Wij zijn team [nummer] van de opleiding Bedrijfskunde aan de HAN. Zoals besproken voeren wij dit semester een verbeterproject uit bij [naam bedrijf]. Onze tutor moet kunnen vaststellen dat de opdracht bij een echte organisatie plaatsvindt. Daarvoor is een korte bevestiging van u genoeg.</p>
+      <p>In de bijlage vindt u onze beschrijving van de opdracht. Onze tutor staat in de cc. Wilt u met <b>allen beantwoorden</b> reageren, <b>vanaf uw zakelijke e-mailadres</b> en met uw gebruikelijke ondertekening, en daarin bevestigen:</p>
+      <ol>
+        <li>dat [naam bedrijf] ons deze opdracht verstrekt;</li>
+        <li>om welk proces het gaat;</li>
+        <li>dat er tijd is voor vragen, gesprekken en metingen tijdens de looptijd.</li>
+      </ol>
+      <p><b>Namen van medewerkers zijn niet nodig.</b> Een functieaanduiding is genoeg, bijvoorbeeld "teamleider magazijn".</p>
+      <p>Uw bevestiging delen wij intern met het Praktijkbureau van de HAN, dat de samenwerking met bedrijven bijhoudt. Verder gebruiken wij uw gegevens alleen voor deze opdracht.</p>
+      <p>Met vriendelijke groet,<br>[namen teamleden], team [nummer]</p>
+    </div>
+  </div>
+
+  <div class="let">
+    <b>Klaar als</b>
+    <p>Je opdrachtgever heeft met <i>allen beantwoorden</i> gereageerd vanaf een zakelijk adres, zodat je tutor het antwoord ook heeft ontvangen.</p>
+  </div>
+</article>
+
+</div>
+<div class="docentdeel">
+<!-- ================= BLAD 5 · VOOR DE TUTOR ================= -->
+<article class="blad" id="blad-5">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Goedkeuring projectopdracht &middot; C-cluster</span><span class="num">Docentdeel</span></div>
+  <div class="blok"><span class="bn">Tutor</span><h2>Toetsen, besluiten, doorsturen</h2></div>
+
+  <p class="small">Het team mailt het formulier naar de opdrachtgever en zet jou in de cc. Je krijgt dus zowel het formulier als het antwoord van de opdrachtgever binnen, en je bespreekt het daarna aan tafel. Wat jij vastlegt is het besluit. De bevestiging van echtheid komt uit de mail, niet uit een veld op het formulier.</p>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">1</span><h3>Past de opdracht?</h3><span class="tijd">5 min per team</span></div>
+    <ul class="check small">
+      <li>Eenvoudig proces of organisatievraagstuk, tactisch of operationeel niveau.</li>
+      <li>Concreet en urgent probleem, te relateren aan kwaliteit, levertijd en/of kosten.</li>
+      <li>De oplossing zit niet in de opdracht ("verbeter de aanlevering&hellip;", niet "richt een kanban in").</li>
+      <li>Het proces is repeterend, liefst dagelijks of wekelijks, en loopt tijdens het project.</li>
+      <li>Voldoende urgentie en commitment; weerstand staat expliciet benoemd (B4).</li>
+      <li>Data beschikbaar of te verzamelen (B4); betrokkenen beschikbaar (B2).</li>
+      <li>Basisvraag heeft de vorm "Hoe zorgen we ervoor dat&hellip; door&hellip;" (A2).</li>
+      <li>Proces heeft een start- en eindpunt, doorlooptijd en frequentie (B1).</li>
+      <li>Succescriteria zijn zo SMART als deze fase toelaat (B3).</li>
+    </ul>
+  </div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">2</span><h3>Is de opdracht echt?</h3></div>
+    <p class="small">Je hebt het antwoord van de opdrachtgever nodig, verstuurd vanaf een zakelijk adres, met de drie bevestigingen van blad 4. Controleer:</p>
+    <ul class="check small">
+      <li>Het afzenderdomein hoort bij het bedrijf uit A1.</li>
+      <li>De ondertekening noemt een functie die past bij het verstrekken van deze opdracht.</li>
+      <li>Het genoemde proces komt overeen met B1.</li>
+    </ul>
+    <p class="small muted">Twijfel je? Mail zelf terug naar dat adres met één vraag. Bel niet: een telefoonnummer dat het team heeft aangeleverd bewijst niets, een antwoord op het bedrijfsdomein wel. Komt er geen antwoord in de cc, dan is het team niet klaar.</p>
+  </div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">3</span><h3>Wat je vastlegt</h3></div>
+    <div class="tab"><table><tbody>
+      <tr><td style="width:38%">Teamnummer</td><td class="leeg"></td></tr>
+      <tr><td>Naam bedrijf</td><td class="leeg"></td></tr>
+      <tr><td>Basisvraag in één zin</td><td class="leeg"></td></tr>
+      <tr><td>Datum besluit</td><td class="leeg"></td></tr>
+      <tr><td>Besluit</td><td><span class="keuze"><span>akkoord</span><span>akkoord onder voorwaarde</span><span>afgewezen</span></span></td></tr>
+      <tr><td>Voorwaarde of reden</td><td class="leeg"></td></tr>
+    </tbody></table></div>
+    <p class="small muted">Hier staat geen persoonsgegeven in. Een teamnummer is herleidbaar via Brightspace, een bedrijfsnaam is geen natuurlijke persoon en een basisvraag gaat over een proces.</p>
+  </div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">4</span><h3>Wat je doorstuurt, en wat je wist</h3></div>
+    <ol class="stappen small">
+      <li><b>Stuur het antwoord van de opdrachtgever door naar het Praktijkbureau.</b> Daarmee komen de contactgegevens in het CRM terecht, op de plek waar ze thuishoren. Typ ze nergens over en houd geen eigen lijst bij.</li>
+      <li><b>Bewaar je eigen kopie in één map per cohort</b>, samen met het formulier uit de cc. Je hebt ze na het doorsturen alleen nog nodig als bewijs bij de examinering.</li>
+      <li><b>Wis die map</b> zodra het cijfer definitief is en de beroepstermijn van zes weken is verstreken.</li>
+      <li><b>Komt er ongevraagd meer binnen</b> dan gevraagd, bijvoorbeeld namen van medewerkers of een organogram: leg het besluit vast en wis de mail.</li>
+    </ol>
+  </div>
+
+  <div class="let">
+    <b>Waarom er geen contactgegevens op het formulier staan</b>
+    <p>Een gegeven dat de gecontroleerde zelf invult, controleert niets: een telefoonnummer of adres dat een student intypt, is even verzinbaar als de rest van het formulier. Bewijskracht ontstaat pas bij een kanaal dat de student niet beheerst.</p>
+    <p>Daarom verhuisde de verificatie naar de mail. Naam, functie en zakelijk adres van de opdrachtgever staan in de afzender en de ondertekening, waar de opdrachtgever ze zelf heeft neergezet. Ze hoeven dus niet nog eens in een veld, en het formulier houdt geen persoonsgegevens meer over.</p>
+  </div>
+
+  <p class="small muted">Achtergrond, rechtsgronden en bewaartermijnen staan in <i>docs/superpowers/specs/2026-09-23-avg-goedkeuring-projectopdracht-design.md</i>. De rechtsgrond is daar ingevuld als taak van algemeen belang; dat is een aanname die de privacycoördinator moet bevestigen.</p>
+</article>
+
+</div>
+</div>
+
+<div class="foot"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Hogeschool van Arnhem en Nijmegen</span><span class="sp"></span><span class="num">C-cluster</span></div>
+<script>
+/* Standaard print je het formulier (blad 1-4). Met "Print docentdeel" print je blad 5. */
+function printDeel(deel){
+  const titel=document.title;
+  document.body.classList.toggle('print-docent',deel==='docent');
+  document.title=deel==='docent'?'Goedkeuring_projectopdracht_docentdeel':'Goedkeuring_projectopdracht_C-cluster';
+  window.addEventListener('afterprint',()=>{
+    document.title=titel;
+    if(location.hash!=='#docent')document.body.classList.remove('print-docent');
+  },{once:true});
+  window.print();
+}
+if(location.hash==='#docent')document.body.classList.add('toon-docent');
+</script>
+</body>
+</html>
