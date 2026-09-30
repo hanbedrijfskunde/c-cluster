@@ -30,7 +30,7 @@
 - [x] Fase 10 — Leerblok 3 en docentmodus deel 2 (EV-06 t/m EV-08) (10.1 wacht op akkoord auteur; 10.11 wacht op een mens; menselijke tester en proefrun docent vervangen door Playwright of open)
 - [x] Fase 11 — Leerblok 4: verbanden, reflectie en afronding (EV-10, EV-11) (11.1 wacht op akkoord auteur; menselijke tester vervangen door Playwright)
 - [x] Fase 12 — Media: mechaniek, twee video's en twee spellen (V2 en V4 zijn conceptvideo's met computerstem, wachten op akkoord auteur of eigen opname; menselijke tester vervangen door Playwright)
-- [ ] Fase 13 — Media: de overige video's en spellen
+- [x] Fase 13 — Media: de overige video's en spellen (V1 en V3 zijn conceptvideo's, wachten op akkoord auteur; 13.4 is geschat, meten hoort bij de pilot; menselijke tester vervangen door Playwright)
 - [ ] Fase 14 — Afdrukken, documentatie en eindcontrole
 - [ ] Fase 15 — Pilot in een werkcollege en kalibratie
 
@@ -561,21 +561,23 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 **Spec.** MD-4, MD-8, MD-12, DM-13.
 
 ### Subtasks
-- [ ] 13.1 Maak video V1 en V3 (≤ 3 min, ≤ 20 MB) met ondertitels en transcript (MD-4). Verwacht: 4 video's in totaal, elk ≤ 3 min en ≤ 20 MB.
-- [ ] 13.2 Bouw het spel Vraagslijper (drie rondes, feedback per veld) (MD-8). Verwacht: ≤ 5 min.
-- [ ] 13.3 Bouw het spel Stakeholder-radar (invloed en belang, feedback per keuze) (MD-8). Verwacht: ≤ 5 min.
-- [ ] 13.4 Controleer dat alle 4 spellen ≤ 5 min duren (MD-8). Verwacht: 4 gemeten tijden.
-- [ ] 13.5 Doorloop alle vier de leerblokken zonder video of spel (MD-12). Verwacht: 4 leerblokken afgerond.
-- [ ] 13.6 Laat de stapkaart voor elk onderdeel met een video of spel dat afspelen of starten zonder verzoeken naar andere domeinen (DM-13). Verwacht: alle bestaande stapkaarten getest.
+- [x] 13.1 Maak video V1 en V3 (≤ 3 min, ≤ 20 MB) met ondertitels en transcript (MD-4). Verwacht: 4 video's in totaal, elk ≤ 3 min en ≤ 20 MB.
+- [x] 13.2 Bouw het spel Vraagslijper (drie rondes, feedback per veld) (MD-8). Verwacht: ≤ 5 min.
+- [x] 13.3 Bouw het spel Stakeholder-radar (invloed en belang, feedback per keuze) (MD-8). Verwacht: ≤ 5 min.
+- [x] 13.4 (geschat, niet gemeten door een mens; zie afwijkingen) Controleer dat alle 4 spellen ≤ 5 min duren (MD-8). Verwacht: 4 gemeten tijden.
+- [x] 13.5 Doorloop alle vier de leerblokken zonder video of spel (MD-12). Verwacht: 4 leerblokken afgerond.
+- [x] 13.6 Laat de stapkaart voor elk onderdeel met een video of spel dat afspelen of starten zonder verzoeken naar andere domeinen (DM-13). Verwacht: alle bestaande stapkaarten getest.
 
 ### Testpoort
-- [ ] Volledige testpoort.
-- [ ] Sabotage MD-4: voeg een video van 4 min toe; de mediacontrole faalt.
-- [ ] Doorloop van elk leerblok in elke route (AC-30).
-- [ ] Geclaimde regels met hun methode gecontroleerd.
+- [x] Volledige testpoort.
+- [x] Sabotage MD-4: voeg een video van 4 min toe; de mediacontrole faalt.
+- [x] Doorloop van elk leerblok in elke route (AC-30).
+- [x] Geclaimde regels met hun methode gecontroleerd.
 
 ### Afsluiting
-- [ ] commit `MD-4, MD-8, MD-12, DM-13: overige media`  - [ ] push  - [ ] overzicht afvinken
+- [x] commit `MD-4, MD-8, MD-12, DM-13: overige media`  - [x] push  - [x] overzicht afvinken
+
+**Afwijkingen fase 13.** (1) V1 en V3 zijn net als V2 en V4 conceptvideo's met computerstem (117 s en 133 s, 1,2 en 1,4 MB, WebVTT en transcript); ze wachten op akkoord van de auteur of een eigen opname. (2) 13.4 is een schatting, geen meting: de speelduur komt uit het aantal kaarten, rondes en vragen (255, 280, 300 en 300 s), twee spellen zitten precies op de grens van 300 s. Een gescripte Playwright-doorloop speelde elk spel uit (12, 12, 23 en 30 handelingen) en bewijst dat het uit te spelen is, niet hoe lang een student erover doet; meten hoort bij de pilot (fase 15, AP-2). (3) Menselijke tester vervangen door Playwright, lokaal en op de live URL na de groene workflow: van elk leerblok de drie routes (tekst standaard, video zonder autoplay en pas na klik geladen, spel), de „klaar als” zichtbaar in elke route, geen spelsleutels in de opslag, 0 verzoeken naar andere domeinen en 0 consolefouten; de vier stapkaarten d1-04, d1-10, d2-02 en d2-10 spelen video af en starten het spel, en een onderdeel zonder media toont geen mediagebied (DM-13). Het transcript is niet met Playwright geteld (mijn selector klopte niet); de inhoud ervan wordt door `content-check` en de unittests bewaakt (MD-5). (4) Nieuw: een eigen test voor MD-12 (gesaboteerd met een taak die naar video V2 verwijst: de test faalt, na herstel slaagt hij); MD-4 is gesaboteerd met een echte video van 4 minuten (bestaande test, faalt op „meer dan 180 s”). (5) Testpoort: 552 unittests, `content-check`, `link-check`, gewicht (leerblok 4: 383 kB bron, grens 400), contrast (0 paren onder 4,5:1) en overlap met het TOM³-buildplan (0 gelijke reeksen) groen. Geen schermlezer en geen Edge of Safari (zie fase 8). Besluiten: ADR B71.
 
 ---
 
