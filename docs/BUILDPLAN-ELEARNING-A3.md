@@ -27,7 +27,7 @@
 - [x] Fase 7 — Terugblik en werken met tussenpozen
 - [x] Fase 8 — Huisstijl, toegankelijkheid, responsive en offline (PF-2 alleen Chromium, Firefox en WebKit via Playwright; 8.9 wacht op een mens met Edge en Safari)
 - [x] Fase 9 — Docentmodus: mechaniek en deel 1 (proefrun en leesbaarheid achterste rij wachten op een mens)
-- [ ] Fase 10 — Leerblok 3 en docentmodus deel 2 (EV-06 t/m EV-08)
+- [x] Fase 10 — Leerblok 3 en docentmodus deel 2 (EV-06 t/m EV-08) (10.1 wacht op akkoord auteur; 10.11 wacht op een mens; menselijke tester en proefrun docent vervangen door Playwright of open)
 - [ ] Fase 11 — Leerblok 4: verbanden, reflectie en afronding (EV-10, EV-11)
 - [ ] Fase 12 — Media: mechaniek, twee video's en twee spellen
 - [ ] Fase 13 — Media: de overige video's en spellen
@@ -457,27 +457,29 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 **Spec.** LB-9…LB-13, EV-06, EV-07, EV-08, DM-18, LI-3.
 
 ### Subtasks
-- [ ] 10.1 Vul `data/leerblok-3.json` met taken 5.1, 6.1, 7.1, 8.1, 9.1, 9.2; ontbrekende „Waarom" en „Klaar als" door de auteur laten goedkeuren (TK-2). Verwacht: 6 taken volledig.
-- [ ] 10.2 Schrijf `js/checks/lb3.js` met de controles van EV-06, EV-07, EV-08. Verwacht: 3 goede en 3 zwakke voorbeelden per controle.
-- [ ] 10.3 Bouw de stakeholdertabel met automatisch raster (LB-9). Verwacht: 4 kwadranten, ≥ 5 stakeholders getekend.
-- [ ] 10.4 Bouw de checklists en foto-vinkjes voor de vier producten (LB-10). Verwacht: 4 producten, 4 vinkjes.
-- [ ] 10.5 Bouw het TOM-model V1 volgens TOM³ met 3 lagen × 4 kolommen = 12 cellen (LB-11) met een eigen samenvatting en bronvermelding als „ongepubliceerd document" (LI-3, BR-3). Verwacht: 12 cellen; 0 zinnen ≥ 8 woorden gelijk aan de bron (Analyse).
-- [ ] 10.6 Bouw het feit/aanname-register met koppeling aan een zoekvraag en aan een VPC/BMC/TOM-onderdeel (LB-12). Verwacht: ≥ 3 beweringen met 3 velden.
-- [ ] 10.7 Bouw de conclusies met controle tegen de stakeholderlijst en de herziene onderzoeksvraag (LB-13). Verwacht: 3 conclusies, 1 herziene vraag.
-- [ ] 10.8 Voeg de samenhangcontroles EV-01→EV-06, EV-07→EV-02 en EV-08→EV-06 toe aan `checks/lb3.js` (deel van BW-10). Verwacht: 3 testen groen.
-- [ ] 10.9 Voeg `data/bronnen-3.json` toe (VPC, BMC, TOM³-verwijzing). Verwacht: `content-check` groen op wezen.
-- [ ] 10.10 Vul `data/docent-deel2.json` met de 8 onderdelen en 3 pauzes van deel 2 uit LRD 8.2 (DM-18). Verwacht: 19 onderdelen in totaal met deel 1 (11 + 8), plus 3 pauzes.
-- [ ] 10.11 Verifieer met de auteur dat het college hetzelfde TOM-model gebruikt als de opdrachtomschrijving en vraag bij Westmoreland de publicatiegegevens (open punt A-1). Verwacht: antwoord of een expliciet uitstel, vastgelegd in ADR.
+- [ ] 10.1 (concept, wacht op akkoord auteur: 9 van de 12 „Waarom” en „Klaar als” zijn geschreven door de bouwer, bron `concept-auteur`; de andere komen uit het werkboek) Vul `data/leerblok-3.json` met taken 5.1, 6.1, 7.1, 8.1, 9.1, 9.2; ontbrekende „Waarom" en „Klaar als" door de auteur laten goedkeuren (TK-2). Verwacht: 6 taken volledig.
+- [x] 10.2 Schrijf `js/checks/lb3.js` met de controles van EV-06, EV-07, EV-08. Verwacht: 3 goede en 3 zwakke voorbeelden per controle.
+- [x] 10.3 Bouw de stakeholdertabel met automatisch raster (LB-9). Verwacht: 4 kwadranten, ≥ 5 stakeholders getekend.
+- [x] 10.4 Bouw de checklists en foto-vinkjes voor de vier producten (LB-10). Verwacht: 4 producten, 4 vinkjes.
+- [x] 10.5 Bouw het TOM-model V1 volgens TOM³ met 3 lagen × 4 kolommen = 12 cellen (LB-11) met een eigen samenvatting en bronvermelding als „ongepubliceerd document" (LI-3, BR-3). Verwacht: 12 cellen; 0 zinnen ≥ 8 woorden gelijk aan de bron (Analyse).
+- [x] 10.6 Bouw het feit/aanname-register met koppeling aan een zoekvraag en aan een VPC/BMC/TOM-onderdeel (LB-12). Verwacht: ≥ 3 beweringen met 3 velden.
+- [x] 10.7 Bouw de conclusies met controle tegen de stakeholderlijst en de herziene onderzoeksvraag (LB-13). Verwacht: 3 conclusies, 1 herziene vraag.
+- [x] 10.8 Voeg de samenhangcontroles EV-01→EV-06, EV-07→EV-02 en EV-08→EV-06 toe aan `checks/lb3.js` (deel van BW-10). Verwacht: 3 testen groen.
+- [x] 10.9 Voeg `data/bronnen-3.json` toe (VPC, BMC, TOM³-verwijzing). Verwacht: `content-check` groen op wezen.
+- [x] 10.10 Vul `data/docent-deel2.json` met de 8 onderdelen en 3 pauzes van deel 2 uit LRD 8.2 (DM-18). Verwacht: 19 onderdelen in totaal met deel 1 (11 + 8), plus 3 pauzes.
+- [ ] 10.11 (wacht op mens; expliciet uitgesteld in ADR B68) Verifieer met de auteur dat het college hetzelfde TOM-model gebruikt als de opdrachtomschrijving en vraag bij Westmoreland de publicatiegegevens (open punt A-1). Verwacht: antwoord of een expliciet uitstel, vastgelegd in ADR.
 
 ### Testpoort
-- [ ] Volledige testpoort.
-- [ ] Sabotage EV-06: haal de gebruiker uit EV-01 uit de stakeholderlijst; de samenhangcontrole faalt.
-- [ ] Tester doorloopt leerblok 3 op een eigen vraagstuk.
-- [ ] Docent leidt een proefrun van deel 2.
-- [ ] Geclaimde regels met hun methode gecontroleerd.
+- [x] Volledige testpoort (453 tests, content-check, link-check, gewichtscontrole, gepubliceerde site zonder consolefout en met 0 verzoeken naar andere domeinen; Lighthouse toegankelijkheid 100 op leerblok-3.html).
+- [x] Sabotage EV-06: haal de gebruiker uit EV-01 uit de stakeholderlijst; de samenhangcontrole faalt.
+- [x] Tester doorloopt leerblok 3 op een eigen vraagstuk (vervangen door Playwright: lokaal en op de gepubliceerde site; alle drie de onderdelen Compleet; geen mens).
+- [ ] (wacht op mens) Docent leidt een proefrun van deel 2. (Mechaniek met Playwright en `page.clock` gecontroleerd: klok, pauzes, gallery walk van 2 × 4 + 2 min.)
+- [x] Geclaimde regels met hun methode gecontroleerd.
 
 ### Afsluiting
-- [ ] commit `LB-9…LB-13, EV-06…EV-08, DM-18: leerblok 3 en docentmodus deel 2`  - [ ] push  - [ ] overzicht afvinken
+- [x] commit `LB-9…LB-13, EV-06…EV-08, DM-18: leerblok 3 en docentmodus deel 2` (9e8ed91)  - [x] push  - [x] overzicht afvinken
+
+**Afwijkingen fase 10.** (1) Een record hoort bij één taak: EV-07 staat op 8.1 (register en TOM-model) en EV-08 op 9.2 (conclusies van 9.1 via `afgeleidVan`); 6.1, 7.1 en 9.1 hebben geen eigen bewijsonderdeel. Het register is één register bij 8.1 (ADR B68). (2) 10.1 en de inhoud van de onderdelen van deel 2 zijn deels concept van de bouwer (85 waarschuwingen in `content-check`). (3) 10.11 (A-1) is niet uitgevoerd en uitgesteld. (4) Menselijke tester en proefrun docent zijn vervangen door Playwright; de proefrun blijft open. Geen schermlezer gebruikt. (5) De werkboektijden van de zes taken tellen op tot 105 min terwijl het leerblok 45 min heet (ADR B68, kalibreren in fase 15). (6) De herhaling van VPC en BMC (5 min) zit in de onderdelen 6.1 en 7.1 van deel 2 (25 min); 9.1 en 9.2 zijn één onderdeel. (7) PF-4 paste niet: `js/blok.js` (herhaalde velden als `reeks`), `wissel-paneel.js` dynamisch en alleen bij leerblok 1 en 4, en `gewicht-check` telt alleen het vorige leerblok en kent `// gewicht-alleen: wissel`. Leerblok 3 weegt 297,7 kB; fase 11 en 12 hebben geen ruimte meer op de leerblokpagina's. (8) `js/leerblok-stub.js` is verwijderd; `tests/bronnen.test.mjs`, `toegankelijk.test.mjs`, `terugblik.test.mjs` en `werkboek.test.mjs` zijn aangepast; drie bronnen (VPC, sjabloon, TOM³) zijn van `wachtOpCitatie` in bronnen-1 naar bronnen-3 verhuisd en BMC (Osterwalder & Pigneur, 2010) is toegevoegd, wachtend op akkoord. (9) Sabotage: 27 mutaties in nieuwe code en data, 25 braken minstens één test; twee overleefden eerst (de helft-van-de-woorden-grens in de naamvergelijking en het opnieuw tekenen van het raster) en kregen een test; alle nieuwe tests zijn minstens eenmaal gebroken en hersteld. (10) LI-3: 0 reeksen van 8 woorden of meer gelijk aan het TOM³-buildplan, het dashboard, de Bureau Tromp-transcriptie en de Atlassian-pagina in lits/ (`tools/overlap-check.mjs`). Besluiten: ADR B68.
 
 ---
 
