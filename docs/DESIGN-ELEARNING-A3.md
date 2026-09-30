@@ -4,7 +4,7 @@ Ontwerprichtlijn voor de studentkant van `hanbedrijfskunde/a3-learning`. Gebasee
 
 Dit document beschrijft **hoe de site moet voelen en werken**. De bestaande eisen blijven gelden: toegankelijkheid (TG-*), privacy (PR-*), gewicht (PF-4), geen score of ranglijst (BW-4, X-3) en modelantwoord pas na eigen poging (TK-6).
 
-Het toetsbare deel van deze richtlijn staat als SX-1 t/m SX-14 in [BLUEPRINT-ELEARNING-A3.md](BLUEPRINT-ELEARNING-A3.md) §6.17; bij verschil gaat het blueprint voor. De besluiten staan in [ADR-ELEARNING-A3.md](ADR-ELEARNING-A3.md) B73 t/m B81, de bouwvolgorde in [BUILDPLAN-ELEARNING-A3.md](BUILDPLAN-ELEARNING-A3.md) fase 16 t/m 19.
+Het toetsbare deel van deze richtlijn staat als SX-1 t/m SX-16 in [BLUEPRINT-ELEARNING-A3.md](BLUEPRINT-ELEARNING-A3.md) §6.17; bij verschil gaat het blueprint voor. De besluiten staan in [ADR-ELEARNING-A3.md](ADR-ELEARNING-A3.md) B73 t/m B81, de bouwvolgorde in [BUILDPLAN-ELEARNING-A3.md](BUILDPLAN-ELEARNING-A3.md) fase 16 t/m 19.
 
 ---
 
@@ -23,6 +23,7 @@ De inhoud en didactiek zijn sterk. Het probleem zit in structuur, tempo en feedb
 5. **Harde schaduw = aantikbaar.** De 3D-schaduw van 3–5 px staat alleen op knoppen en kaarten die je kunt aantikken. Informatie krijgt een rand of vlak, geen schaduw.
 6. **Mobiel eerst.** Ontwerp vanaf 360 px. Het bureaublad krijgt een tweede kolom, geen extra inhoud.
 7. **Eerlijk benoemen.** Is iets een formulier met keuzes, noem het dan geen „spel”. Wil het „spel” heten, dan moet het ook als spel werken (zie §7.4).
+8. **Een model staat in beeld én in tekst.** Een model is alles met een ruimtelijke vorm: assen, vakken of lagen (invloed/belang-raster, VPC, BMC, TOM³, six capitals, het A3-vel). Waar de stof een model noemt, staat de figuur erbij, en de tekst ernaast legt hem uit. Een voorbeeld staat ín die figuur; een opdracht met een model laat de student in de figuur werken, niet in een tabel ernaast (SX-15, ADR B92 en B95). Een lijst of ezelsbruggetje (AAOCC, STARR, 3xC) is geen model.
 
 ## 3. Tokens
 
@@ -219,6 +220,36 @@ Voor het terugzetten van een dossier (dossier, terugblik) en het inlezen op de v
 - Na de keuze een derde regel in het vet: „Gekozen: ‹bestandsnaam›”, of „Gekozen: 3 bestanden”. Is het geen .json, dan staat daar in `--fout`: „Dat is geen .json-bestand. Kies een dossierbestand.” De uitkomst van het inlezen staat onder de knop, zoals nu.
 - Toestanden: hover `--grijs` en het vierkant wordt `--accent`; slepen: `--roze` vlak, rand gestreept, vierkant `--accent`; indrukken als elke knop; focus: de focusrand van 4 px om de hele knop.
 - Onder de motorkap blijft het echte `<input type="file">` staan, onzichtbaar (`sr-only`) maar focusbaar, in het `<label>`. Toetsenbord, schermlezer en de bestandskiezer van de telefoon werken zo zonder extra ARIA.
+
+### Stakeholderbord
+
+Het invloed/belang-raster als figuur én als invoer (SX-16, ADR B96). Eén component op vier plekken bij taak 5.1: leeg als model in de stof, met het voorbeeld (controller en accountant) in de tekstroute, als modelantwoord (webshop X), en als werkblad bij oefenen en toepassen.
+
+```
+ Nog te plaatsen:  [Klanten · ext]  [+ Stakeholder toevoegen      ]
+          INVLOED ↑ hoog
+ ┌────────────────────────┬────────────────────────┐
+ │ TEVREDEN HOUDEN        │ NAUW BETREKKEN   (roze)│
+ │ [Accountant · ext]     │ [■ Controller · int]   │
+ │                   ┌────┴─────┐                  │
+ ├───────────────────┤vraagstuk ├──────────────────┤
+ │                   └────┬─────┘                  │
+ │ VOLGEN                 │ OP DE HOOGTE HOUDEN    │
+ └────────────────────────┴────────────────────────┘
+   laag                  BELANG →               hoog
+```
+
+- **Assen**: invloed verticaal (hoog boven), belang horizontaal (hoog rechts), met pijl en label. Vakken met 3 px rand; „Nauw betrekken” in `--roze`. Vaklabel als eyebrow (12 px, kapitalen).
+- **Midden**: het vraagstuk als zwart label met witte tekst op het kruispunt van de assen, zoals op vel 1 van het werkboek. Leeg vraagstuk: „Je vraagstuk”, gestippeld.
+- **Kaart**: naam plus „int” of „ext”. Intern is een zwart vlak met witte tekst, extern wit met zwarte rand. Status nooit alleen in vorm of kleur: de afkorting staat er altijd bij (TG-4). Tikbaar, dus `3px 3px 0` schaduw.
+- **Bak** („Nog te plaatsen”) boven het raster, met het invoerveld „Stakeholder toevoegen” (Enter maakt een kaart). Bij toepassen staat de gebruiker uit leerblok 1 er als voorstel in, met de tekst „uit je onderzoeksvraag”. De student plaatst hem zelf, of haalt hem weg.
+- **Plaatsen**: slepen naar een vak (muis en aanraking), of tik op de kaart en tik op een vak. Een opgepakte kaart krijgt een `--accent`-rand en de vakken tonen „Zet hier”. Toetsenbord: Enter pakt op, pijltjes verplaatsen (↑ meer invloed, → meer belang), Enter of Escape zet neer.
+- **Details**: tik op een geplaatste kaart; onder het raster opent een paneel met naam, intern/extern (twee knoppen), „Hoe raakt het vraagstuk deze stakeholder?”, „Terug naar de bak” en „Verwijderen”. Geen popover: het paneel blijft in de leesvolgorde.
+- **Maximaal 7** stakeholders (de rijen van het dossier). Bij 7 verdwijnt het invoerveld met de melding „Het bord is vol (7).”
+- **Mobiel**: het raster blijft 2 × 2, ook op 360 px; kaarten tonen dan alleen naam en afkorting, 13 px.
+- **Tekstweergave**: onder het raster een `<details>` „Het bord in tekst”, één zin per stakeholder (bestaand, `rasterTekst`), en een `role="status"`-regel die na elke zet zegt wat er gebeurde: „Klantenservice staat nu bij Op de hoogte houden.”
+- **Vast bord** (stof, voorbeeld, modelantwoord): zelfde tekening, geen bak, geen invoer, kaarten niet tikbaar (geen schaduw).
+- De gegevens blijven de velden `s1naam` … `s7belang`: dossier, controles, export en verificatie merken niets van het bord.
 
 ### Fieldset / keuzes
 
