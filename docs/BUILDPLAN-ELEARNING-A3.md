@@ -29,7 +29,7 @@
 - [x] Fase 9 — Docentmodus: mechaniek en deel 1 (proefrun en leesbaarheid achterste rij wachten op een mens)
 - [x] Fase 10 — Leerblok 3 en docentmodus deel 2 (EV-06 t/m EV-08) (10.1 wacht op akkoord auteur; 10.11 wacht op een mens; menselijke tester en proefrun docent vervangen door Playwright of open)
 - [x] Fase 11 — Leerblok 4: verbanden, reflectie en afronding (EV-10, EV-11) (11.1 wacht op akkoord auteur; menselijke tester vervangen door Playwright)
-- [ ] Fase 12 — Media: mechaniek, twee video's en twee spellen
+- [x] Fase 12 — Media: mechaniek, twee video's en twee spellen (V2 en V4 zijn conceptvideo's met computerstem, wachten op akkoord auteur of eigen opname; menselijke tester vervangen door Playwright)
 - [ ] Fase 13 — Media: de overige video's en spellen
 - [ ] Fase 14 — Afdrukken, documentatie en eindcontrole
 - [ ] Fase 15 — Pilot in een werkcollege en kalibratie
@@ -529,26 +529,28 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 **Spec.** MD-1, MD-2, MD-3, MD-5, MD-6, MD-7, MD-9, MD-10, MD-11, MD-13, MD-14, MD-15, MD-16.
 
 ### Subtasks
-- [ ] 12.1 Schrijf `js/media.js`: tekst als standaard, twee kleine knoppen, laatste keuze onthouden (MD-2). Verwacht: 3 routes met dezelfde „klaar als".
-- [ ] 12.2 Schrijf de uitlegteksten (≤ 300 woorden) voor leerblok 2 en 4 met voorbeeld en modelantwoord (MD-3). Verwacht: ≤ 300 woorden per leerblok.
-- [ ] 12.3 Bouw het spel Bronnen-detective (zes fictieve bronkaarten, feedback per keuze, toetsenbord, tekstversie, geen score) (MD-9, MD-10, MD-13, MD-15). Verwacht: 0 muisacties voor een volledige doorloop; 100 % fictieve kaarten gemarkeerd.
-- [ ] 12.4 Bouw de simulatie Waarde-simulator (drie beslissingen, voorspellen, effect op zes kapitalen) met dezelfde eisen (MD-9, MD-10, MD-13). Verwacht: 1 tekstversie, feedback per keuze.
-- [ ] 12.5 Maak video V2 en V4 (≤ 3 min, ≤ 20 MB) met ondertitels (WebVTT) en transcript, zonder autoplay, laden na klik, op dezelfde site (MD-5, MD-6, MD-7). Verwacht: 2 hulpmiddelen per video; 0 verzoeken naar andere domeinen bij afspelen.
-- [ ] 12.6 Zorg dat geen spel of simulatie bewijs oplevert (MD-11). Verwacht: 0 bewijsrecords uit een spel.
-- [ ] 12.7 Plaats video's van derden als gewone link (MD-14). Verwacht: 0 ingebedde frames.
-- [ ] 12.8 Laat de docentmodus video en spel starten vanaf de stapkaart (DM-13 komt in fase 13 af voor alle vier). Verwacht: 2 stapkaarten spelen af zonder verzoeken naar andere domeinen.
-- [ ] 12.9 Toon in leerblok 1 twee kijktips als gewone link, met bron, duur en taal: Bureau Tromp (4:38, Nederlands) als instap en het MIT OpenCourseWare-fragment 0:44 tot 4:09 (Engels) als verdieping. Zet de gegevens in de datafile van leerblok 1 (MD-16, MD-14). Verwacht: 2 links, 2 van 2 met duur en taal, 0 ingebedde frames.
+- [x] 12.1 Schrijf `js/media.js`: tekst als standaard, twee kleine knoppen, laatste keuze onthouden (MD-2). Verwacht: 3 routes met dezelfde „klaar als".
+- [x] 12.2 Schrijf de uitlegteksten (≤ 300 woorden) voor leerblok 2 en 4 met voorbeeld en modelantwoord (MD-3). Verwacht: ≤ 300 woorden per leerblok.
+- [x] 12.3 Bouw het spel Bronnen-detective (zes fictieve bronkaarten, feedback per keuze, toetsenbord, tekstversie, geen score) (MD-9, MD-10, MD-13, MD-15). Verwacht: 0 muisacties voor een volledige doorloop; 100 % fictieve kaarten gemarkeerd.
+- [x] 12.4 Bouw de simulatie Waarde-simulator (drie beslissingen, voorspellen, effect op zes kapitalen) met dezelfde eisen (MD-9, MD-10, MD-13). Verwacht: 1 tekstversie, feedback per keuze.
+- [x] 12.5 Maak video V2 en V4 (≤ 3 min, ≤ 20 MB) met ondertitels (WebVTT) en transcript, zonder autoplay, laden na klik, op dezelfde site (MD-5, MD-6, MD-7). Verwacht: 2 hulpmiddelen per video; 0 verzoeken naar andere domeinen bij afspelen.
+- [x] 12.6 Zorg dat geen spel of simulatie bewijs oplevert (MD-11). Verwacht: 0 bewijsrecords uit een spel.
+- [x] 12.7 Plaats video's van derden als gewone link (MD-14). Verwacht: 0 ingebedde frames.
+- [x] 12.8 Laat de docentmodus video en spel starten vanaf de stapkaart (DM-13 komt in fase 13 af voor alle vier). Verwacht: 2 stapkaarten spelen af zonder verzoeken naar andere domeinen.
+- [x] 12.9 Toon in leerblok 1 twee kijktips als gewone link, met bron, duur en taal: Bureau Tromp (4:38, Nederlands) als instap en het MIT OpenCourseWare-fragment 0:44 tot 4:09 (Engels) als verdieping. Zet de gegevens in de datafile van leerblok 1 (MD-16, MD-14). Verwacht: 2 links, 2 van 2 met duur en taal, 0 ingebedde frames.
 
 ### Testpoort
-- [ ] Volledige testpoort.
-- [ ] Sabotage MD-6: zet autoplay aan; de test faalt.
-- [ ] Sabotage MD-11: laat een spel een bewijsrecord schrijven; de test faalt.
-- [ ] Netwerktrace tijdens afspelen: 0 verzoeken naar andere domeinen (MD-7).
-- [ ] Toetsenbordtest en tekstversie per spel.
-- [ ] Geclaimde regels met hun methode gecontroleerd.
+- [x] Volledige testpoort.
+- [x] Sabotage MD-6: zet autoplay aan; de test faalt.
+- [x] Sabotage MD-11: laat een spel een bewijsrecord schrijven; de test faalt.
+- [x] Netwerktrace tijdens afspelen: 0 verzoeken naar andere domeinen (MD-7).
+- [x] Toetsenbordtest en tekstversie per spel.
+- [x] Geclaimde regels met hun methode gecontroleerd.
 
 ### Afsluiting
-- [ ] commit `MD-1…MD-16 (deel): mediamechaniek, V2, V4, Bronnen-detective, Waarde-simulator, kijktips`  - [ ] push  - [ ] overzicht afvinken
+- [x] commit `MD-1…MD-16 (deel): mediamechaniek, V2, V4, Bronnen-detective, Waarde-simulator, kijktips`  - [x] push  - [x] overzicht afvinken
+
+**Afwijkingen fase 12.** (1) V2 en V4 zijn zelf gemaakt als eerlijk gemarkeerde conceptvideo's (computerstem Xander via macOS `say`, tekstdia's, ffmpeg): 114 s en 127 s, 1,1 en 1,3 MB, WebVTT en transcript. Ze zijn geen opname van de auteur; 12.5 is dus technisch af maar inhoudelijk een concept dat wacht op akkoord (of een eigen opname). `tools/maak-video.mjs` is tooling in `tools/` (SI-5 noemt tools/ niet; de map bestaat al met de controles) en de uitzondering staat in ADR B70. (2) De uitleg (MD-3) staat als `media.uitleg` (≤ 300 woorden: 205 en 237) naast de bestaande stof van de taken, niet in plaats ervan; de bestaande stof (463 woorden in leerblok 2) blijft staan, omdat de tekstroute volledig moet blijven (MD-12). Het modelantwoord in de tekstroute is verborgen tot een eigen poging (TK-6); in de video komt het na de aanwijzing „pauzeer en doe eerst zelf”. (3) De simulator laat de voorspelling alleen voor de lange termijn doen (per kapitaal geen, input, plus, min); het effect toont alle drie de termijnen. Het LRD noemt voorspelling op drie termijnen; dat is bewust vereenvoudigd (KISS, ≤ 5 min). De speelduur is geschat (40 s per kaart, 90 s per beslissing), niet gemeten; meten is 13.4. (4) Video en spel op de stapkaart: d1-10 (Bronnen beoordelen, V2 en Bronnen-detective) en d2-10 (Eerste conclusies, V4 en Waarde-simulator); 9.4 staat niet in het programma van woensdag, dus V4 hangt aan het onderdeel dat het dichtst bij de synthese ligt. `docent.html` kreeg `media-src 'self'` in de CSP. (5) Kijktips: URL's uit B60 met curl gecontroleerd (HTTP 200, oEmbed-titels kloppen: „Wat is de A3 verbetermethode?” en „Ses. 3-4: A3 Thinking”); duren (4:38 en fragment 0:44 tot 4:09) komen uit B60/LRD en zijn niet te verifiëren zonder de video te kijken. Bureau Tromp en MIT OCW zijn van `wachtOpCitatie` naar bronnen-1 verhuisd. (6) `content-check` kreeg `controleerMedia` (uitleg, transcript gelijk aan de uitleg, video- en spelbestanden, kijktips, docentveld) en scant `spellen/*.json` op verwijzingen (BR-5); `gewicht-check` kent de voorwaarde `media`. Leerblok 4 weegt 367 kB bron (grens 400) en 119 kB gzip. (7) Sabotage: 14 mutaties (autoplay, preload, spel schrijft record, spel importeert store, score, niet fictief, extern adres, iframe, muisgebeurtenis, standaardroute, metadata, docent-media, uitleg > 300 woorden); alle braken minstens één test, één (extern adres) pas nadat het commentaarfilter in de test was verbeterd. Niet gesaboteerd: MD-4 met een echte video van 4 minuten (fase 13). (8) Menselijke tester vervangen door Playwright (lokaal en live): drie routes, spel met alleen toetsenbord (keuzelijst met typen van de eerste letter, omdat pijltjes in een keuzelijst op macOS het menu openen), 0 verzoeken naar andere domeinen tijdens afspelen (Chromium), 0 `<video>` vóór de klik, 0 bewijsrecords na spelen. Lighthouse toegankelijkheid: 100 (leerblok 1 en 2) en 99 (leerblok 4). Geen schermlezer. Opgemerkt en niet van deze fase: `docent.html` toont een CSP-melding over inline `style` op het logo-symbool (fase 8). Besluiten: ADR B70.
 
 ---
 
