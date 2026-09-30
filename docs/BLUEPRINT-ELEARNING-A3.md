@@ -1,6 +1,6 @@
 # BLUEPRINT — Hybride e-learning A3 met automatisch bewijs
 
-> Afgeleid van `docs/LRD-ELEARNING-A3.html` (LRD versie 0.14, 30 september 2026). Dit document beschrijft de doelsituatie van het product: geen bouwvolgorde, geen fasering, geen voortgang. Bouwvolgorde en voortgang staan in het bouwplan (`BUILDPLAN-ELEARNING-A3.md`). Pedagogische onderbouwing en risico's blijven in het LRD; het besluitenregister (B1–B59) staat in `docs/ADR-ELEARNING-A3.md`; regels hier verwijzen daar niet naartoe maar zijn zelfstandig toetsbaar. Bijlage A koppelt elke LRD-eis aan de regels hieronder.
+> Afgeleid van `docs/LRD-ELEARNING-A3.html` (LRD versie 0.14, 30 september 2026). Dit document beschrijft de doelsituatie van het product: geen bouwvolgorde, geen fasering, geen voortgang. Bouwvolgorde en voortgang staan in het bouwplan (`BUILDPLAN-ELEARNING-A3.md`). Pedagogische onderbouwing en risico's blijven in het LRD; het besluitenregister (B1–B60) staat in `docs/ADR-ELEARNING-A3.md`; regels hier verwijzen daar niet naartoe maar zijn zelfstandig toetsbaar. Bijlage A koppelt elke LRD-eis aan de regels hieronder.
 
 **Lezen.** Elke regel heeft een ID (prefix per onderwerp), een verplichtingsniveau (Must, Should, Could), een criterium met getal en eenheid, en een verificatiemethode (Test, Demonstratie, Inspectie, Analyse). „Moet" is de verplichting van het product, niet de volgorde van het werk. De statusnamen Compleet, Bijna en „Nog niet" zijn productterm en geen voortgangstaal.
 
@@ -527,6 +527,8 @@ Volledige APA-vermeldingen staan in het LRD, Bijlage A. Hier alleen de bronnen w
 
 - Anderson, L. W. & Krathwohl, D. R. (Red.). (2001). *A taxonomy for learning, teaching, and assessing*. Longman. (§4.1)
 - Biggs, J. & Tang, C. (2011). *Teaching for quality learning at university* (4e ed.). Open University Press. (§2)
+- Bureau Tromp. (2023, 9 februari). *Wat is de A3 verbetermethode?* [Video]. YouTube. https://www.youtube.com/watch?v=hVYtuPjMeYg (MD-16)
+- MIT OpenCourseWare. (2014, 6 maart). *Ses. 3-4: A3 thinking* [Video]. YouTube. https://www.youtube.com/watch?v=z1KloN7Ub0M (MD-16)
 - Cepeda, N. J., e.a. (2006). Distributed practice in verbal recall tasks. *Psychological Bulletin, 132*(3), 354–380. (TP-1–TP-9)
 - Hattie, J. & Timperley, H. (2007). The power of feedback. *Review of Educational Research, 77*(1), 81–112. (§2)
 - Mayer, R. E. (2004). Should there be a three-strikes rule against pure discovery learning? *American Psychologist, 59*(1), 14–19. (VB-2, VB-4)
@@ -666,8 +668,8 @@ Regels zijn hier hergroepeerd en gesplitst tot één verplichting per regel. Elk
 | Deel 11 (AC-01–AC-44) | Bijlage B |
 | Deel 12 (risico's) | — (risicolijst blijft in het LRD; mitigaties zijn regels hierboven) |
 | Deel 13 (roadmap) | — (bouwvolgorde hoort in het bouwplan) |
-| Besluitenregister (tot LRD 0.12 Bijlage A, B1–B59) | — (staat in `docs/ADR-ELEARNING-A3.md`; vervangen besluiten blijven daar staan; alle besluiten zijn in B58 bevestigd) |
-| Bijlage B (bronnen, tot LRD 0.12) | §10; in LRD 0.13 heet die bijlage Bijlage A |
+| Besluitenregister (tot LRD 0.12 Bijlage A, B1–B60) | — (staat in `docs/ADR-ELEARNING-A3.md`; vervangen besluiten blijven daar staan; alle besluiten zijn in B58 bevestigd) |
+| Bijlage B (bronnen, tot LRD 0.12) | §10; sinds LRD 0.13 heet die bijlage Bijlage A |
 
 ## Bijlage B — Acceptatiecriteria (LRD Deel 11) → verificatie
 
