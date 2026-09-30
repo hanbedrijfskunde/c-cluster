@@ -743,6 +743,7 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 - [x] Elke hint zegt waar het antwoord staat (54 vragen: meestal de stof van een taak; bronnen alleen waar de passage is nagegaan: MIT OpenCourseWare, IIRC, Strategyzer, Westmoreland). De invulplekken in de format-zin zijn gemarkeerd. Besluit: ADR B85.
 
 - [x] Taalredactie van alle studentcontent (140 teksten; zinnen boven 20 woorden 104 → 10, zinnen met twee dubbele punten 7 → 2), spreektekst en conceptvideo's V1–V4 opnieuw gebouwd. Besluit: ADR B86.
+- [x] TK-19: een vraag gaat altijd over stof die ervoor is behandeld. Taak 1.1 legt 3xC en „één vel” zelf uit; contentcontrole weigert verwijzingen vooruit. Besluit: ADR B87. Hiermee is punt (1) van open punt B-6 opgelost.
 
 ---
 

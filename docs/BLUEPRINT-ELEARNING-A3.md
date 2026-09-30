@@ -1,6 +1,6 @@
 # BLUEPRINT — Hybride e-learning A3 met automatisch bewijs
 
-> Afgeleid van `docs/LRD-ELEARNING-A3.html` (LRD versie 0.15, 30 september 2026). Dit document beschrijft de doelsituatie van het product: geen bouwvolgorde, geen fasering, geen voortgang. Bouwvolgorde en voortgang staan in het bouwplan (`BUILDPLAN-ELEARNING-A3.md`). Pedagogische onderbouwing en risico's blijven in het LRD; het besluitenregister (B1–B86) staat in `docs/ADR-ELEARNING-A3.md`; regels hier verwijzen daar niet naartoe maar zijn zelfstandig toetsbaar. Bijlage A koppelt elke LRD-eis aan de regels hieronder.
+> Afgeleid van `docs/LRD-ELEARNING-A3.html` (LRD versie 0.15, 30 september 2026). Dit document beschrijft de doelsituatie van het product: geen bouwvolgorde, geen fasering, geen voortgang. Bouwvolgorde en voortgang staan in het bouwplan (`BUILDPLAN-ELEARNING-A3.md`). Pedagogische onderbouwing en risico's blijven in het LRD; het besluitenregister (B1–B87) staat in `docs/ADR-ELEARNING-A3.md`; regels hier verwijzen daar niet naartoe maar zijn zelfstandig toetsbaar. Bijlage A koppelt elke LRD-eis aan de regels hieronder.
 
 **Lezen.** Elke regel heeft een ID (prefix per onderwerp), een verplichtingsniveau (Must, Should, Could), een criterium met getal en eenheid, en een verificatiemethode (Test, Demonstratie, Inspectie, Analyse). „Moet" is de verplichting van het product, niet de volgorde van het werk. De statusnamen Compleet, Bijna en „Te doen" zijn productterm en geen voortgangstaal. In schema en records heet de derde status `nog niet` (§5); alleen de weergave voor de student zegt „Te doen".
 
@@ -206,6 +206,7 @@ Elke regel is een anker (`id="xx-n"`). Een bewijsonderdeel (EV) telt als één v
 | <a id="tk-16"></a>TK-16 | Een leerblok moet als „afgerond" gelden als elk bewijsonderdeel ervan Compleet of Bijna is of het label `voorlopig` heeft, en geen enkel onderdeel „Te doen" is. | Must | 4 testprofielen geven het verwachte resultaat | Test |
 | <a id="tk-17"></a>TK-17 | De site moet de student laten doorgaan zonder een leerblok af te ronden. | Must | 0 blokkades bij een leerblok dat niet is afgerond | Test |
 | <a id="tk-18"></a>TK-18 | Elke taak moet dezelfde vier stappen in dezelfde volgorde volgen: waarom, stof, oefenen, toepassen. „Klaar" en de volgende stap sluiten de stap toepassen af; de optionele verdieping verschijnt na „klaar" en telt niet als stap. | Should | 4 stappen in 100 % van de taken | Inspectie |
+| <a id="tk-19"></a>TK-19 | Elke vraag van de oefenversie moet gaan over stof die ervoor is behandeld: in dezelfde taak of een eerdere taak of leerblok, of over eigen werk uit een eerdere taak. Een vraag verwijst nooit vooruit, en een bron of het werkboek alleen is geen behandelde stof. | Must | 100 % van de oefenvragen met een vindplaats in eerdere of dezelfde stof; 0 verwijzingen naar een latere taak | Test (contentcontrole) |
 
 ### 6.4 Leerblokken (LB)
 

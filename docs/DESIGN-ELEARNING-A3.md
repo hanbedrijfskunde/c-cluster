@@ -221,6 +221,7 @@ Grid 2 × 2 (bureaublad: 4 × 1), `gap: 4px`, delen met 2 px rand. Labels (Onder
 ### 7.2 Feedback op invoer
 
 - Controles van soort A draaien live (na 600 ms zonder typen) en vinken de klaar-als af.
+- Een vraag gaat altijd over stof die ervoor is behandeld (TK-19); de hint zegt waar die stof staat.
 - Een hint staat achter een knop „Hint” (`<details>`), en toont steeds één aanwijzing. Geen mouse-over: op een telefoon bestaat hover niet (SX-13, ADR B83).
 - Nooit meer dan één foutmelding tegelijk in beeld per veld.
 
