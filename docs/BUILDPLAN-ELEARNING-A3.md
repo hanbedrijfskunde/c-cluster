@@ -31,7 +31,7 @@
 - [x] Fase 11 — Leerblok 4: verbanden, reflectie en afronding (EV-10, EV-11) (11.1 wacht op akkoord auteur; menselijke tester vervangen door Playwright)
 - [x] Fase 12 — Media: mechaniek, twee video's en twee spellen (V2 en V4 zijn conceptvideo's met computerstem, wachten op akkoord auteur of eigen opname; menselijke tester vervangen door Playwright)
 - [x] Fase 13 — Media: de overige video's en spellen (V1 en V3 zijn conceptvideo's, wachten op akkoord auteur; 13.4 is geschat, meten hoort bij de pilot; menselijke tester vervangen door Playwright)
-- [ ] Fase 14 — Afdrukken, documentatie en eindcontrole
+- [x] Fase 14 — Afdrukken, documentatie en eindcontrole (docentgids, introductie en schema-beschrijving zijn teksten van de bouwer, wachten op akkoord auteur; de proeflezer die de site nog nooit zag wacht op een mens; menselijke tester vervangen door Playwright)
 - [ ] Fase 15 — Pilot in een werkcollege en kalibratie
 
 ## Wat er al is (vastgesteld op 30 september 2026)
@@ -588,23 +588,25 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 **Spec.** DM-12, DL-1, DL-2, DL-4, QA-4, QA-5, LI-1, SI-1.
 
 ### Subtasks
-- [ ] 14.1 Bouw de afdruk van het werkboek van een deel uit de contentbestanden met dezelfde nummers en „klaar als"-regels (DM-12). Verwacht: 100 % van de nummers en regels gelijk aan de site.
-- [ ] 14.2 Maak `css/print.css` voor werkboek en draaiboek. Verwacht: afdruk zonder afgesneden tekst op A4.
-- [ ] 14.3 Schrijf de docentgids (≤ 2 pagina's A4, 5 onderwerpen) (DL-1). Verwacht: 5 onderwerpen.
-- [ ] 14.4 Schrijf de studentintroductie (≤ 1 pagina A4, 3 onderwerpen) (DL-2). Verwacht: 3 onderwerpen.
-- [ ] 14.5 Schrijf de beschrijving van schema 1.0 (DL-4). Verwacht: 13 velden beschreven.
-- [ ] 14.6 Controleer alle teksten in het Nederlands en de Engelse vaktermen met uitleg van één zin bij het eerste voorkomen (QA-4, QA-5). Verwacht: 100 % van de termen met ≤ 1 zin uitleg.
-- [ ] 14.7 Controleer dat er geen kopieën van derden in de repository staan (LI-1). Verwacht: 0 kopieën van Brightspace-materiaal, PhoneVentures-handleidingen, slides of opgeslagen pagina's van derden.
-- [ ] 14.8 Draai de regressiecontrole over alle regels van het blueprint: elke regel heeft een fase en een uitgevoerde verificatie (zie bijlage). Verwacht: 0 regels zonder afgevinkte verificatie.
+- [x] 14.1 Bouw de afdruk van het werkboek van een deel uit de contentbestanden met dezelfde nummers en „klaar als"-regels (DM-12). Verwacht: 100 % van de nummers en regels gelijk aan de site.
+- [x] 14.2 Maak `css/print.css` voor werkboek en draaiboek. Verwacht: afdruk zonder afgesneden tekst op A4.
+- [x] 14.3 Schrijf de docentgids (≤ 2 pagina's A4, 5 onderwerpen) (DL-1). Verwacht: 5 onderwerpen.
+- [x] 14.4 Schrijf de studentintroductie (≤ 1 pagina A4, 3 onderwerpen) (DL-2). Verwacht: 3 onderwerpen.
+- [x] 14.5 Schrijf de beschrijving van schema 1.0 (DL-4). Verwacht: 13 velden beschreven.
+- [x] 14.6 Controleer alle teksten in het Nederlands en de Engelse vaktermen met uitleg van één zin bij het eerste voorkomen (QA-4, QA-5). Verwacht: 100 % van de termen met ≤ 1 zin uitleg.
+- [x] 14.7 Controleer dat er geen kopieën van derden in de repository staan (LI-1). Verwacht: 0 kopieën van Brightspace-materiaal, PhoneVentures-handleidingen, slides of opgeslagen pagina's van derden.
+- [x] 14.8 Draai de regressiecontrole over alle regels van het blueprint: elke regel heeft een fase en een uitgevoerde verificatie (zie bijlage). Verwacht: 0 regels zonder afgevinkte verificatie.
 
 ### Testpoort
-- [ ] Volledige testpoort, aangevuld met SI-1 (8 onderdelen ≤ 2 klikken), SI-3 (volledige doorloop) en PR-1 (netwerktrace).
-- [ ] Vergelijking afdruk en scherm voor deel 1 en deel 2 (AC-18, AC-25).
-- [ ] Iemand die de site nog nooit zag leest docentgids en studentintroductie en voert de eerste taak uit zonder uitleg.
-- [ ] Geclaimde regels met hun methode gecontroleerd.
+- [x] Volledige testpoort, aangevuld met SI-1 (8 onderdelen ≤ 2 klikken), SI-3 (volledige doorloop) en PR-1 (netwerktrace).
+- [x] Vergelijking afdruk en scherm voor deel 1 en deel 2 (AC-18, AC-25).
+- [ ] (wacht op mens) Iemand die de site nog nooit zag leest docentgids en studentintroductie en voert de eerste taak uit zonder uitleg.
+- [x] Geclaimde regels met hun methode gecontroleerd.
 
 ### Afsluiting
-- [ ] commit `DM-12, DL-1, DL-2, DL-4, QA-4, QA-5, LI-1: afdrukken en documentatie`  - [ ] push  - [ ] overzicht afvinken
+- [x] commit `DM-12, DL-1, DL-2, DL-4, QA-4, QA-5, LI-1: afdrukken en documentatie`  - [x] push  - [x] overzicht afvinken
+
+**Afwijkingen fase 14.** (1) 14.1: het werkboek van een deel is een afdrukweergave in de docentmodus (Afdrukken, naast het draaiboek), samengesteld uit alle taken van de leerblokken van dat deel (deel 1: 7 taken, deel 2: 9), met dezelfde nummers en „klaar als”-regels als de site (100 %, unittest op de data en op de stapkaart); geen aparte pagina, zodat SI-1 op 8 onderdelen blijft. (2) 14.3 t/m 14.5 staan als HTML-pagina's in `docs/` (docentgids, studentintroductie, dossierschema-1.0), niet in de docentmodus of de README zelf; gemeten met een pdf-afdruk in Chrome: docentgids 2 A4, introductie 1 A4, schema-beschrijving 3 A4 (DL-4 heeft geen paginagrens). Alle drie zijn teksten van de bouwer en wachten op akkoord van de auteur. (3) 14.6: geen handmatige lezing van alles, maar een test die per leerblok eist dat elke gebruikte vakterm daar wordt uitgelegd (uiterlijk bij de eerste taak die hem gebruikt) en een test die Engelse functiewoorden in zichtbare tekst afkeurt (AND en OR in zoekstrings tellen niet). Dit vond drie gaten: prompt (leerblok 2), frame (leerblok 3), pains, gains, pain relievers en gain creators (leerblok 4); ze kregen een korte uitleg tussen haakjes. (4) 14.7 is een test op bestandstypen, namen, eigen video's en ingebedde beelden; de tekstovereenkomst met bronnen van derden bleef bij LI-3. Gesaboteerd met een ingecheckt bestand „Werkboek Copy.pdf”. (5) 14.8 regressiecontrole over het blueprint: 202 regels, alle 202 staan in de bijlage bij een fase; 180 worden op ID geciteerd in tests of tools; van de 22 andere horen er 10 bij fase 15 (AP-1 t/m AP-9 en DL-3, nog niet uit te voeren); de overige 12 (LB-3, LB-4, SI-2, SI-5, SI-6, SI-7, SI-8, PF-1, PF-2, DM-15, VB-6, VB-7) zijn in eerdere fases afgevinkt met demonstratie of browsertest en staan niet onder hun ID in een unittest; een deel ervan is nu opnieuw in de browser gecontroleerd (zie 7). Bekende afwijkingen blijven: PF-2 alleen Chromium, Firefox en WebKit (B66), SI-5 met `tools/` (B70), en de teksten die op akkoord van de auteur wachten. (6) Gevonden en opgelost door de live controle: de workflow kopieerde `docs/` niet, waardoor de drie pagina's live een 404 gaven terwijl alle controles slaagden; de workflow doet dat nu en een test (SI-2) leest de workflow en controleert dat elk lokaal bestand waar een pagina naar verwijst wordt gepubliceerd. (7) Menselijke tester vervangen door Playwright, lokaal en op de live URL na de groene workflow: SI-1 (het menu van de startpagina leidt in 1 klik naar de 7 andere onderdelen), SI-3 (13 pagina's inclusief de drie nieuwe, 0 consolefouten, 0 mislukte verzoeken na `networkidle`), PR-1 (0 verzoeken naar andere domeinen), PF-1 (360 px, 13 pagina's, 0 horizontale scroll), DM-15 (docentmodus zonder netwerk, korte doorloop; de 15 minuten met `page.clock` stonden in fase 9) en het afdrukvoorbeeld als pdf op A4 (AC-18, AC-25): werkboek en draaiboek van deel 1 en 2 met 7 en 9 taken en 11 en 11 onderdelen, zonder afgesneden tekst en zonder menu of knoppen. Niet gedaan: de proeflezer die de site nog nooit zag (wacht op een mens), geen schermlezer, geen Edge of Safari. Besluiten: ADR B72.
 
 ---
 
