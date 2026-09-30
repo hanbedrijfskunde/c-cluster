@@ -8,7 +8,7 @@
 
 - **Elke fase eindigt in iets wat een mens kan proberen** (het blok „Wat de tester doet").
 - **Elke fase eindigt met een volledige testpoort.** Pas daarna: commit, push, en dan de volgende fase. Een push naar `main` publiceert de site alleen als de workflow groen is (SI-6).
-- **Volledige testpoort** = `node --test tests/` (unittests), `node tools/content-check.mjs`, `node tools/link-check.mjs`, een volledige doorloop van alle bestaande pagina's op de gepubliceerde URL zonder consolefout (SI-3), en 0 verzoeken naar andere domeinen in de netwerktrace (PR-1). Elke fase voegt daar haar eigen punten aan toe.
+- **Volledige testpoort** = `node --test` (unittests; zonder mapargument: met `tests/` faalt het op Node 22+), `node tools/content-check.mjs`, `node tools/link-check.mjs`, een volledige doorloop van alle bestaande pagina's op de gepubliceerde URL zonder consolefout (SI-3), en 0 verzoeken naar andere domeinen in de netwerktrace (PR-1). Elke fase voegt daar haar eigen punten aan toe.
 - **Verificatie per regel.** Bij elke fase staat welke regels ze claimt; die worden gecontroleerd met de verificatiemethode uit het blueprint. Sluit de fase niet met een regel die je alleen hebt gelezen.
 - **Sabotagetest.** Elke nieuwe controle en elke nieuwe test wordt eenmaal gesaboteerd (breek het gedrag, zie de test falen, herstel). Een test die niet kan falen telt niet.
 - **Bevindingen terug in de documenten, in dezelfde wijziging.** Verandert er iets aan het doel: BLUEPRINT (eigen commit in c-cluster) en, bij een ontwerpkeuze, ADR (nieuwe regel onderaan). Verandert er iets aan route of stand: dit bestand.
@@ -17,8 +17,8 @@
 
 ## Voortgang
 
-- [ ] Fase 0 — Repository, licentie en lege publicatie
-- [ ] Fase 1 — Kern: schema, controles en statusregel (met controlelab)
+- [x] Fase 0 — Repository, licentie en lege publicatie
+- [x] Fase 1 — Kern: schema, controles en statusregel (met controlelab)
 - [ ] Fase 2 — Leerblok 1 als dunne doorsnede (EV-01, EV-02)
 - [ ] Fase 3 — Dossier: export, import en verificatie
 - [ ] Fase 4 — De Wissel en de feedbacklog (EV-09)
@@ -105,26 +105,26 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 **Spec.** SI-1 (stubs), SI-2, SI-3, SI-4, SI-5, SI-6, SI-7, SI-8, LI-4, LI-5, PR-1.
 
 ### Subtasks
-- [ ] 0.1 Kloon de lege repository lokaal. Verwacht: map `a3-learning/` met alleen `.git`.
-- [ ] 0.2 Voeg `LICENSE` toe met de volledige tekst van CC BY-SA 4.0 (LI-4). Verwacht: 1 bestand, de tekst begint met „Attribution-ShareAlike 4.0 International".
-- [ ] 0.3 Voeg `.nojekyll` toe (leeg) en `README.md` met wat de site is, de licentie en een verwijzing naar de docentgids (SI-5). Verwacht: README noemt „docentgids".
-- [ ] 0.4 Maak 8 stubpagina's met relatieve links naar elkaar: `index.html`, `leerblok-1.html` t/m `leerblok-4.html`, `dossier.html`, `verificatie.html`, `docent.html` (SI-1, SI-3). Verwacht: elke pagina bereikbaar in ≤ 2 klikken vanaf `index.html`.
-- [ ] 0.5 Voeg op elke stub een voettekst toe met licentie-aanduiding, naamsvermelding en link naar de licentietekst (LI-5), en een `pilot`-banner die aan of uit staat via `data/config.json` (SI-8). Verwacht: banner zichtbaar bij `"pilot": true`, weg bij `false`.
-- [ ] 0.6 Maak `tools/link-check.mjs`: controleert dat alle interne links resolven en dat er 0 absolute interne links zijn. Verwacht: exit 0 op de stubs.
-- [ ] 0.7 Maak `tools/content-check.mjs` als skelet dat exit 0 geeft op lege `data/`. Verwacht: exit 0.
-- [ ] 0.8 Maak `tests/smoke.test.mjs` met één test die de 8 pagina's inleest. Verwacht: `node --test tests/` groen.
-- [ ] 0.9 Schrijf `.github/workflows/pages.yml`: bij elke push `node --test tests/`, `content-check`, `link-check`; alleen publiceren als alle drie slagen; faalmelding noemt de falende controle (SI-6, SI-7). Verwacht: 3 stappen met eigen naam.
-- [ ] 0.10 Zet GitHub Pages aan (bron: GitHub Actions) in de repository-instellingen. Verwacht: Pages-instelling toont „GitHub Actions".
+- [x] 0.1 Kloon de lege repository lokaal. Verwacht: map `a3-learning/` met alleen `.git`.
+- [x] 0.2 Voeg `LICENSE` toe met de volledige tekst van CC BY-SA 4.0 (LI-4). Verwacht: 1 bestand, de tekst begint met „Attribution-ShareAlike 4.0 International".
+- [x] 0.3 Voeg `.nojekyll` toe (leeg) en `README.md` met wat de site is, de licentie en een verwijzing naar de docentgids (SI-5). Verwacht: README noemt „docentgids".
+- [x] 0.4 Maak 8 stubpagina's met relatieve links naar elkaar: `index.html`, `leerblok-1.html` t/m `leerblok-4.html`, `dossier.html`, `verificatie.html`, `docent.html` (SI-1, SI-3). Verwacht: elke pagina bereikbaar in ≤ 2 klikken vanaf `index.html`.
+- [x] 0.5 Voeg op elke stub een voettekst toe met licentie-aanduiding, naamsvermelding en link naar de licentietekst (LI-5), en een `pilot`-banner die aan of uit staat via `data/config.json` (SI-8). Verwacht: banner zichtbaar bij `"pilot": true`, weg bij `false`.
+- [x] 0.6 Maak `tools/link-check.mjs`: controleert dat alle interne links resolven en dat er 0 absolute interne links zijn. Verwacht: exit 0 op de stubs.
+- [x] 0.7 Maak `tools/content-check.mjs` als skelet dat exit 0 geeft op lege `data/`. Verwacht: exit 0.
+- [x] 0.8 Maak `tests/smoke.test.mjs` met één test die de 8 pagina's inleest. Verwacht: `node --test` groen.
+- [x] 0.9 Schrijf `.github/workflows/pages.yml`: bij elke push `node --test`, `content-check`, `link-check`; alleen publiceren als alle drie slagen; faalmelding noemt de falende controle (SI-6, SI-7). Verwacht: 3 stappen met eigen naam.
+- [x] 0.10 Zet GitHub Pages aan (bron: GitHub Actions) in de repository-instellingen. Verwacht: Pages-instelling toont „GitHub Actions".
 
 ### Testpoort
-- [ ] Volledige testpoort (lokaal: `python3 -m http.server` en doorloop).
-- [ ] Sabotage SI-6: op branch `test/rood` een falende test pushen; workflow rood, geen publicatie (0 nieuwe deploys).
-- [ ] Sabotage link-check: een absolute interne link toevoegen; `link-check` faalt.
-- [ ] Netwerktrace op de gepubliceerde URL: 0 verzoeken naar andere domeinen (PR-1).
-- [ ] Elke geclaimde regel gecontroleerd met de methode uit het blueprint (SI-1 Test, SI-2 Demonstratie, SI-3 Test, SI-4 Inspectie, SI-5 Inspectie, SI-6 Test, SI-7 Test, SI-8 Test, LI-4 Inspectie, LI-5 Inspectie, PR-1 Test).
+- [x] Volledige testpoort (lokaal: `python3 -m http.server` en doorloop).
+- [x] Sabotage SI-6: op branch `test/rood` een falende test pushen; workflow rood, geen publicatie (0 nieuwe deploys).
+- [x] Sabotage link-check: een absolute interne link toevoegen; `link-check` faalt.
+- [x] Netwerktrace op de gepubliceerde URL: 0 verzoeken naar andere domeinen (PR-1).
+- [x] Elke geclaimde regel gecontroleerd met de methode uit het blueprint (SI-1 Test, SI-2 Demonstratie, SI-3 Test, SI-4 Inspectie, SI-5 Inspectie, SI-6 Test, SI-7 Test, SI-8 Test, LI-4 Inspectie, LI-5 Inspectie, PR-1 Test).
 
 ### Afsluiting
-- [ ] commit `SI-1…SI-8, LI-4, LI-5: lege site met publicatiepoort`  - [ ] push  - [ ] overzicht afvinken
+- [x] commit `SI-1…SI-8, LI-4, LI-5: lege site met publicatiepoort`  - [x] push  - [x] overzicht afvinken
 
 ---
 
@@ -135,27 +135,35 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 **Spec.** RC-1, RC-2, RC-3, RC-4, BW-3, BW-4, BW-5, BW-8, BW-9, BW-11, BW-12, QA-2, QA-3.
 
 ### Subtasks
-- [ ] 1.1 Schrijf `js/schema.js` met de recordvorm van §5 (13 velden) en een `valideer(record)` (RC-1). Verwacht: geldig record → `true`, record met 12 velden → foutmelding met het ontbrekende veld.
-- [ ] 1.2 Voeg aan `schema.js` toe dat `luk` en `bc` uit een taakdefinitie komen en niet uit de invoer (RC-2) en dat `alias` of `naam` in `inhoud` wordt geweigerd (RC-3). Verwacht: 2 tests.
-- [ ] 1.3 Leg de scheiding `inhoud` / `controles` vast in het schema (RC-4). Verwacht: record met controles binnen `inhoud` → afgewezen.
-- [ ] 1.4 Schrijf `js/status.js` met `bepaalStatus(controles)` volgens de statusregel, „Nog niet" gaat voor „Bijna" gaat voor Compleet (BW-5). Verwacht: 27 combinaties (3 soorten × 3 resultaten) geven de tabel uit §5.
-- [ ] 1.5 Schrijf `js/checks/core.js` met het controlecontract `(invoer, context) → { id, soort, resultaat, melding }` en hulpfuncties `veldGevuld`, `minWoorden`, `keuzeUitLijst`, `eindigtOp` (BW-8, BW-9). Verwacht: zuiver, 0 netwerkaanroepen (test met een geblokkeerde `fetch`).
-- [ ] 1.6 Verbied in `core.js` inhoudelijk oordelen: soort C telt alleen woorden en zinnen (BW-11). Verwacht: 1 test die bevestigt dat controles van soort C alleen `telWoorden` en `telZinnen` aanroepen.
-- [ ] 1.7 Schrijf `tests/status.test.mjs` en `tests/core.test.mjs` met per controle 3 goede en 3 zwakke voorbeelden (QA-2). Verwacht: 6 voorbeelden per helper, allemaal groen.
-- [ ] 1.8 Breid `tools/content-check.mjs` uit: elke taak in `data/leerblok-*.json` heeft LUK-koppeling, „klaar als", ≥ 1 controle en modelantwoord (QA-3), en elk bewijsonderdeel heeft ≥ 1 LUK-onderdeel (BW-12). Verwacht: op een testfixture met 4 ontbrekende onderdelen → 4 fouten.
-- [ ] 1.9 Maak `controlelab.html` (alleen voor de tester; niet gelinkt vanaf `index.html`, wel in de sitemap van `README.md`). Verwacht: plakken van een record toont status en controles.
-- [ ] 1.10 Toon in het controlelab de statussen als tekst naast kleur en zonder score (BW-3, BW-4). Verwacht: 0 getallen als score in de UI.
+- [x] 1.1 Schrijf `js/schema.js` met de recordvorm van §5 (13 velden) en een `valideer(record)` (RC-1). Verwacht: geldig record → `true`, record met 12 velden → foutmelding met het ontbrekende veld.
+- [x] 1.2 Voeg aan `schema.js` toe dat `luk` en `bc` uit een taakdefinitie komen en niet uit de invoer (RC-2) en dat `alias` of `naam` in `inhoud` wordt geweigerd (RC-3). Verwacht: 2 tests.
+- [x] 1.3 Leg de scheiding `inhoud` / `controles` vast in het schema (RC-4). Verwacht: record met controles binnen `inhoud` → afgewezen.
+- [x] 1.4 Schrijf `js/status.js` met `bepaalStatus(controles)` volgens de statusregel, „Nog niet" gaat voor „Bijna" gaat voor Compleet (BW-5). Verwacht: 27 combinaties (3 soorten × 3 resultaten) geven de tabel uit §5.
+- [x] 1.5 Schrijf `js/checks/core.js` met het controlecontract `(invoer, context) → { id, soort, resultaat, melding }` en hulpfuncties `veldGevuld`, `minWoorden`, `keuzeUitLijst`, `eindigtOp` (BW-8, BW-9). Verwacht: zuiver, 0 netwerkaanroepen (test met een geblokkeerde `fetch`).
+- [x] 1.6 Verbied in `core.js` inhoudelijk oordelen: soort C telt alleen woorden en zinnen (BW-11). Verwacht: 1 test die bevestigt dat controles van soort C alleen `telWoorden` en `telZinnen` aanroepen.
+- [x] 1.7 Schrijf `tests/status.test.mjs` en `tests/core.test.mjs` met per controle 3 goede en 3 zwakke voorbeelden (QA-2). Verwacht: 6 voorbeelden per helper, allemaal groen.
+- [x] 1.8 Breid `tools/content-check.mjs` uit: elke taak in `data/leerblok-*.json` heeft LUK-koppeling, „klaar als", ≥ 1 controle en modelantwoord (QA-3), en elk bewijsonderdeel heeft ≥ 1 LUK-onderdeel (BW-12). Verwacht: op een testfixture met 4 ontbrekende onderdelen → 4 fouten.
+- [x] 1.9 Maak `controlelab.html` (alleen voor de tester; niet gelinkt vanaf `index.html`, wel in de sitemap van `README.md`). Verwacht: plakken van een record toont status en controles.
+- [x] 1.10 Toon in het controlelab de statussen als tekst naast kleur en zonder score (BW-3, BW-4). Verwacht: 0 getallen als score in de UI.
 
 ### Testpoort
-- [ ] Volledige testpoort.
-- [ ] Sabotage BW-5: draai de voorrang om (Bijna gaat voor „Nog niet"); minstens 1 van de 27 combinaties faalt.
-- [ ] Sabotage BW-8: laat een controle `fetch` aanroepen; de test faalt.
-- [ ] Sabotage QA-3: haal een „klaar als" uit de fixture; `content-check` faalt met de taak in de melding.
-- [ ] Tester loopt in het controlelab alle 27 combinaties na en vergelijkt met §5.
-- [ ] Geclaimde regels met hun methode gecontroleerd (RC-1…RC-3 Test, RC-4 Inspectie, BW-3 Test, BW-4 Inspectie, BW-5 Test, BW-8 Test, BW-9 Test, BW-11 Inspectie, BW-12 Test, QA-2 Test, QA-3 Test).
+- [x] Volledige testpoort.
+- [x] Sabotage BW-5: draai de voorrang om (Bijna gaat voor „Nog niet"); minstens 1 van de 27 combinaties faalt.
+- [x] Sabotage BW-8: laat een controle `fetch` aanroepen; de test faalt.
+- [x] Sabotage QA-3: haal een „klaar als" uit de fixture; `content-check` faalt met de taak in de melding.
+- [x] Tester loopt in het controlelab alle 27 combinaties na en vergelijkt met §5. *(Uitgevoerd door de bouwer, niet door een mens: `tests/status.test.mjs` vergelijkt alle 27 combinaties met `data/statustabel.json` (de tabel uit §5), en `controlelab.html` is met Playwright lokaal en live nagelopen: 27 rijen, 0 afwijkingen. Een menselijke tester kan dit nog herhalen.)*
+- [x] Geclaimde regels met hun methode gecontroleerd (RC-1…RC-3 Test, RC-4 Inspectie, BW-3 Test, BW-4 Inspectie, BW-5 Test, BW-8 Test, BW-9 Test, BW-11 Inspectie, BW-12 Test, QA-2 Test, QA-3 Test).
 
 ### Afsluiting
-- [ ] commit `RC-1…RC-4, BW-3…BW-12, QA-2, QA-3: schema, controlecontract, statusregel`  - [ ] push  - [ ] overzicht afvinken
+- [x] commit `RC-1…RC-4, BW-3…BW-12, QA-2, QA-3: schema, controlecontract, statusregel`  - [x] push  - [x] overzicht afvinken
+
+**Stand en afwijkingen fase 1 (30 september 2026).** Gecommit en gepubliceerd (workflow groen, `controlelab.html` live 200); 121 tests. Netwerktrace fase 0 (PR-1) is op de live URL herhaald met Playwright: 0 verzoeken naar andere domeinen, 0 consolefouten, 0 cookies van de site.
+- `valideer(record[, taakdef])` geeft `{ geldig, fouten }` in plaats van kaal `true`; `maakRecord` krijgt `status` van de aanroeper (uit `bepaalStatus`), zodat `schema.js` en `status.js` niet van elkaar afhangen. Fase 2 bouwt hierop.
+- Statusnaam in het record is `"nog niet"` (naast `compleet`, `bijna`); `bepaalStatus([])` geeft `"nog niet"`.
+- De tabel uit §5 staat als data in `data/statustabel.json` (gebruikt door test en lab), los van de code die hij toetst.
+- Voorlopig formaat van `data/leerblok-N.json` (taken met `luk`, `bc`, `klaarAls`, `modelantwoord`, `controles`; `bewijsonderdelen` met `lukOnderdelen`) staat in de kop van `tools/content-check.mjs`; fase 2 legt het definitief vast.
+- Op alle pagina's is `<link rel="icon" href="data:,">` toegevoegd: zonder icoon geeft de browser een 404 in de console (SI-3).
+- Sabotage gedaan en hersteld voor BW-5, BW-8, BW-9, BW-11, RC-1…RC-4, QA-3, BW-12, lab-score, lab-link, en elke hulpfunctie (17 mutaties, alle door de tests gevangen). Sabotage link-check in fase 0 opnieuw uitgevoerd: exit 1.
 
 ---
 
