@@ -722,7 +722,7 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 - [x] Volledige testpoort, plus contrast- en gewichtcontrole.
 - [x] Sabotage SX-6 (twee primaire knoppen in één stap) en VB-4 (twee prompts tegelijk).
 - [x] Playwright op 360 px en 1280 px: leerblok 1 t/m 4 met alleen het toetsenbord; terugknop; adres van een stap direct openen.
-- [ ] Skill `beoordeel-elearning` opnieuw; de scores voor oriëntatie, motivatie en mobiel naast die van 30-9-2026.
+- [x] Skill `beoordeel-elearning` opnieuw; de scores voor oriëntatie, motivatie en mobiel naast die van 30-9-2026.
 - [x] Geclaimde regels met hun methode gecontroleerd.
 
 ### Afsluiting
@@ -730,6 +730,8 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 
 
 **Afwijkingen fase 19.** (1) 19.1: de taakweergave is een laag bovenop de bestaande pagina: alle taken worden gebouwd zoals voorheen (status, afronden en de controles veranderen niet), `js/taakweergave.js` leest en maakt de adressen (`#taak-2.1/oefenen`; ook `#oefening-2.1`, `#stap-2.1-4` en `#afsluiten` werken) en bepaalt de hoofdknop van de vaste voet; `leerblok.js` toont één taak en één stap. Zonder stap in het adres opent de stap waar de student is; de laatste positie staat per leerblok in de meta-opslag en voedt „Ga verder” op de startpagina (DESIGN §5.2). (2) 19.2: geen per-taak laden van stapcomponenten, wel het laden van de routekeuze pas bij de stap stof (`media.js`, `gewicht-alleen: naklik`; leerblok 1 laadt hem direct voor de kijktips, `gewicht-alleen: kijktips`). Leerblok 4 staat daarmee op 363,6 kB bron en 115,8 kB gzip, lager dan na fase 17 (377,4). (3) 19.3: de klaarknop in de stap wijkt voor de vaste voet („Klaar: bewaar in dossier”); zonder gehaalde „klaar als” biedt de voet „Naar taak …” (TK-17). Op een telefoon verdwijnt de tabbalk in een taak (focus, DESIGN §2.1); „← Leerblok N” in de taakbalk leidt terug. (4) 19.6: de Waarde-simulator is een spel geworden (keuzekaarten, per kapitaal vier tikbare knoppen, zes balken die groeien); hernoemen was niet nodig. De tabel staat uitklapbaar. (5) 19.7: op een scherm onder 40rem staan de kolommen van de verbanden-kaart onder elkaar, zodat de kaartjes 15 px kunnen blijven. (6) Tijdens de controle ook opgelost: de dossierpagina had twee hoofdknoppen („Kopieer naar A3 vak 1” is nu secundair, DESIGN §5.5), en `[hidden]` wint nu altijd van `.knop`. Gesaboteerd: SX-6 (twee hoofdknoppen), SX-10 (kaartje 12 px), VB-4 (alle open plekken tegelijk). Playwright op 360 en 1280 px over 36 schermen (10 pagina's, per leerblok overzicht, een toepassing en het afsluitscherm): 0 px horizontale scroll, hoogstens 1 hoofdknop, 0 consolefouten; taak 2.1 stap voor stap met de voet, de terugknop van de browser en een direct geopend adres; de Waarde-simulator helemaal met het toetsenbord. Niet gedaan: 19.8 (opnames, wacht op een mens) en een test met een schermlezer. Besluiten: ADR B82.
+
+**Herbeoordeling (30-9-2026, live site, een aparte beoordelaar met Playwright, mobiel alleen geëmuleerd).** Scores (schaal 1–5, oud → nieuw): toegankelijkheid 5 → 5, didactisch ontwerp 4 → 4, oriëntatie en structuur 2 → 3, motivatie en feedback 1 → 2, visuele kwaliteit 3 → 3, mobiel 2 → 3. Van de 12 bevindingen van de review zijn er 6 opgelost (menu, codes, spel, STARR-velden, verbanden-bord, legend), 5 deels (scrollmuur, voortgang, eerste indruk, gewicht van kaarten, app-gevoel) en 1 niet (computerstem, 19.8). Direct hersteld na de herbeoordeling: de segmentbalk markeert de stap waar je bent; „Ga verder” wijst na „klaar” naar de volgende open taak; A3-vak 1 toont een deel in opbouw („1 van 2 resultaten”, geen percentage); de zinstarters van 2.1 passen in het format; de melding na „klaar” staat bovenaan; geen lege verdieping; „Richttijd” uit het scherm „Vorige keer”. Wat overblijft staat bij de open punten (B-2 t/m B-5).
 
 ---
 
@@ -791,6 +793,10 @@ Elke regel staat bij de fase die haar realiseert en verifieert. Een regel die in
 
 ## Open punten die de route raken
 
+- **B-2** Stof dubbel en lang (herbeoordeling): in de stap stof van de mediataak staat onder de taakstof ook de uitleg van het hele leerblok (tekstroute), en de stap stof of toepassen is op 360 px nog 3.000–5.000 px lang. Oplossing is inhoud: de tekstroute inkorten tot een verwijzing, of de stof opdelen in kaarten die je doorklikt (DESIGN §5.3). Vraagt keuzes van de auteur.
+- **B-3** Startpagina: DESIGN §5.1 vraagt één veld per scherm en een startknop; nu staan de vier velden onder elkaar (wel zonder meldingen vooraf). Niet in fase 16–19 opgenomen.
+- **B-4** STARR (6.3) vraagt twee keer naar de volgende stap: in het sjabloon en in de voet van de taak (TK-10). Samenvoegen raakt het record van EV-10; besluit nodig.
+- **B-5** Kaart-in-kaart in sommige oefeningen (bijvoorbeeld het kader met de kapitalen in de oefencasus) en „Fictief” drie keer op één spelscherm.
 - **B-1** Onzininvoer (fase 18.3): vier resultaten worden Compleet met „bla bla bla bla?”. Beslissen of een telling van verschillende woorden erbij komt (raakt BW-11) of dat BW-6 en het gesprek met de coach volstaan.
 
 - **A-1** TOM³-bron zonder openbare publicatie: opgevraagd in subtask 10.11, gebruikt in fase 10.
