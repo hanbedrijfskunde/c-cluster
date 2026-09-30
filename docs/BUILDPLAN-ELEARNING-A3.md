@@ -28,7 +28,7 @@
 - [x] Fase 8 — Huisstijl, toegankelijkheid, responsive en offline (PF-2 alleen Chromium, Firefox en WebKit via Playwright; 8.9 wacht op een mens met Edge en Safari)
 - [x] Fase 9 — Docentmodus: mechaniek en deel 1 (proefrun en leesbaarheid achterste rij wachten op een mens)
 - [x] Fase 10 — Leerblok 3 en docentmodus deel 2 (EV-06 t/m EV-08) (10.1 wacht op akkoord auteur; 10.11 wacht op een mens; menselijke tester en proefrun docent vervangen door Playwright of open)
-- [ ] Fase 11 — Leerblok 4: verbanden, reflectie en afronding (EV-10, EV-11)
+- [x] Fase 11 — Leerblok 4: verbanden, reflectie en afronding (EV-10, EV-11) (11.1 wacht op akkoord auteur; menselijke tester vervangen door Playwright)
 - [ ] Fase 12 — Media: mechaniek, twee video's en twee spellen
 - [ ] Fase 13 — Media: de overige video's en spellen
 - [ ] Fase 14 — Afdrukken, documentatie en eindcontrole
@@ -490,33 +490,35 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 **Spec.** LB-15, LB-16, LB-17, EV-10, EV-11, VB-1…VB-10, WS-2, TK-11…TK-14, ST-3, ST-4, ST-5, BW-10, LI-2.
 
 ### Subtasks
-- [ ] 11.1 Vul `data/leerblok-4.json` met taak 9.4 en de reflectietaak; ontbrekende „Waarom" en „Klaar als" door de auteur laten goedkeuren. Verwacht: taken volledig.
-- [ ] 11.2 Bouw de verbanden-kaart met drie kolommen en zes kapitalen (VB-1) in `js/verbanden.js`. Verwacht: 3 kolommen, 6 kapitalen.
-- [ ] 11.3 Bouw de oefencasus met 3 open vragen en het modelvoorbeeld pas na een eigen poging (VB-2). Verwacht: 0 modelvoorbeelden vóór ≥ 1 getrokken lijn.
-- [ ] 11.4 Bouw het trekken van lijnen met 3 typen en één zin (VB-3) en het automatisch tekenen tussen de kolommen zonder ingebedde afbeeldingen van Strategyzer of IIRC (VB-10, LI-2). Verwacht: ≥ 6 lijnen in een testprofiel; 0 ingebedde afbeeldingen van beide bronnen.
-- [ ] 11.5 Bouw open plekken als vraag, nooit als antwoord (VB-4). Verwacht: 0 antwoorden in een leeg en een half ingevuld voorbeeld.
-- [ ] 11.6 Bouw de markering van kapitalen (VB-5) en de spanning met een stakeholder uit EV-06 (VB-6). Verwacht: 6 kapitalen, 3 markeringen; ≥ 1 spanning.
-- [ ] 11.7 Bouw de synthese-alinea (≤ 5 zinnen) met chips uit ≥ 2 modellen en 3 antwoorden op „wat laat dit model niet zien" (VB-7). Verwacht: alle drie de elementen gecontroleerd.
-- [ ] 11.8 Zet taak 9.4 als zelfstandige taak van 20 min zonder plek in het werkcollegeprogramma (VB-9). Verwacht: 0 onderdelen in `docent-deel2.json`.
-- [ ] 11.9 Schrijf `js/checks/lb4.js` (aanvullend) voor EV-10 en EV-11 en de samenhangcontroles EV-11→EV-01 en EV-11→EV-06 (BW-10). Verwacht: 5 samenhangcontroles in totaal.
-- [ ] 11.10 Neem de lijst van verbanden op in het wisselblok en het A3-tekstblok (WS-2, VB-8). Verwacht: alle verbanden uit EV-11 aanwezig.
-- [ ] 11.11 Bouw het STARR-sjabloon (LB-15) en de zin „wat ik hiermee aan mijn A3 heb" naast de waarom-zin (TK-11). Verwacht: 5 delen, 1 keuzelijst, 2 zinnen naast elkaar.
-- [ ] 11.12 Bouw „kopieer naar A3 vak 1" met datumlog (LB-16, LB-17). Verwacht: 4 onderdelen in het klembord; 1 datum per actie.
-- [ ] 11.13 Toon het zwakste onderdeel op de dossierpagina (TK-12). Verwacht: klopt met 3 testprofielen.
-- [ ] 11.14 Voltooi de verdiepingstaken (4 in totaal) en zorg dat ze de status en de richttijd niet raken (TK-13, TK-14). Verwacht: 4 verdiepingstaken, 0 statuswijzigingen.
-- [ ] 11.15 Bouw het voorlopig vraagstuk: label `voorlopig`, „opnieuw doen" met één klik en oude en nieuwe versie zichtbaar (ST-3, ST-4, ST-5). Verwacht: 100 % van de records na de keuze `voorlopig: true`.
-- [ ] 11.16 Voeg `data/bronnen-4.json` toe (Mayer, Osterwalder, IIRC, e.a.). Verwacht: `content-check` groen.
-- [ ] 11.17 Draai `content-check` op alle 11 bewijsonderdelen (BW-12, QA-3). Verwacht: 11 van 11 volledig.
+- [ ] 11.1 (concept, wacht op akkoord auteur: alle „Waarom” en „Klaar als” van 9.4 en 6.3 zijn geschreven door de bouwer, bron `concept-auteur`; 6.2 blijft zoals het was) Vul `data/leerblok-4.json` met taak 9.4 en de reflectietaak; ontbrekende „Waarom" en „Klaar als" door de auteur laten goedkeuren. Verwacht: taken volledig.
+- [x] 11.2 Bouw de verbanden-kaart met drie kolommen en zes kapitalen (VB-1) in `js/verbanden.js`. Verwacht: 3 kolommen, 6 kapitalen.
+- [x] 11.3 Bouw de oefencasus met 3 open vragen en het modelvoorbeeld pas na een eigen poging (VB-2). Verwacht: 0 modelvoorbeelden vóór ≥ 1 getrokken lijn.
+- [x] 11.4 Bouw het trekken van lijnen met 3 typen en één zin (VB-3) en het automatisch tekenen tussen de kolommen zonder ingebedde afbeeldingen van Strategyzer of IIRC (VB-10, LI-2). Verwacht: ≥ 6 lijnen in een testprofiel; 0 ingebedde afbeeldingen van beide bronnen.
+- [x] 11.5 Bouw open plekken als vraag, nooit als antwoord (VB-4). Verwacht: 0 antwoorden in een leeg en een half ingevuld voorbeeld.
+- [x] 11.6 Bouw de markering van kapitalen (VB-5) en de spanning met een stakeholder uit EV-06 (VB-6). Verwacht: 6 kapitalen, 3 markeringen; ≥ 1 spanning.
+- [x] 11.7 Bouw de synthese-alinea (≤ 5 zinnen) met chips uit ≥ 2 modellen en 3 antwoorden op „wat laat dit model niet zien" (VB-7). Verwacht: alle drie de elementen gecontroleerd.
+- [x] 11.8 Zet taak 9.4 als zelfstandige taak van 20 min zonder plek in het werkcollegeprogramma (VB-9). Verwacht: 0 onderdelen in `docent-deel2.json`.
+- [x] 11.9 Schrijf `js/checks/lb4.js` (aanvullend) voor EV-10 en EV-11 en de samenhangcontroles EV-11→EV-01 en EV-11→EV-06 (BW-10). Verwacht: 5 samenhangcontroles in totaal.
+- [x] 11.10 Neem de lijst van verbanden op in het wisselblok en het A3-tekstblok (WS-2, VB-8). Verwacht: alle verbanden uit EV-11 aanwezig.
+- [x] 11.11 Bouw het STARR-sjabloon (LB-15) en de zin „wat ik hiermee aan mijn A3 heb" naast de waarom-zin (TK-11). Verwacht: 5 delen, 1 keuzelijst, 2 zinnen naast elkaar.
+- [x] 11.12 Bouw „kopieer naar A3 vak 1" met datumlog (LB-16, LB-17). Verwacht: 4 onderdelen in het klembord; 1 datum per actie.
+- [x] 11.13 Toon het zwakste onderdeel op de dossierpagina (TK-12). Verwacht: klopt met 3 testprofielen.
+- [x] 11.14 Voltooi de verdiepingstaken (4 in totaal) en zorg dat ze de status en de richttijd niet raken (TK-13, TK-14). Verwacht: 4 verdiepingstaken, 0 statuswijzigingen.
+- [x] 11.15 Bouw het voorlopig vraagstuk: label `voorlopig`, „opnieuw doen" met één klik en oude en nieuwe versie zichtbaar (ST-3, ST-4, ST-5). Verwacht: 100 % van de records na de keuze `voorlopig: true`.
+- [x] 11.16 Voeg `data/bronnen-4.json` toe (Mayer, Osterwalder, IIRC, e.a.). Verwacht: `content-check` groen.
+- [x] 11.17 Draai `content-check` op alle 11 bewijsonderdelen (BW-12, QA-3). Verwacht: 11 van 11 volledig.
 
 ### Testpoort
-- [ ] Volledige testpoort.
-- [ ] Sabotage VB-4: toon het ontbrekende verband als antwoord; de test faalt.
-- [ ] Sabotage BW-10: verbreek de koppeling EV-11→EV-06; de samenhangcontrole faalt.
+- [x] Volledige testpoort (521 tests, content-check, link-check, gewichtscontrole, gepubliceerde site zonder consolefout en met 0 verzoeken naar andere domeinen; Lighthouse toegankelijkheid 99 op leerblok-4.html en 100 op dossier.html; 360 px zonder horizontale scroll).
+- [x] Sabotage VB-4: toon het ontbrekende verband als antwoord; de test faalt.
+- [x] Sabotage BW-10: verbreek de koppeling EV-11→EV-06; de samenhangcontrole faalt.
 - [ ] Testprofielen: pilotstudent met eigen vraagstuk; profiel „voorlopig vraagstuk" (AC-21); profiel met leeg dossier (AC-40).
-- [ ] Geclaimde regels met hun methode gecontroleerd.
+- [x] Geclaimde regels met hun methode gecontroleerd.
 
 ### Afsluiting
-- [ ] commit `VB-1…VB-10, EV-10, EV-11, LB-15…LB-17, ST-3…ST-5, TK-11…TK-14: leerblok 4`  - [ ] push  - [ ] overzicht afvinken
+- [x] commit `VB-1…VB-10, EV-10, EV-11, LB-15…LB-17, ST-3…ST-5, TK-11…TK-14: leerblok 4` (9b6d3f9)  - [x] push  - [x] overzicht afvinken
+
+**Afwijkingen fase 11.** (1) PF-4 is eerst structureel opgelost, vóór nieuwe onderdelen: controlefabrieken, Wissel, weergavegroepen en de schermen van leerblok 4 laden per leerblok (`laadControles`, voorwaarden `wissel`, `weergave`, `lb4ui`), en de gewichtscontrole meet 300 kB gzip plus 400 kB bron; ADR B69. Leerblok 4 weegt 308 kB bron en 101 kB gzip; hoogste gzip 101 kB. De test op de fabrieken per leerblok vond een fout die anders pas in de browser was gebleken (leerblok 2 en 3 gebruiken fabrieken uit lb1). (2) EV-10 staat op een nieuwe taak 6.3 (STARR op de oefenronde van 6.2) en EV-11 op taak 9.4; het werkboek heeft beide taken niet, dus 11.1 blijft concept (auteur moet akkoord geven). De testfixture `maak-dossiers.mjs` noemt EV-10 nog taak 9.3; dat is testdata en niet aangepast. (3) De kaart heeft geen slepen met de muis: een verband maak je met twee knoppen en een formulier (toetsenbord, TG-2); de tekstlijst is de tekstweergave (TG-5). (4) ST-5: het dossier toont oud en nieuw naast elkaar op de dossierpagina; de export bevat alleen de nieuwste versie. TK-14: `verdiepingGedaan` (leerblokken, geen tekst) is een optioneel veld in de export en staat op de dossierpagina. (5) `data/bronnen-4.json` bevat alleen IIRC (uit wachtOpCitatie verplaatst); Mayer, Osterwalder en Strategyzer staan al in bronnen-2 en -3. Links naar de bronnen lopen via de bronnenpagina; er zijn geen afbeeldingen van Strategyzer of het IIRC (LI-2, test). (6) Menselijke tester vervangen door Playwright; geen schermlezer gebruikt; Lighthouse is op een leeg en op een gevuld dossier gedraaid in Chromium. (7) Sabotage: 16 mutaties in nieuwe code en data; 14 braken minstens één test, één had een onjuist zoekpatroon in de mutatie (VB-9, daarna opnieuw en gebroken) en één overleefde (een kale `import './lb2.js'` in het register); de test is aangescherpt en breekt nu. Alle nieuwe controles en tests zijn minstens eenmaal gebroken en hersteld (VB-4, BW-10 beide richtingen, VB-2, VB-3, ST-4, ST-5, LB-17, TK-12, WS-2, LI-2, PF-4 twee keer, QA-3, EV-11-spanning, VB-9). Besluiten: ADR B69.
 
 ---
 
