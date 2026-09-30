@@ -3,3 +3,11 @@
 __pycache__/
 .claude/settings.local.json
 archief/
+
+# Materiaal van derden: niet publiceren (auteursrecht, Brightspace, PhoneVentures)
+lits/
+WK*/PhoneVentures*
+WK*/*.pptx
+WK*/*.docx
+WK*/*.odt
+WK*/*Copy.pdf
