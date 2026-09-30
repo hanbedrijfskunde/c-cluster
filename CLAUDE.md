@@ -11,7 +11,7 @@ Geen softwareproject maar een werkmap voor onderwijsontwerp: het C-cluster (HBO 
 - `WK4/`, `WK5/`: lesmateriaal per onderwijsweek (werkboek, draaiboek, docentinstructie, slides, ontwerp-`.md`). `WK5/overzicht-weekprogramma.md` is het startpunt voor week 5; `WK5/ontwerp-woensdag-A3-start.md` is het ontwerp van dag 2.
 - `docs/`: ontwerpdocumenten over meerdere weken heen (zie hieronder) en `overzicht-leeruitkomsten.*`, de samenvatting van de vijf LUK en de beoordelingscriteria (BC) van het C-cluster.
 - `lits/`: literatuur en afbeeldingen van derden. Staat in `.gitignore` en wordt niet gepubliceerd; kopieer er geen tekst of afbeeldingen uit in documenten die openbaar kunnen worden.
-- `.claude/skills/`: projectskills. Gebruik `beoordeel-onderwijsontwerp` voor toetsing van ontwerpen, `beoordeel-hoorcollege` en `ontwerp-dia` voor decks, en `redigeer-nederlandse-tekst` en `schrap-ai-taal` voordat Nederlandse tekst naar lezers gaat.
+- `.claude/skills/`: projectskills. Gebruik `beoordeel-onderwijsontwerp` voor toetsing van ontwerpen, `beoordeel-elearning` voor de gebouwde e-learning (PAMS+KISS plus de KSF-audit uit `docs/ksfs-e-learning.md`), `beoordeel-hoorcollege` en `ontwerp-dia` voor decks, en `redigeer-nederlandse-tekst` en `schrap-ai-taal` voordat Nederlandse tekst naar lezers gaat.
 
 `.gitignore` sluit ook uit: `WK*/PhoneVentures*`, `WK*/*.pptx`, `*.docx`, `*.odt`, `*Copy.pdf` (materiaal van derden of van Brightspace) en `archief/`.
 
