@@ -20,7 +20,7 @@
 - [x] Fase 0 — Repository, licentie en lege publicatie
 - [x] Fase 1 — Kern: schema, controles en statusregel (met controlelab)
 - [x] Fase 2 — Leerblok 1 als dunne doorsnede (EV-01, EV-02) (subtask 2.3 wacht op akkoord van de auteur)
-- [ ] Fase 3 — Dossier: export, import en verificatie
+- [x] Fase 3 — Dossier: export, import en verificatie
 - [ ] Fase 4 — De Wissel en de feedbacklog (EV-09) (subtask 4.7 wacht op de dossierweergave van fase 3; de rest is af en live)
 - [ ] Fase 5 — Proefsessie met 2–3 gebruikers en bijstelling
 - [ ] Fase 6 — Leerblok 2 en de bronnenpagina (EV-03 t/m EV-05)
@@ -223,27 +223,40 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 **Spec.** DS-2…DS-12, BW-13, PR-2.
 
 ### Subtasks
-- [ ] 3.1 Schrijf `data/luk.json` met de 13 onderdelen van §4.3 (dekking, bewijs) en toon ze op `dossier.html` met de eigen status (BW-13). Verwacht: 13 rijen; onderdelen met EV-01/02 tonen de status uit het dossier.
-- [ ] 3.2 Schrijf `js/dossier.js`: export als JSON met records (nieuwste versie en aantal eerdere), alias, teamnummer, e-learningversie (DS-5) en een SHA-256 over de inhoud via `crypto.subtle` (DS-6). Verwacht: controlesom van 64 hexadecimale tekens.
-- [ ] 3.3 Bouw de afdrukbare pagina per leeruitkomst (LUK 1, 2, 5) met status per bewijsonderdeel, inhoud en controlesom onderaan (DS-7). Verwacht: 3 pagina's.
-- [ ] 3.4 Bouw import met controle op schemaversie 1.x (DS-3, DS-4). Verwacht: 0 verschillen tussen records vóór export en na import.
-- [ ] 3.5 Toon de melding „bewaar je dossier" na elk leerblok en na elke 10 wijzigingen (DS-2). Verwacht: 1 melding per 10 wijzigingen.
-- [ ] 3.6 Bouw de verificatiepagina: lokaal inlezen, controlesom herberekenen, „gewijzigd na export" bij afwijking (DS-8), geen uitgaande verzoeken (DS-10). Verwacht: 1 gewijzigd teken → melding; ongewijzigd → geen melding.
-- [ ] 3.7 Laat de verificatiepagina meerdere dossiers tegelijk inlezen met een tabel per student en per leeruitkomst, ontbrekende onderdelen bovenaan (DS-9). Verwacht: 5 dossiers, 11 bewijsonderdelen en 3 leeruitkomsten per student.
-- [ ] 3.8 Bouw „Mijn stand": per bewijsonderdeel alleen de status, groot, zonder inhoud (DS-11). Verwacht: 0 inhoudsvelden.
-- [ ] 3.9 Meld geblokkeerde browseropslag en bied direct export aan (DS-12). Verwacht: in een privévenster 1 melding en 1 exportknop ≤ 1 s na laden.
-- [ ] 3.10 Maak 5 testdossiers in `tests/fixtures/` (waaronder 1 met gewijzigde inhoud). Verwacht: 5 bestanden.
-- [ ] 3.11 Schrijf `tests/dossier.test.mjs` voor SHA-256, import en verificatie. Verwacht: groen.
+- [x] 3.1 Schrijf `data/luk.json` met de 13 onderdelen van §4.3 (dekking, bewijs) en toon ze op `dossier.html` met de eigen status (BW-13). Verwacht: 13 rijen; onderdelen met EV-01/02 tonen de status uit het dossier.
+- [x] 3.2 Schrijf `js/dossier.js`: export als JSON met records (nieuwste versie en aantal eerdere), alias, teamnummer, e-learningversie (DS-5) en een SHA-256 over de inhoud via `crypto.subtle` (DS-6). Verwacht: controlesom van 64 hexadecimale tekens.
+- [x] 3.3 Bouw de afdrukbare pagina per leeruitkomst (LUK 1, 2, 5) met status per bewijsonderdeel, inhoud en controlesom onderaan (DS-7). Verwacht: 3 pagina's.
+- [x] 3.4 Bouw import met controle op schemaversie 1.x (DS-3, DS-4). Verwacht: 0 verschillen tussen records vóór export en na import.
+- [x] 3.5 Toon de melding „bewaar je dossier" na elk leerblok en na elke 10 wijzigingen (DS-2). Verwacht: 1 melding per 10 wijzigingen.
+- [x] 3.6 Bouw de verificatiepagina: lokaal inlezen, controlesom herberekenen, „gewijzigd na export" bij afwijking (DS-8), geen uitgaande verzoeken (DS-10). Verwacht: 1 gewijzigd teken → melding; ongewijzigd → geen melding.
+- [x] 3.7 Laat de verificatiepagina meerdere dossiers tegelijk inlezen met een tabel per student en per leeruitkomst, ontbrekende onderdelen bovenaan (DS-9). Verwacht: 5 dossiers, 11 bewijsonderdelen en 3 leeruitkomsten per student.
+- [x] 3.8 Bouw „Mijn stand": per bewijsonderdeel alleen de status, groot, zonder inhoud (DS-11). Verwacht: 0 inhoudsvelden.
+- [x] 3.9 Meld geblokkeerde browseropslag en bied direct export aan (DS-12). Verwacht: in een privévenster 1 melding en 1 exportknop ≤ 1 s na laden.
+- [x] 3.10 Maak 5 testdossiers in `tests/fixtures/` (waaronder 1 met gewijzigde inhoud). Verwacht: 5 bestanden.
+- [x] 3.11 Schrijf `tests/dossier.test.mjs` voor SHA-256, import en verificatie. Verwacht: groen.
 
 ### Testpoort
-- [ ] Volledige testpoort.
-- [ ] Sabotage DS-8: rond de controlesom af zodat een gewijzigd teken niet opvalt; de test faalt.
-- [ ] Netwerktrace tijdens export en verificatie: 0 uitgaande verzoeken met dossierinhoud (DS-10, PR-2).
-- [ ] Tester: export → wijzig 1 teken → verificatie → melding; import in schoon profiel → alles terug.
-- [ ] Geclaimde regels met hun methode gecontroleerd.
+- [x] Volledige testpoort.
+- [x] Sabotage DS-8: rond de controlesom af zodat een gewijzigd teken niet opvalt; de test faalt.
+- [x] Netwerktrace tijdens export en verificatie: 0 uitgaande verzoeken met dossierinhoud (DS-10, PR-2).
+- [x] Tester (Playwright, geen mens): export → wijzig 1 teken → verificatie → melding; import in schoon profiel → alles terug.
+- [x] Geclaimde regels met hun methode gecontroleerd.
 
 ### Afsluiting
-- [ ] commit `DS-2…DS-12, BW-13: dossier, import en verificatiepagina`  - [ ] push  - [ ] overzicht afvinken
+- [x] commit `DS-2…DS-12, BW-13: dossier, import en verificatiepagina` (030c584 vóór rebase, plus 0639699)  - [x] push (Actions-run groen, live geverifieerd)  - [x] overzicht afvinken
+
+**Stand en afwijkingen fase 3 (30 september 2026).** Gecommit en gepubliceerd (workflow groen, live gecontroleerd); 267 tests waarvan 40 nieuw in `tests/dossier.test.mjs` (264 groen, 3 overgeslagen: het werkboek staat niet naast de repository).
+- **Bestanden.** Naast `js/dossier.js` (logica, geen DOM) staan `js/dossier-dom.js` (download, bewaarherinnering, melding bij geblokkeerde opslag), `js/dossier-pagina.js` en `js/verificatie-pagina.js`. `js/leerblok.js` (fase 2) is minimaal aangepast: één import, een container `#bewaarherinnering` met twee aanroepen van `toonBewaarHerinnering` (bij laden en na elke opslag), en de oude melding bij geblokkeerde opslag is vervangen door `geblokkeerdMelding` (met exportknop). De store is niet gewijzigd.
+- **Exportformaat** (README): `{ formaat: "a3-bewijsdossier", schema: "1.0", elearning, geexporteerd, alias, teamnummer, vraagstuk, waaromZin, voorlopig, records: [{ record, eerdereVersies }], controlesom: { algoritme: "SHA-256", waarde, over } }`. De controlesom loopt over alle velden behalve zichzelf, canoniek (gesorteerde sleutels). Vraagstuk, waarom-zin en voorlopig zitten er ook in (meer dan DS-5 eist) zodat een import het profiel terugzet.
+- **Import schrijft rechtstreeks in de recordlijst** (`a3l:rec:<id>`) omdat `store.save` het versienummer altijd doortelt; anders zou „0 verschillen" niet kunnen. Een test bewaakt dat de store daarna gewoon doorwerkt. Zie ADR B63.
+- **DS-7:** de criteriumtekst „3 onderdelen elk" klopt niet met §4.3: LUK 1 heeft 9 bewijsonderdelen, LUK 2 één (EV-11) en LUK 5 twee. De pagina toont de onderdelen die §4.3 aan elke LUK koppelt. De afdrukbare pagina's zijn een weergave op `dossier.html` (knop „Afdrukbare pagina's per leeruitkomst", dan Afdrukken), geen apart bestand.
+- **DS-9:** studenten met de meeste ontbrekende onderdelen staan bovenaan; „ontbreekt" = geen record of Nog niet. De leeruitkomst neemt het slechtste van haar onderdelen (BW-5).
+- **DS-2:** de melding na elk leerblok is de bestaande bewaarmelding op het afsluitscherm (fase 2). Nieuw is de melding na elke 10 opgeslagen versies (som van `versie` over alle records), die blijft staan tot de student exporteert of „Later" kiest.
+- **DS-10:** naast de netwerktrace hebben `dossier.html` en `verificatie.html` een Content-Security-Policy (`default-src 'none'`, `connect-src 'self'`). De pagina's halen alleen `data/*.json` op; veldlabels komen alleen uit leerblokbestanden waarvan de student records heeft (anders 404-fouten in de console voor nog niet bestaande leerblokken).
+- **`content-check`** controleert nu ook `data/luk.json` (11 bewijsonderdelen, 13 onderdelen, dekking, en de kruiscontrole met de leerblokbestanden: titel, `lukOnderdelen`, `luk` van de taak). De titel van EV-09 in `luk.json` volgt leerblok 4 („Feedback ontvangen en gegeven").
+- **Sabotage** gedaan en hersteld, telkens door de tests gevangen (36 stuks): DS-8 (controlesom afgerond op de eerste 200 tekens; vergelijking altijd gelijk; ontbrekende som telt als ok), canonieke volgorde, SHA-1 in plaats van SHA-256, eerdere versies, alias uit export, bestandsnaam, schema 2.x en nieuwere minor geaccepteerd, versienummer niet behouden bij import, nieuwste wint omgekeerd, profiel altijd overschreven, geen recordvalidatie, dubbel id, herinnering per 5, export sluit melding niet af, hook uit leerblok.js, Mijn stand met inhoud, geen sortering, „nog niet" telt niet als ontbrekend, slechtste status, dekking zonder status, controlesom niet op de pagina, LUK 2 ontbreekt, netwerkverzoek met POST, CSP verruimd, melding op dossierpagina weg, `luk.json` (rij weg, dekking gewijzigd) en drie controles in `controleerLuk`. Twee sabotages werden eerst niet gevangen (de toepassing van de melding in `leerblok.js`, en `slechtsteStatus`); daarvoor zijn tests aangescherpt.
+- **Playwright (lokaal en live):** export (`bewijsdossier-student-2026-09-30.json`) → één teken gewijzigd → verificatie: „gewijzigd na export" bij het gewijzigde bestand, niets bij het ongewijzigde; vijf fixtures tegelijk: 5 rijen met 11 onderdelen en 3 leeruitkomsten, twee gemarkeerd; import in een nieuw browserprofiel: record en versienummer terug, een gewijzigd bestand wordt pas na „Toch importeren" ingelezen; drie afdrukpagina's met 64-tekens controlesom; melding na 10 wijzigingen, weg na „Later" en na herladen; geblokkeerde opslag (init-script dat `localStorage` laat falen): melding en exportknop na ca. 0,2 s op `dossier.html` en `leerblok-1.html`, en de export werkt. Netwerktrace tijdens export en verificatie: 0 verzoeken buiten de eigen origin en 0 verzoeken met een andere methode dan GET; 0 consolefouten; alle 8 pagina's 200 live.
+- **Niet gedaan / niet te verifiëren:** een echt privévenster (het init-script bootst geblokkeerde opslag na; in Chrome en Firefox werkt `localStorage` in een privévenster meestal gewoon); afdrukken naar pdf en de printstijl zijn niet visueel bekeken (schermafdrukken liepen in de testbrowser vast); een menselijke tester; `crypto.subtle` bestaat alleen in een beveiligde context (https of localhost), anders geeft de export een duidelijke fout. 4.7 van fase 4: het EV-09-record staat in het dossier en op de afdrukpagina van LUK 5; of de teamactie daar leesbaar staat hangt af van de veldnamen in `leerblok-4.json` (bij ontbrekend label staat de veldnaam).
 
 ---
 
