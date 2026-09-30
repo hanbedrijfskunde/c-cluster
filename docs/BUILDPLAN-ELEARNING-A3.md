@@ -21,10 +21,10 @@
 - [x] Fase 1 — Kern: schema, controles en statusregel (met controlelab)
 - [x] Fase 2 — Leerblok 1 als dunne doorsnede (EV-01, EV-02) (subtask 2.3 wacht op akkoord van de auteur)
 - [x] Fase 3 — Dossier: export, import en verificatie
-- [ ] Fase 4 — De Wissel en de feedbacklog (EV-09) (subtask 4.7 wacht op de dossierweergave van fase 3; de rest is af en live)
+- [x] Fase 4 — De Wissel en de feedbacklog (EV-09) (4.7 gedaan in fase 7)
 - [ ] Fase 5 — Proefsessie met 2–3 gebruikers en bijstelling
 - [x] Fase 6 — Leerblok 2 en de bronnenpagina (EV-03 t/m EV-05) (6.1 wacht op akkoord auteur)
-- [ ] Fase 7 — Terugblik en werken met tussenpozen
+- [x] Fase 7 — Terugblik en werken met tussenpozen
 - [ ] Fase 8 — Huisstijl, toegankelijkheid, responsive en offline
 - [ ] Fase 9 — Docentmodus: mechaniek en deel 1
 - [ ] Fase 10 — Leerblok 3 en docentmodus deel 2 (EV-06 t/m EV-08)
@@ -273,7 +273,7 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 - [x] 4.4 Laat de feedback via het klembord terugkomen en als ontvangen en gegeven verschijnen in EV-09 (WS-5). Verwacht: 1 ontvangen en 1 gegeven regel na een uitwisseling.
 - [x] 4.5 Schrijf de controles van EV-09 in `js/checks/lb4.js` (alleen de EV-09-controles) en de kopiecontrole voor EV-01 en EV-02 (WS-7, EV-09). Verwacht: 0 tekens verschil → `let op`, status Bijna.
 - [x] 4.6 Laat EV-09 op Bijna staan zolang er geen feedback is, ook na ≥ 14 dagen (WS-8). Verwacht: test met aangepaste tijdstempels.
-- [ ] 4.7 (deels: flow en teamactie af en getest, ze staan in het record EV-09; de weergave op de dossierpagina hoort bij fase 3) Voeg de flow voor de post-its van andere teams toe met de rol „ander team" en één teamactie (WS-6). Verwacht: zichtbaar op de dossierpagina naast individuele feedback.
+- [x] 4.7 Voeg de flow voor de post-its van andere teams toe met de rol „ander team” en één teamactie (WS-6). Verwacht: zichtbaar op de dossierpagina naast individuele feedback. *Flow en teamactie in fase 4; de weergave op `dossier.html` (twee kolommen: individueel naast post-its van andere teams met teamactie) in fase 7, met test en sabotagetest.*
 - [x] 4.8 Toon de privacytekst bij de Wissel met het klembord als kanaal, ≤ 60 woorden (WS-10). Verwacht: 1 tekst in de flow.
 - [x] 4.9 Toon een herinnering bij een actie die ≥ 7 dagen dezelfde status heeft (WS-11). Verwacht: 1 herinnering na 7 dagen, 0 bij 6 dagen.
 - [x] 4.10 Toon de Wissel pas na de eerste versie van EV-02 (ST-7). Verwacht: in de eerste 4 schermen van leerblok 1 zichtbaar 0 Wissel-elementen.
@@ -286,7 +286,7 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 - [x] Geclaimde regels met hun methode gecontroleerd (WS-2 valt in fase 11).
 
 ### Afsluiting
-- [x] commit `WS-1, WS-3…WS-11, LB-14, EV-09: Wissel en feedbacklog` (1908808)  - [x] push (Actions-run groen, live geverifieerd)  - [ ] overzicht afvinken (na 4.7)
+- [x] commit `WS-1, WS-3…WS-11, LB-14, EV-09: Wissel en feedbacklog` (1908808)  - [x] push (Actions-run groen, live geverifieerd)  - [x] overzicht afvinken (na 4.7)
 
 **Afwijkingen fase 4.** (a) `js/sessie.js` (fase 2) kreeg een optionele parameter `context` voor extra controlecontext, nodig voor de kopiecontrole (records van andere leerblokken en ontvangen wisselblokken); `tests/lb1.test.mjs` kreeg één regel (nieuw controletype gedekt in `wissel.test.mjs`). (b) Nieuw bestand `js/wissel-paneel.js` (DOM) naast `js/wissel.js` (logica). (c) `leerblok-4.html` kreeg `data-leerblok="4"`; `js/leerblok.js` kreeg een `feedbacklog`-component en de Wissel-sectie in leerblok 1. (d) `data/leerblok-4.json` bevat alleen taak 6.2 en een voorlopige verdieping (content-check eist er één); fase 11 vult aan. (e) 4.7: post-its en teamactie staan in het record EV-09; de weergave op de dossierpagina moet fase 3 (of 5) uit het record `EV-09` (`inhoud.regels`, `inhoud.teamactie`) tonen. (f) WS-11: de herinnering staat alleen in het Wissel-paneel; `herinneringenUitStore` is beschikbaar voor de startpagina. (g) Geen menselijke tester: zie Testpoort. Besluiten: ADR B62.
 
@@ -356,26 +356,30 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 **Spec.** TP-1…TP-11.
 
 ### Subtasks
-- [ ] 7.1 Leg `data/terugblik.json` vast en vul het met de kaarten van LRD 8.5 (drie blokken: items, twee kennisvragen, transfervraag). Verwacht: 3 kaarten, 2 kennisvragen per kaart.
-- [ ] 7.2 Schrijf `js/terugblik.js` met `pauzeInDagen(dossier)` uit de tijdstempels (TP-6). Verwacht: 0 dagen afwijking van het verschil tussen de tijdstempels.
-- [ ] 7.3 Voeg `bandbreedte(pauze)` toe: < 2 uur / < 2 dagen / 2–13 dagen / ≥ 14 dagen (TP-7). Verwacht: 4 profielen (1 uur, 1 dag, 5 dagen, 14 dagen) geven de verwachte terugblik.
-- [ ] 7.4 Bouw het scherm „Vorige keer" dat achtereenvolgens de dossiercontrole, de terugblik met meenemen-kaart en de transfervraag toont (TP-11, TP-1). Verwacht: 1 scherm, 3 onderdelen in vaste volgorde, terugblik ≤ 15 min.
-- [ ] 7.5 Bouw ophalen vóór de kaart: ≥ 3 punten en 2 kennisvragen, pas dan de kaart met items en eigen bewijsstukken (TP-2, TP-3). Verwacht: kaart 0× zichtbaar vóór 3 punten of „ik weet het nog".
-- [ ] 7.6 Bouw de transfervraag van twee zinnen met één gekozen item (TP-4) en „ik weet het nog" met één klik zonder bewijsrecord (TP-5). Verwacht: 0 bewijsrecords uit de terugblik.
-- [ ] 7.7 Log pauze in dagen en „gedaan" of „overgeslagen" in het dossier (TP-8). Verwacht: 2 velden per leerblok vanaf 2.
-- [ ] 7.8 Bouw de dossiercontrole met importaanbod en lijst van ontbrekende bewijsonderdelen (TP-9). Verwacht: na leegmaken 1 aanbod en 1 lijst, 0 verloren gegevens na import.
-- [ ] 7.9 Voeg het veld voor aanbevolen week en dag toe aan de leerblokdata (TP-10). Verwacht: 4 velden, 0 blokkades.
-- [ ] 7.10 Maak `tests/terugblik.test.mjs` met de 4 profielen en de grenzen 2 uur, 2 dagen en 14 dagen. Verwacht: groen.
+- [x] 7.1 Leg `data/terugblik.json` vast en vul het met de kaarten van LRD 8.5 (drie blokken: items, twee kennisvragen, transfervraag). Verwacht: 3 kaarten, 2 kennisvragen per kaart.
+- [x] 7.2 Schrijf `js/terugblik.js` met `pauzeInDagen(dossier)` uit de tijdstempels (TP-6). Verwacht: 0 dagen afwijking van het verschil tussen de tijdstempels.
+- [x] 7.3 Voeg `bandbreedte(pauze)` toe: < 2 uur / < 2 dagen / 2–13 dagen / ≥ 14 dagen (TP-7). Verwacht: 4 profielen (1 uur, 1 dag, 5 dagen, 14 dagen) geven de verwachte terugblik.
+- [x] 7.4 Bouw het scherm „Vorige keer" dat achtereenvolgens de dossiercontrole, de terugblik met meenemen-kaart en de transfervraag toont (TP-11, TP-1). Verwacht: 1 scherm, 3 onderdelen in vaste volgorde, terugblik ≤ 15 min.
+- [x] 7.5 Bouw ophalen vóór de kaart: ≥ 3 punten en 2 kennisvragen, pas dan de kaart met items en eigen bewijsstukken (TP-2, TP-3). Verwacht: kaart 0× zichtbaar vóór 3 punten of „ik weet het nog".
+- [x] 7.6 Bouw de transfervraag van twee zinnen met één gekozen item (TP-4) en „ik weet het nog" met één klik zonder bewijsrecord (TP-5). Verwacht: 0 bewijsrecords uit de terugblik.
+- [x] 7.7 Log pauze in dagen en „gedaan" of „overgeslagen" in het dossier (TP-8). Verwacht: 2 velden per leerblok vanaf 2.
+- [x] 7.8 Bouw de dossiercontrole met importaanbod en lijst van ontbrekende bewijsonderdelen (TP-9). Verwacht: na leegmaken 1 aanbod en 1 lijst, 0 verloren gegevens na import.
+- [x] 7.9 Voeg het veld voor aanbevolen week en dag toe aan de leerblokdata (TP-10). Verwacht: 4 velden, 0 blokkades.
+- [x] 7.10 Maak `tests/terugblik.test.mjs` met de 4 profielen en de grenzen 2 uur, 2 dagen en 14 dagen. Verwacht: groen.
 
 ### Testpoort
-- [ ] Volledige testpoort.
-- [ ] Sabotage TP-2: toon de kaart vóór het ophalen; de test faalt.
-- [ ] Sabotage TP-7: verwissel twee bandbreedtes; de test faalt.
-- [ ] Tester met aangepaste tijdstempels doorloopt de 4 profielen (AC-39, AC-40).
-- [ ] Geclaimde regels met hun methode gecontroleerd. Open punt A-5 (pauze tussen 1 en 2 dagen) is beslist en vastgelegd in ADR.
+- [x] Volledige testpoort.
+- [x] Sabotage TP-2: toon de kaart vóór het ophalen; de test faalt.
+- [x] Sabotage TP-7: verwissel twee bandbreedtes; de test faalt.
+- [x] Tester met aangepaste tijdstempels doorloopt de 4 profielen (AC-39, AC-40). *Geautomatiseerde vervanging: Playwright MCP, lokaal (`python3 -m http.server`) en live; tijdstempels van EV-01 en EV-02 in `localStorage` op 1 uur, 1 dag, 5 dagen en 14 dagen terug gezet; opslag leeggemaakt geeft het importaanbod, import zet de records en het log terug. Geen menselijke tester.*
+- [x] Geclaimde regels met hun methode gecontroleerd. Open punt A-5 (pauze tussen 1 en 2 dagen) is beslist en vastgelegd in ADR.
 
 ### Afsluiting
-- [ ] commit `TP-1…TP-11: terugblik en tussenpozen`  - [ ] push  - [ ] overzicht afvinken
+- [x] commit `TP-1…TP-11: terugblik en tussenpozen (ook WS-6: feedback op dossierpagina)` (49a99a7)  - [x] push (Actions-run groen, live geverifieerd)  - [x] overzicht afvinken
+
+---
+
+**Afwijkingen fase 7.** (a) De pauze (TP-6) is de tijd tussen nu en het laatste `bijgewerkt` van de records van het vorige leerblok (zonder die: van een eerder leerblok; zonder records: onbekend, dan de volledige terugblik). (b) Aanbevolen week en dag (TP-10) staan in `data/leerblokken.json` (`aanbevolen`), niet in `leerblok-N.json`: leerblok 3 heeft nog geen eigen bestand en het overzicht heeft alle 4; `content-check` eist ze. Waarden zijn een concept van de bouwer (uit LRD 8.x en het weekprogramma). (c) Het terugblik-log (TP-8) is geen bewijs en geen record: meta `terugblik:log`, en als optioneel veld `terugblik` in de export (schema blijft 1.0; import vult alleen aan). (d) Leerblok 3 heeft tot fase 10 `js/leerblok-stub.js` (h1, aanbevolen, scherm „Vorige keer”); leerblok 4 gebruikt `leerblok.js`. (e) De samenvatting voor pauzes van 14 dagen of langer staat in `data/terugblik.json` met bron `concept-auteur` (waarschuwing in `content-check`, wacht op akkoord auteur). (f) `dossier.js` importeert nu `wissel.js`, `weergave.js` en `terugblik.js`; `toonWaarde` op de afdrukpagina is `waardeTekst` (toont geneste inhoud van EV-09 leesbaar in plaats van „[object Object]”). (g) `tests/fixtures/content-*/leerblokken.json` kregen `aanbevolen`. (h) Sabotage: 60 mutaties in `terugblik.js`, `dossier.js`, `weergave.js` en `content-check.mjs`, elk faalt minstens één test; alle 38 nieuwe tests zijn minstens eenmaal gebroken en hersteld (TP-2: kaart altijd zichtbaar; TP-7: middel en volledig verwisseld, en elke grens). Eén mutatie (afronden van de pauze in het log) overleefde eerst; daarvoor kwam de test met 5,25 dagen. Besluiten: ADR B65.
 
 ---
 
