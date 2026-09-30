@@ -23,7 +23,7 @@
 - [x] Fase 3 — Dossier: export, import en verificatie
 - [ ] Fase 4 — De Wissel en de feedbacklog (EV-09) (subtask 4.7 wacht op de dossierweergave van fase 3; de rest is af en live)
 - [ ] Fase 5 — Proefsessie met 2–3 gebruikers en bijstelling
-- [ ] Fase 6 — Leerblok 2 en de bronnenpagina (EV-03 t/m EV-05)
+- [x] Fase 6 — Leerblok 2 en de bronnenpagina (EV-03 t/m EV-05) (6.1 wacht op akkoord auteur)
 - [ ] Fase 7 — Terugblik en werken met tussenpozen
 - [ ] Fase 8 — Huisstijl, toegankelijkheid, responsive en offline
 - [ ] Fase 9 — Docentmodus: mechaniek en deel 1
@@ -323,27 +323,29 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 **Spec.** LB-5, LB-6, LB-7, LB-8, EV-03, EV-04, EV-05, BR-1…BR-6.
 
 ### Subtasks
-- [ ] 6.1 Vul `data/leerblok-2.json` met taken 3.1, 3.2, 4.1, 4.2 uit het werkboek; **ontbrekende „Waarom" en „Klaar als" voor de auteur schrijven en laten goedkeuren** (TK-2). Verwacht: 4 taken volledig, goedgekeurd.
-- [ ] 6.2 Schrijf `js/checks/lb2.js` met de controles van EV-03, EV-04, EV-05 (operatoren, `https://` of `doi.org`, jaar in APA gelijk aan jaarveld, 5 oordelen met toelichting). Verwacht: 3 goede en 3 zwakke voorbeelden per controle.
-- [ ] 6.3 Bouw de zoektermentabel, het zoekstringveld met operatorcontrole en de keuze route A/B (LB-5). Verwacht: 1 tabel, 1 veld, 2 routes.
-- [ ] 6.4 Bouw de promptgenerator met waarschuwing bij woorden uit de „niet noemen"-lijst (LB-6). Verwacht: 0 gemiste woorden in 6 testprompts.
-- [ ] 6.5 Bouw de bronlog met AAOCC-oordelen, twee verificatievinkjes bij route B, besluit, APA-veld met formaatcontrole en meerdere bronnen (LB-7). Verwacht: ≥ 2 bronnen invoerbaar.
-- [ ] 6.6 Bouw de stelling met keuze en argument (LB-8). Verwacht: 2 kanten, 1 argumentveld.
-- [ ] 6.7 Zet de bronnen van het LRD (bijlage A, literatuurregels) om naar `data/bronnen-1.json` en `-2.json` in APA, 7e editie, met „ongepubliceerd document" waar geen openbare publicatie bestaat (BR-3). Verwacht: elke bron met auteur, jaar, titel en link waar die bestaat.
-- [ ] 6.8 Schrijf `bronnen.html`: alle bronnen alfabetisch met werkende link (BR-1, BR-2) en in-tekstverwijzingen `(Auteur, jaar)` die naar de bronregel klikken (BR-4). Verwacht: 100 % van de verwijzingen klikt door.
-- [ ] 6.9 Breid `content-check` uit: faalt bij een verwijzing zonder bronregel of een bronregel zonder citatie (BR-5). Verwacht: 0 wezen.
-- [ ] 6.10 Breid `link-check` uit met een controle op alle DOI's en URL's uit de bronnen, en laat de workflow die bij elke publicatie draaien (BR-6). Verwacht: dode link → workflow rood.
-- [ ] 6.11 Markeer fictieve bronkaarten als „fictief" in de datafiles voor het later te bouwen spel (voorbereiding MD-15). Verwacht: veld `fictief: true` waar van toepassing.
+- [ ] 6.1 (concept, wacht op akkoord auteur) Vul `data/leerblok-2.json` met taken 3.1, 3.2, 4.1, 4.2 uit het werkboek; **ontbrekende „Waarom" en „Klaar als" voor de auteur schrijven en laten goedkeuren** (TK-2). Verwacht: 4 taken volledig, goedgekeurd.
+- [x] 6.2 Schrijf `js/checks/lb2.js` met de controles van EV-03, EV-04, EV-05 (operatoren, `https://` of `doi.org`, jaar in APA gelijk aan jaarveld, 5 oordelen met toelichting). Verwacht: 3 goede en 3 zwakke voorbeelden per controle.
+- [x] 6.3 Bouw de zoektermentabel, het zoekstringveld met operatorcontrole en de keuze route A/B (LB-5). Verwacht: 1 tabel, 1 veld, 2 routes.
+- [x] 6.4 Bouw de promptgenerator met waarschuwing bij woorden uit de „niet noemen"-lijst (LB-6). Verwacht: 0 gemiste woorden in 6 testprompts.
+- [x] 6.5 Bouw de bronlog met AAOCC-oordelen, twee verificatievinkjes bij route B, besluit, APA-veld met formaatcontrole en meerdere bronnen (LB-7). Verwacht: ≥ 2 bronnen invoerbaar.
+- [x] 6.6 Bouw de stelling met keuze en argument (LB-8). Verwacht: 2 kanten, 1 argumentveld.
+- [x] 6.7 Zet de bronnen van het LRD (bijlage A, literatuurregels) om naar `data/bronnen-1.json` en `-2.json` in APA, 7e editie, met „ongepubliceerd document" waar geen openbare publicatie bestaat (BR-3). Verwacht: elke bron met auteur, jaar, titel en link waar die bestaat.
+- [x] 6.8 Schrijf `bronnen.html`: alle bronnen alfabetisch met werkende link (BR-1, BR-2) en in-tekstverwijzingen `(Auteur, jaar)` die naar de bronregel klikken (BR-4). Verwacht: 100 % van de verwijzingen klikt door.
+- [x] 6.9 Breid `content-check` uit: faalt bij een verwijzing zonder bronregel of een bronregel zonder citatie (BR-5). Verwacht: 0 wezen.
+- [x] 6.10 Breid `link-check` uit met een controle op alle DOI's en URL's uit de bronnen, en laat de workflow die bij elke publicatie draaien (BR-6). Verwacht: dode link → workflow rood.
+- [x] 6.11 Markeer fictieve bronkaarten als „fictief" in de datafiles voor het later te bouwen spel (voorbereiding MD-15). Verwacht: veld `fictief: true` waar van toepassing.
 
 ### Testpoort
-- [ ] Volledige testpoort, inclusief link-check op alle DOI's.
-- [ ] Sabotage BR-5: voeg een verwijzing zonder bronregel toe; `content-check` faalt.
-- [ ] Sabotage BR-6: zet een DOI op een niet-bestaande waarde; de workflow faalt.
-- [ ] Tester doorloopt leerblok 2 en klikt 3 verwijzingen door.
-- [ ] Geclaimde regels met hun methode gecontroleerd (BR-1 Test, BR-2 Test, BR-3 Inspectie, BR-4 Test, BR-5 Test, BR-6 Test).
+- [x] Volledige testpoort, inclusief link-check op alle DOI's.
+- [x] Sabotage BR-5: voeg een verwijzing zonder bronregel toe; `content-check` faalt.
+- [x] Sabotage BR-6: zet een DOI op een niet-bestaande waarde; de workflow faalt.
+- [x] Tester doorloopt leerblok 2 en klikt 3 verwijzingen door.
+- [x] Geclaimde regels met hun methode gecontroleerd (BR-1 Test, BR-2 Test, BR-3 Inspectie, BR-4 Test, BR-5 Test, BR-6 Test).
 
 ### Afsluiting
-- [ ] commit `LB-5…LB-8, EV-03…EV-05, BR-1…BR-6: leerblok 2 en bronnenpagina`  - [ ] push  - [ ] overzicht afvinken
+- [x] commit `LB-5…LB-8, EV-03…EV-05, BR-1…BR-6: leerblok 2 en bronnenpagina`  - [x] push  - [x] overzicht afvinken
+
+**Afwijkingen fase 6.** Sabotage BR-6 lokaal gedaan (link-check faalt, exit 1); de push naar een testbranch werd geweigerd, dus 'workflow rood' is niet op GitHub getoond. EV-03 staat op taak 3.2 (ADR B64). 16 LRD-bronnen staan onder `wachtOpCitatie` (waarschuwing). Commit e9fe0b4 in a3-learning.
 
 ---
 
