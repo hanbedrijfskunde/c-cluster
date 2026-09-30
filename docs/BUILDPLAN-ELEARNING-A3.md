@@ -21,7 +21,7 @@
 - [x] Fase 1 — Kern: schema, controles en statusregel (met controlelab)
 - [x] Fase 2 — Leerblok 1 als dunne doorsnede (EV-01, EV-02) (subtask 2.3 wacht op akkoord van de auteur)
 - [ ] Fase 3 — Dossier: export, import en verificatie
-- [ ] Fase 4 — De Wissel en de feedbacklog (EV-09)
+- [ ] Fase 4 — De Wissel en de feedbacklog (EV-09) (subtask 4.7 wacht op de dossierweergave van fase 3; de rest is af en live)
 - [ ] Fase 5 — Proefsessie met 2–3 gebruikers en bijstelling
 - [ ] Fase 6 — Leerblok 2 en de bronnenpagina (EV-03 t/m EV-05)
 - [ ] Fase 7 — Terugblik en werken met tussenpozen
@@ -254,26 +254,28 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 **Spec.** LB-14, EV-09, WS-1, WS-3…WS-11, ST-7.
 
 ### Subtasks
-- [ ] 4.1 Schrijf `js/wissel.js` met `maakWisselblok(records)` (onderzoeksvraag en zoekvragen, zonder alias) (WS-1). Verwacht: 0 aliassen in het blok, 1 klik naar klembord.
-- [ ] 4.2 Bouw plakken van het wisselblok van een wisselpartner met de rollen teamgenoot, medestudent en coach (WS-3). Verwacht: 3 rollen geaccepteerd.
-- [ ] 4.3 Bouw de feedbacklog: ik zie, ik mis, ik vraag me af, rol, actie, status; onbeperkt regels (LB-14, WS-4). Verwacht: 6 velden, ≥ 10 regels.
-- [ ] 4.4 Laat de feedback via het klembord terugkomen en als ontvangen en gegeven verschijnen in EV-09 (WS-5). Verwacht: 1 ontvangen en 1 gegeven regel na een uitwisseling.
-- [ ] 4.5 Schrijf de controles van EV-09 in `js/checks/lb4.js` (alleen de EV-09-controles) en de kopiecontrole voor EV-01 en EV-02 (WS-7, EV-09). Verwacht: 0 tekens verschil → `let op`, status Bijna.
-- [ ] 4.6 Laat EV-09 op Bijna staan zolang er geen feedback is, ook na ≥ 14 dagen (WS-8). Verwacht: test met aangepaste tijdstempels.
-- [ ] 4.7 Voeg de flow voor de post-its van andere teams toe met de rol „ander team" en één teamactie (WS-6). Verwacht: zichtbaar op de dossierpagina naast individuele feedback.
-- [ ] 4.8 Toon de privacytekst bij de Wissel met het klembord als kanaal, ≤ 60 woorden (WS-10). Verwacht: 1 tekst in de flow.
-- [ ] 4.9 Toon een herinnering bij een actie die ≥ 7 dagen dezelfde status heeft (WS-11). Verwacht: 1 herinnering na 7 dagen, 0 bij 6 dagen.
-- [ ] 4.10 Toon de Wissel pas na de eerste versie van EV-02 (ST-7). Verwacht: in de eerste 4 schermen van leerblok 1 zichtbaar 0 Wissel-elementen.
-- [ ] 4.11 Bevestig dat de Wissel zonder server werkt (WS-9). Verwacht: 0 verzoeken met wisselblokinhoud.
+- [x] 4.1 Schrijf `js/wissel.js` met `maakWisselblok(records)` (onderzoeksvraag en zoekvragen, zonder alias) (WS-1). Verwacht: 0 aliassen in het blok, 1 klik naar klembord.
+- [x] 4.2 Bouw plakken van het wisselblok van een wisselpartner met de rollen teamgenoot, medestudent en coach (WS-3). Verwacht: 3 rollen geaccepteerd.
+- [x] 4.3 Bouw de feedbacklog: ik zie, ik mis, ik vraag me af, rol, actie, status; onbeperkt regels (LB-14, WS-4). Verwacht: 6 velden, ≥ 10 regels.
+- [x] 4.4 Laat de feedback via het klembord terugkomen en als ontvangen en gegeven verschijnen in EV-09 (WS-5). Verwacht: 1 ontvangen en 1 gegeven regel na een uitwisseling.
+- [x] 4.5 Schrijf de controles van EV-09 in `js/checks/lb4.js` (alleen de EV-09-controles) en de kopiecontrole voor EV-01 en EV-02 (WS-7, EV-09). Verwacht: 0 tekens verschil → `let op`, status Bijna.
+- [x] 4.6 Laat EV-09 op Bijna staan zolang er geen feedback is, ook na ≥ 14 dagen (WS-8). Verwacht: test met aangepaste tijdstempels.
+- [ ] 4.7 (deels: flow en teamactie af en getest, ze staan in het record EV-09; de weergave op de dossierpagina hoort bij fase 3) Voeg de flow voor de post-its van andere teams toe met de rol „ander team" en één teamactie (WS-6). Verwacht: zichtbaar op de dossierpagina naast individuele feedback.
+- [x] 4.8 Toon de privacytekst bij de Wissel met het klembord als kanaal, ≤ 60 woorden (WS-10). Verwacht: 1 tekst in de flow.
+- [x] 4.9 Toon een herinnering bij een actie die ≥ 7 dagen dezelfde status heeft (WS-11). Verwacht: 1 herinnering na 7 dagen, 0 bij 6 dagen.
+- [x] 4.10 Toon de Wissel pas na de eerste versie van EV-02 (ST-7). Verwacht: in de eerste 4 schermen van leerblok 1 zichtbaar 0 Wissel-elementen.
+- [x] 4.11 Bevestig dat de Wissel zonder server werkt (WS-9). Verwacht: 0 verzoeken met wisselblokinhoud.
 
 ### Testpoort
-- [ ] Volledige testpoort.
-- [ ] Sabotage WS-7: schakel de kopiecontrole uit; de test faalt.
-- [ ] Tester met 2 browsers: uitwisseling, kopiecontrole, feedback terug (AC-23).
-- [ ] Geclaimde regels met hun methode gecontroleerd (WS-2 valt in fase 11).
+- [x] Volledige testpoort.
+- [x] Sabotage WS-7: schakel de kopiecontrole uit; de test faalt.
+- [x] Tester met 2 browsers: uitwisseling, kopiecontrole, feedback terug (AC-23). *Geautomatiseerde vervanging: Playwright MCP met twee browsercontexten, lokaal en live; klembord gesimuleerd met de echte klembord-API en plakken via het tekstveld. Geen menselijke tester.*
+- [x] Geclaimde regels met hun methode gecontroleerd (WS-2 valt in fase 11).
 
 ### Afsluiting
-- [ ] commit `WS-1, WS-3…WS-11, LB-14, EV-09: Wissel en feedbacklog`  - [ ] push  - [ ] overzicht afvinken
+- [x] commit `WS-1, WS-3…WS-11, LB-14, EV-09: Wissel en feedbacklog` (1908808)  - [x] push (Actions-run groen, live geverifieerd)  - [ ] overzicht afvinken (na 4.7)
+
+**Afwijkingen fase 4.** (a) `js/sessie.js` (fase 2) kreeg een optionele parameter `context` voor extra controlecontext, nodig voor de kopiecontrole (records van andere leerblokken en ontvangen wisselblokken); `tests/lb1.test.mjs` kreeg één regel (nieuw controletype gedekt in `wissel.test.mjs`). (b) Nieuw bestand `js/wissel-paneel.js` (DOM) naast `js/wissel.js` (logica). (c) `leerblok-4.html` kreeg `data-leerblok="4"`; `js/leerblok.js` kreeg een `feedbacklog`-component en de Wissel-sectie in leerblok 1. (d) `data/leerblok-4.json` bevat alleen taak 6.2 en een voorlopige verdieping (content-check eist er één); fase 11 vult aan. (e) 4.7: post-its en teamactie staan in het record EV-09; de weergave op de dossierpagina moet fase 3 (of 5) uit het record `EV-09` (`inhoud.regels`, `inhoud.teamactie`) tonen. (f) WS-11: de herinnering staat alleen in het Wissel-paneel; `herinneringenUitStore` is beschikbaar voor de startpagina. (g) Geen menselijke tester: zie Testpoort. Besluiten: ADR B62.
 
 ---
 
