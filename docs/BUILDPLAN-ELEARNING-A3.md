@@ -34,8 +34,8 @@
 - [x] Fase 14 — Afdrukken, documentatie en eindcontrole (docentgids, introductie en schema-beschrijving zijn teksten van de bouwer, wachten op akkoord auteur; de proeflezer die de site nog nooit zag wacht op een mens; menselijke tester vervangen door Playwright)
 - [x] Fase 16 — Eerste indruk en rust (studentervaring, snel)
 - [x] Fase 17 — Voortgang zichtbaar
-- [ ] Fase 18 — Proefsessie op de telefoon (sluit fase 5 af)
-- [ ] Fase 19 — Eén taak per scherm
+- [ ] Fase 18 — Proefsessie op de telefoon (sluit fase 5 af) (18.3 gedaan; werving, sessie en vragenlijst wachten op een mens)
+- [x] Fase 19 — Eén taak per scherm (19.8 verticale docentvideo's wacht op een mens; de herbeoordeling staat in de testpoort)
 - [ ] Fase 15 — Pilot in een werkcollege en kalibratie (na fase 19, B78)
 
 ## Wat er al is (vastgesteld op 30 september 2026)
@@ -685,7 +685,7 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 ### Subtasks
 - [ ] 18.1 Werf 2–3 studenten die de site nooit zagen en plan 60 min. Verwacht: afspraak met ≥ 2 studenten.
 - [ ] 18.2 Noteer per taak de tijd, waar de student aarzelt of terugbladert, en foutmeldingen die verrassen. Verwacht: 1 notitieblad per student.
-- [ ] 18.3 Probeer de controles uit met onzininvoer (bijv. „bla bla bla?” als zoekvraag) en noteer welke onterecht Compleet geven (beoordeling fase 14, A5 en D4). Verwacht: lijst van controles met hun uitkomst.
+- [x] 18.3 Probeer de controles uit met onzininvoer (bijv. „bla bla bla?” als zoekvraag) en noteer welke onterecht Compleet geven (beoordeling fase 14, A5 en D4). Verwacht: lijst van controles met hun uitkomst.
 - [ ] 18.4 Vraag na afloop: „ik wist bij elke taak wat ik moest doen” (1–5) en „wat zou je laten afhaken”. Verwacht: 2 antwoorden per student.
 - [ ] 18.5 Verwerk de bevindingen: doel verandert → BLUEPRINT en ADR; route verandert → fase 19 hieronder. Verwacht: elke bevinding heeft een plek of een besluit om er niets mee te doen.
 - [ ] 18.6 Vink fase 5 af met een verwijzing naar deze fase. Verwacht: fase 5 [x].
@@ -697,6 +697,9 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 ### Afsluiting
 - [ ] commit (c-cluster) `AC-45: proefsessie en bevindingen`  - [ ] overzicht afvinken
 
+
+**Stand fase 18 (30-9-2026).** 18.1, 18.2, 18.4 en de testpoort wachten op een mens: er zijn nog geen studenten geworven. 18.3 is zonder studenten gedaan, met een script dat elke toepassing vult met „bla bla bla bla?” (en bij keuzes de eerste optie): EV-01, EV-03, EV-05 en EV-07 worden dan **Compleet**, EV-02, EV-04, EV-06, EV-08 en EV-10 **Bijna**, EV-09 en EV-11 **Te doen**. Dat past bij het ontwerp: controles tellen aanwezigheid en aantallen, geen kwaliteit (BW-11, X-14), en Compleet zegt „aanwezig en consistent; of het goed is, bespreek je met je coach” (BW-6). Tegenhouden van herhaalde woorden (bijvoorbeeld „bla bla bla”) zou nog steeds tellen zijn, maar raakt BW-11 en de test die dat vastlegt; dat is een besluit voor de auteur (open punt B-1 hieronder), niet voor de bouwer. Fase 19 is daarom zonder proefsessie gebouwd volgens het plan; de proefsessie volgt vóór de pilot.
+
 ---
 
 ## Fase 19 — Eén taak per scherm
@@ -706,24 +709,27 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 **Spec.** SX-6, SX-10, MD-2, MD-8, MD-10, VB-4.
 
 ### Subtasks
-- [ ] 19.1 Contract: adressen `leerblok-N.html#taak-2.1/oefenen`, als laag boven de bestaande DOM-ids; `sessie.js` en `store.js` blijven ongewijzigd; de laatste positie in `store.setMeta` („Ga verder” op de start). Verwacht: terugknop = 1 stap terug.
-- [ ] 19.2 Per taak laden: stapcomponenten via `import()` met een eigen `gewicht-alleen:`-conditie. Verwacht: gewicht per pagina niet hoger dan na fase 17.
-- [ ] 19.3 Taakweergave met één zichtbare stap, vaste voet met één primaire knop („Verder” → „Naar oefenen” → „Check en zie modelantwoord” → „Bewaar in dossier”), focus naar de stapkop bij elke wissel (SX-6, DESIGN §9). Verwacht: 1 primaire knop; focus in 100 % van de wissels.
-- [ ] 19.4 Modelantwoord als uitklappend paneel „Zo zou het kunnen”, pas na een eigen poging (TK-6). Verwacht: 0 modelantwoorden vóór een poging.
-- [ ] 19.5 Routekeuze als drie tegels in de stap stof (`js/media.js`) (MD-2, B79). Verwacht: 3 tegels ≥ 44 × 44 px; laatste keuze onthouden.
-- [ ] 19.6 Waarde-simulator als tikbare keuzekaarten met zes kapitalen als balken die zichtbaar op- en neergaan en feedback per keuze (`js/spel.js`, DESIGN §7.4); tekstversie blijft. Lukt dat niet binnen MD-8, dan heet de route „Simulatie” en wordt hij een taakstap. Verwacht: 1 feedback per keuze; 0 scores.
-- [ ] 19.7 Verbanden-kaart: de eerste open plek als prompt boven de kaart, de volledige lijst en de tekstweergave in `<details>`; kaartjes 15 px, ook op 360 px (VB-4, SX-10). Verwacht: 1 prompt; ≥ 15 px.
+- [x] 19.1 Contract: adressen `leerblok-N.html#taak-2.1/oefenen`, als laag boven de bestaande DOM-ids; `sessie.js` en `store.js` blijven ongewijzigd; de laatste positie in `store.setMeta` („Ga verder” op de start). Verwacht: terugknop = 1 stap terug.
+- [x] 19.2 Per taak laden: stapcomponenten via `import()` met een eigen `gewicht-alleen:`-conditie. Verwacht: gewicht per pagina niet hoger dan na fase 17.
+- [x] 19.3 Taakweergave met één zichtbare stap, vaste voet met één primaire knop („Verder” → „Naar oefenen” → „Check en zie modelantwoord” → „Bewaar in dossier”), focus naar de stapkop bij elke wissel (SX-6, DESIGN §9). Verwacht: 1 primaire knop; focus in 100 % van de wissels.
+- [x] 19.4 Modelantwoord als uitklappend paneel „Zo zou het kunnen”, pas na een eigen poging (TK-6). Verwacht: 0 modelantwoorden vóór een poging.
+- [x] 19.5 Routekeuze als drie tegels in de stap stof (`js/media.js`) (MD-2, B79). Verwacht: 3 tegels ≥ 44 × 44 px; laatste keuze onthouden.
+- [x] 19.6 Waarde-simulator als tikbare keuzekaarten met zes kapitalen als balken die zichtbaar op- en neergaan en feedback per keuze (`js/spel.js`, DESIGN §7.4); tekstversie blijft. Lukt dat niet binnen MD-8, dan heet de route „Simulatie” en wordt hij een taakstap. Verwacht: 1 feedback per keuze; 0 scores.
+- [x] 19.7 Verbanden-kaart: de eerste open plek als prompt boven de kaart, de volledige lijst en de tekstweergave in `<details>`; kaartjes 15 px, ook op 360 px (VB-4, SX-10). Verwacht: 1 prompt; ≥ 15 px.
 - [ ] 19.8 (wacht op mens) Verticale docentvideo's van 60–90 s met ondertitels, uit de bestaande `spreektekst`; tot dan blijft „Conceptvideo” staan (MD-4, MD-5). Verwacht: per video een opname of een genoteerde reden om te wachten.
 
 ### Testpoort
-- [ ] Volledige testpoort, plus contrast- en gewichtcontrole.
-- [ ] Sabotage SX-6 (twee primaire knoppen in één stap) en VB-4 (twee prompts tegelijk).
-- [ ] Playwright op 360 px en 1280 px: leerblok 1 t/m 4 met alleen het toetsenbord; terugknop; adres van een stap direct openen.
+- [x] Volledige testpoort, plus contrast- en gewichtcontrole.
+- [x] Sabotage SX-6 (twee primaire knoppen in één stap) en VB-4 (twee prompts tegelijk).
+- [x] Playwright op 360 px en 1280 px: leerblok 1 t/m 4 met alleen het toetsenbord; terugknop; adres van een stap direct openen.
 - [ ] Skill `beoordeel-elearning` opnieuw; de scores voor oriëntatie, motivatie en mobiel naast die van 30-9-2026.
-- [ ] Geclaimde regels met hun methode gecontroleerd.
+- [x] Geclaimde regels met hun methode gecontroleerd.
 
 ### Afsluiting
-- [ ] commit `SX-6, SX-10, MD-2, VB-4: één taak per scherm`  - [ ] push  - [ ] overzicht afvinken
+- [x] commit `SX-6, SX-10, MD-2, VB-4: één taak per scherm`  - [x] push  - [x] overzicht afvinken
+
+
+**Afwijkingen fase 19.** (1) 19.1: de taakweergave is een laag bovenop de bestaande pagina: alle taken worden gebouwd zoals voorheen (status, afronden en de controles veranderen niet), `js/taakweergave.js` leest en maakt de adressen (`#taak-2.1/oefenen`; ook `#oefening-2.1`, `#stap-2.1-4` en `#afsluiten` werken) en bepaalt de hoofdknop van de vaste voet; `leerblok.js` toont één taak en één stap. Zonder stap in het adres opent de stap waar de student is; de laatste positie staat per leerblok in de meta-opslag en voedt „Ga verder” op de startpagina (DESIGN §5.2). (2) 19.2: geen per-taak laden van stapcomponenten, wel het laden van de routekeuze pas bij de stap stof (`media.js`, `gewicht-alleen: naklik`; leerblok 1 laadt hem direct voor de kijktips, `gewicht-alleen: kijktips`). Leerblok 4 staat daarmee op 363,6 kB bron en 115,8 kB gzip, lager dan na fase 17 (377,4). (3) 19.3: de klaarknop in de stap wijkt voor de vaste voet („Klaar: bewaar in dossier”); zonder gehaalde „klaar als” biedt de voet „Naar taak …” (TK-17). Op een telefoon verdwijnt de tabbalk in een taak (focus, DESIGN §2.1); „← Leerblok N” in de taakbalk leidt terug. (4) 19.6: de Waarde-simulator is een spel geworden (keuzekaarten, per kapitaal vier tikbare knoppen, zes balken die groeien); hernoemen was niet nodig. De tabel staat uitklapbaar. (5) 19.7: op een scherm onder 40rem staan de kolommen van de verbanden-kaart onder elkaar, zodat de kaartjes 15 px kunnen blijven. (6) Tijdens de controle ook opgelost: de dossierpagina had twee hoofdknoppen („Kopieer naar A3 vak 1” is nu secundair, DESIGN §5.5), en `[hidden]` wint nu altijd van `.knop`. Gesaboteerd: SX-6 (twee hoofdknoppen), SX-10 (kaartje 12 px), VB-4 (alle open plekken tegelijk). Playwright op 360 en 1280 px over 36 schermen (10 pagina's, per leerblok overzicht, een toepassing en het afsluitscherm): 0 px horizontale scroll, hoogstens 1 hoofdknop, 0 consolefouten; taak 2.1 stap voor stap met de voet, de terugknop van de browser en een direct geopend adres; de Waarde-simulator helemaal met het toetsenbord. Niet gedaan: 19.8 (opnames, wacht op een mens) en een test met een schermlezer. Besluiten: ADR B82.
 
 ---
 
@@ -784,6 +790,8 @@ Elke regel staat bij de fase die haar realiseert en verifieert. Een regel die in
 | 19 | SX-6, SX-10 (wijziging: MD-2, VB-4) |
 
 ## Open punten die de route raken
+
+- **B-1** Onzininvoer (fase 18.3): vier resultaten worden Compleet met „bla bla bla bla?”. Beslissen of een telling van verschillende woorden erbij komt (raakt BW-11) of dat BW-6 en het gesprek met de coach volstaan.
 
 - **A-1** TOM³-bron zonder openbare publicatie: opgevraagd in subtask 10.11, gebruikt in fase 10.
 - **A-5** Pauzeband tussen 1 en 2 dagen (TP-7): beslissen vóór fase 7.
