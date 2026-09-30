@@ -735,6 +735,13 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 
 ---
 
+## Aanvulling na fase 19 — Beeld en hints (30-9-2026, op verzoek van de auteur)
+
+- [x] Taak 1.1: het A3-vel als figuur (acht vakken, plan/do/check/act; eigen HTML naar Schwagerman & Ulmer, 2013; bron verplaatst van „wacht op citatie” naar de bronnenlijst). Verwacht: figuur na de eerste alinea, 0 px horizontale scroll op 360 px.
+- [x] 54 hints bij de oefenvragen, achter een knop „Hint” (SX-13); contentcontrole op aanwezigheid en op verklappen (ving 5 hints die te dicht bij het modelantwoord zaten). Gesaboteerd. Besluit: ADR B83.
+
+---
+
 ## Fase 15 — Pilot in een werkcollege en kalibratie
 
 **Doel.** Aantonen dat het product in het lokaal werkt en de startdoelen bijstellen.
@@ -789,7 +796,7 @@ Elke regel staat bij de fase die haar realiseert en verifieert. Een regel die in
 | 16 | SX-1, SX-2, SX-8, SX-11 (wijziging: BW-3, TK-16, SI-8) |
 | 17 | SX-3, SX-4, SX-5, SX-7, SX-9, SX-12 (wijziging: TK-18, LB-16) |
 | 18 | (geen nieuwe regels; AC-45) |
-| 19 | SX-6, SX-10 (wijziging: MD-2, VB-4) |
+| 19 | SX-6, SX-10 (wijziging: MD-2, VB-4); aanvulling: SX-13 |
 
 ## Open punten die de route raken
 
