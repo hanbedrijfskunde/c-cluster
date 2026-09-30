@@ -1,6 +1,6 @@
 # BLUEPRINT — Hybride e-learning A3 met automatisch bewijs
 
-> Afgeleid van `docs/LRD-ELEARNING-A3.html` (LRD versie 0.15, 30 september 2026). Dit document beschrijft de doelsituatie van het product: geen bouwvolgorde, geen fasering, geen voortgang. Bouwvolgorde en voortgang staan in het bouwplan (`BUILDPLAN-ELEARNING-A3.md`). Pedagogische onderbouwing en risico's blijven in het LRD; het besluitenregister (B1–B83) staat in `docs/ADR-ELEARNING-A3.md`; regels hier verwijzen daar niet naartoe maar zijn zelfstandig toetsbaar. Bijlage A koppelt elke LRD-eis aan de regels hieronder.
+> Afgeleid van `docs/LRD-ELEARNING-A3.html` (LRD versie 0.15, 30 september 2026). Dit document beschrijft de doelsituatie van het product: geen bouwvolgorde, geen fasering, geen voortgang. Bouwvolgorde en voortgang staan in het bouwplan (`BUILDPLAN-ELEARNING-A3.md`). Pedagogische onderbouwing en risico's blijven in het LRD; het besluitenregister (B1–B84) staat in `docs/ADR-ELEARNING-A3.md`; regels hier verwijzen daar niet naartoe maar zijn zelfstandig toetsbaar. Bijlage A koppelt elke LRD-eis aan de regels hieronder.
 
 **Lezen.** Elke regel heeft een ID (prefix per onderwerp), een verplichtingsniveau (Must, Should, Could), een criterium met getal en eenheid, en een verificatiemethode (Test, Demonstratie, Inspectie, Analyse). „Moet" is de verplichting van het product, niet de volgorde van het werk. De statusnamen Compleet, Bijna en „Te doen" zijn productterm en geen voortgangstaal. In schema en records heet de derde status `nog niet` (§5); alleen de weergave voor de student zegt „Te doen".
 
@@ -376,7 +376,7 @@ Elke regel: de site moet het onderdeel alleen als Compleet aanmerken als de geno
 
 | ID | Eis | Prio | Criterium | Verificatie |
 |---|---|---|---|---|
-| <a id="li-1"></a>LI-1 | De site mag alleen eigen tekst en eigen afbeeldingen plus links bevatten. | Must | 0 kopieën van Brightspace-materiaal, PhoneVentures-handleidingen, slides van derden of opgeslagen pagina's van derden | Inspectie |
+| <a id="li-1"></a>LI-1 | De site mag alleen eigen tekst en eigen afbeeldingen plus links bevatten, en figuren van derden als citaat met bronvermelding die in het register `media/citaten.json` staan. | Must | 0 kopieën van Brightspace-materiaal, PhoneVentures-handleidingen, slides van derden of opgeslagen pagina's van derden; 100 % van de citaten in het register met een bron uit de bronnenlijst | Inspectie en Test |
 | <a id="li-2"></a>LI-2 | De site mag de afbeeldingen van het Strategyzer-canvas en het IIRC-waardecreatiemodel niet inbedden; ze moet de kolomindeling zelf tekenen en naar de bronnen linken. | Must | 0 ingebedde afbeeldingen van beide bronnen | Inspectie |
 | <a id="li-3"></a>LI-3 | De site mag geen tekst uit het TOM³-buildplan kopiëren, alleen een eigen samenvatting met bronvermelding. | Must | 0 zinnen ≥ 8 woorden gelijk aan de bron | Analyse |
 | <a id="li-4"></a>LI-4 | De repository moet onder Creative Commons BY-SA 4.0 vallen en een `LICENSE`-bestand met de licentietekst bevatten. | Must | 1 `LICENSE`-bestand met de tekst van CC BY-SA 4.0 | Inspectie |
@@ -457,7 +457,7 @@ Geldt voor de studentpagina's (start, leerblokken, dossier, bronnen), niet voor 
 | <a id="pf-1"></a>PF-1 | De site moet responsive zijn van 360 px breed tot desktop. | Must | 0 px horizontale scroll op 360 px; alle velden van 4 leerblokken invulbaar | Test |
 | <a id="pf-2"></a>PF-2 | De site moet werken in de twee laatste versies van Chrome, Safari, Firefox en Edge. | Must | 4 browsers × 2 versies zonder functieverlies | Test |
 | <a id="pf-3"></a>PF-3 | Een leerblok moet na het laden zonder netwerk bruikbaar zijn. | Must | 0 netwerkverzoeken tijdens 45 min gebruik van een geladen leerblok, behalve videoklikken | Test |
-| <a id="pf-4"></a>PF-4 | De eerste lading moet klein blijven. | Must | ≤ 300 kB per pagina zonder video; 0 afbeeldingen van derden | Test |
+| <a id="pf-4"></a>PF-4 | De eerste lading moet klein blijven. | Must | ≤ 300 kB per pagina zonder video; 0 afbeeldingen van andere domeinen; een citaatfiguur laadt lui (niet in de eerste lading) | Test |
 | <a id="pf-5"></a>PF-5 | Elk leerblok moet een richttijd van 45 min op de pagina tonen, inclusief media. | Must | 45 min; video ≤ 3 min; spel ≤ 5 min; verdieping telt niet mee | Inspectie |
 
 ### 7.3 Onderhoud en testbaarheid (QA)

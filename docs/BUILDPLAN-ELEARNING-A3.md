@@ -738,6 +738,7 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 ## Aanvulling na fase 19 — Beeld en hints (30-9-2026, op verzoek van de auteur)
 
 - [x] Taak 1.1: het A3-vel als figuur (acht vakken, plan/do/check/act; eigen HTML naar Schwagerman & Ulmer, 2013; bron verplaatst van „wacht op citatie” naar de bronnenlijst). Verwacht: figuur na de eerste alinea, 0 px horizontale scroll op 360 px.
+- [x] De eigen figuur vervangen door figuur 1 uit Schwagerman & Ulmer (2013) als citaat (via Semantic Scholar), met register `media/citaten.json` en een licentietest die alleen geregistreerde citaten toelaat. Besluit: ADR B84.
 - [x] 54 hints bij de oefenvragen, achter een knop „Hint” (SX-13); contentcontrole op aanwezigheid en op verklappen (ving 5 hints die te dicht bij het modelantwoord zaten). Gesaboteerd. Besluit: ADR B83.
 
 ---
