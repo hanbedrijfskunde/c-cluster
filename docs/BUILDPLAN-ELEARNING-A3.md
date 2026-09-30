@@ -22,7 +22,7 @@
 - [x] Fase 2 — Leerblok 1 als dunne doorsnede (EV-01, EV-02) (subtask 2.3 wacht op akkoord van de auteur)
 - [x] Fase 3 — Dossier: export, import en verificatie
 - [x] Fase 4 — De Wissel en de feedbacklog (EV-09) (4.7 gedaan in fase 7)
-- [ ] Fase 5 — Proefsessie met 2–3 gebruikers en bijstelling
+- [ ] Fase 5 — Proefsessie met 2–3 gebruikers en bijstelling (wordt afgesloten door fase 18, B78)
 - [x] Fase 6 — Leerblok 2 en de bronnenpagina (EV-03 t/m EV-05) (6.1 wacht op akkoord auteur)
 - [x] Fase 7 — Terugblik en werken met tussenpozen
 - [x] Fase 8 — Huisstijl, toegankelijkheid, responsive en offline (PF-2 alleen Chromium, Firefox en WebKit via Playwright; 8.9 wacht op een mens met Edge en Safari)
@@ -32,7 +32,11 @@
 - [x] Fase 12 — Media: mechaniek, twee video's en twee spellen (V2 en V4 zijn conceptvideo's met computerstem, wachten op akkoord auteur of eigen opname; menselijke tester vervangen door Playwright)
 - [x] Fase 13 — Media: de overige video's en spellen (V1 en V3 zijn conceptvideo's, wachten op akkoord auteur; 13.4 is geschat, meten hoort bij de pilot; menselijke tester vervangen door Playwright)
 - [x] Fase 14 — Afdrukken, documentatie en eindcontrole (docentgids, introductie en schema-beschrijving zijn teksten van de bouwer, wachten op akkoord auteur; de proeflezer die de site nog nooit zag wacht op een mens; menselijke tester vervangen door Playwright)
-- [ ] Fase 15 — Pilot in een werkcollege en kalibratie
+- [ ] Fase 16 — Eerste indruk en rust (studentervaring, snel)
+- [ ] Fase 17 — Voortgang zichtbaar
+- [ ] Fase 18 — Proefsessie op de telefoon (sluit fase 5 af)
+- [ ] Fase 19 — Eén taak per scherm
+- [ ] Fase 15 — Pilot in een werkcollege en kalibratie (na fase 19, B78)
 
 ## Wat er al is (vastgesteld op 30 september 2026)
 
@@ -95,6 +99,7 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 - **Fase 11 na 10** (verbanden-kaart leest EV-06 en EV-07).
 - **Fase 12 en 13 mogen tegelijk met 10 en 11**, mits zij alleen `media/`, `spellen/`, `js/media.js` en de mediavelden in `data/leerblok-N.json` aanraken en het bestand niet tegelijk met de leerblokfase bewerken: per leerblok eerst de leerblokfase, dan de media.
 - **Fase 14 en 15 exclusief en aan het eind.**
+- **Fase 16 t/m 19 na 14 en vóór 15, strikt na elkaar** (B78). Ze raken `css/site.css`, alle studentpagina's en `js/weergave.js`; niets anders tegelijk. Richtlijn: `docs/DESIGN-ELEARNING-A3.md`; bij verschil gaat het blueprint voor.
 
 ---
 
@@ -610,6 +615,112 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 
 ---
 
+## Fase 16 — Eerste indruk en rust
+
+**Doel.** De snelle verbeteringen uit de UX-review (30-9-2026): geen rood vóór een actie, een kort studentmenu, neutrale lege staat, links en keuzes die kloppen.
+**Wat de tester doet.** Opent de startpagina op een telefoon van 360 px en ziet geen foutmelding. Vult een veld niet in, gaat verder en ziet dan pas één melding. Ziet een menu van vier onderdelen, overal „Te doen” in grijs en geen blauwe links. Kiest in taak 2.2 een model zonder dat de vraag over de eerste optie valt.
+**Spec.** SX-1 (menu, nog zonder tabbalk), SX-2, SX-8, SX-11, BW-3, TK-16, SI-8.
+
+### Subtasks
+- [ ] 16.1 `js/index-pagina.js`: `toonHints()` niet meer bij het laden (nu r. 86), wel per veld na `blur` of na „Verder” (SX-2). Verwacht: 0 meldingen bij laden; ≤ 1 melding per veld.
+- [ ] 16.2 Hoofdmenu naar Start, Leerblokken, Dossier, Bronnen in alle 10 HTML-bestanden; docentmodus en verificatie in de voettekst („Voor docenten”); `js/site.js` markeert „Leerblokken” op elke `leerblok-N.html` (SX-1, SI-1). Verwacht: 4 items; docentmodus en verificatie in ≤ 2 klikken.
+- [ ] 16.3 Pilotbanner wordt een aanduiding naast `.han-logo` (`js/site.js`, `css/site.css`) (SI-8). Verwacht: aanduiding bij vlag aan, weg bij uit.
+- [ ] 16.4 Weergavetekst „Nog niet” → „Te doen” in `js/status.js` (`STATUS_TEKST`), `js/dossier-pagina.js`, `js/weergave.js`; de sleutel `nog niet` blijft (B74). `.status-nog-niet` en `.dos-tegel-nog-niet` neutraal met `--leeg`. Verwacht: 0 keer „Nog niet” in zichtbare tekst; bestaande dossiers laden ongewijzigd.
+- [ ] 16.5 Tokens `--link`, `--link-hover` en `--leeg` als hexwaarde in `:root` (de contrastcontrole leest alleen hex) en een `a`-regel (SX-8). Verwacht: contrast-check groen; 0 links in browserblauw.
+- [ ] 16.6 Legend-fix en keuzes als tikbare rij over de volle breedte (DESIGN §6 Fieldset). Verwacht: taak 2.2 op 360 px zonder overlap.
+- [ ] 16.7 Zinstarters als placeholder bij STARR (`data/leerblok-4.json`) en de andere velden van ≥ 3 regels; contentcontrole eist dat een placeholder niet in het modelantwoord voorkomt (SX-11). Verwacht: 100 % van de lange velden.
+- [ ] 16.8 Tests bijwerken die de oude tekst of het oude menu vastleggen: `status.test.mjs`, `weergave.test.mjs`, `sessie.test.mjs`, `dossier.test.mjs`, `smoke.test.mjs` (SI-1 via de voettekst). Verwacht: `node --test` groen.
+
+### Testpoort
+- [ ] Volledige testpoort, plus `tools/contrast-check.mjs` en `tools/gewicht-check.mjs`.
+- [ ] Sabotage SX-2 (roep `toonHints()` weer aan bij laden; de test faalt) en SX-11 (placeholder gelijk aan modelantwoord; contentcontrole faalt).
+- [ ] Playwright op 360 px: startpagina, leerblok 1, dossier; schermafdrukken naast `docs/ux-review/shots/`.
+- [ ] Geclaimde regels met hun methode gecontroleerd.
+
+### Afsluiting
+- [ ] commit `SX-1, SX-2, SX-8, SX-11, BW-3, SI-8: eerste indruk en rust`  - [ ] push  - [ ] overzicht afvinken
+
+---
+
+## Fase 17 — Voortgang zichtbaar
+
+**Doel.** De student ziet bij elke taak waar het werk staat en ziet de eigen A3 groeien, zonder scores (BW-4, X-3).
+**Wat de tester doet.** Maakt taak 2.1: ziet de segmentbalk van vier stappen, ziet de „klaar als”-punten afvinken tijdens het typen, en ziet na leerblok 1 een afsluitscherm met deel 1 van A3-vak 1 gevuld en de knop „Kopieer naar mijn A3”. Vindt nergens een EV-code.
+**Spec.** SX-3, SX-4, SX-5, SX-7, SX-9, SX-12, TK-15, TK-18, LB-16.
+
+### Subtasks
+- [ ] 17.1 Gewichtsruimte eerst: leerblok 4 zit op 384,0 van 400 kB bron (`tools/gewicht-check.mjs`). Nieuwe code in een eigen module (`js/voortgang.js`) die met `import()` en een `// gewicht-alleen:`-conditie laadt. Verwacht: elke pagina ≤ 300 kB gzip en ≤ 400 kB bron.
+- [ ] 17.2 Contract: `klaarAls` in `data/leerblok-N.json` wordt een lijst criteria, elk met tekst en een controle-id van soort A of `zelf`; de samengevoegde tekst blijft letterlijk de werkboekregel (TK-2, contentcontrole). Verwacht: 16 taken omgezet; 0 tekens verschil.
+- [ ] 17.3 Checklist onder de taakkop op `sessie.beoordeel().uitkomsten`, bijgewerkt na 600 ms zonder typen; criteria `zelf` vinkt de student af (SX-5). Verwacht: ≤ 1 s; 100 % van de criteria als vakje.
+- [ ] 17.4 `STAPPEN` in `js/weergave.js` naar vier (waarom, stof, oefenen, toepassen); klaar en volgende stap aan het eind van toepassen; verdieping na „klaar” buiten de stappen (TK-18, B76). Verwacht: 4 stappen in 100 % van de taken.
+- [ ] 17.5 Vaste taakkop met „Taak n van m” en segmentbalk (6 px, 3 px tussenruimte, `aria-label`) (SX-4). Verwacht: 100 % van de taken.
+- [ ] 17.6 Studentlabel per bewijsonderdeel in `data/luk.json` („Je onderzoeksvraag”); EV-codes weg uit `js/index-pagina.js`, `js/leerblok.js` en `eindigtMet` in de data; export, verificatie en docentmodus houden ze (SX-3). Verwacht: 0 treffers van `EV-\d` en „bewijsonderdeel” in de zichtbare studenttekst.
+- [ ] 17.7 A3-vak 1 in vier delen op de startpagina en op het afsluitscherm, gevuld per afgerond leerblok (TK-16); „Kopieer naar mijn A3” op het afsluitscherm met de logica van de dossierpagina (SX-12, LB-16, B75). Verwacht: 4 delen; 5 kopieerplaatsen.
+- [ ] 17.8 `.kaart` splitsen in tikbaar (rand en schaduw) en informatief (rand, geen schaduw); kaart-in-kaart weg (`.taak` > `.oefening`, `#media` > `.spel`) (SX-7). Verwacht: 0 informatieve kaarten met schaduw.
+- [ ] 17.9 Mobiele tabbalk onder 40rem, `scroll-padding` op `html`, transities van 150–250 ms en `prefers-reduced-motion` (SX-1, SX-9). Verwacht: tabbalk op 360 px; 0 transities bij reduced motion.
+
+### Testpoort
+- [ ] Volledige testpoort, plus contrast- en gewichtcontrole.
+- [ ] Sabotage SX-3 (een EV-code terug in de studenttekst), SX-5 (controle-id weg bij een criterium) en SX-9 (transitie zonder reduced-motion-regel).
+- [ ] Playwright op 360 px en 1280 px: leerblok 1 doorlopen tot het afsluitscherm; toetsenbord alleen (TG-2).
+- [ ] Geclaimde regels met hun methode gecontroleerd.
+
+### Afsluiting
+- [ ] commit `SX-3, SX-4, SX-5, SX-7, SX-9, SX-12, TK-18, LB-16: voortgang zichtbaar`  - [ ] push  - [ ] overzicht afvinken
+
+---
+
+## Fase 18 — Proefsessie op de telefoon
+
+**Doel.** De proefsessie van fase 5 alsnog, nu op de telefoon en met de verbeterde site: werken de controles, kloppen de richttijden, en weet de student wat er komt. De uitkomst bepaalt de omvang van fase 19.
+**Wat de tester doet.** 2–3 studenten die de site niet kennen doen leerblok 1 op hun eigen telefoon, zonder uitleg. De bouwer kijkt mee en grijpt niet in.
+**Spec.** AC-45; regressie van TK-2, BW-1, BW-2 en PF-5 bij echte gebruikers.
+
+### Subtasks
+- [ ] 18.1 Werf 2–3 studenten die de site nooit zagen en plan 60 min. Verwacht: afspraak met ≥ 2 studenten.
+- [ ] 18.2 Noteer per taak de tijd, waar de student aarzelt of terugbladert, en foutmeldingen die verrassen. Verwacht: 1 notitieblad per student.
+- [ ] 18.3 Probeer de controles uit met onzininvoer (bijv. „bla bla bla?” als zoekvraag) en noteer welke onterecht Compleet geven (beoordeling fase 14, A5 en D4). Verwacht: lijst van controles met hun uitkomst.
+- [ ] 18.4 Vraag na afloop: „ik wist bij elke taak wat ik moest doen” (1–5) en „wat zou je laten afhaken”. Verwacht: 2 antwoorden per student.
+- [ ] 18.5 Verwerk de bevindingen: doel verandert → BLUEPRINT en ADR; route verandert → fase 19 hieronder. Verwacht: elke bevinding heeft een plek of een besluit om er niets mee te doen.
+- [ ] 18.6 Vink fase 5 af met een verwijzing naar deze fase. Verwacht: fase 5 [x].
+
+### Testpoort
+- [ ] AC-45 gehaald bij ≥ 2 van de studenten, of een besluit waarom niet.
+- [ ] Richttijd van leerblok 1 gemeten (mediaan); afwijking > 25 % heeft een besluit.
+
+### Afsluiting
+- [ ] commit (c-cluster) `AC-45: proefsessie en bevindingen`  - [ ] overzicht afvinken
+
+---
+
+## Fase 19 — Eén taak per scherm
+
+**Doel.** Het kernscherm uit DESIGN §5.3: één taak en één stap tegelijk, met een vaste voet, een route als tegel, spellen die als spel werken en een verbanden-kaart met één prompt tegelijk.
+**Wat de tester doet.** Doorloopt leerblok 1 en 4 taak voor taak op de telefoon, gebruikt de terugknop van de browser, deelt het adres van een taak en komt op dezelfde stap uit. Kiest in de stap stof een tegel. Speelt de Waarde-simulator en ziet de kapitalen bewegen. Legt op de verbanden-kaart verbanden, telkens op één prompt.
+**Spec.** SX-6, SX-10, MD-2, MD-8, MD-10, VB-4.
+
+### Subtasks
+- [ ] 19.1 Contract: adressen `leerblok-N.html#taak-2.1/oefenen`, als laag boven de bestaande DOM-ids; `sessie.js` en `store.js` blijven ongewijzigd; de laatste positie in `store.setMeta` („Ga verder” op de start). Verwacht: terugknop = 1 stap terug.
+- [ ] 19.2 Per taak laden: stapcomponenten via `import()` met een eigen `gewicht-alleen:`-conditie. Verwacht: gewicht per pagina niet hoger dan na fase 17.
+- [ ] 19.3 Taakweergave met één zichtbare stap, vaste voet met één primaire knop („Verder” → „Naar oefenen” → „Check en zie modelantwoord” → „Bewaar in dossier”), focus naar de stapkop bij elke wissel (SX-6, DESIGN §9). Verwacht: 1 primaire knop; focus in 100 % van de wissels.
+- [ ] 19.4 Modelantwoord als uitklappend paneel „Zo zou het kunnen”, pas na een eigen poging (TK-6). Verwacht: 0 modelantwoorden vóór een poging.
+- [ ] 19.5 Routekeuze als drie tegels in de stap stof (`js/media.js`) (MD-2, B79). Verwacht: 3 tegels ≥ 44 × 44 px; laatste keuze onthouden.
+- [ ] 19.6 Waarde-simulator als tikbare keuzekaarten met zes kapitalen als balken die zichtbaar op- en neergaan en feedback per keuze (`js/spel.js`, DESIGN §7.4); tekstversie blijft. Lukt dat niet binnen MD-8, dan heet de route „Simulatie” en wordt hij een taakstap. Verwacht: 1 feedback per keuze; 0 scores.
+- [ ] 19.7 Verbanden-kaart: de eerste open plek als prompt boven de kaart, de volledige lijst en de tekstweergave in `<details>`; kaartjes 15 px, ook op 360 px (VB-4, SX-10). Verwacht: 1 prompt; ≥ 15 px.
+- [ ] 19.8 (wacht op mens) Verticale docentvideo's van 60–90 s met ondertitels, uit de bestaande `spreektekst`; tot dan blijft „Conceptvideo” staan (MD-4, MD-5). Verwacht: per video een opname of een genoteerde reden om te wachten.
+
+### Testpoort
+- [ ] Volledige testpoort, plus contrast- en gewichtcontrole.
+- [ ] Sabotage SX-6 (twee primaire knoppen in één stap) en VB-4 (twee prompts tegelijk).
+- [ ] Playwright op 360 px en 1280 px: leerblok 1 t/m 4 met alleen het toetsenbord; terugknop; adres van een stap direct openen.
+- [ ] Skill `beoordeel-elearning` opnieuw; de scores voor oriëntatie, motivatie en mobiel naast die van 30-9-2026.
+- [ ] Geclaimde regels met hun methode gecontroleerd.
+
+### Afsluiting
+- [ ] commit `SX-6, SX-10, MD-2, VB-4: één taak per scherm`  - [ ] push  - [ ] overzicht afvinken
+
+---
+
 ## Fase 15 — Pilot in een werkcollege en kalibratie
 
 **Doel.** Aantonen dat het product in het lokaal werkt en de startdoelen bijstellen.
@@ -661,6 +772,10 @@ Elke regel staat bij de fase die haar realiseert en verifieert. Een regel die in
 | 13 | MD-4, MD-8, MD-12, DM-13 |
 | 14 | DM-12, DL-1, DL-2, DL-4, QA-4, QA-5, LI-1 |
 | 15 | AP-1, AP-2, AP-3, AP-4, AP-5, AP-6, AP-7, AP-8, AP-9, DL-3 |
+| 16 | SX-1, SX-2, SX-8, SX-11 (wijziging: BW-3, TK-16, SI-8) |
+| 17 | SX-3, SX-4, SX-5, SX-7, SX-9, SX-12 (wijziging: TK-18, LB-16) |
+| 18 | (geen nieuwe regels; AC-45) |
+| 19 | SX-6, SX-10 (wijziging: MD-2, VB-4) |
 
 ## Open punten die de route raken
 

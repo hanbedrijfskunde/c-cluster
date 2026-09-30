@@ -1,8 +1,8 @@
 # BLUEPRINT — Hybride e-learning A3 met automatisch bewijs
 
-> Afgeleid van `docs/LRD-ELEARNING-A3.html` (LRD versie 0.14, 30 september 2026). Dit document beschrijft de doelsituatie van het product: geen bouwvolgorde, geen fasering, geen voortgang. Bouwvolgorde en voortgang staan in het bouwplan (`BUILDPLAN-ELEARNING-A3.md`). Pedagogische onderbouwing en risico's blijven in het LRD; het besluitenregister (B1–B60) staat in `docs/ADR-ELEARNING-A3.md`; regels hier verwijzen daar niet naartoe maar zijn zelfstandig toetsbaar. Bijlage A koppelt elke LRD-eis aan de regels hieronder.
+> Afgeleid van `docs/LRD-ELEARNING-A3.html` (LRD versie 0.15, 30 september 2026). Dit document beschrijft de doelsituatie van het product: geen bouwvolgorde, geen fasering, geen voortgang. Bouwvolgorde en voortgang staan in het bouwplan (`BUILDPLAN-ELEARNING-A3.md`). Pedagogische onderbouwing en risico's blijven in het LRD; het besluitenregister (B1–B79) staat in `docs/ADR-ELEARNING-A3.md`; regels hier verwijzen daar niet naartoe maar zijn zelfstandig toetsbaar. Bijlage A koppelt elke LRD-eis aan de regels hieronder.
 
-**Lezen.** Elke regel heeft een ID (prefix per onderwerp), een verplichtingsniveau (Must, Should, Could), een criterium met getal en eenheid, en een verificatiemethode (Test, Demonstratie, Inspectie, Analyse). „Moet" is de verplichting van het product, niet de volgorde van het werk. De statusnamen Compleet, Bijna en „Nog niet" zijn productterm en geen voortgangstaal.
+**Lezen.** Elke regel heeft een ID (prefix per onderwerp), een verplichtingsniveau (Must, Should, Could), een criterium met getal en eenheid, en een verificatiemethode (Test, Demonstratie, Inspectie, Analyse). „Moet" is de verplichting van het product, niet de volgorde van het werk. De statusnamen Compleet, Bijna en „Te doen" zijn productterm en geen voortgangstaal. In schema en records heet de derde status `nog niet` (§5); alleen de weergave voor de student zegt „Te doen".
 
 ---
 
@@ -124,9 +124,9 @@ De 13 onderdelen zijn 5 gedekt, 6 deels en 2 buiten scope. Regel BW-13 toont dez
 |---|---|
 | Compleet | alle controles van soort A en B staan op `ok`; controles van soort C mogen op `let op` staan |
 | Bijna | ≥ 1 controle van soort C op `mist`, of ≥ 1 controle van soort A of B op `let op` |
-| Nog niet | ≥ 1 controle van soort A of B op `mist` |
+| Te doen (in het record: `nog niet`) | ≥ 1 controle van soort A of B op `mist`, of nog geen record |
 
-Bij samenloop geldt: „Nog niet" gaat voor „Bijna", en „Bijna" gaat voor Compleet.
+Bij samenloop geldt: „Te doen" gaat voor „Bijna", en „Bijna" gaat voor Compleet.
 
 **Bewijsrecord (schema 1.0).**
 
@@ -170,7 +170,7 @@ Elke regel is een anker (`id="xx-n"`). Een bewijsonderdeel (EV) telt als één v
 | <a id="si-5"></a>SI-5 | De repository moet alleen de site (HTML, CSS, JavaScript, datafiles, media), een README met verwijzing naar de docentgids, een `.nojekyll`-bestand, een `LICENSE`-bestand, de workflow en de tests bevatten. | Should | 0 bestanden buiten deze 10 categorieën | Inspectie |
 | <a id="si-6"></a>SI-6 | Bij elke push moet één GitHub Actions-workflow de unittests, de contentcontrole en de linkcontrole uitvoeren en alleen publiceren als alle drie slagen. | Must | 3 controles per push; 0 publicaties bij ≥ 1 falende controle | Test (testcommit op aparte branch) |
 | <a id="si-7"></a>SI-7 | De workflow moet bij een falende controle melden welke controle faalt. | Should | 1 benoemde controle in de foutmelding per falende controle | Test |
-| <a id="si-8"></a>SI-8 | Zolang de configuratie de vlag `pilot` aan heeft, moet elke pagina een banner „pilot" tonen. | Could | 100 % van de pagina's met banner bij vlag aan; 0 pagina's bij vlag uit | Test |
+| <a id="si-8"></a>SI-8 | Zolang de configuratie de vlag `pilot` aan heeft, moet elke pagina een aanduiding „pilot" naast het logo tonen. | Could | 100 % van de pagina's met aanduiding bij vlag aan; 0 pagina's bij vlag uit | Test |
 
 ### 6.2 Start, profiel en privacytekst (ST)
 
@@ -203,9 +203,9 @@ Elke regel is een anker (`id="xx-n"`). Een bewijsonderdeel (EV) telt als één v
 | <a id="tk-13"></a>TK-13 | De site moet in elk leerblok één optionele verdiepingstaak bieden, zichtbaar na „klaar". | Should | 4 verdiepingstaken (1 per leerblok) | Inspectie |
 | <a id="tk-14"></a>TK-14 | De site moet verdiepingstaken buiten de status en de richttijd houden en in het dossier alleen „verdieping gedaan" vermelden. | Should | 0 statuswijzigingen door een verdiepingstaak; 0 minuten in de richttijd van 45 min | Test |
 | <a id="tk-15"></a>TK-15 | De site moet elk leerblok afsluiten met een scherm dat de status van de bewijsonderdelen van dat leerblok toont, een volgende stap vraagt en de bewaarmelding toont. | Must | 4 afsluitschermen met 3 onderdelen (status, volgende stap, bewaarmelding) | Test |
-| <a id="tk-16"></a>TK-16 | Een leerblok moet als „afgerond" gelden als elk bewijsonderdeel ervan Compleet of Bijna is of het label `voorlopig` heeft, en geen enkel onderdeel „Nog niet" is. | Must | 4 testprofielen geven het verwachte resultaat | Test |
+| <a id="tk-16"></a>TK-16 | Een leerblok moet als „afgerond" gelden als elk bewijsonderdeel ervan Compleet of Bijna is of het label `voorlopig` heeft, en geen enkel onderdeel „Te doen" is. | Must | 4 testprofielen geven het verwachte resultaat | Test |
 | <a id="tk-17"></a>TK-17 | De site moet de student laten doorgaan zonder een leerblok af te ronden. | Must | 0 blokkades bij een leerblok dat niet is afgerond | Test |
-| <a id="tk-18"></a>TK-18 | Elke taak moet dezelfde vijf stappen in dezelfde volgorde volgen: waarom, stof en oefenen, toepassen, klaar en volgende stap, optionele verdieping. | Should | 5 stappen in 100 % van de taken | Inspectie |
+| <a id="tk-18"></a>TK-18 | Elke taak moet dezelfde vier stappen in dezelfde volgorde volgen: waarom, stof, oefenen, toepassen. „Klaar" en de volgende stap sluiten de stap toepassen af; de optionele verdieping verschijnt na „klaar" en telt niet als stap. | Should | 4 stappen in 100 % van de taken | Inspectie |
 
 ### 6.4 Leerblokken (LB)
 
@@ -226,7 +226,7 @@ Elke regel is een anker (`id="xx-n"`). Een bewijsonderdeel (EV) telt als één v
 | <a id="lb-13"></a>LB-13 | Leerblok 3 moet de eerste conclusies (plaatsing ten opzichte van stakeholders, klant en organisatie) laten vastleggen met controle tegen de stakeholderlijst, plus een herziene onderzoeksvraag. | Must | 3 conclusies; 1 herziene vraag | Test |
 | <a id="lb-14"></a>LB-14 | Leerblok 4 moet een feedbacklog bieden met ik zie, ik mis, ik vraag me af, rol van de gever, actie en status, waarin de student ontvangen én gegeven feedback vastlegt. | Must | 6 velden; ≥ 10 regels toe te voegen | Test |
 | <a id="lb-15"></a>LB-15 | Leerblok 4 moet een STARR-sjabloon bieden met een keuzelijst voor het eigen gedrag en een volgende stap, optioneel gekoppeld aan een feedbackregel. | Must | 5 delen; 1 keuzelijst; 1 koppeling | Demonstratie |
-| <a id="lb-16"></a>LB-16 | Op de dossierpagina moet een knop „kopieer naar A3 vak 1" onderzoeksvraag, zoekvragen, plaatsing en de waarom-zin uit leerblok 1 als tekstblok naar het klembord zetten. | Should | 4 onderdelen in het klembord; 1 klik | Test |
+| <a id="lb-16"></a>LB-16 | Op de dossierpagina en op het afsluitscherm van elk leerblok moet een knop „kopieer naar A3 vak 1" onderzoeksvraag, zoekvragen, plaatsing en de waarom-zin uit leerblok 1 als tekstblok naar het klembord zetten; onderdelen die nog ontbreken staan er als lege kop in. | Should | 4 onderdelen in het klembord; 1 klik; 5 plaatsen (dossier en 4 afsluitschermen) | Test |
 | <a id="lb-17"></a>LB-17 | De site moet bij „kopieer naar A3 vak 1" de datum van het kopiëren in het dossier loggen. | Could | 1 datum per kopieeractie | Test |
 
 ### 6.5 Bewijsmotor (BW)
@@ -235,11 +235,11 @@ Elke regel is een anker (`id="xx-n"`). Een bewijsonderdeel (EV) telt als één v
 |---|---|---|---|---|
 | <a id="bw-1"></a>BW-1 | De site moet de controles van een bewijsonderdeel uitvoeren terwijl de student typt. | Must | Resultaat bijgewerkt ≤ 1 s na de laatste toetsaanslag | Test |
 | <a id="bw-2"></a>BW-2 | De site moet per controle die niet `ok` is één zin tonen over wat ontbreekt. | Must | 1 zin per controle; 0 controles met alleen een kleur | Test |
-| <a id="bw-3"></a>BW-3 | De site moet per bewijsonderdeel een van drie statussen tonen: Compleet, Bijna of „Nog niet". | Must | 3 statussen; elke status heeft tekst | Test |
+| <a id="bw-3"></a>BW-3 | De site moet per bewijsonderdeel een van drie statussen tonen: Compleet, Bijna of „Te doen". | Must | 3 statussen; elke status heeft tekst; „Te doen" zonder waarschuwingskleur | Test |
 | <a id="bw-4"></a>BW-4 | De site moet geen score, percentage, punt, badge of ranglijst tonen. | Must | 0 numerieke scores of ranglijsten in 100 % van de pagina's | Inspectie |
 | <a id="bw-5"></a>BW-5 | De site moet de status van een bewijsonderdeel afleiden met de statusregel uit §5. | Must | 27 combinaties (3 soorten × 3 resultaten) geven de verwachte status | Test |
 | <a id="bw-6"></a>BW-6 | Bij status Compleet moet de site melden: „Aanwezig en consistent. Of het goed is, bespreek je met je coach." | Should | 1 melding met die strekking bij 100 % van de Compleet-onderdelen | Inspectie |
-| <a id="bw-7"></a>BW-7 | Bij status „Nog niet" moet de site de lijst van ontbrekende punten tonen met een link naar het modelantwoord van de oefencasus. | Should | 1 lijst en 1 link per onderdeel | Test |
+| <a id="bw-7"></a>BW-7 | Bij status „Te doen" na een eigen poging moet de site de lijst van ontbrekende punten tonen met een link naar het modelantwoord van de oefencasus. | Should | 1 lijst en 1 link per onderdeel | Test |
 | <a id="bw-8"></a>BW-8 | Elke controle moet een zuivere functie zijn die zonder netwerk een invoer ontvangt en `ok`, `let op` of `mist` teruggeeft. | Must | 0 netwerkverzoeken en 0 neveneffecten per aanroep | Test |
 | <a id="bw-9"></a>BW-9 | Elke controle moet bij `let op` of `mist` een zin teruggeven die zegt wat ontbreekt. | Must | 1 zin bij 100 % van de niet-`ok`-resultaten | Test |
 | <a id="bw-10"></a>BW-10 | Controles van soort B moeten samenhang tussen bewijsonderdelen toetsen. | Must | 5 samenhangcontroles: EV-01 → EV-06, EV-07 → EV-02, EV-08 → EV-06, EV-11 → EV-01, EV-11 → EV-06 | Test |
@@ -316,7 +316,7 @@ Elke regel: de site moet het onderdeel alleen als Compleet aanmerken als de geno
 | <a id="vb-1"></a>VB-1 | Leerblok 4 moet als zelfstandige taak 9.4 een verbanden-kaart bieden met drie kolommen: de delen van de user story uit EV-01, de VPC-onderdelen uit EV-07 en de zes kapitalen (financieel, productie, intellectueel, menselijk, sociaal en relationeel, natuurlijk). | Must | 3 kolommen; 6 kapitalen | Demonstratie |
 | <a id="vb-2"></a>VB-2 | De site moet de student eerst een oefencasus met drie open vragen laten doen en het modelvoorbeeld pas na een eigen poging tonen. | Must | 3 open vragen; 0 modelvoorbeelden zichtbaar vóór ≥ 1 getrokken lijn | Test |
 | <a id="vb-3"></a>VB-3 | De student moet lijnen tussen kaarten kunnen trekken, elk met één van drie typen (hoort bij, leidt tot, gaat ten koste van) en één zin waarom. | Must | 3 typen; 1 zin per lijn; ≥ 6 lijnen in een testprofiel | Test |
-| <a id="vb-4"></a>VB-4 | De site moet kaarten zonder lijn en kapitalen uit EV-01 zonder verband als open vraag tonen, zonder het ontbrekende verband als antwoord te geven. | Must | 100 % van de open plekken als vraag; 0 antwoorden in een leeg en een half ingevuld voorbeeld | Test |
+| <a id="vb-4"></a>VB-4 | De site moet kaarten zonder lijn en kapitalen uit EV-01 zonder verband als open vraag tonen, één tegelijk als prompt boven de kaart en allemaal in een uitklapbare lijst, zonder het ontbrekende verband als antwoord te geven. | Must | 1 prompt tegelijk; 100 % van de open plekken in de lijst; 0 antwoorden in een leeg en een half ingevuld voorbeeld | Test |
 | <a id="vb-5"></a>VB-5 | De site moet de student elk kapitaal laten markeren als input, uitkomst (+) of uitkomst (−). | Must | 6 kapitalen; 3 markeringen | Test |
 | <a id="vb-6"></a>VB-6 | De site moet minstens één lijn „gaat ten koste van" (een spanning) vragen met de stakeholder uit EV-06 die dat merkt. | Must | ≥ 1 spanning; 1 stakeholder gekoppeld | Test |
 | <a id="vb-7"></a>VB-7 | De site moet een synthese-alinea bieden van hoogstens vijf zinnen waarin de student kaarten uit minstens twee modellen als chips invoegt, en drie korte antwoorden op „wat laat dit model niet zien" voor user story, VPC en zes kapitalen. | Must | ≤ 5 zinnen; kaarten uit ≥ 2 modellen; 3 antwoorden | Test |
@@ -345,7 +345,7 @@ Elke regel: de site moet het onderdeel alleen als Compleet aanmerken als de geno
 | ID | Eis | Prio | Criterium | Verificatie |
 |---|---|---|---|---|
 | <a id="md-1"></a>MD-1 | Elk leerblok moet dezelfde stof in drie routes bieden: tekst, video en spel of simulatie. | Should | 4 leerblokken × 3 routes | Inspectie |
-| <a id="md-2"></a>MD-2 | De site moet de tekst als standaard tonen met twee kleine knoppen voor video en spel of simulatie, de laatste keuze onthouden en elke route laten uitkomen bij dezelfde „klaar als"-regel en oefentaak. | Should | 1 standaardroute; 2 knoppen; 3 routes met dezelfde „klaar als" | Test |
+| <a id="md-2"></a>MD-2 | De site moet in de stap stof de drie routes als drie gelijkwaardige tegels tonen (tekst, video, spel of simulatie), met tekst voorgeselecteerd, de laatste keuze onthouden en elke route laten uitkomen bij dezelfde „klaar als"-regel en oefentaak. | Should | 1 voorgeselecteerde route; 3 tegels van ≥ 44 × 44 px; 3 routes met dezelfde „klaar als" | Test |
 | <a id="md-3"></a>MD-3 | De uitlegtekst per leerblok moet uit hoogstens 300 woorden bestaan, met een voorbeeld en het modelantwoord van de oefencasus. | Should | ≤ 300 woorden per leerblok; 1 voorbeeld | Inspectie |
 | <a id="md-4"></a>MD-4 | Een eigen video moet hoogstens 3 min duren en hoogstens 20 MB groot zijn. | Should | ≤ 3 min; ≤ 20 MB per video; 4 video's (V1–V4) | Inspectie |
 | <a id="md-5"></a>MD-5 | Een eigen video moet ondertitels (WebVTT) en een transcript hebben. | Must | 2 hulpmiddelen per video; 100 % van de video's | Inspectie |
@@ -415,6 +415,25 @@ De docentmodus is een tweede weergave van dezelfde contentbestanden, bedoeld voo
 | <a id="dm-16"></a>DM-16 | De stapkaart moet leesbaar zijn vanaf de achterste rij van het lokaal. | Must | Tekst ≥ 28 px op 1280 × 720; contrast ≥ 4,5:1; 1 student op de achterste rij leest de opdracht voor | Test in het lokaal |
 | <a id="dm-17"></a>DM-17 | De docentmodus mag geen beoordelingsdetails of toetsantwoorden bevatten. | Must | 0 beoordelingsdetails; alleen didactische aanwijzingen en modelantwoorden van de oefencasus | Inspectie |
 | <a id="dm-18"></a>DM-18 | De docentmodus moet alle onderdelen van het werkcollege van woensdag bevatten. | Must | 19 onderdelen (11 in deel 1, 8 in deel 2) plus de 3 pauzes in deel 2 | Inspectie |
+
+### 6.17 Studentervaring (SX)
+
+Geldt voor de studentpagina's (start, leerblokken, dossier, bronnen), niet voor docentmodus, verificatie en controlelab. De uitwerking in tokens, schermen en componenten staat in `docs/DESIGN-ELEARNING-A3.md`; deze regels zijn het toetsbare deel ervan.
+
+| ID | Eis | Prio | Criterium | Verificatie |
+|---|---|---|---|---|
+| <a id="sx-1"></a>SX-1 | Het hoofdmenu van de studentpagina's moet alleen Start, Leerblokken, Dossier en Bronnen bevatten; docentmodus en verificatie staan in de voettekst. Onder 40rem staat het menu als vaste tabbalk onderin. | Must | ≤ 4 menu-items; 1 tabbalk op 360 px; docentmodus en verificatie in ≤ 2 klikken (SI-1) | Test |
+| <a id="sx-2"></a>SX-2 | De site mag een foutmelding bij een invoerveld pas tonen nadat de student het veld verlaat of het formulier indient. | Must | 0 foutmeldingen bij het laden van een lege startpagina; ≤ 1 melding per veld tegelijk | Test |
+| <a id="sx-3"></a>SX-3 | De studentpagina's mogen geen interne codes of systeemtermen tonen; ze noemen het resultaat in gewone taal. Export, verificatie en docentmodus behouden de codes. | Should | 0 treffers van `EV-` gevolgd door een cijfer en van „bewijsonderdeel" in de zichtbare tekst van de studentpagina's | Test |
+| <a id="sx-4"></a>SX-4 | Elke taak moet een vaste kop hebben met taaknummer in het leerblok en een segmentbalk van de vier stappen (TK-18), met een tekstalternatief. | Should | 100 % van de taken; 4 segmenten; 1 `aria-label` van de vorm „Taak 2 van 3, stap 3 van 4" | Test |
+| <a id="sx-5"></a>SX-5 | De „klaar als"-regel moet als checklist verschijnen: criteria met een controle van soort A vinken zichzelf af, de andere vinkt de student af. De tekst blijft letterlijk die van het werkboek (TK-2). | Should | 100 % van de criteria als vakje; afgevinkt ≤ 1 s na 600 ms zonder typen; 0 tekens verschil met de werkboektekst | Test |
+| <a id="sx-6"></a>SX-6 | De site moet één taak en één stap tegelijk tonen, met een vaste voet met hoogstens één primaire knop, een eigen adres per taak en stap, en de focus op de stapkop na een stapwissel. | Should | 1 zichtbare taak; ≤ 1 primaire knop per scherm; terugknop van de browser gaat 1 stap terug; focus op de kop in 100 % van de wissels | Test |
+| <a id="sx-7"></a>SX-7 | Een harde schaduw mag alleen op elementen staan die je kunt aanklikken of aantikken. | Should | 0 informatieve kaarten met schaduw; 0 kaarten met schaduw binnen een kaart met schaduw | Inspectie |
+| <a id="sx-8"></a>SX-8 | Links moeten de linkkleur uit de tokens gebruiken. | Must | 0 links in de standaardkleur van de browser op de studentpagina's | Test |
+| <a id="sx-9"></a>SX-9 | Beweging beperkt zich tot segmenten die vullen, knoppen die indrukken en panelen die openklappen, en vervalt bij `prefers-reduced-motion: reduce`. | Must | transitieduur 150–250 ms; 0 transities bij reduced motion | Test |
+| <a id="sx-10"></a>SX-10 | Inhoudstekst mag niet kleiner zijn dan 13 px; tekst op de kaartjes van de verbanden-kaart niet kleiner dan 15 px. | Should | ≥ 13 px op 100 % van de inhoudstekst; ≥ 15 px op de kaartjes, ook op 360 px | Test |
+| <a id="sx-11"></a>SX-11 | Lange invoervelden (STARR-reflectie en velden van ≥ 3 regels) moeten een zinstarter als placeholder hebben die niet gelijk is aan het modelantwoord. | Should | 100 % van de lange velden; 0 placeholders die in het modelantwoord voorkomen | Test (contentcontrole) |
+| <a id="sx-12"></a>SX-12 | De startpagina en het afsluitscherm moeten laten zien wat de student aan A3-vak 1 heeft opgebouwd: vak 1 in vier delen (onderzoeksvraag, zoekvragen en model, plaatsing, verbanden en reflectie), één per leerblok; een deel is gevuld als het leerblok is afgerond (TK-16). | Should | 4 delen; op het afsluitscherm is het zojuist gevulde deel gemarkeerd; 0 delen voor vak 2 t/m 8 (X-15) | Demonstratie |
 
 ---
 
@@ -614,6 +633,8 @@ Regels zijn hier hergroepeerd en gesplitst tot één verplichting per regel. Elk
 | FR-65 | TP-10, DM-14 |
 | FR-66 | ST-7 |
 | FR-67 | TP-11 |
+| FR-68 | SX-4, SX-5, SX-12, LB-16 |
+| FR-69 | SX-1, SX-2, SX-3, SX-6, MD-2 |
 
 ### Non-functionele requirements
 
@@ -637,6 +658,7 @@ Regels zijn hier hergroepeerd en gesplitst tot één verplichting per regel. Elk
 | NFR-16 | MD-4, MD-5, MD-6, MD-12, MD-13 |
 | NFR-17 | BR-1, BR-6 |
 | NFR-18 | SI-5, SI-6, SI-7, LI-4, LI-5 |
+| NFR-19 | SX-7, SX-8, SX-9, SX-10, SX-11 |
 
 ### Overige LRD-onderdelen
 
@@ -649,7 +671,7 @@ Regels zijn hier hergroepeerd en gesplitst tot één verplichting per regel. Elk
 | Deel 5 (PAMS, KISS) | §2, §8 |
 | Deel 6.1 (bewijsonderdelen EV-01–EV-11) | §6.7, ongewijzigde ID's |
 | Deel 6.2–6.5 (record, controles, dossier, grens) | §3, §5, §6.5, §6.6, §6.8 |
-| Deel 6.6 (leerroute) | TK-18 |
+| Deel 6.6 (leerroute) | TK-18, SX-4, SX-6 |
 | Deel 6.1 en 6.3 (statusregel, controlesoorten, disclaimer bij Compleet) | BW-5, BW-6, BW-7, BW-9, BW-10, BW-11 |
 | Deel 6.2 (bewijsrecord) | RC-1, RC-2, RC-3, RC-4 |
 | Deel 6.7 en 8.2 (programma van woensdag, begintijden) | DM-10, DM-18 |
@@ -665,7 +687,7 @@ Regels zijn hier hergroepeerd en gesplitst tot één verplichting per regel. Elk
 | Deel 8 (programma, verdieping, media, terugblik) | §4.2; inhoud blijft bron in het LRD |
 | Deel 9 (toetsing) | §3 („Wat het bewijs is"), X-14, DS-8 |
 | Deel 10 (deliverables) | §7.4 |
-| Deel 11 (AC-01–AC-44) | Bijlage B |
+| Deel 11 (AC-01–AC-45) | Bijlage B |
 | Deel 12 (risico's) | — (risicolijst blijft in het LRD; mitigaties zijn regels hierboven) |
 | Deel 13 (roadmap) | — (bouwvolgorde hoort in het bouwplan) |
 | Besluitenregister (tot LRD 0.12 Bijlage A, B1–B60) | — (staat in `docs/ADR-ELEARNING-A3.md`; vervangen besluiten blijven daar staan; alle besluiten zijn in B58 bevestigd) |
@@ -721,3 +743,4 @@ De acceptatiecriteria van het LRD zijn hier de verificatie van regels, geen apar
 | AC-42 | AP-8 |
 | AC-43 | ST-7 |
 | AC-44 | TP-11 |
+| AC-45 | SX-1, SX-2, SX-4, SX-5, SX-6, SX-12 |
