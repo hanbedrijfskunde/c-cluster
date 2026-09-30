@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | **Product** | Hybride e-learning A3 (repository `hanbedrijfskunde/a3-learning`) |
-| **LRD** | [`lrd-elearning-a3.html`](lrd-elearning-a3.html), versie 0.13 |
+| **LRD** | [`LRD-ELEARNING-A3.html`](LRD-ELEARNING-A3.html), versie 0.13 |
 | **Laatst bijgewerkt** | 30 september 2026 |
 | **Auteur** | Witold ten Hove |
 

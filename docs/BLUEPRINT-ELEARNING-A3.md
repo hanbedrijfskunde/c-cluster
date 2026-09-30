@@ -1,6 +1,6 @@
 # BLUEPRINT — Hybride e-learning A3 met automatisch bewijs
 
-> Afgeleid van `docs/lrd-elearning-a3.html` (LRD versie 0.13, 30 september 2026). Dit document beschrijft de doelsituatie van het product: geen bouwvolgorde, geen fasering, geen voortgang. Bouwvolgorde en voortgang staan in het bouwplan (`BUILDPLAN.md`). Pedagogische onderbouwing en risico's blijven in het LRD; het besluitenregister (B1–B59) staat in `docs/adr-elearning-a3.md`; regels hier verwijzen daar niet naartoe maar zijn zelfstandig toetsbaar. Bijlage A koppelt elke LRD-eis aan de regels hieronder.
+> Afgeleid van `docs/LRD-ELEARNING-A3.html` (LRD versie 0.13, 30 september 2026). Dit document beschrijft de doelsituatie van het product: geen bouwvolgorde, geen fasering, geen voortgang. Bouwvolgorde en voortgang staan in het bouwplan (`BUILDPLAN-ELEARNING-A3.md`). Pedagogische onderbouwing en risico's blijven in het LRD; het besluitenregister (B1–B59) staat in `docs/ADR-ELEARNING-A3.md`; regels hier verwijzen daar niet naartoe maar zijn zelfstandig toetsbaar. Bijlage A koppelt elke LRD-eis aan de regels hieronder.
 
 **Lezen.** Elke regel heeft een ID (prefix per onderwerp), een verplichtingsniveau (Must, Should, Could), een criterium met getal en eenheid, en een verificatiemethode (Test, Demonstratie, Inspectie, Analyse). „Moet" is de verplichting van het product, niet de volgorde van het werk. De statusnamen Compleet, Bijna en „Nog niet" zijn productterm en geen voortgangstaal.
 
@@ -531,7 +531,7 @@ Volledige APA-vermeldingen staan in het LRD, Bijlage A. Hier alleen de bronnen w
 - Mislevy, R. J., Almond, R. G. & Lukas, J. F. (2003). *A brief introduction to evidence-centered design* (RR-03-16). ETS. (§2, EV)
 - Roediger, H. L., III & Karpicke, J. D. (2006). Test-enhanced learning. *Psychological Science, 17*(3), 249–255. (TP-2)
 - Westmoreland BV. (z.d.). *Architectuur- en implementatieblauwdruk van het TOM³-model* [Ongepubliceerd document]. (LB-11)
-- Interne bronnen: leeruitkomsten en opdrachtomschrijvingen C-cluster; `WK5/Werkboek_A3-start_week5.html`; `WK5/Draaiboek_woensdag_week5.html`; `docs/lrd-elearning-a3.html`.
+- Interne bronnen: leeruitkomsten en opdrachtomschrijvingen C-cluster; `WK5/Werkboek_A3-start_week5.html`; `WK5/Draaiboek_woensdag_week5.html`; `docs/LRD-ELEARNING-A3.html`.
 
 ---
 
@@ -664,7 +664,7 @@ Regels zijn hier hergroepeerd en gesplitst tot één verplichting per regel. Elk
 | Deel 11 (AC-01–AC-44) | Bijlage B |
 | Deel 12 (risico's) | — (risicolijst blijft in het LRD; mitigaties zijn regels hierboven) |
 | Deel 13 (roadmap) | — (bouwvolgorde hoort in het bouwplan) |
-| Besluitenregister (tot LRD 0.12 Bijlage A, B1–B59) | — (staat in `docs/adr-elearning-a3.md`; vervangen besluiten blijven daar staan; alle besluiten zijn in B58 bevestigd) |
+| Besluitenregister (tot LRD 0.12 Bijlage A, B1–B59) | — (staat in `docs/ADR-ELEARNING-A3.md`; vervangen besluiten blijven daar staan; alle besluiten zijn in B58 bevestigd) |
 | Bijlage B (bronnen, tot LRD 0.12) | §10; in LRD 0.13 heet die bijlage Bijlage A |
 
 ## Bijlage B — Acceptatiecriteria (LRD Deel 11) → verificatie
