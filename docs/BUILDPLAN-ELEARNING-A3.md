@@ -19,7 +19,7 @@
 
 - [x] Fase 0 — Repository, licentie en lege publicatie
 - [x] Fase 1 — Kern: schema, controles en statusregel (met controlelab)
-- [ ] Fase 2 — Leerblok 1 als dunne doorsnede (EV-01, EV-02)
+- [x] Fase 2 — Leerblok 1 als dunne doorsnede (EV-01, EV-02) (subtask 2.3 wacht op akkoord van de auteur)
 - [ ] Fase 3 — Dossier: export, import en verificatie
 - [ ] Fase 4 — De Wissel en de feedbacklog (EV-09)
 - [ ] Fase 5 — Proefsessie met 2–3 gebruikers en bijstelling
@@ -174,31 +174,45 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 **Spec.** ST-1, ST-2, ST-6, TK-1…TK-10, TK-15…TK-18, LB-1, LB-2, LB-3, LB-4, EV-01, EV-02, BW-1, BW-2, BW-6, BW-7, DS-1, RC-5, RC-6, QA-1.
 
 ### Subtasks
-- [ ] 2.1 Leg het formaat van `data/leerblok-1.json` vast (taak, nummer, waarom, klaar als, richttijd, oefencasus, modelantwoord, controles, LUK-koppeling, verdieping) en beschrijf het in `README.md` (QA-1). Verwacht: één voorbeeldtaak valideert tegen het formaat.
-- [ ] 2.2 Schrijf `js/store.js`: `get`, `save` (met `versie + 1` en behoud van eerdere versies), `versions`, `clear` (RC-5, RC-6, ST-6, DS-1). Verwacht: na 5 opslagen 5 versies en `versie` loopt 1…5.
-- [ ] 2.3 Vul `data/leerblok-1.json` met taken 1.1, 2.1, 2.2: de teksten uit het werkboek; **ontbrekende „Waarom" en „Klaar als" (alleen 2.1 heeft een „Klaar als") voor de auteur schrijven en laten goedkeuren** voordat ze de site in gaan (TK-2). Verwacht: 3 taken, elk met waarom en „klaar als", door de auteur bevestigd.
-- [ ] 2.4 Schrijf `js/leerblok.js`: bouwt de pagina uit het datafile met het vaste ritme van vijf stappen (TK-18) en toont per taak nummer, waarom, tijd en „klaar als" (TK-2). Verwacht: 3 taken, alle vier elementen zichtbaar.
-- [ ] 2.5 Bouw de startpagina-invoer: alias of voornaam, teamnummer, vraagstuk in één zin, waarom-zin, of „nog geen scherp vraagstuk"; privacytekst ≤ 100 woorden op `index.html` (ST-1, ST-2). Verwacht: 4 velden + 1 keuze, 0 andere persoonsgegevensvelden.
-- [ ] 2.6 Bouw de oefen/toepassen-scheiding: aparte oefenversie met modelantwoord dat pas verschijnt na ≥ 1 ingevuld veld, herhaalbaar (≥ 10×) en overslaanbaar met één klik (TK-3, TK-5, TK-6, TK-7). Verwacht: modelantwoord verborgen bij leeg veld; overslaan verandert 0 statussen.
-- [ ] 2.7 Zorg dat alleen de toepassing als bewijsrecord wordt opgeslagen (TK-4). Verwacht: 0 records met oefencasus-inhoud.
-- [ ] 2.8 Schrijf `js/checks/lb1.js` met de controles van EV-01 en EV-02 uit het blueprint (soort A en B) en de bouwer van LB-2 (drie velden, zes kapitalen, live voorbeeld ≤ 1 s) en LB-3 (drie zoekvragen, frame-keuzelijst, één model uit 4, veld „wat mis je"); teamkeuze en eigen verantwoording apart (LB-4). Verwacht: alle controles hebben 3 goede en 3 zwakke voorbeelden.
-- [ ] 2.9 Verbind de controles met de invoer: resultaat ≤ 1 s na de laatste toetsaanslag, één zin per niet-`ok`-controle, statustekst en, bij Compleet, de zin „Aanwezig en consistent…" en, bij „Nog niet", de lijst met een link naar het modelantwoord (BW-1, BW-2, BW-6, BW-7). Verwacht: meetbare vertraging ≤ 1 s.
-- [ ] 2.10 Bouw de knop „klaar", de zin „mijn volgende stap" en de aanbevolen volgorde zonder slot; blokkeer niemand bij overschrijding van de richttijd (TK-1, TK-8, TK-9, TK-10). Verwacht: „klaar" werkt bij ≤ 50 % van de richttijd; 0 blokkades bij 150 %.
-- [ ] 2.11 Bouw het afsluitscherm met status per bewijsonderdeel, volgende stap en de melding „bewaar je dossier"; de afgerond-regel en doorgaan zonder afronden (TK-15, TK-16, TK-17). Verwacht: 4 testprofielen geven het verwachte resultaat.
-- [ ] 2.12 Toon de vier leerblokken op de startpagina met richttijd en afgerond bewijs (LB-1) en voeg de verdiepingstaak van leerblok 1 toe (nog zonder invloed op de status). Verwacht: 4 leerblokken op `index.html`.
-- [ ] 2.13 Bouw „wis alles" met één bevestiging (ST-6). Verwacht: 0 items van de site in localStorage, sessionStorage en IndexedDB.
-- [ ] 2.14 Laat `content-check` de eerste 3 taken valideren. Verwacht: groen.
+- [x] 2.1 Leg het formaat van `data/leerblok-1.json` vast (taak, nummer, waarom, klaar als, richttijd, oefencasus, modelantwoord, controles, LUK-koppeling, verdieping) en beschrijf het in `README.md` (QA-1). Verwacht: één voorbeeldtaak valideert tegen het formaat.
+- [x] 2.2 Schrijf `js/store.js`: `get`, `save` (met `versie + 1` en behoud van eerdere versies), `versions`, `clear` (RC-5, RC-6, ST-6, DS-1). Verwacht: na 5 opslagen 5 versies en `versie` loopt 1…5.
+- [ ] 2.3 (concept, wacht op akkoord auteur) Vul `data/leerblok-1.json` met taken 1.1, 2.1, 2.2: de teksten uit het werkboek; **ontbrekende „Waarom" en „Klaar als" (alleen 2.1 heeft een „Klaar als") voor de auteur schrijven en laten goedkeuren** voordat ze de site in gaan (TK-2). Verwacht: 3 taken, elk met waarom en „klaar als", door de auteur bevestigd.
+- [x] 2.4 Schrijf `js/leerblok.js`: bouwt de pagina uit het datafile met het vaste ritme van vijf stappen (TK-18) en toont per taak nummer, waarom, tijd en „klaar als" (TK-2). Verwacht: 3 taken, alle vier elementen zichtbaar.
+- [x] 2.5 Bouw de startpagina-invoer: alias of voornaam, teamnummer, vraagstuk in één zin, waarom-zin, of „nog geen scherp vraagstuk"; privacytekst ≤ 100 woorden op `index.html` (ST-1, ST-2). Verwacht: 4 velden + 1 keuze, 0 andere persoonsgegevensvelden.
+- [x] 2.6 Bouw de oefen/toepassen-scheiding: aparte oefenversie met modelantwoord dat pas verschijnt na ≥ 1 ingevuld veld, herhaalbaar (≥ 10×) en overslaanbaar met één klik (TK-3, TK-5, TK-6, TK-7). Verwacht: modelantwoord verborgen bij leeg veld; overslaan verandert 0 statussen.
+- [x] 2.7 Zorg dat alleen de toepassing als bewijsrecord wordt opgeslagen (TK-4). Verwacht: 0 records met oefencasus-inhoud.
+- [x] 2.8 Schrijf `js/checks/lb1.js` met de controles van EV-01 en EV-02 uit het blueprint (soort A en B) en de bouwer van LB-2 (drie velden, zes kapitalen, live voorbeeld ≤ 1 s) en LB-3 (drie zoekvragen, frame-keuzelijst, één model uit 4, veld „wat mis je"); teamkeuze en eigen verantwoording apart (LB-4). Verwacht: alle controles hebben 3 goede en 3 zwakke voorbeelden.
+- [x] 2.9 Verbind de controles met de invoer: resultaat ≤ 1 s na de laatste toetsaanslag, één zin per niet-`ok`-controle, statustekst en, bij Compleet, de zin „Aanwezig en consistent…" en, bij „Nog niet", de lijst met een link naar het modelantwoord (BW-1, BW-2, BW-6, BW-7). Verwacht: meetbare vertraging ≤ 1 s.
+- [x] 2.10 Bouw de knop „klaar", de zin „mijn volgende stap" en de aanbevolen volgorde zonder slot; blokkeer niemand bij overschrijding van de richttijd (TK-1, TK-8, TK-9, TK-10). Verwacht: „klaar" werkt bij ≤ 50 % van de richttijd; 0 blokkades bij 150 %.
+- [x] 2.11 Bouw het afsluitscherm met status per bewijsonderdeel, volgende stap en de melding „bewaar je dossier"; de afgerond-regel en doorgaan zonder afronden (TK-15, TK-16, TK-17). Verwacht: 4 testprofielen geven het verwachte resultaat.
+- [x] 2.12 Toon de vier leerblokken op de startpagina met richttijd en afgerond bewijs (LB-1) en voeg de verdiepingstaak van leerblok 1 toe (nog zonder invloed op de status). Verwacht: 4 leerblokken op `index.html`.
+- [x] 2.13 Bouw „wis alles" met één bevestiging (ST-6). Verwacht: 0 items van de site in localStorage, sessionStorage en IndexedDB.
+- [x] 2.14 Laat `content-check` de eerste 3 taken valideren. Verwacht: groen.
 
 ### Testpoort
-- [ ] Volledige testpoort, met leerblok 1 als extra doorloop op de gepubliceerde URL.
-- [ ] Sabotage TK-6: maak het modelantwoord direct zichtbaar; de test faalt.
-- [ ] Sabotage TK-4: sla oefencasus-invoer op als bewijs; de test faalt.
-- [ ] Tester doorloopt: start → 2.1 → 2.2 → afsluitscherm → herladen → alles aanwezig → „wis alles" → leeg.
-- [ ] DS-1: 0 verloren velden na herladen.
-- [ ] Geclaimde regels met hun methode gecontroleerd; TK-2 als Test tegen de werkboektekst.
+- [x] Volledige testpoort, met leerblok 1 als extra doorloop op de gepubliceerde URL.
+- [x] Sabotage TK-6: maak het modelantwoord direct zichtbaar; de test faalt.
+- [x] Sabotage TK-4: sla oefencasus-invoer op als bewijs; de test faalt.
+- [x] Tester doorloopt: start → 2.1 → 2.2 → afsluitscherm → herladen → alles aanwezig → „wis alles" → leeg.
+- [x] DS-1: 0 verloren velden na herladen.
+- [x] Geclaimde regels met hun methode gecontroleerd; TK-2 als Test tegen de werkboektekst.
 
 ### Afsluiting
-- [ ] commit `Leerblok 1: doorsnede met start, EV-01, EV-02, opslag en afsluiten`  - [ ] push  - [ ] overzicht afvinken
+- [x] commit `Leerblok 1: doorsnede met start, EV-01, EV-02, opslag en afsluiten`  - [x] push  - [x] overzicht afvinken (2.3 blijft open tot de auteur akkoord geeft)
+
+---
+
+**Stand en afwijkingen fase 2 (30 september 2026).** Gecommit en gepubliceerd (workflow groen, live gecontroleerd); 193 tests.
+- **Subtask 2.3 is niet afgevinkt: concept, wacht op akkoord van de auteur.** Letterlijk uit het werkboek (`"bron": "werkboek"`): waarom van 1.1, 2.1 en 2.2; "klaar als" van 2.1; richttijd van 2.1 en 2.2. Door de bouwer geschreven (`"bron": "concept-auteur"`, geeft een WAARSCHUWING in `content-check`): "klaar als" van 1.1 en 2.2, de minuten van 1.1 (het werkboek zegt "tijdens de uitleg"; 10 gekozen), de toepassing van 1.1 (aanleiding van het eigen vraagstuk), de opdracht van de oefening van 1.1 en 2.2, het modelantwoord van 2.2 (frame-indeling, model en verantwoording; de drie zoekvragen komen uit het draaiboek), de opdracht van de toepassing van 2.1 en alle "stof"-teksten (uitleg van user story, pain, gain, six capitals, frame). Modelantwoorden van 1.1 en 2.1 komen uit het kader in het draaiboek (`"bron": "draaiboek"`; het derde antwoord bij 1.1 is ingekort omdat het draaiboek zelf zegt dat die punten nog gecontroleerd moeten worden). Verdieping: LRD 8.3.
+- TK-2 letterlijk-controle: `tests/werkboek.test.mjs` vergelijkt met `../c-cluster-1/WK5/Werkboek_A3-start_week5.html` en wordt overgeslagen als dat bestand ontbreekt (dus in CI).
+- Taak 1.1 heeft geen bewijsonderdeel en geen casus: de oefenversie zijn de drie werkboekvragen, de toepassing (concept) is de aanleiding van het eigen vraagstuk; de invoer gaat niet in een record. Zo is TK-3 ("2 versies per taak") ingevuld.
+- Contract gewijzigd t.o.v. fase 1: `klaarAls` en `modelantwoord` in `data/leerblok-N.json` zijn nu objecten met `bron` (een kale tekst blijft geldig voor `controleerLeerblok`); nieuw `data/leerblokken.json` (overzicht voor de startpagina, startinvoer, privacytekst); fixtures aangepast aan formaat 1.0; `content-check` geeft waarschuwingen. `core.js` is niet gewijzigd: voor "minstens 4 woorden" als soort A staat `minWoordenAanwezig` in `js/checks/lb1.js` (core.minWoorden blijft soort C, BW-11).
+- Lezingen die de blueprint openlaat staan als B61 in het ADR (afgerond-regel met `voorlopig`, wanneer "klaar" verschijnt, oefeninvoer buiten de records).
+- Kapitaalnamen volgen het werkboek ("sociaal en relationeel"), niet het voorbeeld in blueprint 5 ("sociaal").
+- Bewaren gebeurt 500 ms na de laatste toetsaanslag en alleen bij een verandering (anders is elke toetsaanslag een versie, RC-5); de controles lopen direct (gemeten 0,1 tot 0,3 ms, BW-1).
+- Nog niet in deze fase: de kijktips van derden (B60), media (fase 12), de Wissel en "kopieer naar A3" (ST-7), export (fase 3; de bewaarmelding verwijst naar `dossier.html`).
+- Sabotage gedaan en hersteld, telkens door de tests gevangen: TK-6 (2 tests), TK-4, TK-14, TK-16, RC-5, ST-3, verschiltVanCasus, kapitaalNietFinancieel, verschillendeFrames, precies1Keuze, TK-2 (gewijzigd woord in de JSON) en de waarschuwing voor concept-auteur.
+- Playwright (lokaal en live): start, 2.1, 2.2, afsluitscherm, herladen (alles aanwezig), "Wis alles" (0 items in localStorage, sessionStorage en IndexedDB); 0 verzoeken naar andere domeinen, 0 consolefouten; alle 8 pagina's 200. Niet door een mens gedaan; een menselijke tester kan dit herhalen.
 
 ---
 
