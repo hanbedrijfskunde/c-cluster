@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LRD Hybride E-learning A3</title>
+<style>
+:root{
+  /* HAN-huisstijl, overgenomen uit introductie-bedrijfskunde.html en houdbaarheidsonderzoek-informatiemanagement.html */
+  --han:#E50056; --ink:#000000; --paper:#FFFFFF; --grey:#454545; --grey2:#767676;
+  --wash:#F2F2F0; --panel2:#E6E6E3; --line2:#C9C9C4;
+  --blijft:#0038FF;   --blijft2:#DCE4FF;   /* script-gate / hard        */
+  --schuift:#8A6A00;  --schuift2:#FFE875;  /* reviewer-gate / oordeel   */
+  --weg:#E50056;      --weg2:#FFE1EC;      /* afgewezen alternatief     */
+  --extern:#6B21D9;   --extern2:#E9DBFF;   /* fase 2 / later            */
+  --bw:3px; --sh:5px 5px 0 var(--ink);
+  --f:"Avenir Next","Avenir","Nunito Sans","Segoe UI",Helvetica,Arial,sans-serif;
+  --fm:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  --measure:70ch;
+}
+*{box-sizing:border-box}
+html{color-scheme:light}
+body{margin:0;background:var(--wash);color:var(--ink);font:18px/1.5 var(--f);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:4px solid var(--han);outline-offset:3px}
+h1,h2,h3,h4{margin:0;text-wrap:balance;font-weight:800;letter-spacing:-.02em;line-height:1.05}
+h2{font-size:clamp(28px,4vw,42px)}
+h2 em{font-style:normal;color:var(--han)}
+h3{font-size:23px;margin-block:28px 10px}
+h4{font-size:19px;margin-block:18px 6px}
+p{margin:0 0 1em;max-inline-size:var(--measure)}
+strong,b{font-weight:700}
+.page{max-inline-size:1140px;margin:0 auto;padding:0 clamp(18px,4vw,48px) 90px}
+section{padding-block:50px;border-block-start:var(--bw) solid var(--ink)}
+section:first-of-type{border-block-start:none}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;margin:0 0 16px;background:var(--ink);color:var(--paper);padding:7px 13px 6px;font:700 13px/1 var(--fm);letter-spacing:.16em;text-transform:uppercase}
+.eyebrow b{color:var(--han)}
+header.mast{background:var(--ink);color:var(--paper);border:var(--bw) solid var(--ink);box-shadow:10px 10px 0 rgba(0,0,0,.22);margin-block:40px 0;padding:clamp(28px,5vw,56px)}
+header.mast .eyebrow{background:var(--han);color:var(--paper)}
+header.mast h1{font-size:clamp(38px,6.5vw,80px);text-transform:uppercase;line-height:.94;letter-spacing:-.035em;max-inline-size:16ch}
+header.mast h1 em{font-style:normal;color:var(--han)}
+header.mast .lead{font-size:clamp(19px,2.3vw,24px);line-height:1.34;font-weight:600;max-inline-size:60ch;margin:22px 0 0}
+header.mast blockquote{margin:26px 0 0;padding:0 0 0 18px;border-inline-start:6px solid var(--han);font-size:20px;font-weight:600;max-inline-size:60ch}
+header.mast blockquote cite{display:block;font:600 13px/1.3 var(--fm);font-style:normal;opacity:.8;margin-block-start:6px}
+.hdr{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;border:3px solid var(--paper);margin-block-start:28px}
+.hdr div{padding:10px 14px;border:1.5px solid var(--paper)}
+.hdr dt{font:700 11px/1.2 var(--fm);letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin-block-end:4px}
+.hdr dd{margin:0;font-size:15.5px;line-height:1.35}
+.tw{overflow-x:auto;margin:16px 0 24px;border:var(--bw) solid var(--ink);background:var(--paper);box-shadow:var(--sh)}
+table.t{inline-size:100%;border-collapse:collapse;font-size:16px;background:var(--paper);min-inline-size:720px}
+table.t th{text-align:left;font:700 12px/1.2 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:9px 12px;vertical-align:bottom}
+table.t td{padding:10px 12px;border-block-start:2px solid var(--ink);vertical-align:top;line-height:1.38}
+table.t tr:first-child td{border-block-start:none}
+table.t td.n{font:700 14px/1.3 var(--fm);white-space:nowrap}
+table.t td.m{font:600 14px/1.35 var(--fm);font-variant-numeric:tabular-nums}
+table.t td.q{color:var(--grey)}
+table.t tr.sub td{background:var(--panel2);font:700 12px/1.2 var(--fm);letter-spacing:.1em;text-transform:uppercase;padding:6px 12px}
+.chip{display:inline-block;font:800 11.5px/1 var(--fm);letter-spacing:.12em;text-transform:uppercase;padding:6px 9px 5px;border:2px solid var(--ink);white-space:nowrap}
+.chip.script{background:var(--blijft2);border-color:var(--blijft)}
+.chip.rev{background:var(--schuift2);border-color:var(--schuift)}
+.chip.later{background:var(--extern2);border-color:var(--extern)}
+.chip.weg{background:var(--weg2);border-color:var(--weg)}
+.chip.tag{background:var(--panel2);border-color:var(--grey2)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 20px;font:600 15px/1.2 var(--f);margin:12px 0 18px}
+.legend>span{display:inline-flex;align-items:center;gap:8px}
+.legend i{inline-size:14px;block-size:14px;background:var(--kc,var(--ink));border:2px solid var(--ink);flex:none}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{background:var(--paper);border:var(--bw) solid var(--ink);padding:16px 18px;box-shadow:var(--sh)}
+.card>b{display:block;font-size:20px;line-height:1.16;margin-block-end:6px;font-weight:800}
+.card>p{font-size:16.5px;line-height:1.42;margin:0;max-inline-size:none}
+.card.k{border-block-start:9px solid var(--kc,var(--ink));background:var(--kbg,var(--paper))}
+.k-script{--kc:var(--blijft);--kbg:var(--blijft2)}
+.k-rev{--kc:var(--schuift);--kbg:var(--schuift2)}
+.k-weg{--kc:var(--weg);--kbg:var(--weg2)}
+.k-later{--kc:var(--extern);--kbg:var(--extern2)}
+/* Punt → Ontwerpaxioma */
+.kader{border:var(--bw) solid var(--ink);background:var(--paper);box-shadow:var(--sh);margin:18px 0;display:grid;grid-template-columns:1fr 1fr}
+.kader>div{padding:16px 18px}
+.kader>div:first-child{border-inline-end:var(--bw) solid var(--ink)}
+.kader b.l{display:block;font:800 12px/1 var(--fm);letter-spacing:.14em;text-transform:uppercase;margin-block-end:8px}
+.kader>div:last-child{background:var(--schuift2)}
+.kader p{font-size:16.5px;line-height:1.42;margin:0;max-inline-size:none}
+@media (max-width:720px){.kader{grid-template-columns:1fr}.kader>div:first-child{border-inline-end:none;border-block-end:var(--bw) solid var(--ink)}}
+ul.big{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:10px;max-inline-size:78ch}
+ul.big li{font-size:17px;line-height:1.42;padding-inline-start:30px;position:relative}
+ul.big li::before{content:"";position:absolute;inset-inline-start:0;inset-block-start:.5em;inline-size:13px;block-size:13px;background:var(--han)}
+.kiss{border:var(--bw) solid var(--ink);background:var(--paper);box-shadow:var(--sh);padding:14px 18px;margin:12px 0;display:grid;grid-template-columns:auto 1fr;gap:6px 18px;align-items:start}
+.kiss .lbl{font:800 11.5px/1 var(--fm);letter-spacing:.12em;text-transform:uppercase;padding:6px 9px 5px;border:2px solid var(--ink);white-space:nowrap;margin-block-start:2px}
+.kiss .lbl.weg{background:var(--weg2);border-color:var(--weg)}
+.kiss .lbl.kies{background:var(--blijft2);border-color:var(--blijft)}
+.kiss p{margin:0;font-size:16.5px;max-inline-size:none}
+pre{font:600 13.5px/1.45 var(--fm);background:var(--ink);color:var(--paper);padding:14px 18px;overflow-x:auto;margin:12px 0 18px;border:var(--bw) solid var(--ink)}
+code{font:600 14px/1.3 var(--fm)}
+.small{font-size:16px;color:var(--grey)}
+.tiny{font:600 13.5px/1.4 var(--fm);color:var(--grey);letter-spacing:.02em}
+a.w{font:800 11px/1 var(--fm);background:var(--ink);color:var(--paper);text-decoration:none;padding:3px 5px 2px;margin-inline-start:3px;letter-spacing:.04em;vertical-align:.15em;white-space:nowrap}
+a.w:hover,a.w:focus-visible{background:var(--han)}
+a.w.l{background:var(--grey)}
+ol.bron{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+ol.bron li{display:grid;grid-template-columns:58px 1fr;gap:12px;font-size:15.5px;line-height:1.4;border-block-end:2px solid var(--line2);padding-block:8px}
+ol.bron li .id{font:800 12px/1 var(--fm);background:var(--ink);color:var(--paper);padding:5px 7px;justify-self:start;margin-block-start:3px}
+ol.bron li .id.l{background:var(--grey)}
+ol.bron li code{font:600 13px/1.3 var(--fm);color:var(--grey);word-break:break-all}
+@media print{body{background:#fff;font-size:11.5pt}.page{max-inline-size:none;padding:0}header.mast,.card,.tw,.kader,.kiss{box-shadow:none}.tw{overflow:visible}table.t{min-inline-size:0;font-size:9.5pt}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="mast">
+  <div class="eyebrow">Learner Requirement Document <b>·</b> HAN Bedrijfskunde <b>·</b> C-cluster 2026-27</div>
+  <h1>LRD Hybride e-learning <em>A3</em> met automatisch bewijs</h1>
+  <p class="lead">Het ontwerpdocument voor een interactieve e-learning op GitHub Pages, in twee gebruiksvormen. Studenten van Praktijkopdracht 5 werken er zelfstandig mee aan de A3 op hun eigen vraagstuk en bouwen een bewijsdossier op voor de leeruitkomsten van de module. Docenten gebruiken dezelfde site als hulpmiddel tijdens het werkcollege.</p>
+  <blockquote>„A3 is niet alleen een gereedschap, maar ook een manier van denken."<cite>Annalisa L. Weigel, MIT OpenCourseWare, 2014 — vrij vertaald uit het college „A3 Thinking"<a class="w" href="#S9">S9</a></cite></blockquote>
+  <dl class="hdr">
+    <div><dt>Document</dt><dd>LRD Hybride E-learning A3</dd></div>
+    <div><dt>Versie · datum</dt><dd>0.2 · 30 september 2026 (0.1: alleen zelfstandig gebruik; 0.2: hybride)</dd></div>
+    <div><dt>Opleiding</dt><dd>HBO Bedrijfskunde, C-cluster, Praktijkopdracht 5 (2026 P1N)</dd></div>
+    <div><dt>Scope</dt><dd>Eén statische e-learning van ongeveer twee klokuren met twee gebruiksvormen: zelfstandig (student) en werkcollege (docent-geleid). Release 1 volgt de inhoud van week 5: onderzoeksvaardigheden en A3-vak 1 „Achtergrond"</dd></div>
+    <div><dt>Auteur</dt><dd>Witek ten Hove (TUT2), opgesteld met Claude</dd></div>
+    <div><dt>Bouwt voort op</dt><dd>Leeruitkomsten<a class="w" href="#O">O</a><a class="w" href="#U">U</a>, werkboek<a class="w" href="#W">W</a> en ontwerp<a class="w" href="#N">N</a> van de A3-start, weekprogramma<a class="w" href="#P">P</a>, draaiboek<a class="w" href="#D">D</a>, en de inspiratiebronnen in <code>lits/</code><a class="w" href="#S7">S7</a><a class="w" href="#S8">S8</a><a class="w" href="#S9">S9</a><a class="w" href="#Q">Q</a><a class="w" href="#A">A</a><a class="w" href="#T">T</a></dd></div>
+  </dl>
+</header>
+
+<!-- ============================================================ -->
+<section id="d1">
+  <div class="eyebrow">Deel 1</div>
+  <h2>Context en positionering</h2>
+  <h3>1.1 Wat dit LRD is, en wat niet</h3>
+  <p>Dit LRD specificeert één product met twee gebruiksvormen: een e-learning voor de A3 die studenten zelfstandig doorlopen en die tijdens het werk een bewijsdossier vult, en een docentmodus van dezelfde site die de docent tijdens het werkcollege gebruikt om een blok te leiden. Het beschrijft wat studenten ermee kunnen (Deel 3), waaraan het ontwerp moet voldoen (Deel 5), hoe het bewijs ontstaat en hoe de twee gebruiksvormen werken (Deel 6), welke eisen dat stelt (Deel 7), hoe de modules en het werkcollege verlopen (Deel 8) en wanneer het klaar is (Deel 11).</p>
+  <p>Het LRD legt de leeruitkomsten van het C-cluster niet opnieuw vast; die staan in de opdrachtomschrijvingen.<a class="w" href="#U">U</a><a class="w" href="#O">O</a> Werkboek en draaiboek van woensdag blijven de bron van de taken en de tijden: de e-learning is de digitale laag onder het werkboek (besluit B8) en de docentmodus verpakt de inhoud van het draaiboek voor gebruik in het lokaal (6.7). Of de docentmodus het draaiboek op termijn vervangt, is een open besluit (B17). En het is geen toets. Het bewijsdossier laat zien wat een student heeft geoefend en toegepast op het eigen vraagstuk. De beoordeling van de beroepsproducten blijft bij de docent (Deel 9).</p>
+  <h3>1.2 Waarom deze e-learning</h3>
+  <p>Drie vaststellingen zitten onder dit ontwerp. Ten eerste vraagt het portfolio veel losse bewijsstukken: vier beroepsproducten, zes reflectieverslagen, zes feedbackmomenten, drie ontwikkelpunten met acties.<a class="w" href="#U">U</a> Studenten verzamelen die meestal achteraf, en dan zijn de feedback en de eerste versies verdwenen. Ten tweede staan in het werkboek van week 5 al taken met een „klaar als"-regel per opdracht.<a class="w" href="#W">W</a> Die regels zijn precies het soort criterium dat een computer op vorm kan nalopen, maar op papier gebeurt dat niet en blijft er niets van bewaard. Ten derde is de A3 een werkwijze en geen invulformulier: de literatuur beschrijft haar als een leer- en coachingsmethode rond PDCA.<a class="w" href="#S7">S7</a><a class="w" href="#S9">S9</a> Studenten moeten haar dus oefenen, en een echte opdrachtgever is daarvoor een duur oefenterrein.</p>
+  <p>Het ontwerpprincipe volgt daaruit: <strong>de taken zijn het bewijs.</strong> De student maakt geen apart bewijsstuk naast het leren. Wat hij of zij in de e-learning invult om het eigen vraagstuk te onderzoeken, wordt met de gebruikte versie, tijd en controles bewaard en op de leeruitkomst gelegd waar het bij hoort.</p>
+  <h3>1.3 Een eerlijke grens</h3>
+  <p>Een statische website op GitHub Pages kan vorm controleren: is alles ingevuld, hangen de onderdelen logisch samen, is de bron gecontroleerd. Kwaliteit van de inhoud kan zij niet beoordelen. „Automatisch bewijs" betekent daarom in dit LRD: <strong>automatisch vastgelegd en automatisch gecontroleerd op aanwezigheid en samenhang.</strong> Of een onderzoeksvraag scherp is, blijft een oordeel van docent, coach en team (Deel 9).</p>
+  <h3>1.4 Twee gebruiksvormen, één site</h3>
+  <p>De site heeft één inhoud en twee weergaven. De keuze is bij de start van een sessie te maken en zonder inloggen (B16).</p>
+  <div class="tw"><table class="t">
+    <tr><th></th><th>Zelfstandig</th><th>Werkcollege</th></tr>
+    <tr><td class="n">Wie</td><td>De student, alleen of samen met het team</td><td>De docent projecteert de docentmodus; studenten werken tegelijk in de studentweergave op eigen laptop of telefoon</td></tr>
+    <tr><td class="n">Waar en wanneer</td><td>Thuis, als huiswerk, of in de les buiten de blokken</td><td>In het lokaal, tijdens de blokken van het draaiboek<a class="w" href="#D">D</a></td></tr>
+    <tr><td class="n">Tempo</td><td>Eigen tempo, vrije volgorde</td><td>Tempo van de docent per blok, met een klok op het scherm</td></tr>
+    <tr><td class="n">De docent</td><td>Komt er niet in voor, leest achteraf het dossier</td><td>Start een blok met de stapkaart, loopt rond met rondloopvragen, toont modelantwoorden en vraagt studenten hun stand te laten zien</td></tr>
+    <tr><td class="n">Bewijs</td><td colspan="2">Hetzelfde in beide vormen: de student vult dezelfde modules in en het bewijs komt in hetzelfde dossier. Wat de docent projecteert, is zelf geen bewijs.</td></tr>
+  </table></div>
+  <p>Er is geen koppeling tussen het scherm van de docent en de apparaten van de studenten. Docent en studenten lopen gelijk door het taaknummer op de stapkaart en de tijd op de klok, en niet door techniek (B15). Dat sluit een live overzicht van de klas uit; de reden staat in 5.2.</p>
+</section>
+
+<!-- ============================================================ -->
+<section id="d2">
+  <div class="eyebrow">Deel 2</div>
+  <h2>Pedagogisch kwaliteitssysteem</h2>
+  <p>Zes kaders disciplineren de ontwerpkeuzes. Ze staan als <em>Punt → Ontwerpaxioma</em>: wat de bron beweert en wat dat dit LRD verplicht te doen. Elk axioma landt in een eis in Deel 7.</p>
+
+  <h3>2.1 Bloom's herziene taxonomie: precisie in wat we vragen</h3>
+  <div class="kader">
+    <div><b class="l">Punt</b><p>Anderson &amp; Krathwohl (2001) kruisen zes cognitieve processen (Remember tot Create) met vier kennistypen (Factual, Conceptual, Procedural, Metacognitive). Een leeruitkomst is een werkwoord plus een kennisobject.<a class="w" href="#S1">S1</a></p></div>
+    <div><b class="l">Ontwerpaxioma</b><p>Elke leeruitkomst in Deel 3 draagt haar Bloom-cel. Het niveau van de taak volgt het niveau van de uitkomst: een uitkomst op Analyze wordt niet met een meerkeuzevraag afgevinkt. Daarom bestaat de e-learning vooral uit produceertaken (schrijven, kiezen, verantwoorden) en maar een klein deel uit kennisvragen (FR-05, FR-06).</p></div>
+  </div>
+
+  <h3>2.2 Constructive alignment: de taak is het bewijs</h3>
+  <div class="kader">
+    <div><b class="l">Punt</b><p>Biggs &amp; Tang (2011) laten uitkomsten, leeractiviteiten en toetstaken op elkaar aansluiten: de student leert door de activiteit te doen die de uitkomst benoemt, en dezelfde activiteit toont of het gelukt is.<a class="w" href="#S2">S2</a></p></div>
+    <div><b class="l">Ontwerpaxioma</b><p>Er is geen aparte „bewijstaak". Elke taak in de e-learning is de activiteit uit het werkboek en levert zelf het bewijs voor de uitkomst waaraan zij gekoppeld is (FR-09). Een taak zonder koppeling aan een uitkomst hoort niet in de e-learning; een uitkomst zonder taak staat in de dekkingstabel als „later" (3.3).</p></div>
+  </div>
+
+  <h3>2.3 Evidence-centered design: van claim naar bewijs naar taak</h3>
+  <div class="kader">
+    <div><b class="l">Punt</b><p>Mislevy, Almond &amp; Lukas (2003) beschrijven een beoordeling als een redenering. Eerst staat de <em>claim</em> over wat iemand kan, dan het waarneembare <em>gedrag</em> dat die claim ondersteunt, dan de <em>taak</em> die dat gedrag uitlokt.<a class="w" href="#S3">S3</a></p></div>
+    <div><b class="l">Ontwerpaxioma</b><p>Elk bewijsonderdeel (EV-01 tot EV-10 in Deel 6) heeft vier vaste kolommen: welk onderdeel van de leeruitkomst het ondersteunt, welke taak het uitlokt, wat er wordt vastgelegd en welke controle er automatisch op loopt. Ontbreekt een kolom, dan is het geen bewijs maar een invulveld. Het dekkingsoverzicht (FR-09) is deze redenering, zichtbaar gemaakt voor de student.</p></div>
+  </div>
+
+  <h3>2.4 Feedback: waar ga ik heen, hoe ga ik, wat nu</h3>
+  <div class="kader">
+    <div><b class="l">Punt</b><p>Hattie &amp; Timperley (2007) stellen dat feedback werkt als ze drie vragen beantwoordt: waar ga ik naartoe, hoe ga ik het doen, en wat is de volgende stap. Feedback op taak- en procesniveau helpt meer dan feedback op de persoon, zoals lof.<a class="w" href="#S4">S4</a></p></div>
+    <div><b class="l">Ontwerpaxioma</b><p>Elke taak toont haar „klaar als" (waar naartoe), geeft direct een concrete controle-uitkomst en een modelantwoord ná de eigen poging (hoe ga ik), en sluit af met één zin „mijn volgende stap" (FR-04, FR-06, FR-07, FR-28). De controles noemen wat er ontbreekt en niet hoe goed de student is: geen cijfer, geen punten (FR-08).</p></div>
+  </div>
+
+  <h3>2.5 Motivatie: geen puntenjacht rond het bewijs</h3>
+  <div class="kader">
+    <div><b class="l">Punt</b><p>Deci &amp; Ryan (2000) grondvesten intrinsieke motivatie op autonomie, competentie en verbondenheid;<a class="w" href="#S5">S5</a> Pink (2009) maakt daar autonomie, meesterschap en zingeving van.<a class="w" href="#S6">S6</a> Externe beloningen als punten en badges kunnen het gevoel van zelfbepaling ondermijnen.</p></div>
+    <div><b class="l">Ontwerpaxioma</b><p>De e-learning kent geen scores, badges of ranglijsten (besluit B6). Voortgang is een dekkingsoverzicht: welke onderdelen van welke leeruitkomst zijn aangetoond en welke nog niet. Zingeving komt uit het eigen vraagstuk: bewijs telt pas als het op de eigen casus is gemaakt (B4). Autonomie zit in de vrije volgorde en de keuze van model en zoekroute (FR-03, FR-11, FR-12).</p></div>
+  </div>
+
+  <h3>2.6 A3 thinking: leren en coachen, geen rapport invullen</h3>
+  <div class="kader">
+    <div><b class="l">Punt</b><p>Schwagerman &amp; Ulmer (2013) beschrijven de A3 als een PDCA-gebaseerd hulpmiddel dat bij Toyota is ingebed om te leren, met training en begeleiding door een mentor.<a class="w" href="#S7">S7</a> Weigel (MIT OCW) noemt de A3 een manier van denken en laat een linkerhelft (achtergrond, huidige situatie, analyse, doel) en een rechterhelft (maatregelen, plan, opvolging) zien.<a class="w" href="#S9">S9</a> Mohd Saad e.a. (2013) gebruiken de A3 om kennis vast te leggen voor hergebruik.<a class="w" href="#S8">S8</a></p></div>
+    <div><b class="l">Ontwerpaxioma</b><p>De e-learning oefent het denken achter de A3 (vraag, frame, bron, plaatsing) en niet het invullen van vakjes. Ze vervangt het wekelijkse gesprek met de opdrachtgever en de coaching niet: elk bewijsonderdeel eindigt in iets wat de student kan laten zien en bespreken (FR-17, FR-18), en elk onderdeel kan opnieuw, omdat de A3 iteratief is (FR-20).</p></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="d3">
+  <div class="eyebrow">Deel 3</div>
+  <h2>Leeruitkomsten, <em>Bloom-getagd</em> en gekoppeld aan de LUK van het C-cluster</h2>
+  <h3>3.1 De toekomstige rol</h3>
+  <p>De rol die deze e-learning bedient is <strong>de bedrijfskundig professional die voor een opdrachtgever een vraagstuk onderzoekt en de bevindingen op één A3 verantwoordt</strong>. Geen wetenschappelijk onderzoeker en geen invuller van formulieren. Het is iemand die een vage klacht („de klanttevredenheid daalt") tot een vraag maakt waar onderzoek op kan landen, die weet vanuit welke invalshoeken hij of zij kijkt, die bronnen kan vinden en wantrouwen, en die kan aanwijzen wie het vraagstuk raakt. Dat is dezelfde rol als in het werkboek van week 5.<a class="w" href="#W">W</a><a class="w" href="#N">N</a></p>
+  <h3>3.2 Leeruitkomsten van de e-learning</h3>
+  <p>Acht uitkomsten voor release 1. De werkwoorden volgen de opdracht- en werkboekteksten; tags zijn <code>[proces / kennis]</code> naar Anderson &amp; Krathwohl. De kolom LUK verwijst naar de vijf leeruitkomsten van het C-cluster (allemaal niveau 2) en BC naar de beoordelingscriteria.<a class="w" href="#U">U</a></p>
+  <div class="tw"><table class="t">
+    <tr><th>#</th><th>Een student kan …</th><th>… zodat hij of zij als bedrijfskundig professional …</th><th>Bloom</th><th>LUK · BC</th><th>Module</th></tr>
+    <tr><td class="n">EL1</td><td>uitleggen wat een A3 is en waarom ze iteratief met de opdrachtgever wordt besproken: de drie C's, de acht vakken, wat niet op één A3 past</td><td>de A3 gebruikt als praatplaat en niet als rapport dat achteraf wordt ingeleverd</td><td class="m">[Understand / Conceptual]</td><td class="m">LUK 1 · BC1</td><td class="m">M1</td></tr>
+    <tr><td class="n">EL2</td><td>een vage vraag uit de organisatie omzetten in een onderzoeksvraag in het user-story-format: gebruiker, probleem of pain/gain, en waardecreatie volgens de zes kapitalen</td><td>onderzoek richt op een vraag waar de opdrachtgever iets aan heeft en niet op een onderwerp</td><td class="m">[Apply / Procedural]</td><td class="m">LUK 1 · BC1</td><td class="m">M2</td></tr>
+    <tr><td class="n">EL3</td><td>de onderzoeksvraag opdelen in zoekvragen vanuit verschillende frames, en één model kiezen (7S, Strategy Map, Six Capitals of TOM) en die keuze verantwoorden</td><td>het vraagstuk vanuit meer dan één invalshoek bekijkt en kan uitleggen waarom een theorie past</td><td class="m">[Analyze / Conceptual]</td><td class="m">LUK 1 · BC1</td><td class="m">M2</td></tr>
+    <tr><td class="n">EL4</td><td>een zoekstrategie opstellen (kernbegrippen, synoniemen, Engelse termen, zoekoperatoren) en daarmee in een databank of met een AI-tool bronnen vinden</td><td>gericht zoekt en niet blijft steken bij de eerste treffers</td><td class="m">[Apply / Procedural]</td><td class="m">LUK 1 · BC1</td><td class="m">M3</td></tr>
+    <tr><td class="n">EL5</td><td>een bron beoordelen op Authority, Accuracy, Objectivity, Currency en Coverage, een AI-bron aan de oorspronkelijke tekst controleren en de bron in APA vermelden</td><td>een verzonnen of belangengedreven bron niet in een advies aan de opdrachtgever laat belanden</td><td class="m">[Evaluate / Conceptual]</td><td class="m">LUK 1 · BC1</td><td class="m">M4</td></tr>
+    <tr><td class="n">EL6</td><td>het vraagstuk plaatsen ten opzichte van de stakeholders (intern en extern, met invloed en belang), de klant (VPC), het bedrijfsmodel (BMC) en het TOM-model</td><td>weet wie door het vraagstuk geraakt wordt en waar het in de organisatie zit</td><td class="m">[Analyze / Conceptual]</td><td class="m">LUK 1 · BC1</td><td class="m">M5</td></tr>
+    <tr><td class="n">EL7</td><td>in eigen analyseproducten onderscheiden wat een feit is en wat een aanname, en elke belangrijke aanname aan een zoekvraag koppelen</td><td>de opdrachtgever laat zien wat vaststaat en wat nog onderzocht wordt</td><td class="m">[Evaluate / Metacognitive]</td><td class="m">LUK 1 · BC1</td><td class="m">M5</td></tr>
+    <tr><td class="n">EL8</td><td>feedback op het eigen werk ophalen en vastleggen (ik zie, ik mis, ik vraag me af), er een concrete actie aan koppelen en erop reflecteren volgens STARR</td><td>uit elk gesprek over de A3 een ontwikkelpunt haalt en dat aantoonbaar oppakt</td><td class="m">[Evaluate / Metacognitive]</td><td class="m">LUK 5 · BC5</td><td class="m">M6</td></tr>
+  </table></div>
+  <p class="small">EL2, EL3, EL6 en EL7 staan op de „echte" eigen casus. EL1, EL4 en EL5 hebben ook een kennisdeel dat op de oefencasus (webshop X) wordt geoefend.<a class="w" href="#W">W</a> Alleen het toepassen op de eigen casus levert bewijs (besluit B4).</p>
+
+  <h3>3.3 Wat de e-learning wel en niet dekt van de LUK</h3>
+  <p>De tabel loopt langs de formuleringen van niveau 2.<a class="w" href="#U">U</a> Ze is bewust streng. Een onderdeel telt als <span class="chip script">gedekt</span> als er een bewijsonderdeel (Deel 6) voor bestaat, als <span class="chip rev">deels</span> als de e-learning er een stap van oefent, en als <span class="chip later">later</span> als het buiten release 1 valt.</p>
+  <div class="tw"><table class="t">
+    <tr><th>Onderdeel van de leeruitkomst (niveau 2)</th><th>Status release 1</th><th>Toelichting</th><th>Bewijs</th></tr>
+    <tr class="sub"><td colspan="4">LUK 1 · Analyseren en diagnosticeren (BC1)</td></tr>
+    <tr><td>Signaleert knelpunten in een intern proces</td><td><span class="chip rev">deels</span></td><td>De probleemformulering is van week 4. De e-learning vraagt de student de eigen probleemzin mee te nemen en toetst die niet.</td><td class="m">EV-01</td></tr>
+    <tr><td>Formuleert een onderzoeksvraag</td><td><span class="chip script">gedekt</span></td><td>Format uit het werkboek, met een klaar-als-regel die op vorm te controleren is.</td><td class="m">EV-01</td></tr>
+    <tr><td>Analyseert het probleem methodisch</td><td><span class="chip rev">deels</span></td><td>Zoekvragen vanuit frames en zoekstrategie zijn methode. De analyse zelf komt in A3-vak 2 (later).</td><td class="m">EV-02, EV-03</td></tr>
+    <tr><td>Stelt een onderbouwde diagnose</td><td><span class="chip later">later</span></td><td>Diagnose volgt na de huidige-situatie-analyse. Release 2.</td><td>–</td></tr>
+    <tr><td>Selecteert relevante theorieën en modellen voor de context</td><td><span class="chip script">gedekt</span></td><td>De student kiest één model voor de zoekvragen en verantwoordt dat. Of de keuze goed is, beoordeelt de docent.</td><td class="m">EV-02</td></tr>
+    <tr><td>Gebruikt en beoordeelt bronnen voor de onderbouwing</td><td><span class="chip script">gedekt</span></td><td>Bronlog met AAOCC-oordeel, verificatie van AI-bronnen en APA-vermelding.</td><td class="m">EV-03, EV-04, EV-05</td></tr>
+    <tr><td>Duidt achtergronden, oorzaken en relevante ontwikkelingen</td><td><span class="chip rev">deels</span></td><td>Plaatsing van het vraagstuk geeft de achtergrond. Oorzaken volgen in vak 2.</td><td class="m">EV-07, EV-08</td></tr>
+    <tr><td>Betrekt stakeholders binnen en buiten het organisatieonderdeel</td><td><span class="chip script">gedekt</span></td><td>Stakeholdermap met intern/extern, invloed en belang.</td><td class="m">EV-06</td></tr>
+    <tr><td>Ziet kansen en bedreigingen uit externe ontwikkelingen</td><td><span class="chip rev">deels</span></td><td>Alleen via het frame „extern" in de zoekvragen. Er is geen eigen taak voor; dat is een gat in release 1.</td><td class="m">EV-02</td></tr>
+    <tr class="sub"><td colspan="4">LUK 2, 3 en 4 · (Her)ontwerpen, begeleiden, evalueren (BC2, BC3, BC4)</td></tr>
+    <tr><td>Alle onderdelen</td><td><span class="chip later">later</span></td><td>Deze uitkomsten hangen aan de quick win en de big win: A3-vak 5 tot en met 8 en de opdrachten 3 en 4. Release 3 (Deel 13).</td><td>–</td></tr>
+    <tr class="sub"><td colspan="4">LUK 5 · Ontwikkelen tot bedrijfskundig professional (BC5)</td></tr>
+    <tr><td>Haalt feedback op en reflecteert erop</td><td><span class="chip script">gedekt</span></td><td>Feedbackmoment plus STARR-reflectie op de oefenronde van de gallery walk. Dat is een deel van de zes feedbackmomenten en reflecties in het portfolio.</td><td class="m">EV-09, EV-10</td></tr>
+    <tr><td>Formuleert ontwikkelpunten en werkt er aantoonbaar aan</td><td><span class="chip rev">deels</span></td><td>De actie bij een feedbackmoment en de „volgende stap" zijn een begin. De drie ontwikkelpunten met drie acties blijven in het portfolio zelf.</td><td class="m">EV-09, FR-28</td></tr>
+  </table></div>
+  <p class="small">Eén afwijking in de bronnen: de koppeltabel bij de beoordelingscriteria zet BC1 bij opdracht 1, 2 en 3, terwijl de beschrijving van opdracht 1 en 2 alleen LUK 1 noemt.<a class="w" href="#O">O</a> Dit LRD gaat uit van BC1 voor alles wat met analyse te maken heeft. De docent bevestigt dat (AC-13).</p>
+</section>
+
+<!-- ============================================================ -->
+<section id="d4">
+  <div class="eyebrow">Deel 4</div>
+  <h2>Doelgroep en voorkennis</h2>
+  <div class="tw"><table class="t">
+    <tr><th>Wat de student meebrengt</th><th>Bron</th><th>Wat níet wordt verondersteld</th></tr>
+    <tr><td>De business game (zes rondes) en het TOM-model uit het hoorcollege van week 1, met VPC en BMC</td><td>weekprogramma<a class="w" href="#P">P</a>, ontwerp A3-start<a class="w" href="#N">N</a></td><td>Dat VPC en BMC nog paraat zijn. De e-learning herhaalt ze in twee minuten en gaat verder.</td></tr>
+    <tr><td>Een probleemformulering van het eigen vraagstuk uit week 4</td><td>ontwerp A3-start<a class="w" href="#N">N</a></td><td>Dat die formulering al scherp is. EV-01 laat dat zien.</td></tr>
+    <tr><td>Stakeholderanalyse met invloed en belang uit THEO SM week 3; de Lean Yellow Belt-training</td><td>werkboek<a class="w" href="#W">W</a></td><td>Ervaring met de A3 zelf, zoeken in vakdatabanken of APA.</td></tr>
+    <tr><td>Een echt vraagstuk van een echte opdrachtgever, in een team van ongeveer vijf</td><td>opdrachtomschrijving<a class="w" href="#U">U</a>, ontwerp<a class="w" href="#N">N</a></td><td>Dat het vraagstuk al is afgebakend. Teams zonder scherp vraagstuk werken met het voorbeeld uit de les en nemen het eigen vraagstuk mee naar de afbakening in week 6.<a class="w" href="#N">N</a></td></tr>
+    <tr><td>Een telefoon of laptop; gebruik van AI-tools is gangbaar</td><td>werkboek, route B<a class="w" href="#W">W</a></td><td>Een HAN-account of een Brightspace-koppeling. De e-learning werkt zonder login.</td></tr>
+  </table></div>
+  <p>De docent is de tweede gebruiker: de TUT2-docent, de PO-docent en de TUT1-docent. Zij geven tijdens het werkcollege les met de docentmodus en lezen achteraf dossiers. Wat ze in het lokaal nodig hebben, staat in het draaiboek van woensdag: per blok de tijd, wat de docent doet, wat studenten doen, rondloopvragen, modelantwoorden en een kader „als het anders loopt".<a class="w" href="#D">D</a> De docentmodus levert precies dat (6.7). Er is geen voorbereiding nodig buiten het lezen van de docentgids. De taal is Nederlands; Engelse vaktermen (frame, pain, gain, fit) staan er zoals in het werkboek, met uitleg op de plek zelf (NFR-11).</p>
+</section>
+
+<!-- ============================================================ -->
+<section id="d5">
+  <div class="eyebrow">Deel 5</div>
+  <h2>Ontwerpcriteria: PAMS en <em>KISS als afwijzingen</em></h2>
+  <h3>5.1 Toetsing aan Purpose, Autonomy, Mastery en Social</h3>
+  <p>Het ontwerp is getoetst aan de vaste criteria van de auteur. Bij elk criterium staat hoe het werkt voor het team en voor de individuele student, met steeds het zwakke punt. Ruimte voor verschillen tussen studenten (eigen tempo, eigen startpunt, opstap, verdieping, terugvalcasus) is sinds 30 september 2026 een subcriterium van Autonomy, naast echte keuze en veilig proberen en faciliteren. De e-learning is individueel werk op een scherm, en in het werkcollege ook een hulpmiddel voor de docent. Het team-niveau gaat daarom over wat de student met het team doet en over wat de docent in het lokaal met de klas doet.</p>
+  <div class="grid g2">
+    <div class="card k k-script"><b>Purpose</b>
+      <p><strong>Team.</strong> Het bewijs voedt de A3 die het team wekelijks met de opdrachtgever bespreekt; de onderzoeksvraag en de plaatsing uit de e-learning staan zo in de A3. <strong>Individu.</strong> Het dekkingsoverzicht laat per leeruitkomst zien waarom een taak bestaat.</p>
+      <p><em>Zwak:</em> „Het is bewijs voor het portfolio" is een externe reden en kan de eigen reden (een goede A3) verdringen.</p></div>
+    <div class="card k k-rev"><b>Autonomy</b>
+      <p><strong>Team.</strong> Het team kiest model, zoekroute (databank of AI) en volgorde. <strong>Individu.</strong> Elke student kiest een standpunt bij de stelling over AI en verwoordt het zelf. <strong>Ruimte voor verschillen.</strong> Zelfstandig bepaalt de student het eigen tempo: geen klok, vrije volgorde, onbeperkt herhalen (FR-03, FR-05, FR-06). Bij „Nog niet" staat een opstap naar het modelantwoord (6.3). De docent kan in het werkcollege blokken overslaan of verschuiven (FR-34).</p>
+      <p><em>Zwak:</em> Formats en controles liggen vast; de student kiest niet welk bewijs hij of zij wil laten zien. In het werkcollege bepaalt de klok het tempo (FR-31) en alleen de docent kan verschuiven. Overslaanbare oefenversies, optionele verdieping en een terugvaloptie voor wie geen eigen vraagstuk heeft zijn nog geen eis. Die ontbreken en staan in de beoordeling als verbetering.</p></div>
+    <div class="card k k-script"><b>Mastery</b>
+      <p><strong>Team.</strong> De oefenronde van de gallery walk geeft teamfeedback, die de student vastlegt (M6). <strong>Individu.</strong> Direct controlefeedback, modelantwoord na de eigen poging, onbeperkt opnieuw, en de versiegeschiedenis toont groei.</p>
+      <p><em>Zwak:</em> De controles meten vorm. Inhoudelijke feedback op een onderzoeksvraag komt alleen van team, coach en docent.</p></div>
+    <div class="card k k-rev"><b>Social</b>
+      <p><strong>Team.</strong> Werkbladen die in het werkboek „Team" zijn, blijven teamwerk aan de muur; de e-learning legt vast wat de student ervan meeneemt. De nabesprekingen (frames delen, gallery walk) leidt de docent in het lokaal. <strong>Individu.</strong> Elke student heeft een eigen dossier; wie in het team weinig aan het woord komt, draagt toch zichtbaar bij.</p>
+      <p><em>Zwak:</em> Een statische site kent geen gedeelde teamstatus en de docent ziet de voortgang van de klas niet live. Teams vergelijken hun dossiers zelf; de docent vraagt studenten hun stand te tonen (FR-35).</p></div>
+  </div>
+
+  <h3>5.2 KISS als afwijzingen</h3>
+  <p>KISS betekent hier: de student besteedt de aandacht aan het leren van de A3 en niet aan het begrijpen van de e-learning, en de docent richt zich op de studenten en niet op de techniek. Een criterium betekent pas iets als het afgewezen alternatief genoemd is. Elf keuzes.</p>
+
+  <div class="kiss"><span class="lbl weg">afgewezen</span><p>Een backend of leerrecordsysteem (LRS, Firebase, Supabase) dat bewijs centraal opslaat.</p><span class="lbl kies">gekozen</span><p>Alles blijft in de browser van de student; de student exporteert een bestand en levert het zelf in (FR-21, FR-22). GitHub Pages is statisch, een centrale opslag brengt AVG-verplichtingen en beheer, en het bewijs is van de student.</p></div>
+
+  <div class="kiss"><span class="lbl weg">afgewezen</span><p>Een AI-model dat de antwoorden van studenten beoordeelt.</p><span class="lbl kies">gekozen</span><p>Deterministische controles op aanwezigheid en samenhang (6.3), modelantwoorden en beoordeling door mensen. Een AI-beoordeling vraagt een sleutel en een server, stuurt gegevens over opdrachtgevers naar een derde partij, en maakt van „bewijs" een uitspraak die niemand kan herleiden (B5).</p></div>
+
+  <div class="kiss"><span class="lbl weg">afgewezen</span><p>Scores, badges, streaks en een ranglijst.</p><span class="lbl kies">gekozen</span><p>Drie statussen (Compleet, Bijna, Nog niet) en een dekkingsoverzicht (FR-08, FR-09). Punten sturen naar het invullen van het minimum, en dat is bij een portfolio precies wat niet moet gebeuren (2.5).</p></div>
+
+  <div class="kiss"><span class="lbl weg">afgewezen</span><p>Inloggen met een HAN-account, of een SCORM- of LTI-pakket voor Brightspace.</p><span class="lbl kies">gekozen</span><p>Open pagina's zonder account, met een alias die alleen in de browser staat (FR-02). Het scheelt beheer en privacyrisico. Het kost dat Brightspace geen voortgang ziet; studenten leveren het dossier zelf in (Deel 9).</p></div>
+
+  <div class="kiss"><span class="lbl weg">afgewezen</span><p>Een framework met bouwstap (React, Vue) of een xAPI-standaard voor de bewijsrecords.</p><span class="lbl kies">gekozen</span><p>Gewone HTML, CSS en JavaScript met inhoud in datafiles, en één eigen JSON-schema (6.2). Een collega moet een modelantwoord kunnen aanpassen zonder bouwomgeving (FR-25, NFR-01).</p></div>
+
+  <div class="kiss"><span class="lbl weg">afgewezen</span><p>Alle acht A3-vakken en alle vijf de LUK in release 1.</p><span class="lbl kies">gekozen</span><p>Alleen wat in week 5 wordt gegeven: onderzoeksvaardigheden en vak 1. Dat levert de dekking van 3.3 en past bij de A3-start van het team.<a class="w" href="#N">N</a> De rest volgt de lesvolgorde in latere releases; bouwen vóór de les is gokken op een programma dat nog verschuift.</p></div>
+
+  <div class="kiss"><span class="lbl weg">afgewezen</span><p>Vier modellen voor frames naast elkaar uitwerken (7S, Strategy Map, Six Capitals, TOM).</p><span class="lbl kies">gekozen</span><p>Het team kiest één model voor de zoekvragen (FR-11). Het ontwerp van de A3-start noemde de wirwar van modellen zelf al als zwak punt.<a class="w" href="#N">N</a></p></div>
+
+  <div class="kiss"><span class="lbl weg">afgewezen</span><p>Nieuwe video's, een eigen videospeler of ingebedde filmpjes.</p><span class="lbl kies">gekozen</span><p>Links naar het filmpje van Bureau Tromp, het MIT OCW-college en de Atlassian-uitleg (FR-27). Beeldmateriaal maken kost weken en ingebedde content van derden is een auteursrechtrisico op een openbare site (NFR-12).</p></div>
+
+  <div class="kiss"><span class="lbl weg">afgewezen</span><p>Een tweede werkboek: de e-learning als losse cursus met eigen taken en nummers.</p><span class="lbl kies">gekozen</span><p>Dezelfde taken, dezelfde nummers (1.1, 2.1, 2.2 …), dezelfde „klaar als"-regels als het werkboek (FR-04). De student leert één programma. Of het papieren werkboek daarmee verdwijnt, is een open besluit (B9).</p></div>
+
+  <div class="kiss"><span class="lbl weg">afgewezen</span><p>Een live klasoverzicht voor de docent, waarin per student of team de voortgang tijdens de les verschijnt (ook een QR-code of tikcode per student).</p><span class="lbl kies">gekozen</span><p>Een docentmodus zonder koppeling met de apparaten van studenten (B15). Een live overzicht vraagt een server of realtime dienst: B2 en B5 vervallen dan deels en er komen AVG-verplichtingen bij. De docent ziet de stand via „Mijn stand" op het scherm van de student (FR-35) en na de les via de verificatiepagina (FR-24). De rondloopvragen doen in het lokaal het werk waar een overzicht op lijkt.</p></div>
+
+  <div class="kiss"><span class="lbl weg">afgewezen</span><p>Een aparte docent-app of docentsite met eigen inhoud.</p><span class="lbl kies">gekozen</span><p>Eén site met twee weergaven op dezelfde contentbestanden, gekozen met een adres-toevoeging zonder inloggen (FR-29, B16). Twee bronnen betekent dat een aangepast modelantwoord op twee plekken moet worden gecorrigeerd, en dat de docent en de student ooit verschillende versies van een taak zien.</p></div>
+</section>
+
+<!-- ============================================================ -->
+<section id="d6">
+  <div class="eyebrow">Deel 6</div>
+  <h2>Het kernmechanisme: de <em>bewijsmotor</em></h2>
+  <p>Wat dit LRD toevoegt aan een gewone e-learning is dat elke taak een bewijsrecord oplevert dat op een leeruitkomst ligt en automatisch wordt gecontroleerd. Het mechanisme heeft vijf onderdelen: de bewijsonderdelen (6.1), het bewijsrecord (6.2), de automatische controles (6.3), het bewijsdossier (6.4) en de grens van wat het bewijst (6.5). De leerroute per module staat in 6.6 en de twee gebruiksvormen, zelfstandig en werkcollege, in 6.7.</p>
+
+  <h3>6.1 De bewijsonderdelen: van claim naar taak</h3>
+  <p>Volgens 2.3 heeft elk bewijsonderdeel vier kolommen. De laatste kolom benoemt wat de computer niet beoordeelt.</p>
+  <div class="tw"><table class="t">
+    <tr><th>#</th><th>Onderdeel van de LUK (claim)</th><th>Taak (werkboek)</th><th>Wat wordt vastgelegd</th><th>Automatische controle</th><th>Blijft bij mens</th></tr>
+    <tr><td class="n">EV-01</td><td>Formuleert een onderzoeksvraag (LUK 1)</td><td>2.1 De onderzoeksvraag als user story</td><td>Gebruiker, probleem/pain/gain, waardecreatie, gekozen kapitalen; de samengestelde vraag</td><td>Alle drie de velden gevuld en elk minstens vier woorden; minstens één niet-financieel kapitaal; de vraag verschilt van de oefencasus</td><td>Is de vraag concreet en waardevol voor de opdrachtgever?</td></tr>
+    <tr><td class="n">EV-02</td><td>Analyseert methodisch en selecteert een model (LUK 1)</td><td>2.2 Zoekvragen vanuit drie frames</td><td>Drie zoekvragen met frame, gekozen model, en het antwoord op „wat mis je met maar één frame"</td><td>Drie verschillende frames; elke zoekvraag eindigt op een vraagteken; precies één model gekozen met een verantwoording van minstens één zin</td><td>Passen de frames en het model bij dit vraagstuk?</td></tr>
+    <tr><td class="n">EV-03</td><td>Zoekt gericht naar bronnen (LUK 1)</td><td>3.1 Zoektermen, 3.2 Wedstrijd</td><td>Kernbegrippen met synoniemen en Engelse term; zoekstring of prompt; route A of B</td><td>Per begrip een synoniem en een Engelse term; bij route A minstens één zoekoperator (aanhalingstekens, AND/OR/NOT, * of ?); bij route B een gegenereerde prompt zonder namen van de „niet noemen"-lijst</td><td>Zijn de zoektermen de goede?</td></tr>
+    <tr><td class="n">EV-04</td><td>Beoordeelt een bron (LUK 1)</td><td>4.1 Is de bron betrouwbaar?</td><td>Bron met auteur, jaar, titel, link; oordeel op de vijf AAOCC-criteria met toelichting; besluit; APA-vermelding</td><td>Vijf oordelen elk met minstens één zin toelichting; bij route B beide verificatievinkjes gezet; jaar in de APA-regel gelijk aan het jaar in het veld; link begint met https:// of doi.org</td><td>Is het oordeel verdedigbaar?</td></tr>
+    <tr><td class="n">EV-05</td><td>Onderbouwt een oordeel over AI-bronnen (LUK 1, footnote LUK 5: oordeelsvermogen)</td><td>4.2 Stelling</td><td>Gekozen kant en sterkste argument</td><td>Een kant gekozen; argument van minstens twee zinnen</td><td>Is het argument sterk?</td></tr>
+    <tr><td class="n">EV-06</td><td>Betrekt stakeholders (LUK 1)</td><td>5.1 Stakeholders van het vraagstuk</td><td>Vraagstuk in één zin; stakeholders met intern/extern, invloed H/L, belang H/L en „hoe raakt het hen"</td><td>Minstens vijf stakeholders, minstens één intern en één extern; overal invloed, belang en relatie ingevuld; de stakeholder uit EV-01 (gebruiker) staat erin</td><td>Is de lijst compleet? Wie ontbreekt?</td></tr>
+    <tr><td class="n">EV-07</td><td>Duidt de achtergrond en onderscheidt feit van aanname (LUK 1)</td><td>6.1 VPC, 7.1 BMC, 8.1 TOM-model V1</td><td>Minstens drie kernbeweringen uit de eigen VPC/BMC/TOM-producten, elk als feit of aanname, met bron of „hoe weet je dat"</td><td>Elke bewering gelabeld; elk feit heeft een bron- of herkomstregel; elke aanname is gekoppeld aan een zoekvraag uit EV-02 (verticale traceerbaarheid)</td><td>Klopt het label? Is de bron goed genoeg?</td></tr>
+    <tr><td class="n">EV-08</td><td>Plaatst het vraagstuk (LUK 1)</td><td>9.1 Plaats het vraagstuk, 9.2 Onze onderzoeksvraag</td><td>Waar zit het vraagstuk ten opzichte van de stakeholders, de klant en de organisatie; de onderzoeksvraag voor de opdrachtgever met eerste zoekvragen</td><td>Elk van de drie antwoorden noemt minstens één stakeholder uit EV-06; pain/gain en waarde zijn vergeleken met het VPC (vinkje) en de vraag is als feit of aanname gelabeld; foto-vinkje voor de vier producten gezet</td><td>Is de conclusie logisch uit de producten af te leiden?</td></tr>
+    <tr><td class="n">EV-09</td><td>Haalt feedback op (LUK 5)</td><td>6.2 Gallery walk, oefenronde</td><td>Van wie (rol), ik zie / ik mis / ik vraag me af, wat ik ermee doe, status van de actie</td><td>Alle drie de feedbackregels en een actie gevuld; na een week een herinnering om de status te zetten</td><td>Was de feedback bruikbaar? Is de actie gedaan?</td></tr>
+    <tr><td class="n">EV-10</td><td>Reflecteert op eigen handelen (LUK 5)</td><td>Portfolio, STARR</td><td>Situatie, taak, actie, resultaat, reflectie over een moment uit de e-learning of de gallery walk</td><td>Alle vijf de delen gevuld; de reflectie noemt minstens één eigen gedragskeuze (keuzelijst) en een volgende stap</td><td>Is de reflectie diep genoeg voor BC5?</td></tr>
+  </table></div>
+  <p class="small">Kennisvragen bij M1 (drie C's, de acht vakken, wat niet op één A3 past) zijn oefening en geen bewijsonderdeel. Ze tellen niet mee in het dekkingsoverzicht (FR-05).</p>
+
+  <h3>6.2 Het bewijsrecord</h3>
+  <p>Elke bewijsinvoer is één JSON-record. Het schema is klein en heeft een versienummer (NFR-10).</p>
+<pre>{
+  "schema": "1.0",
+  "id": "EV-01",
+  "taak": "2.1",
+  "module": "M2",
+  "luk": [1],
+  "bc": ["BC1"],
+  "inhoud": { "gebruiker": "…", "pain": "…", "waarde": "…", "kapitalen": ["sociaal"] },
+  "controles": [
+    { "id": "velden-gevuld", "resultaat": "ok" },
+    { "id": "niet-financieel-kapitaal", "resultaat": "ok" }
+  ],
+  "status": "compleet",
+  "versie": 3,
+  "bijgewerkt": "2026-09-30T14:02:11+02:00",
+  "elearning": "0.1.0"
+}</pre>
+  <p>Vier keuzes zitten daarin. Eén: de <code>inhoud</code> is wat de student schreef en de <code>controles</code> zijn wat de computer daarvan vond; die twee blijven gescheiden, zodat een collega een controle kan herleiden. Twee: <code>versie</code> loopt op bij elke opslag en de vorige versies blijven bewaard (FR-20), omdat de A3 iteratief is en de geschiedenis het proces laat zien. Drie: <code>luk</code> en <code>bc</code> komen uit het contentbestand van de taak en niet uit de invoer van de student. Vier: de studentnaam staat niet in het record, alleen in het dossier (6.4).</p>
+
+  <h3>6.3 De automatische controles</h3>
+  <p>Een controle is een kleine functie zonder netwerk die een invoer ontvangt en <code>ok</code>, <code>let op</code> of <code>mist</code> teruggeeft, met een zin die zegt wat er ontbreekt. Ze zijn in drie soorten verdeeld, van eenvoudig naar rijk.</p>
+  <div class="grid g3">
+    <div class="card k k-script"><b>A · Aanwezig</b><p>Is het veld gevuld, heeft het genoeg woorden, is het een keuze uit de lijst? Voorbeeld: alle drie de delen van de onderzoeksvraag. Bijna alle controles zijn van deze soort.</p></div>
+    <div class="card k k-rev"><b>B · Samenhang</b><p>Klopt wat op de ene plek staat met een andere plek? Voorbeeld: de gebruiker uit EV-01 staat in de stakeholderlijst (EV-06), elke aanname wijst naar een zoekvraag (EV-07). Dit is de verticale-traceerbaarheidstest uit het TOM³-buildplan, teruggebracht tot één regel.<a class="w" href="#T">T</a></p></div>
+    <div class="card k k-later"><b>C · Onderbouwd</b><p>Staat er een reden bij de keuze? Voorbeeld: een toelichting van minstens één zin bij elk AAOCC-oordeel. De controle telt woorden en zinnen; de kwaliteit van de reden beoordeelt ze niet.</p></div>
+  </div>
+  <p>Het resultaat per bewijsonderdeel volgt een eenvoudige poortregel, ontleend aan de drie uitkomsten van de kwaliteitspoorten in het TOM³-buildplan (Pass, Conditional Pass, Fail):<a class="w" href="#T">T</a></p>
+  <div class="tw"><table class="t">
+    <tr><th>Status</th><th>Regel</th><th>Wat de student ziet</th></tr>
+    <tr><td><span class="chip script">Compleet</span></td><td>Alle controles van soort A en B staan op <code>ok</code>; controles van soort C mogen op <code>let op</code> staan</td><td>Groen vinkje met de zin „Aanwezig en consistent. Of het goed is, bespreek je met je coach."</td></tr>
+    <tr><td><span class="chip rev">Bijna</span></td><td>Eén of meer controles van soort C op <code>mist</code>, of controles van A of B op <code>let op</code></td><td>Een lijst met wat er nog ontbreekt, per stuk één zin</td></tr>
+    <tr><td><span class="chip weg">Nog niet</span></td><td>Eén of meer controles van soort A of B op <code>mist</code></td><td>Dezelfde lijst, plus een link naar het modelantwoord van de oefencasus</td></tr>
+  </table></div>
+  <p>De gewogen score en de spreidingsindices (HCI en VTI) uit het scoreformulier van hetzelfde buildplan zijn niet overgenomen: ze berekenen een getal over twaalf cellen dat voor een student van vijf antwoorden geen betekenis heeft (B11).<a class="w" href="#T">T</a></p>
+
+  <h3>6.4 Het bewijsdossier</h3>
+  <p>Het dossier is wat de student exporteert. Het bestaat uit twee bestanden, gemaakt uit dezelfde gegevens.</p>
+  <ul class="big">
+    <li><strong>Machineleesbaar:</strong> <code>bewijsdossier-&lt;alias&gt;-&lt;datum&gt;.json</code> met alle bewijsrecords (nieuwste versie en het aantal eerdere versies), de alias en het teamnummer die de student zelf opgaf, de e-learningversie en een SHA-256-controlesom over de inhoud.</li>
+    <li><strong>Leesbaar:</strong> een afdrukbare pagina (bewaren als pdf) per leeruitkomst, met de status per bewijsonderdeel, de ingevulde inhoud en de controlesom onderaan. Dit is wat een docent bij een coachgesprek open kan hebben.</li>
+  </ul>
+  <p>De studentkant kan het dossier ook weer importeren, zodat het werk mee kan naar een ander apparaat (FR-21). De docentkant heeft een <strong>verificatiepagina</strong> op dezelfde site: hij leest een of meer dossiers lokaal in de browser, herberekent de controlesom, en toont per student en per leeruitkomst welke onderdelen Compleet, Bijna of Nog niet zijn (FR-23, FR-24). Er wordt niets geüpload.</p>
+
+  <h3>6.5 Wat dit bewijs is, en wat het niet is</h3>
+  <div class="grid g2">
+    <div class="card k k-script"><b>Het is wel</b><p>Een tijdgestempeld dossier van geoefende en toegepaste taken op het eigen vraagstuk, met versiegeschiedenis. Het laat zien dat de student de stappen heeft doorlopen, wat er is geleverd, en dat de onderdelen samenhangen. Het levert bespreekmateriaal voor coaching en voor het portfolio.</p></div>
+    <div class="card k k-weg"><b>Het is niet</b><p>Een beoordeling van kwaliteit, een vervanger van de beroepsproducten (A3 1 tot en met 3 besproken met de opdrachtgever, ingevuld TOM-model), of een fraudebestendig bewijs. De controlesom laat zien dat een bestand is gewijzigd na het maken; iedereen kan wel een nieuw bestand maken. De betrouwbare tijdstempel is het moment van inleveren in Brightspace (Deel 9).</p></div>
+  </div>
+
+  <h3>6.6 De leerroute per module</h3>
+  <p>Elke module volgt hetzelfde ritme, zodat de student na de eerste keer weet wat er komt (KISS):</p>
+  <div class="tw"><table class="t">
+    <tr><th>Stap</th><th>Wat</th><th>Duur</th><th>Levert bewijs?</th></tr>
+    <tr><td class="n">1 · Waarom</td><td>Waarom deze stap, en de „klaar als"-regel uit het werkboek</td><td class="m">1 min</td><td>nee</td></tr>
+    <tr><td class="n">2 · Oefenen</td><td>Kort uitleg, dan de taak op de oefencasus (webshop X). De student produceert eerst een antwoord; daarna verschijnt het modelantwoord. Onbeperkt opnieuw.</td><td class="m">een derde van de tijd</td><td>nee</td></tr>
+    <tr><td class="n">3 · Toepassen</td><td>Dezelfde taak op het eigen vraagstuk. Controles lopen mee tijdens het typen.</td><td class="m">twee derde</td><td><strong>ja</strong></td></tr>
+    <tr><td class="n">4 · Volgende stap</td><td>Eén zin: „mijn volgende stap is …", opgeslagen bij het bewijs (FR-28)</td><td class="m">1 min</td><td>ja, bij de taak</td></tr>
+  </table></div>
+
+  <h3>6.7 De twee gebruiksvormen</h3>
+  <p>De studentweergave is wat 6.6 beschrijft. De docentmodus is een tweede weergave van dezelfde contentbestanden, bedoeld voor de beamer, met docentvelden uit het draaiboek erbij (FR-25, FR-29). Ze bevat geen studentgegevens en verwerkt er geen (FR-36).</p>
+  <div class="tw"><table class="t">
+    <tr><th>Onderdeel van de docentmodus</th><th>Wat het toont</th><th>Herkomst in het draaiboek<a class="w" href="#D">D</a></th></tr>
+    <tr><td class="n">Stapkaart</td><td>Het taaknummer, de opdracht in groot lettertype, de „klaar als"-regel, de tijd, het materiaal (post-its, flipovervellen) en of de laptop open of dicht mag</td><td>Kolom „Wat studenten doen" en de dia's</td></tr>
+    <tr><td class="n">Klok</td><td>Een klok die per deel vanaf 0:00 loopt en een aftelling per blok, met start, pauze en reset. Bij de gallery walk staan de twee rondes van 4 minuten en de 2 minuten lezen erin</td><td>„De klok loopt per deel vanaf 0:00"; blokken van 5 minuten of een veelvoud</td></tr>
+    <tr><td class="n">Docentkaart</td><td>Wat de docent doet, de kernboodschap en de rondloopvragen („Welk perspectief ontbreekt nog?", „Is dat een feit of een aanname, en hoe weten jullie dat?"). Alleen voor de docent zichtbaar op een tweede scherm of afdruk; op de beamer staat de stapkaart</td><td>Kolom „Wat jij doet"</td></tr>
+    <tr><td class="n">Modelantwoorden en veelgemaakte fouten</td><td>Verborgen tot de docent ze opent. De fouten zijn de controles die studenten in de oefenversie het vaakst afkeuren</td><td>Kaders met modelantwoorden</td></tr>
+    <tr><td class="n">Als het anders loopt</td><td>Per blok de oplossing bij te weinig tijd, een team zonder helder vraagstuk, een team dat vroeg klaar is, studenten die VPC en BMC niet meer weten, en te weinig muurruimte</td><td>Kader „Als het anders loopt"</td></tr>
+    <tr><td class="n">Programma</td><td>De blokken van het deel met wat klaar is en wat komt. De docent kan blokken overslaan of verschuiven en de klok rekent de resterende tijd opnieuw uit</td><td>„Te weinig tijd in deel 1"</td></tr>
+  </table></div>
+  <p><strong>In het lokaal.</strong> De studenten gebruiken dezelfde modules op hun eigen apparaat. Ze weten waar ze zijn omdat de stapkaart het taaknummer toont, en het nummer werkt in het werkboek en op de site hetzelfde (B8). Bij taken aan de muur staat op de stapkaart „laptop dicht", zodat het scherm het werk aan de flipovervellen en het gesprek niet overneemt. Met „Mijn stand" (FR-35) toont een student de docent tijdens het rondlopen één scherm met de status per bewijsonderdeel, zonder inhoud. De docent ziet zo in een paar seconden welk team ergens vastzit.</p>
+  <p><strong>Grenzen.</strong> De docentmodus is geen geheim: de site is openbaar en alles wat erin staat kan een student lezen (NFR-15). Er staat daarom niets in wat de beoordeling betreft. Er is geen live overzicht van de klas (B15). De docent die een overzicht wil, leest na de les de dossiers in de verificatiepagina (FR-24). Zonder netwerk in het lokaal werkt de docentmodus na het laden door (NFR-06) en is de inhoud af te drukken als draaiboek (FR-37).</p>
+</section>
+
+<!-- ============================================================ -->
+<section id="d7">
+  <div class="eyebrow">Deel 7</div>
+  <h2>Functionele en non-functionele <em>requirements</em></h2>
+  <h3>7.1 Functionele requirements</h3>
+  <div class="tw"><table class="t">
+    <tr><th>#</th><th>De e-learning …</th><th>Uit</th></tr>
+    <tr class="sub"><td colspan="3">Structuur en gebruik</td></tr>
+    <tr><td class="n">FR-01</td><td>is een statische site met een startpagina, modules M0 tot en met M7, een dossierpagina, een verificatiepagina en een docentmodus, publiceerbaar op GitHub Pages met relatieve links</td><td class="m">B2</td></tr>
+    <tr><td class="n">FR-02</td><td>vraagt bij de start alleen om een alias of voornaam, een teamnummer en een eigen vraagstuk in één zin; bewaart die uitsluitend in de browser en toont een korte privacytekst met de waarschuwing geen namen van opdrachtgevers of vertrouwelijke gegevens in te vullen</td><td class="m">2.5, NFR-02</td></tr>
+    <tr><td class="n">FR-03</td><td>toont een aanbevolen volgorde van de modules zonder slot: elke module is direct te openen en de student ziet per module de status van de bewijsonderdelen</td><td class="m">2.5</td></tr>
+    <tr><td class="n">FR-04</td><td>toont bij elke taak het werkboeknummer, de reden („waarom"), de tijd en de „klaar als"-regel, letterlijk uit het werkboek</td><td class="m">2.4, B8</td></tr>
+    <tr><td class="n">FR-05</td><td>houdt oefening en toepassing gescheiden: een taak heeft een oefenversie op de oefencasus en een toepassing op het eigen vraagstuk; alleen de toepassing en de ingevulde controles vormen bewijs</td><td class="m">B4, 2.2</td></tr>
+    <tr><td class="n">FR-06</td><td>toont het modelantwoord van de oefenversie pas nadat de student een eigen poging heeft ingevuld, en laat de student de oefening onbeperkt herhalen</td><td class="m">2.4</td></tr>
+    <tr class="sub"><td colspan="3">Controles en dekking</td></tr>
+    <tr><td class="n">FR-07</td><td>voert per bewijsonderdeel de controles van 6.1 uit terwijl de student typt en toont per controle één zin over wat er ontbreekt</td><td class="m">2.4, 6.3</td></tr>
+    <tr><td class="n">FR-08</td><td>toont per bewijsonderdeel een van drie statussen (Compleet, Bijna, Nog niet) en nergens een score, percentage, punt of ranglijst</td><td class="m">2.5, B6</td></tr>
+    <tr><td class="n">FR-09</td><td>koppelt elk bewijsonderdeel aan een onderdeel van een LUK en toont het dekkingsoverzicht van 3.3, bijgewerkt met de status van de student</td><td class="m">2.2, 2.3</td></tr>
+    <tr class="sub"><td colspan="3">Modules</td></tr>
+    <tr><td class="n">FR-10</td><td>biedt in M2 een bouwer voor de onderzoeksvraag met drie velden, keuze uit de zes kapitalen en een live voorbeeld van de samengestelde vraag (EV-01)</td><td class="m">EL2</td></tr>
+    <tr><td class="n">FR-11</td><td>biedt in M2 drie zoekvragen met een keuzelijst voor het frame (functioneel, intern/extern, theoretisch/empirisch), de keuze van één model en het antwoord op „wat mis je met één frame" (EV-02)</td><td class="m">EL3</td></tr>
+    <tr><td class="n">FR-12</td><td>biedt in M3 een zoektermentabel, een veld voor de zoekstring met controle op operatoren, een keuze tussen route A en B, en voor route B een promptgenerator die de zoekvraag invult en waarschuwt als een woord uit de door de student ingevulde „niet noemen"-lijst in de prompt staat (EV-03)</td><td class="m">EL4, NFR-02</td></tr>
+    <tr><td class="n">FR-13</td><td>biedt in M4 een bronlog met de AAOCC-oordelen, twee verificatievinkjes bij route B (de bron bestaat; er staat in wat de AI zegt), een besluit en een APA-veld met formaatcontrole (EV-04); meerdere bronnen zijn mogelijk</td><td class="m">EL5</td></tr>
+    <tr><td class="n">FR-14</td><td>biedt in M4 de stelling over AI en inspiratiemateriaal met een keuze en een argument (EV-05)</td><td class="m">EL5</td></tr>
+    <tr><td class="n">FR-15</td><td>biedt in M5 een stakeholdertabel die zich automatisch tekent op een invloed/belang-raster, met intern/extern per stakeholder (EV-06)</td><td class="m">EL6</td></tr>
+    <tr><td class="n">FR-16</td><td>biedt in M5 per product (stakeholdermap, VPC, BMC, TOM-model V1) een checklist, een vinkje „foto gemaakt", en een register waarin de student kernbeweringen als feit of aanname labelt en aan een zoekvraag koppelt (EV-07)</td><td class="m">EL6, EL7</td></tr>
+    <tr><td class="n">FR-17</td><td>biedt in M5 de eerste conclusies (waar zit het vraagstuk ten opzichte van stakeholders, klant en organisatie) met een controle tegen de stakeholderlijst en een herziene onderzoeksvraag (EV-08)</td><td class="m">EL6, 2.6</td></tr>
+    <tr><td class="n">FR-18</td><td>biedt in M6 een feedbacklog (ik zie, ik mis, ik vraag me af, rol van de gever, actie, status) waarvan de student onbeperkt regels kan toevoegen (EV-09)</td><td class="m">EL8, 2.6</td></tr>
+    <tr><td class="n">FR-19</td><td>biedt in M6 een STARR-sjabloon met een keuzelijst voor het eigen gedrag en een volgende stap, optioneel gekoppeld aan een feedbackregel (EV-10)</td><td class="m">EL8</td></tr>
+    <tr class="sub"><td colspan="3">Opslag, dossier en verificatie</td></tr>
+    <tr><td class="n">FR-20</td><td>bewaart bij elke wijziging in een bewijsonderdeel een nieuwe versie en laat de student oudere versies bekijken</td><td class="m">2.6, 6.2</td></tr>
+    <tr><td class="n">FR-21</td><td>slaat de gegevens automatisch in de browser op, toont na elke module en na tien wijzigingen een melding „bewaar je dossier", en kan een eerder dossier importeren</td><td class="m">B2, 5.2</td></tr>
+    <tr><td class="n">FR-22</td><td>exporteert het dossier als JSON met SHA-256-controlesom en als afdrukbare pagina per leeruitkomst (6.4)</td><td class="m">B7</td></tr>
+    <tr><td class="n">FR-23</td><td>heeft een verificatiepagina die een dossier lokaal inleest, de controlesom herberekent en bij een afwijking „gewijzigd na export" meldt</td><td class="m">B7</td></tr>
+    <tr><td class="n">FR-24</td><td>laat de verificatiepagina meerdere dossiers tegelijk inlezen en toont een tabel met per student de status per bewijsonderdeel en per leeruitkomst, met de ontbrekende onderdelen bovenaan</td><td class="m">Deel 9</td></tr>
+    <tr><td class="n">FR-25</td><td>haalt alle teksten, werkboekregels, modelantwoorden, LUK-koppelingen en controleparameters uit datafiles, zodat een docent ze kan aanpassen zonder code</td><td class="m">KISS, NFR-09</td></tr>
+    <tr><td class="n">FR-26</td><td>heeft een knop „wis alles" die alle gegevens uit de browser verwijdert na één bevestiging</td><td class="m">NFR-02</td></tr>
+    <tr><td class="n">FR-27</td><td>verwijst voor video en achtergrond naar externe bronnen (Bureau Tromp, MIT OCW, Atlassian) met een gewone link, zonder inbedding</td><td class="m">5.2, NFR-12</td></tr>
+    <tr><td class="n">FR-28</td><td>vraagt na elke taak en bij het exporteren om één zin „mijn volgende stap" en toont die bij het bewijsonderdeel en op de dossierpagina, samen met het zwakste onderdeel van het dekkingsoverzicht</td><td class="m">2.4</td></tr>
+    <tr class="sub"><td colspan="3">Docentmodus (werkcollege)</td></tr>
+    <tr><td class="n">FR-29</td><td>biedt een docentmodus op dezelfde site en met dezelfde contentbestanden als de studentweergave, te kiezen bij de start of met een adres-toevoeging, zonder inloggen</td><td class="m">B16</td></tr>
+    <tr><td class="n">FR-30</td><td>toont in de docentmodus per blok een projecteerbare stapkaart met taaknummer, opdracht in groot lettertype, „klaar als", tijd, materiaal en de aanduiding „laptop open" of „laptop dicht"</td><td class="m">6.7</td></tr>
+    <tr><td class="n">FR-31</td><td>heeft een klok die per deel vanaf 0:00 loopt en een aftelling per blok, met start, pauze en reset; blokken duren 5 minuten of een veelvoud, en de gallery walk toont zijn rondes en leestijd</td><td class="m">6.7, N</td></tr>
+    <tr><td class="n">FR-32</td><td>toont per blok een docentkaart met wat de docent doet, de kernboodschap, de rondloopvragen en „als het anders loopt"</td><td class="m">6.7</td></tr>
+    <tr><td class="n">FR-33</td><td>toont modelantwoorden en veelgemaakte fouten pas nadat de docent ze opent</td><td class="m">2.4</td></tr>
+    <tr><td class="n">FR-34</td><td>laat de docent blokken overslaan, verschuiven en de tijd van een blok aanpassen, waarna de klok de resterende tijd opnieuw uitrekent</td><td class="m">5.1</td></tr>
+    <tr><td class="n">FR-35</td><td>heeft in de studentweergave een scherm „Mijn stand" met per bewijsonderdeel alleen de status, groot en zonder inhoud, om aan de docent te tonen</td><td class="m">B15</td></tr>
+    <tr><td class="n">FR-36</td><td>verwerkt en bewaart in de docentmodus geen studentgegevens en heeft geen koppeling met de apparaten van studenten</td><td class="m">B15, NFR-02</td></tr>
+    <tr><td class="n">FR-37</td><td>kan de docentkaarten van een deel afdrukken als draaiboek, uit dezelfde contentbestanden</td><td class="m">B17</td></tr>
+  </table></div>
+
+  <h3>7.2 Non-functionele requirements</h3>
+  <div class="tw"><table class="t">
+    <tr><th>#</th><th>Eis</th></tr>
+    <tr><td class="n">NFR-01</td><td>Geen bouwstap nodig om de site te publiceren of te lezen: de repository bevat HTML, CSS, JavaScript en datafiles die GitHub Pages direct serveert. Geen frameworks.</td></tr>
+    <tr><td class="n">NFR-02</td><td>Privacy: geen cookies, geen analytics, geen externe lettertypen of scripts, geen verkeer naar derden bij gebruik. Persoonsgegevens (alias, teamnummer, teksten) verlaten de browser alleen door de export van de student. Een privacytekst staat op de startpagina.</td></tr>
+    <tr><td class="n">NFR-03</td><td>Toegankelijkheid: WCAG 2.1 niveau AA, bedienbaar met toetsenbord, bruikbaar met schermlezer, contrast minimaal 4,5:1, geen informatie alleen in kleur (statussen hebben ook tekst).</td></tr>
+    <tr><td class="n">NFR-04</td><td>Responsive van 360 px tot desktop zonder horizontaal scrollen; invoervelden zijn bruikbaar op een telefoon.</td></tr>
+    <tr><td class="n">NFR-05</td><td>Werkt in de twee laatste versies van Chrome, Safari, Firefox en Edge. Is de browseropslag geblokkeerd (privévenster), dan meldt de site dat en biedt direct export aan.</td></tr>
+    <tr><td class="n">NFR-06</td><td>Een module is na het laden zonder netwerk bruikbaar. De eerste lading blijft onder 300 kB per pagina, zonder afbeeldingen van derden.</td></tr>
+    <tr><td class="n">NFR-07</td><td>Elke module heeft een tijdbudget op de pagina; de som voor release 1 is niet meer dan 120 minuten (Deel 8).</td></tr>
+    <tr><td class="n">NFR-08</td><td>Alle documentatie en tekst is in het Nederlands, in het register van het werkboek: kort, direct, zonder jargon dat de student niet kent.</td></tr>
+    <tr><td class="n">NFR-09</td><td>Testbaar: elke controle is een zuivere functie met een unittest (drie goede en drie zwakke voorbeelden). Een contentcontrole faalt als een taak geen LUK-koppeling, „klaar als", controle of modelantwoord heeft.</td></tr>
+    <tr><td class="n">NFR-10</td><td>Het dossierschema heeft een versienummer. Een dossier uit een eerdere 1.x-versie blijft importeerbaar.</td></tr>
+    <tr><td class="n">NFR-11</td><td>Vaktermen in het Engels (frame, pain, gain, fit, user story) worden op de plek zelf in één zin uitgelegd, niet alleen in een woordenlijst.</td></tr>
+    <tr><td class="n">NFR-12</td><td>Alleen eigen tekst en eigen afbeeldingen, plus links. Geen kopie van Brightspace-materiaal, de PhoneVentures-handleidingen, de slides van derden of de opgeslagen Atlassian-pagina.</td></tr>
+    <tr><td class="n">NFR-13</td><td>Het uiterlijk volgt de HAN-huisstijl van de zusterdocumenten, zodat het herkenbaar is als onderdeel van het C-cluster.</td></tr>
+    <tr><td class="n">NFR-14</td><td>Projectie: de stapkaart in de docentmodus heeft tekst van minstens 28 px op een scherm van 1280 × 720 en een contrast van minstens 4,5:1, en is leesbaar vanaf de achterste rij van het lokaal.</td></tr>
+    <tr><td class="n">NFR-15</td><td>De docentmodus is openbaar en bevat geen informatie die niet openbaar mag zijn: geen beoordelingsdetails en geen toetsantwoorden, alleen didactische aanwijzingen en modelantwoorden van de oefencasus.</td></tr>
+  </table></div>
+</section>
+
+<!-- ============================================================ -->
+<section id="d8">
+  <div class="eyebrow">Deel 8</div>
+  <h2>Programma: <em>acht modules</em>, twee klokuren, en het werkcollege</h2>
+  <p>De modules volgen de volgorde van de A3-start op woensdag (dag 2): deel 1 onderzoeksvaardigheden, deel 2 plaatsing.<a class="w" href="#N">N</a> De e-learning is geen eigen lesdag. Zelfstandig doet een student de modules in elke volgorde, thuis of tussen de blokken. In het werkcollege leidt de docent de volgorde van de dag met de docentmodus (8.2) en werken de studenten in dezelfde modules op laptop of telefoon. De klok telt alleen het digitale deel; het werk aan de muur met de flipovervellen blijft fysiek en staat er niet in.</p>
+  <h3>8.1 De modules</h3>
+  <div class="tw"><table class="t">
+    <tr><th>Module</th><th>Duur</th><th>Inhoud</th><th>Werkboek</th><th>Bewijs</th><th>EL</th></tr>
+    <tr><td class="n">M0 · Start</td><td class="m">5</td><td>Alias, teamnummer en eigen vraagstuk in één zin. Wat bewijs hier is en wat niet. Waar je gegevens staan.</td><td class="m">blad 1</td><td>–</td><td class="m">–</td></tr>
+    <tr><td class="n">M1 · De A3 in één oogopslag</td><td class="m">10</td><td>Doel, acht vakken, drie C's, wat niet op één A3 past, voorkennis uit de Yellow Belt. Links naar het filmpje en de MIT-uitleg.</td><td class="m">1.1</td><td>–</td><td class="m">EL1</td></tr>
+    <tr><td class="n">M2 · Onderzoeksvraag en zoekvragen</td><td class="m">25</td><td>Van vage vraag naar user story. Zoekvragen vanuit drie frames en één model kiezen. Oefencasus webshop X, dan het eigen vraagstuk.</td><td class="m">2.1, 2.2</td><td class="m">EV-01, EV-02</td><td class="m">EL2, EL3</td></tr>
+    <tr><td class="n">M3 · Zoeken</td><td class="m">15</td><td>Zoektermen, zoekstring, route A of B, promptgenerator. De wedstrijd zelf vindt in de les plaats.</td><td class="m">3.1, 3.2</td><td class="m">EV-03</td><td class="m">EL4</td></tr>
+    <tr><td class="n">M4 · Beoordelen</td><td class="m">15</td><td>AAOCC-oordeel, controle van AI-bronnen, APA. Stelling over AI en inspiratiemateriaal.</td><td class="m">4.1, 4.2</td><td class="m">EV-04, EV-05</td><td class="m">EL5</td></tr>
+    <tr><td class="n">M5 · Plaatsing</td><td class="m">30</td><td>Stakeholdertabel en raster, checklist voor VPC, BMC en TOM-model V1 met feit-of-aanname-register, eerste conclusies. De vier producten maak je aan de muur.</td><td class="m">5.1, 6.1, 7.1, 8.1, 9.1, 9.2</td><td class="m">EV-06, EV-07, EV-08</td><td class="m">EL6, EL7</td></tr>
+    <tr><td class="n">M6 · Feedback en reflectie</td><td class="m">15</td><td>Feedbacklog van de oefenronde en de gallery walk (dag 3), STARR-reflectie, volgende stap.</td><td class="m">6.2</td><td class="m">EV-09, EV-10</td><td class="m">EL8</td></tr>
+    <tr><td class="n">M7 · Dossier</td><td class="m">5</td><td>Dekkingsoverzicht, zwakste onderdeel, exporteren en inleveren.</td><td>–</td><td>alle</td><td class="m">–</td></tr>
+  </table></div>
+  <p class="small">Totaal 120 minuten. De bladnummers in de kolom Werkboek volgen het werkboek van week 5.<a class="w" href="#W">W</a> Het weekprogramma noemt voor week 6 een bedrijfsbezoek en A3-afbakening voor TUT2; de modules voor de volgende A3-vakken volgen dat rooster (Deel 13).<a class="w" href="#P">P</a></p>
+
+  <h3>8.2 Het werkcollege van woensdag met de docentmodus</h3>
+  <p>De tabel zet het draaiboek van woensdag 30 september naast de modules.<a class="w" href="#D">D</a> De klok loopt per deel vanaf 0:00. Bij blokken zonder module (uitleg met dia's) toont de docentmodus alleen klok en docentkaart, zodat het slidedeck de uitleg blijft dragen en niets dubbel wordt gebouwd (KISS).</p>
+  <div class="tw"><table class="t">
+    <tr><th>Deel · klok</th><th>Blok (draaiboek)</th><th>De docentmodus toont</th><th>Taak</th><th>Module</th></tr>
+    <tr class="sub"><td colspan="5">Deel 1 · 90 minuten · onderzoeksvaardigheden</td></tr>
+    <tr><td class="m">1 · 0:00 (5')</td><td>Opening, dagprogramma</td><td>Stapkaart met het dagprogramma</td><td class="m">–</td><td class="m">M0</td></tr>
+    <tr><td class="m">1 · 0:05 (15')</td><td>A3-methode, filmpje, de drie C's</td><td>Stapkaart 1.1; modelantwoorden 1.1 (verborgen); vraag naar de Yellow Belt</td><td class="m">1.1</td><td class="m">M1</td></tr>
+    <tr><td class="m">1 · 0:20 (10')</td><td>Praktijkgericht onderzoek; vijf stappen van zoeken</td><td>Klok en docentkaart</td><td class="m">–</td><td class="m">–</td></tr>
+    <tr><td class="m">1 · 0:30 (10')</td><td>Onderzoeksvraag als user story</td><td>Stapkaart 2.1 met het format en het voorbeeld webshop X</td><td class="m">2.1</td><td class="m">M2</td></tr>
+    <tr><td class="m">1 · 0:40 (10')</td><td>Zoekvragen vanuit drie frames</td><td>Stapkaart 2.2; rondloopvraag „Welk perspectief ontbreekt nog?"</td><td class="m">2.2</td><td class="m">M2</td></tr>
+    <tr><td class="m">1 · 0:50 (5')</td><td>Nabespreking frames</td><td>Docentkaart: „Wat mis je als je maar één frame kiest?"</td><td class="m">2.2</td><td class="m">M2</td></tr>
+    <tr><td class="m">1 · 0:55 (5')</td><td>Zoektermen</td><td>Stapkaart 3.1</td><td class="m">3.1</td><td class="m">M3</td></tr>
+    <tr><td class="m">1 · 1:00 (10')</td><td>Zoekwedstrijd, route A of B</td><td>Stapkaart 3.2 met timer; waarschuwing over verzonnen bronnen en vertrouwelijke gegevens; „als het anders loopt": wedstrijd in 5 minuten met Perplexity</td><td class="m">3.2</td><td class="m">M3</td></tr>
+    <tr><td class="m">1 · 1:10 (5')</td><td>Stelling over AI</td><td>Stapkaart 4.2; „laptop dicht", studenten kiezen links of rechts in het lokaal</td><td class="m">4.2</td><td class="m">M4</td></tr>
+    <tr><td class="m">1 · 1:15 (10')</td><td>Bronnen beoordelen</td><td>Stapkaart 4.1; rondloopvraag „beoordelen jullie echt, of vinken jullie alleen af?"</td><td class="m">4.1</td><td class="m">M4</td></tr>
+    <tr><td class="m">1 · 1:25 (5')</td><td>Betrouwbaarheid en validiteit</td><td>Klok en docentkaart</td><td class="m">–</td><td class="m">–</td></tr>
+    <tr class="sub"><td colspan="5">Deel 2 · 145 minuten · A3-vak 1, plaatsing</td></tr>
+    <tr><td class="m">2 · 0:00 (5')</td><td>Start, terugblik week 1: waardebelofte tegenover waardecreatie</td><td>Stapkaart „vandaag vier producten"; docentkaart</td><td class="m">–</td><td class="m">–</td></tr>
+    <tr><td class="m">2 · 0:05 (20')</td><td>Stakeholderanalyse</td><td>Stapkaart 5.1; rondloopvraag „Wie merkt het probleem het eerst?"; „laptop dicht"</td><td class="m">5.1</td><td class="m">M5</td></tr>
+    <tr><td class="m">2 · 0:35 (20')</td><td>Value proposition canvas</td><td>Stapkaart 6.1; rondloopvraag „Feit of aanname?"</td><td class="m">6.1</td><td class="m">M5</td></tr>
+    <tr><td class="m">2 · 0:55 (10')</td><td>Gallery walk, oefenronde</td><td>Stapkaart 6.2; klok met 2 × 4 minuten en 2 minuten lezen</td><td class="m">6.2</td><td class="m">M6</td></tr>
+    <tr><td class="m">2 · 1:10 (20')</td><td>Business model canvas</td><td>Stapkaart 7.1; vraag „wat nemen jullie mee uit de post-its?"</td><td class="m">7.1</td><td class="m">M5</td></tr>
+    <tr><td class="m">2 · 1:35 (20')</td><td>TOM-model V1</td><td>Stapkaart 8.1; rondloopvraag „strategisch, tactisch of operationeel?"</td><td class="m">8.1</td><td class="m">M5</td></tr>
+    <tr><td class="m">2 · 2:00 (20')</td><td>Eerste conclusies en onderzoeksvraag</td><td>Stapkaart 9.1 en 9.2 met de controlevragen uit het werkboek</td><td class="m">9.1, 9.2</td><td class="m">M5</td></tr>
+    <tr><td class="m">2 · 2:20 (5')</td><td>Afsluiting en huiswerk</td><td>Stapkaart 9.3; verwijzing naar M6 en M7 voor thuis</td><td class="m">9.3</td><td class="m">M6, M7</td></tr>
+  </table></div>
+  <p class="small">De pauzes van 5 minuten (deel 2 om 0:25, 1:30 en 1:55) staan als blok op de klok. De pauze na het VPC is in het draaiboek vervangen door de gallery walk en het TOM-model duurt 20 minuten.<a class="w" href="#D">D</a> De tijden zijn relatief omdat de begintijden van het rooster nog niet bekend zijn; de docent vult ze in de docentmodus in zodra ze bekend zijn.</p>
+</section>
+
+<!-- ============================================================ -->
+<section id="d9">
+  <div class="eyebrow">Deel 9</div>
+  <h2>Toetsing en het gebruik van het bewijs</h2>
+  <p>De e-learning heeft geen cijfer en geen slagingsdrempel. De statussen beoordelen het dossier van de student op vorm; ze zijn formatief. De relatie met de beoordeling van de module loopt via drie afspraken.</p>
+  <div class="tw"><table class="t">
+    <tr><th>Vraag</th><th>Uitgangspunt in dit LRD</th><th>Status</th></tr>
+    <tr><td>Wat wordt beoordeeld voor BC1?</td><td>De beroepsproducten van de groep: A3 onderdeel 1 tot en met 3 besproken met de opdrachtgever, het ingevulde TOM-model, het plan voor de quick win.<a class="w" href="#U">U</a> Het bewijsdossier vervangt die niet. Het dossier laat zien hoe de student erbij kwam; het product zelf wordt beoordeeld.</td><td><span class="chip script">uitgangspunt</span></td></tr>
+    <tr><td>Telt het dossier mee in het individuele portfolio?</td><td>Onbeslist. Optie 1: docent en coach gebruiken het als bespreekmateriaal en niets wordt ingeleverd bij de beoordeling. Optie 2: EV-09 en EV-10 (feedbackmoment, reflectie) mogen worden opgenomen als onderdeel van de zes feedbackmomenten en reflecties van het portfolio. Optie 2 vraagt een besluit van de modulecoördinator.</td><td><span class="chip rev">open · B9</span></td></tr>
+    <tr><td>Hoe komt de docent aan de dossiers, en hoe weet hij of zij dat ze echt zijn?</td><td>De student levert het JSON-bestand in via Brightspace. Het inleverstempel van Brightspace is de tijdstempel. De verificatiepagina rekent de controlesom na. Bij het coachgesprek vraagt de docent steekproefsgewijs naar de versiegeschiedenis van één onderdeel: „laat zien hoe je vraag is ontstaan."</td><td><span class="chip script">uitgangspunt</span></td></tr>
+  </table></div>
+  <p>Voor de werkcollege-vorm geldt daarnaast: de docent ziet tijdens de les geen voortgang van de klas op het scherm (B15). In het lokaal komt de stand via „Mijn stand" van de studenten zelf en via de rondloopvragen; het volledige beeld komt na de les uit de dossiers. De docentmodus bevat geen beoordelingsinformatie (NFR-15).</p>
+  <p>Twee dingen moeten expliciet gezegd worden. Studenten kunnen AI-tekst in de velden plakken; de controles zien dat niet. De versiegeschiedenis en het coachgesprek zijn het tegenwicht, niet een detectietool. En „Compleet" zegt niets over kwaliteit; de student ziet dat op het scherm (6.3), en de docent hoort het bij de instructie te zeggen.</p>
+</section>
+
+<!-- ============================================================ -->
+<section id="d10">
+  <div class="eyebrow">Deel 10</div>
+  <h2>Deliverables</h2>
+  <ol class="big" style="list-style:none;padding:0;display:grid;gap:10px;max-inline-size:78ch">
+    <li><strong>1 · De site</strong> — de repository met M0 tot en met M7, de dossierpagina en de verificatiepagina, gepubliceerd op GitHub Pages, met studentweergave en docentmodus (FR-01 t/m FR-37).</li>
+    <li><strong>2 · De contentbestanden</strong> — per module de teksten, werkboekregels, modelantwoorden, LUK-koppelingen en controleparameters, plus de docentvelden uit het draaiboek: tijd, docentkaart, rondloopvragen, „als het anders loopt" (FR-25, FR-30 t/m FR-33).</li>
+    <li><strong>3 · Het dossierschema en de controles</strong> — schema 1.0 met beschrijving, en de controlefuncties met unittests (NFR-09, NFR-10).</li>
+    <li><strong>4 · De docentgids</strong> — twee A4: hoe je de docentmodus in het lokaal gebruikt (klok, stapkaart, blokken verschuiven, afdruk), wat het bewijs is en niet is, hoe je dossiers inleest, hoe je een steekproef doet, hoe je een modelantwoord aanpast.</li>
+    <li><strong>5 · De studentintroductie</strong> — één A4 of dia bij de start: wat je doet, waar je gegevens staan, hoe je exporteert en inlevert.</li>
+    <li><strong>6 · Het testrapport</strong> — netwerktrace zonder derden, toegankelijkheidscontrole, controle op 360 px, resultaat van de pilot.</li>
+    <li><strong>7 · Dit LRD met het besluitenregister</strong> — bijgewerkt na elke ontwerpronde.</li>
+  </ol>
+</section>
+
+<!-- ============================================================ -->
+<section id="d11">
+  <div class="eyebrow">Deel 11</div>
+  <h2>Acceptatiecriteria</h2>
+  <div class="tw"><table class="t">
+    <tr><th>#</th><th>Criterium</th><th>Gemeten door</th></tr>
+    <tr><td class="n">AC-01</td><td>De site draait vanaf de GitHub Pages-URL zonder foutmeldingen, alle interne links werken, en tijdens een volledige doorloop van M0 tot en met M7 gaat er geen enkel verzoek naar een ander domein.</td><td>netwerktrace in de browser (FR-01, NFR-02)</td></tr>
+    <tr><td class="n">AC-02</td><td>Elk van de tien bewijsonderdelen EV-01 tot en met EV-10 heeft een LUK-koppeling, een „klaar als"-regel, minstens één controle en een modelantwoord of voorbeeld. De contentcontrole is groen.</td><td>contentcontrole (NFR-09, FR-25)</td></tr>
+    <tr><td class="n">AC-03</td><td>Een pilotstudent doorloopt M0 tot en met M7 op het eigen vraagstuk en exporteert een dossier waarin alle onderdelen die in 3.3 als „gedekt" staan de status Compleet of Bijna hebben.</td><td>doorloop met een student (FR-09, FR-22)</td></tr>
+    <tr><td class="n">AC-04</td><td>Verandert iemand één teken in de inhoud van een geëxporteerd dossier, dan meldt de verificatiepagina „gewijzigd na export". Een ongewijzigd dossier krijgt geen melding.</td><td>test met twee bestanden (FR-23)</td></tr>
+    <tr><td class="n">AC-05</td><td>Elke controle geeft bij drie goede en drie zwakke voorbeelden het verwachte resultaat en de verwachte melding.</td><td>unittests (NFR-09, FR-07)</td></tr>
+    <tr><td class="n">AC-06</td><td>De Lighthouse-score voor toegankelijkheid is minstens 95 op elke pagina, en M2 is zonder muis in te vullen en te bewaren.</td><td>Lighthouse en toetsenbordtest (NFR-03)</td></tr>
+    <tr><td class="n">AC-07</td><td>Op 360 px breed is er geen horizontale scroll en zijn alle velden van M2 tot en met M6 in te vullen.</td><td>emulatie of telefoon (NFR-04)</td></tr>
+    <tr><td class="n">AC-08</td><td>In een pilot met minstens zes studenten uit twee teams rondt minstens 80% M2 tot en met M4 af binnen 1,25 keer het tijdbudget.</td><td>tijdnotitie van de docent — startdoel, te kalibreren (NFR-07)</td></tr>
+    <tr><td class="n">AC-09</td><td>Minstens 80% van de pilotstudenten beaamt „ik wist bij elke taak wat ik moest doen zonder uitleg van de docent".</td><td>korte vraag na de pilot — startdoel, te kalibreren (KISS)</td></tr>
+    <tr><td class="n">AC-10</td><td>Een docent leest vijf dossiers in en noemt binnen tien minuten voor elk het zwakste onderdeel.</td><td>getimede test (FR-23, FR-24)</td></tr>
+    <tr><td class="n">AC-11</td><td>Na „wis alles" staat er niets meer in de opslag van de browser die van deze site komt.</td><td>controle in de ontwikkelaarstools (FR-26)</td></tr>
+    <tr><td class="n">AC-12</td><td>Een docent past een modelantwoord aan in een contentbestand en ziet de wijziging op de site, zonder code te bewerken.</td><td>handeling met een collega (FR-25, NFR-01)</td></tr>
+    <tr><td class="n">AC-13</td><td>De docent heeft de dekkingstabel (3.3) naast de Brightspace-teksten van de LUK en BC gelegd en bevestigt de koppelingen, inclusief de afwijking bij BC1.</td><td>controle door de modulecoördinator (3.3)</td></tr>
+    <tr><td class="n">AC-14</td><td>Een docent leidt deel 1 (90 minuten) van het werkcollege met alleen de docentmodus en het slidedeck, zonder het draaiboek te openen, en noteert hoe vaak hij of zij toch iets moest opzoeken. Streefwaarde: hoogstens twee keer.</td><td>pilot in een werkcollege — startdoel, te kalibreren (FR-29 t/m FR-33)</td></tr>
+    <tr><td class="n">AC-15</td><td>De stapkaart is leesbaar vanaf de achterste rij: tekst van minstens 28 px op 1280 × 720, contrast minstens 4,5:1, en een student op de achterste rij leest de opdracht voor.</td><td>meting en test in het lokaal (NFR-14, FR-30)</td></tr>
+    <tr><td class="n">AC-16</td><td>De docentmodus stuurt geen verzoeken naar andere domeinen en schrijft geen gegevens van studenten naar opslag; docent- en studentapparaten hebben geen verbinding met elkaar.</td><td>netwerktrace en controle van de opslag (FR-36, NFR-02)</td></tr>
+    <tr><td class="n">AC-17</td><td>Slaat de docent twee blokken over of verschuift een blok, dan rekent de klok de resterende tijd correct opnieuw uit en de stapkaart volgt.</td><td>test met een voorbeelddeel (FR-34)</td></tr>
+    <tr><td class="n">AC-18</td><td>De afdruk van de docentkaarten van deel 1 bevat dezelfde blokken, tijden en rondloopvragen als de docentmodus op het scherm.</td><td>vergelijking van afdruk en scherm (FR-37)</td></tr>
+  </table></div>
+</section>
+
+<!-- ============================================================ -->
+<section id="d12">
+  <div class="eyebrow">Deel 12</div>
+  <h2>Risico's en mitigaties</h2>
+  <div class="tw"><table class="t">
+    <tr><th>Risico</th><th>Gevolg</th><th>Mitigatie — en wat die afdwingt</th></tr>
+    <tr><td>Studenten sturen op groen en vullen het minimum in</td><td>het dossier is vol maar leeg</td><td>Geen scores of badges (FR-08); controles benoemen wat ontbreekt en niet hoe goed het is; „Compleet" zegt expliciet dat kwaliteit bij de coach ligt (6.3)</td></tr>
+    <tr><td>Studenten plakken AI-tekst in de velden</td><td>bewijs van een prompt, niet van de student</td><td>Bewijs telt alleen op het eigen vraagstuk (FR-05); versiegeschiedenis (FR-20); steekproef bij coaching (Deel 9); bij bronnen moet de bron zelf geopend zijn (FR-13). Dit blijft een beperking, geen oplossing</td></tr>
+    <tr><td>Het bewijs wordt gezien als beoordeeld werk en laat de beroepsproducten verdringen</td><td>studenten besteden tijd aan het dossier in plaats van aan de A3</td><td>Deel 9 zegt het expliciet: producten worden beoordeeld, het dossier is bespreekmateriaal. De studentintroductie herhaalt het (deliverable 5). Besluit B9 legt vast wat wel meetelt</td></tr>
+    <tr><td>De browser wist de gegevens of de student wisselt van apparaat</td><td>werk van weken verdwijnt</td><td>Bewaarmelding na elke module (FR-21), import van een eerder dossier, en een melding bij geblokkeerde opslag (NFR-05)</td></tr>
+    <tr><td>Studenten vullen vertrouwelijke gegevens van de opdrachtgever in en leveren die in</td><td>datalek richting Brightspace of een AI-tool</td><td>Alias in plaats van naam (FR-02), waarschuwing en „niet noemen"-lijst bij de promptgenerator (FR-12), niets verlaat de browser zonder export (NFR-02)</td></tr>
+    <tr><td>Studenten doen het werk dubbel: papier, muur en e-learning</td><td>de dag wordt zwaarder in plaats van lichter</td><td>Dezelfde nummers en „klaar als" (FR-04); de muurproducten blijven op de muur (Deel 8); het besluit over het papieren werkboek wordt genomen vóór de pilot (B9)</td></tr>
+    <tr><td>De openbare site bevat materiaal dat niet openbaar mag zijn</td><td>auteursrechtclaim of lekken van Brightspace-inhoud</td><td>Alleen eigen tekst en links (NFR-12); elke contentwijziging gaat langs de auteur voordat ze wordt gepubliceerd</td></tr>
+    <tr><td>De dekking van de LUK wordt overschat</td><td>studenten en docenten denken dat LUK 1 „klaar" is</td><td>Dekkingstabel telt „deels" en „later" mee (3.3); AC-13; docent bevestigt de koppelingen</td></tr>
+    <tr><td>De bron voor het TOM-model is onduidelijk</td><td>studenten leren een ander model dan het college</td><td>Het TOM³-buildplan in <code>lits/</code> noemt Westmoreland BV en bevat resten van een tekstgenerator (zoals „[span_42]"); de opdrachtomschrijving noemt het TOM-model van Paul Kalis.<a class="w" href="#T">T</a><a class="w" href="#U">U</a> De e-learning gebruikt daaruit alleen het poortidee (6.3) en niet de inhoud van het model. Besluit B10 is open</td></tr>
+    <tr><td>Alleen de auteur kan het onderhouden</td><td>na een rooster- of taakwijziging veroudert de site</td><td>Inhoud in datafiles (FR-25), controles met tests (NFR-09), docentgids (deliverable 4), geen bouwstap (NFR-01)</td></tr>
+    <tr><td>Niet iedere student heeft een geschikt apparaat</td><td>uitsluiting van het bewijs</td><td>Telefoon volstaat (NFR-04); het papieren werkboek blijft als terugval; de student kan het dossier ook in de les opbouwen</td></tr>
+    <tr><td>De beamer, het netwerk of het scherm van de docent valt uit in het lokaal</td><td>het blok stokt en de docent zoekt zijn draaiboek</td><td>De docentmodus werkt na het laden zonder netwerk (NFR-06); de docentkaarten zijn af te drukken (FR-37)</td></tr>
+    <tr><td>Studenten kijken in het werkcollege naar hun laptop in plaats van naar de muur en elkaar</td><td>het werkcollege wordt een schermles; het sociale deel verdwijnt</td><td>De stapkaart zegt per taak „laptop dicht" of „laptop open" (FR-30); de muurproducten blijven fysiek (Deel 8)</td></tr>
+    <tr><td>De docent moet twee dingen bijhouden: het draaiboek en de docentmodus</td><td>de docent leunt op het oude draaiboek, de site raakt achter</td><td>De docentmodus bevat alle inhoud van het draaiboek (Deel 8.2) en het draaiboek is de afdruk ervan (FR-37); besluit B17 legt vast welke van de twee leidend is</td></tr>
+    <tr><td>Studenten lezen de docentmodus met rondloopvragen en modelantwoorden</td><td>de oefening verliest haar werking</td><td>Modelantwoorden staan achter een klik (FR-33) en de oefening toont ze studenten toch pas na een eigen poging (FR-06); er staat niets in wat de beoordeling raakt (NFR-15)</td></tr>
+    <tr><td>De docent mist het overzicht van de klas</td><td>een team zit lang vast zonder dat iemand het ziet</td><td>„Mijn stand" (FR-35) en de rondloopvragen; het live overzicht is bewust afgewezen (5.2, B15)</td></tr>
+    <tr><td>De controlesom wordt gezien als fraudebeveiliging</td><td>schijnzekerheid bij de docent</td><td>Deel 6.5 en Deel 9 zeggen dat de controlesom alleen wijziging aantoont; de tijdstempel komt van Brightspace</td></tr>
+  </table></div>
+</section>
+
+<!-- ============================================================ -->
+<section id="d13">
+  <div class="eyebrow">Deel 13</div>
+  <h2>Roadmap</h2>
+  <p>Pilot-eerst: eerst één dunne doorsnede van begin tot eind (vraag, controle, dossier, verificatie), dan pas de rest. De stappen zijn aan mijlpalen gebonden en niet aan data, omdat het rooster van de volgende weken nog verschuift.<a class="w" href="#P">P</a></p>
+  <div class="tw"><table class="t">
+    <tr><th>Stap</th><th>Wat</th><th>Klaar als</th></tr>
+    <tr><td class="n">0</td><td>Dit LRD ter review. Besluiten B9 (papier of digitaal, meetellen in het portfolio), B10 (welk TOM-model) en B17 (docentmodus of draaiboek) nemen.</td><td>LRD vastgesteld; B9, B10 en B17 beslist of expliciet uitgesteld</td></tr>
+    <tr><td class="n">1</td><td>Dunne doorsnede: M2 (EV-01 en EV-02), het dossier met controlesom, en de verificatiepagina. Zonder opmaak, wel met de echte controles.</td><td>AC-04 en AC-05 (voor EV-01 en EV-02) gehaald</td></tr>
+    <tr><td class="n">2</td><td>Test met twee tot drie studenten of collega's op hun eigen vraagstuk; controles bijstellen op wat ze ten onrechte afkeuren of doorlaten.</td><td>de controles keuren geen goede voorbeelden af (AC-05)</td></tr>
+    <tr><td class="n">3</td><td>M1, M3, M4 met EV-03 tot en met EV-05, plus opmaak in de huisstijl.</td><td>AC-01, AC-02 (voor EV-01 t/m EV-05), AC-06, AC-07</td></tr>
+    <tr><td class="n">4</td><td>De docentmodus voor deel 1 (M1 tot en met M4): stapkaarten, klok, docentkaarten en afdruk uit de contentbestanden, in het lokaal geprobeerd met een docent.</td><td>AC-14 (voor deel 1), AC-15, AC-16, AC-17, AC-18 gehaald</td></tr>
+    <tr><td class="n">5</td><td>M5, M6, M7 met EV-06 tot en met EV-10, de docentmodus voor deel 2, de docentgids en de studentintroductie.</td><td>AC-02, AC-03, AC-10, AC-11, AC-12 gehaald</td></tr>
+    <tr><td class="n">6</td><td>Pilot in een werkcollege met twee teams, bij voorkeur bij de start van de volgende A3-cyclus. Docent verifieert de dossiers en doet een steekproef in de coaching.</td><td>AC-08, AC-09 en AC-14 genoteerd; AC-13 bevestigd</td></tr>
+    <tr><td class="n">7</td><td>Kalibratie: drempels en modelantwoorden bijstellen; LRD 0.3 met het besluitenregister bijgewerkt.</td><td>LRD 0.3</td></tr>
+    <tr><td class="n">8</td><td>Release 2: A3-vak 2 en 3 (huidige situatie, doelen) en de diagnose, gekoppeld aan de rest van LUK 1. Volgorde volgt de lesvolgorde van de PO- en TUT-docenten.</td><td>alle onderdelen van LUK 1 in 3.3 zijn „gedekt" of beargumenteerd „deels"</td></tr>
+    <tr><td class="n">9</td><td>Release 3: quick win en big win (A3-vak 5 tot en met 8), gekoppeld aan LUK 2, 3 en 4. De literatuur over quick wins in <code>lits/</code> is er de eerste bron voor.<a class="w" href="#Q">Q</a></td><td>eigen LRD-uitbreiding met dezelfde opzet</td></tr>
+  </table></div>
+</section>
+
+<!-- ============================================================ -->
+<section id="besluiten">
+  <div class="eyebrow">Bijlage A</div>
+  <h2>Besluitenregister</h2>
+  <p>Per iteratie staat hier welk besluit is genomen, waarom, en wat er later van is geworden. Voeg nieuwe besluiten onderaan toe en laat vervangen besluiten staan.</p>
+  <p class="small"><strong>Status:</strong> <em>aangenomen</em> = onderdeel van het huidige ontwerp · <em>voorwaardelijk</em> = door Claude voorgesteld en gebruikt in dit ontwerp, wacht op bevestiging van de auteur · <em>vervangen</em> = losgelaten, zie het besluit dat het vervangt · <em>open</em> = nog te beslissen.</p>
+  <div class="tw"><table class="t">
+    <tr><th>Nr</th><th>Datum</th><th>Iteratie</th><th>Besluit</th><th>Reden</th><th>Bron</th><th>Status</th></tr>
+    <tr><td class="n">B1</td><td class="m">30-9-2026</td><td class="m">0</td><td>Er komt een interactieve e-learning voor studenten op GitHub Pages waarmee studenten automatisch bewijs genereren voor de leeruitkomsten van de module</td><td>Verzoek van de auteur</td><td>Opdracht in het gesprek</td><td>Aangenomen</td></tr>
+    <tr><td class="n">B2</td><td class="m">30-9-2026</td><td class="m">0</td><td>De e-learning is een statische site zonder backend; het bewijs staat in de browser van de student en wordt geëxporteerd als bestand</td><td>GitHub Pages heeft geen server; centrale opslag brengt AVG-verplichtingen en beheer mee</td><td>Afgeleid door Claude uit B1</td><td>Voorwaardelijk</td></tr>
+    <tr><td class="n">B3</td><td class="m">30-9-2026</td><td class="m">0</td><td>Release 1 volgt de inhoud van week 5 (onderzoeksvaardigheden en A3-vak 1). LUK 1 wordt grotendeels gedekt, LUK 5 deels; LUK 2, 3 en 4 volgen in latere releases</td><td>De aangeleverde documenten in WK5 gaan over deze inhoud; de LUK 2 tot en met 4 hangen aan quick win en big win die nog niet in de e-learning te oefenen zijn</td><td>Voorstel Claude</td><td>Voorwaardelijk</td></tr>
+    <tr><td class="n">B4</td><td class="m">30-9-2026</td><td class="m">0</td><td>Alleen het toepassen op het eigen vraagstuk levert bewijs; oefenen op de oefencasus niet</td><td>Bewijs van kunnen vraagt transfer; een antwoord op webshop X zegt weinig over het eigen vraagstuk (2.2, 2.3)</td><td>Voorstel Claude</td><td>Voorwaardelijk</td></tr>
+    <tr><td class="n">B5</td><td class="m">30-9-2026</td><td class="m">0</td><td>Automatische controles zijn deterministisch en beoordelen aanwezigheid en samenhang. Geen AI-beoordeling in de e-learning; kwaliteit blijft bij docent, coach en team</td><td>Geen server voor een AI-sleutel; gegevens van opdrachtgevers mogen niet naar een derde; bewijs moet herleidbaar zijn</td><td>Voorstel Claude</td><td>Voorwaardelijk</td></tr>
+    <tr><td class="n">B6</td><td class="m">30-9-2026</td><td class="m">0</td><td>Statussen Compleet, Bijna en Nog niet plus een dekkingsoverzicht; geen scores, badges of ranglijst</td><td>Motivatie (2.5) en KISS; een portfolio wint niets bij puntenjacht</td><td>Voorstel Claude</td><td>Voorwaardelijk</td></tr>
+    <tr><td class="n">B7</td><td class="m">30-9-2026</td><td class="m">0</td><td>Het dossier is een JSON-bestand met SHA-256-controlesom plus een afdrukbare pagina; een verificatiepagina leest dossiers lokaal in. De tijdstempel is het inleverstempel in Brightspace</td><td>Een statische site kan niets ondertekenen; de controlesom toont wijziging, Brightspace levert de betrouwbare tijd (6.5)</td><td>Voorstel Claude</td><td>Voorwaardelijk</td></tr>
+    <tr><td class="n">B8</td><td class="m">30-9-2026</td><td class="m">0</td><td>De e-learning gebruikt dezelfde taaknummers en „klaar als"-regels als het werkboek van week 5 en is daarmee de digitale laag eronder, geen tweede programma</td><td>De student leert één programma (KISS); de werkboekregels zijn al op vorm controleerbaar</td><td>Voorstel Claude</td><td>Voorwaardelijk</td></tr>
+    <tr><td class="n">B9</td><td class="m">30-9-2026</td><td class="m">0</td><td>Vervangt de e-learning het papieren werkboek, en telt het dossier mee in het portfolio (alleen EV-09 en EV-10 of niets)?</td><td>Zonder besluit werken studenten dubbel en weten ze niet wat het dossier waard is</td><td>Voorstel Claude</td><td>Open, auteur beslist</td></tr>
+    <tr><td class="n">B10</td><td class="m">30-9-2026</td><td class="m">0</td><td>Welk TOM-model is leidend: dat van Paul Kalis uit college en opdrachtomschrijving, of de TOM³-uitwerking van Westmoreland BV in <code>lits/</code>?</td><td>Twee bronnen, twee herkomsten, een tekst met sporen van automatische generatie; de e-learning moet één model aanhouden</td><td>Constatering Claude bij het lezen van <code>lits/</code></td><td>Open, auteur beslist</td></tr>
+    <tr><td class="n">B11</td><td class="m">30-9-2026</td><td class="m">0</td><td>Uit het TOM³-buildplan wordt alleen het poortidee (drie uitkomsten) en de verticale traceerbaarheid overgenomen. De gewogen score en de HCI- en VTI-indices niet</td><td>Voor vijf antwoorden per student is een getal over twaalf cellen betekenisloos; de poortregel en de traceerbaarheidscontrole zijn wel bruikbaar</td><td>Voorstel Claude</td><td>Voorwaardelijk</td></tr>
+    <tr><td class="n">B12</td><td class="m">30-9-2026</td><td class="m">0</td><td>De site bevat alleen eigen tekst en links; geen kopieën van Brightspace-materiaal, PhoneVentures, slides of opgeslagen pagina's van derden</td><td>De site is openbaar; auteursrecht en de afspraken rond Brightspace-inhoud</td><td>Voorstel Claude</td><td>Voorwaardelijk</td></tr>
+    <tr><td class="n">B13</td><td class="m">30-9-2026</td><td class="m">0</td><td>Het ontwerp is getoetst aan PAMS en KISS (5.1, 5.2) met de zwakke punten per criterium</td><td>De vaste kwaliteitscriteria van de auteur</td><td>Vaste werkwijze</td><td>Aangenomen</td></tr>
+    <tr><td class="n">B14</td><td class="m">30-9-2026</td><td class="m">1</td><td>De e-learning wordt een hybride werkvorm: zelfstandig te gebruiken door studenten, en als hulpmiddel voor docenten tijdens het werkcollege</td><td>Verzoek van de auteur na versie 0.1, die alleen zelfstandig gebruik beschreef</td><td>Opdracht in het gesprek</td><td>Aangenomen</td></tr>
+    <tr><td class="n">B15</td><td class="m">30-9-2026</td><td class="m">1</td><td>De docentmodus heeft geen live koppeling: geen realtime klasoverzicht, geen synchronisatie tussen docent- en studentapparaten. De stand komt via „Mijn stand" op het scherm van de student en na de les via de dossiers</td><td>Gekozen uit drie opties (docentmodus alleen; met live overzicht; met QR-momentopname). Houdt B2 en B5 overeind en vermijdt AVG-verplichtingen van een server</td><td>Keuze van de auteur in het gesprek</td><td>Aangenomen</td></tr>
+    <tr><td class="n">B16</td><td class="m">30-9-2026</td><td class="m">1</td><td>Eén site met twee weergaven op dezelfde contentbestanden, de docentmodus te kiezen zonder inloggen, in plaats van een aparte docent-app</td><td>Eén bron voor de inhoud (KISS); geen dubbel onderhoud; geen accounts</td><td>Voorstel Claude</td><td>Voorwaardelijk</td></tr>
+    <tr><td class="n">B17</td><td class="m">30-9-2026</td><td class="m">1</td><td>Vervangt de docentmodus, met de afdruk ervan, het draaiboek van woensdag, of blijft het draaiboek naast de e-learning bestaan?</td><td>Zonder besluit houdt de docent twee dingen bij (Deel 12). Hangt samen met B9</td><td>Voorstel Claude</td><td>Open, auteur beslist</td></tr>
+    <tr><td class="n">B18</td><td class="m">30-9-2026</td><td class="m">1</td><td>Versie 0.2 is getoetst met de meetlat PAMS en KISS: 28 van 42 punten (67 %). Verslag: <code>docs/beoordeling-lrd-elearning-a3.html</code></td><td>Verzoek van de auteur; vaste kwaliteitscriteria. De beoordelaar schreef het ontwerp zelf, dus een tweede lezer is aan te raden</td><td>Beoordeling</td><td>Aangenomen</td></tr>
+    <tr><td class="n">B19</td><td class="m">30-9-2026</td><td class="m">1</td><td>Drie verbeteringen voorgesteld: (1) B9 en B17 beslissen en de claim over verdieping schrappen of ontwerpen; (2) „voorlopig vraagstuk" en „kopieer naar A3" ontwerpen; (3) peer-wissel in M2 en M6. Verwachting: 36 van 42</td><td>De drie zwaktes met de meeste opbrengst tegen de minste moeite; gemeenschappelijke oorzaak: alles hangt aan het individuele dossier</td><td>Beoordeling, deel 5</td><td>Vervangen door B21</td></tr>
+    <tr><td class="n">B20</td><td class="m">30-9-2026</td><td class="m">2</td><td>Ruimte voor verschillen (eigen tempo, eigen startpunt, opstap, verdieping, terugvalcasus) is een onderdeel van Autonomy en geen aparte kolom meer bij Purpose, Mastery en Social. De meetlat (criteria.md), de skill en 5.1 zijn aangepast; het verslag is herzien: 24 van 33 punten (73 %)</td><td>Het eigen tempo regelen is voor studenten heel belangrijk; de kolom overlapte met Autonomy en liet dezelfde zwakte twee keer meetellen. B18 staat op de oude meetlat (28/42) en blijft staan</td><td>Keuze van de auteur in het gesprek</td><td>Aangenomen, aangescherpt in B22</td></tr>
+    <tr><td class="n">B21</td><td class="m">30-9-2026</td><td class="m">2</td><td>Herziene top 3 op de nieuwe meetlat: (1) B9 en B17 beslissen; (2) ruimte voor verschillen afmaken (tijd als richtlijn, overslaanbare oefenversie, optionele verdieping, „voorlopig vraagstuk") en Purpose concreet maken (kopieer naar A3, waarom-zin in M7); (3) peer-wissel in M2 en M6. Bovengrens na uitvoering: 32 van 33</td><td>Het eigen tempo in het werkcollege en de student zonder eigen vraagstuk zijn de zwaarste zwaktes onder Autonomy</td><td>Beoordeling, deel 5</td><td>Vervangen door B23</td></tr>
+    <tr><td class="n">B22</td><td class="m">30-9-2026</td><td class="m">3</td><td>Ruimte voor verschillen is een subcriterium van Autonomy, naast echte keuze en veilig proberen en faciliteren. Het is geen eigen cel en geen eigen kolom: de scores Team en Individu van Autonomy steunen erop. De meetlat telt 10 cellen (maximum 30); de beoordeling is opnieuw gedaan: 21 van 30 punten (70 %), waarbij Autonomy · Individu van 3 naar 2 gaat</td><td>De auteur wil dat ruimte voor verschillen integraal bij Autonomy hoort, naast de andere subcriteria, en dat het eigen tempo meeweegt in de score en geen los cijfer krijgt. Een eigen tempo dat alleen in de zelfstandige vorm bestaat, is deels ontworpen</td><td>Keuze van de auteur in het gesprek</td><td>Aangenomen</td></tr>
+    <tr><td class="n">B23</td><td class="m">30-9-2026</td><td class="m">3</td><td>Herziene top 3 op de subcriteria-structuur: (1) B9 en B17 beslissen; (2) ruimte voor verschillen afmaken (tijd als richtlijn, overslaanbare oefenversie, optionele verdieping, „voorlopig vraagstuk", teamkeuze van het model) en Purpose concreet maken (kopieer naar A3, waarom-zin in M7); (3) peer-wissel in M2 en M6. Bovengrens na uitvoering: 30 van 30</td><td>Het eigen tempo in het werkcollege en de student zonder eigen vraagstuk zijn de zwaarste zwaktes onder Autonomy</td><td>Beoordeling, deel 5</td><td>Open, auteur beslist</td></tr>
+  </table></div>
+</section>
+
+<!-- ============================================================ -->
+<section id="bijlage">
+  <div class="eyebrow">Bijlage B</div>
+  <h2>Bronnen</h2>
+  <h4>Pedagogische kaders (Deel 2)</h4>
+  <ol class="bron">
+    <li id="S1"><span class="id">S1</span><div>Anderson, L.W. &amp; Krathwohl, D.R. (red.) (2001). <em>A Taxonomy for Learning, Teaching, and Assessing: A Revision of Bloom's Taxonomy of Educational Objectives.</em> New York: Longman. — de twee dimensies waarmee Deel 3 tagt.</div></li>
+    <li id="S2"><span class="id">S2</span><div>Biggs, J. &amp; Tang, C. (2011). <em>Teaching for Quality Learning at University</em> (4e ed.). Maidenhead: Open University Press. — constructive alignment.</div></li>
+    <li id="S3"><span class="id">S3</span><div>Mislevy, R.J., Almond, R.G. &amp; Lukas, J.F. (2003). <em>A brief introduction to evidence-centered design</em> (Research Report RR-03-16). Princeton, NJ: Educational Testing Service. — claim, bewijs, taak; de grond onder 6.1.</div></li>
+    <li id="S4"><span class="id">S4</span><div>Hattie, J. &amp; Timperley, H. (2007). The power of feedback. <em>Review of Educational Research</em>, 77(1), 81–112. — de drie feedbackvragen.</div></li>
+    <li id="S5"><span class="id">S5</span><div>Deci, E.L. &amp; Ryan, R.M. (2000). The "what" and "why" of goal pursuits: Human needs and the self-determination of behavior. <em>Psychological Inquiry</em>, 11(4), 227–268.</div></li>
+    <li id="S6"><span class="id">S6</span><div>Pink, D.H. (2009). <em>Drive: The Surprising Truth About What Motivates Us.</em> New York: Riverhead. — autonomie, meesterschap, zingeving.</div></li>
+    <li id="S7"><span class="id">S7</span><div>Schwagerman III, W.C. &amp; Ulmer, J.M. (2013). The A3 Lean Management and Leadership Thought Process. <em>The Journal of Technology, Management, and Applied Engineering</em>, 29(4). — <code>lits/jtmae-14149-schwagerman.pdf</code></div></li>
+    <li id="S8"><span class="id">S8</span><div>Mohd Saad, N., Al-Ashaab, A., Shehab, E. &amp; Maksimovic, M. (2013). A3 Thinking Approach to Support Problem Solving in Lean Product and Process Development. In J. Stjepandić e.a. (red.), <em>Concurrent Engineering Approaches for Sustainable Product Development in a Multi-Disciplinary Environment</em>. London: Springer. doi:10.1007/978-1-4471-4426-7_74 — <code>lits/2012A3ThinkinginLeanPPD.pdf</code></div></li>
+    <li id="S9"><span class="id">S9</span><div>Weigel, A.L. (2014). <em>Ses. 3-4: A3 Thinking</em>. MIT OpenCourseWare, 16.660J Introduction to Lean Six Sigma Methods (IAP 2012). Video, 24:46, met transcriptie. — <code>lits/a3-thinking-mit-ocw-transcript.md</code></div></li>
+    <li id="S10"><span class="id">S10</span><div>Sobek, D.K. &amp; Smalley, A. (2008). <em>Understanding A3 Thinking: A Critical Component of Toyota's PDCA Management System.</em> New York: CRC Press. — niet zelf gelezen; in dit LRD alleen bekend via S7 en S8, en niet als steun voor een claim gebruikt.</div></li>
+  </ol>
+  <h4>Documenten en bronnen waarop dit LRD bouwt</h4>
+  <ol class="bron">
+    <li id="O"><span class="id l">O</span><div><em>Overzicht leeruitkomsten C-cluster</em>, samenvatting van de Brightspace-module „Leeruitkomsten" en de opdrachtomschrijvingen. <code>docs/overzicht-leeruitkomsten.html</code></div></li>
+    <li id="U"><span class="id l">U</span><div><em>Opdrachtomschrijvingen studenten (per leerboog)</em>: de vijf leeruitkomsten op niveau 2, de vijf beoordelingscriteria, opdracht 1 tot en met 4 en het portfolio. <code>WK5/Opdrachtomschrijvingen studenten (per leerboog) - Copy.pdf</code></div></li>
+    <li id="W"><span class="id l">W</span><div><em>Werkboek A3-start week 5</em>, 9 bladen, met „klaar als"-regels. <code>WK5/Werkboek_A3-start_week5.html</code></div></li>
+    <li id="N"><span class="id l">N</span><div><em>Dag 2 (woensdag), week 5: start van de A3</em>: ontwerp met PAMS/KISS-toetsing en besluitenregister B1–B21 (die van dat document, niet die van dit LRD). <code>WK5/ontwerp-woensdag-A3-start.md</code></div></li>
+    <li id="D"><span class="id l">D</span><div><em>Draaiboek woensdag week 5</em> (TUT2, 25 september 2026): tijdlijn per deel, docentacties, rondloopvragen, modelantwoorden en „als het anders loopt". <code>WK5/Draaiboek_woensdag_week5.html</code></div></li>
+    <li id="P"><span class="id l">P</span><div><em>Overzicht weekprogramma week 5.</em> <code>WK5/overzicht-weekprogramma.md</code></div></li>
+    <li id="Q"><span class="id l">Q</span><div>Rodrigues, J., Sá, J.C., Silva, F.J.G., Ferreira, L.P., Jimenez, G. &amp; Santos, G. (2020). A Rapid Improvement Process through „Quick-Win" Lean Tools: A Case Study. <em>Systems</em>, 8(4), 55. doi:10.3390/systems8040055 — <code>lits/systems-08-00055-v2.pdf</code>. Bron voor release 3.</div></li>
+    <li id="A"><span class="id l">A</span><div>Atlassian, <em>Team Playbook: Problem framing</em>. Wie, wat, waarom, waar, en één probleemzin. Alleen als link gebruikt. <code>lits/problem-framing-atlassian.html</code>, <code>lits/Modal-ARTICLE3.jpg</code></div></li>
+    <li id="T"><span class="id l">T</span><div><em>Architectuur- en Implementatieblauwdruk van het TOM³-Model</em> en het bijbehorende interactieve scoreformulier (Westmoreland BV). Herkomst niet geverifieerd; alleen als inspiratie gebruikt (B10, B11). <code>lits/TOM³ Model Buildplan en Scoreformulier.md</code>, <code>lits/tom_model_interactive_dashboard_scoreformulier.html</code></div></li>
+    <li id="H"><span class="id l">H</span><div><em>LRD Hoorcollege Informatiemanagement</em>, versie 0.1 (2 september 2026): het huisformat, opmaak en opbouw van deze LRD. <code>C-CLUSTER/NIEUW-2026-27/IM/lrd-hoorcollege-informatiemanagement.html</code></div></li>
+  </ol>
+  <p class="tiny" style="margin-block-start:26px">Dit LRD is een ontwerpdocument ter review, geen vastgesteld ontwerp. De cijfers in Deel 11 zijn startdoelen die na de pilot worden bijgesteld. De besluiten met de status „voorwaardelijk" zijn door Claude voorgesteld en wachten op bevestiging. Versie 0.2 vervangt geen besluit uit 0.1; B14 t/m B17 zijn toegevoegd.</p>
+</section>
+
+</div>
+</body>
+</html>
