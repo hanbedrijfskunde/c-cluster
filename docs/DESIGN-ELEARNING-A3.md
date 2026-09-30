@@ -4,7 +4,7 @@ Ontwerprichtlijn voor de studentkant van `hanbedrijfskunde/a3-learning`. Gebasee
 
 Dit document beschrijft **hoe de site moet voelen en werken**. De bestaande eisen blijven gelden: toegankelijkheid (TG-*), privacy (PR-*), gewicht (PF-4), geen score of ranglijst (BW-4, X-3) en modelantwoord pas na eigen poging (TK-6).
 
-Het toetsbare deel van deze richtlijn staat als SX-1 t/m SX-12 in [BLUEPRINT-ELEARNING-A3.md](BLUEPRINT-ELEARNING-A3.md) §6.17; bij verschil gaat het blueprint voor. De besluiten staan in [ADR-ELEARNING-A3.md](ADR-ELEARNING-A3.md) B73 t/m B79, de bouwvolgorde in [BUILDPLAN-ELEARNING-A3.md](BUILDPLAN-ELEARNING-A3.md) fase 16 t/m 19.
+Het toetsbare deel van deze richtlijn staat als SX-1 t/m SX-12 in [BLUEPRINT-ELEARNING-A3.md](BLUEPRINT-ELEARNING-A3.md) §6.17; bij verschil gaat het blueprint voor. De besluiten staan in [ADR-ELEARNING-A3.md](ADR-ELEARNING-A3.md) B73 t/m B81, de bouwvolgorde in [BUILDPLAN-ELEARNING-A3.md](BUILDPLAN-ELEARNING-A3.md) fase 16 t/m 19.
 
 ---
 
@@ -109,7 +109,7 @@ URL-schema voor de taakweergave (werkt samen met de bestaande id's): `leerblok-1
 Van boven naar beneden:
 
 1. Begroeting met alias, en de kop „Zo staat je A3-vak 1”. Geen percentage (BW-4).
-2. **A3-vak 1 in vier delen** (B75): Onderzoeksvraag · Zoekvragen en model · Plaatsing · Verbanden en reflectie, één per leerblok. Gevulde delen zijn `--accent`, lege alleen rand. Onderschrift: „2 van de 4 delen van vak 1 staan”. De e-learning vult alleen vak 1 (X-15); vak 2 t/m 8 tonen we niet.
+2. **A3-vak 1 in vier delen** (B75): Onderzoeksvraag en zoekvragen · Bronnen · Plaatsing · Verbanden en reflectie, één per leerblok. Gevulde delen zijn `--accent`, lege alleen rand. Onderschrift: „2 van de 4 delen van vak 1 staan”. De e-learning vult alleen vak 1 (X-15); vak 2 t/m 8 tonen we niet.
 3. **Verder-kaart** (zwart vlak, witte tekst): taaknummer, titel, „Leerblok 1 · stap 3 van 4 · nog ± 10 min”, accentknop „Ga verder”.
 4. Vier leerblokregels, elk met een segmentbalk (één segment per taak). Meta: „2 van 3” of „te doen”.
 
@@ -191,7 +191,7 @@ Flex/grid met `gap: 3px`, segmenten 6 px hoog. Altijd met een tekstalternatief (
 
 ### A3-vak 1
 
-Grid 2 × 2 (bureaublad: 4 × 1), `gap: 4px`, delen met 2 px rand. Labels (Onderzoeksvraag, Zoekvragen en model, Plaatsing, Verbanden en reflectie) in 12 px vet. Gevuld = `--accent` (op start) of `--zwart` (op het afsluitscherm). Tekstalternatief: „2 van 4 delen van A3-vak 1 gevuld”.
+Grid 2 × 2 (bureaublad: 4 × 1), `gap: 4px`, delen met 2 px rand. Labels (Onderzoeksvraag en zoekvragen, Bronnen, Plaatsing, Verbanden en reflectie) in 12 px vet. Gevuld = `--accent` (op start) of `--zwart` (op het afsluitscherm). Tekstalternatief: „2 van 4 delen van A3-vak 1 gevuld”.
 
 ### Invoerveld
 

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beoordeling e-learning A3 · fase 14</title>
+<style>
+:root{
+  --han:#E50056; --ink:#000000; --paper:#FFFFFF; --grey:#454545; --grey2:#767676;
+  --wash:#F2F2F0; --panel2:#E6E6E3; --line2:#C9C9C4;
+  --blijft:#0038FF;   --blijft2:#DCE4FF;
+  --schuift:#8A6A00;  --schuift2:#FFE875;
+  --weg:#E50056;      --weg2:#FFE1EC;
+  --extern:#6B21D9;   --extern2:#E9DBFF;
+  --bw:3px; --sh:5px 5px 0 var(--ink);
+  --f:"Avenir Next","Avenir","Nunito Sans","Segoe UI",Helvetica,Arial,sans-serif;
+  --fm:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  --measure:70ch;
+}
+*{box-sizing:border-box}
+html{color-scheme:light}
+body{margin:0;background:var(--wash);color:var(--ink);font:18px/1.5 var(--f);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:4px solid var(--han);outline-offset:3px}
+h1,h2,h3,h4{margin:0;text-wrap:balance;font-weight:800;letter-spacing:-.02em;line-height:1.05}
+h2{font-size:clamp(28px,4vw,42px)}
+h2 em{font-style:normal;color:var(--han)}
+h3{font-size:23px;margin-block:28px 10px}
+h4{font-size:19px;margin-block:18px 6px}
+p{margin:0 0 1em;max-inline-size:var(--measure)}
+strong,b{font-weight:700}
+.page{max-inline-size:1140px;margin:0 auto;padding:0 clamp(16px,4vw,48px) 90px}
+section{padding-block:50px;border-block-start:var(--bw) solid var(--ink)}
+section:first-of-type{border-block-start:none}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;margin:0 0 16px;background:var(--ink);color:var(--paper);padding:7px 13px 6px;font:700 13px/1 var(--fm);letter-spacing:.16em;text-transform:uppercase}
+.eyebrow b{color:var(--han)}
+header.mast{background:var(--ink);color:var(--paper);border:var(--bw) solid var(--ink);box-shadow:10px 10px 0 rgba(0,0,0,.22);margin-block:40px 0;padding:clamp(24px,5vw,56px)}
+header.mast .eyebrow{background:var(--han);color:var(--paper)}
+header.mast h1{font-size:clamp(34px,6vw,72px);text-transform:uppercase;line-height:.94;letter-spacing:-.035em;max-inline-size:18ch}
+header.mast h1 em{font-style:normal;color:var(--han)}
+header.mast .lead{font-size:clamp(18px,2.2vw,23px);line-height:1.34;font-weight:600;max-inline-size:62ch;margin:22px 0 0}
+.hdr{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;border:3px solid var(--paper);margin:28px 0 0;padding:0}
+.hdr div{padding:10px 14px;border:1.5px solid var(--paper)}
+.hdr dt{font:700 11px/1.2 var(--fm);letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin-block-end:4px}
+.hdr dd{margin:0;font-size:15.5px;line-height:1.35}
+.tw{overflow-x:auto;margin:16px 0 24px;border:var(--bw) solid var(--ink);background:var(--paper);box-shadow:var(--sh)}
+table.t{inline-size:100%;border-collapse:collapse;font-size:16px;background:var(--paper);min-inline-size:720px}
+table.t th{text-align:left;font:700 12px/1.2 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:9px 12px;vertical-align:bottom}
+table.t td{padding:10px 12px;border-block-start:2px solid var(--ink);vertical-align:top;line-height:1.38}
+table.t tr:first-child td{border-block-start:none}
+table.t td.n{font:700 14px/1.3 var(--fm);white-space:nowrap}
+table.t td.m{font:600 14px/1.35 var(--fm);font-variant-numeric:tabular-nums;white-space:nowrap}
+table.t td.q{color:var(--grey);font-size:15px}
+table.t tr.sub td{background:var(--panel2);font:700 12px/1.2 var(--fm);letter-spacing:.1em;text-transform:uppercase;padding:6px 12px}
+table.mx{min-inline-size:560px}
+table.mx td.sc{font:800 22px/1 var(--fm);text-align:center;inline-size:16%}
+.s0{background:var(--weg2)} .s1{background:var(--schuift2)} .s2{background:var(--blijft2)} .s3{background:#C8F2D0}
+.chip{display:inline-block;font:800 11.5px/1 var(--fm);letter-spacing:.12em;text-transform:uppercase;padding:6px 9px 5px;border:2px solid var(--ink);white-space:nowrap}
+.chip.ok{background:var(--blijft2);border-color:var(--blijft)}
+.chip.weg{background:var(--weg2);border-color:var(--weg)}
+.chip.later{background:var(--extern2);border-color:var(--extern)}
+.chip.tag{background:var(--panel2);border-color:var(--grey2)}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--paper);border:var(--bw) solid var(--ink);padding:16px 18px;box-shadow:var(--sh)}
+.card>b{display:block;font-size:20px;line-height:1.16;margin-block-end:6px;font-weight:800}
+.card>p{font-size:16.5px;line-height:1.42;margin:0 0 .6em;max-inline-size:none}
+.card>p:last-child{margin:0}
+.card.k{border-block-start:9px solid var(--kc,var(--ink));background:var(--kbg,var(--paper))}
+.k-ok{--kc:var(--blijft);--kbg:var(--blijft2)}
+.k-rev{--kc:var(--schuift);--kbg:var(--schuift2)}
+.k-weg{--kc:var(--weg);--kbg:var(--weg2)}
+.k-later{--kc:var(--extern);--kbg:var(--extern2)}
+.kader{border:var(--bw) solid var(--ink);background:var(--paper);box-shadow:var(--sh);margin:18px 0;padding:16px 18px}
+.kader p{font-size:17px;line-height:1.45;max-inline-size:none}
+.kader p:last-child{margin:0}
+ul.big{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:10px;max-inline-size:78ch}
+ul.big li{font-size:17px;line-height:1.42;padding-inline-start:30px;position:relative}
+ul.big li::before{content:"";position:absolute;inset-inline-start:0;inset-block-start:.5em;inline-size:13px;block-size:13px;background:var(--han)}
+blockquote.m{margin:8px 0;padding:6px 0 6px 14px;border-inline-start:5px solid var(--han);font-size:16px;background:var(--paper)}
+code{font:600 14px/1.3 var(--fm)}
+.small{font-size:16px;color:var(--grey)}
+.tiny{font:600 13.5px/1.4 var(--fm);color:var(--grey);letter-spacing:.02em}
+.crit h4{margin-block-start:26px}
+.crit p{font-size:17px}
+.zwak{border-inline-start:5px solid var(--han);padding-inline-start:12px}
+@media print{body{background:#fff;font-size:11pt}.page{max-inline-size:none;padding:0}header.mast{background:#fff;color:#000;border:2px solid #000}header.mast .eyebrow{color:#fff}.hdr{border-color:#000}.hdr div{border-color:#000}header.mast,.card,.tw,.kader{box-shadow:none}.tw{overflow:visible}table.t{min-inline-size:0;font-size:9pt}section{padding-block:22px;break-inside:auto}.card,.kader{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="mast">
+  <span class="eyebrow">Beoordeling · gebouwde e-learning</span>
+  <h1>E-learning A3 na <em>fase 14</em></h1>
+  <p class="lead">PAMS+KISS en de KSF-audit op de gepubliceerde site, vóór de proefsessie en de pilot. Een voorstel aan de ontwerper: elke score heeft een vindplaats, elke zwakte een verbetering.</p>
+  <dl class="hdr">
+    <div><dt>Site</dt><dd>hanbedrijfskunde.github.io/a3-learning, commit <code>6d25ac8</code> (lokaal gelijk aan origin, workflowrun groen)</dd></div>
+    <div><dt>Ontwerp</dt><dd>c-cluster commit <code>f8af8fd</code>, LRD 0.14, ADR B1–B72</dd></div>
+    <div><dt>Stand</dt><dd>Fase 0–4 en 6–14 afgevinkt; fase 5 (proefsessie) en 15 (pilot) open</dd></div>
+    <div><dt>Datum</dt><dd>30 september 2026, één beoordelaar (Claude, in opdracht van de auteur)</dd></div>
+  </dl>
+</header>
+
+<!-- 1 -->
+<section id="oordeel">
+  <span class="eyebrow">1 · <b>Oordeel in het kort</b></span>
+  <h2>Sterk ontwerp, maar de controles en de tijden zijn nooit bij <em>een mens</em> getoetst</h2>
+  <div class="kader">
+    <p><strong>Stand fase 14, commit 6d25ac8. PAMS+KISS: 31/42 (74 %).</strong> Het vaste ritme, de eigen casus, de drie routes en de Wissel werken zoals ontworpen. Het oude oordeel van 29/30 gold voor het ontwerp op papier; de gebouwde site haalt dat op een paar cellen niet.</p>
+    <p><strong>KSF-audit: voldoet nog niet.</strong> Twee knock-outs staan op 1: D4 (een melding met taak- en procesinformatie) en I1 (wat mag de student met AI). Het gemiddelde over 42 gescoorde inputcriteria is 1,79, net onder de grens van 1,8. Proces en opbrengst zijn vóór de pilot niet te beoordelen.</p>
+    <p><strong>De oorzaak die het meeste verklaart:</strong> fase 5 is overgeslagen. Daar zouden 2–3 echte gebruikers de controles en de richttijden hebben getest. Nu keurt de site drie zoekvragen „bla bla bla?" goed als Compleet. Leerblok 3 claimt 45 minuten voor 105 minuten werk. En 13 van de 16 „klaar als"-regels wachten op akkoord van de auteur.</p>
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="matrix">
+  <span class="eyebrow">2 · <b>Scorematrix PAMS+KISS</b></span>
+  <h2>31 van 42</h2>
+  <p>Schaal per cel 0–3 (3 ontworpen, 2 deels, 1 genoemd, 0 afwezig). „Team" is het projectteam van de werkweek; de site zelf is individueel werk op een scherm (LRD §5.1). Dat is een ontwerpkeuze. Het teamniveau scoort daarom wat de site voor het team doet.</p>
+  <div class="tw"><table class="t mx">
+    <thead><tr><th>Criterium</th><th>Team</th><th>Individu</th><th>Verschillen</th><th>Som</th></tr></thead>
+    <tbody>
+      <tr><td class="n">Purpose</td><td class="sc s2">2</td><td class="sc s3">3</td><td class="sc s2">2</td><td class="m">7/9</td></tr>
+      <tr><td class="n">Autonomy</td><td class="sc s2">2</td><td class="sc s3">3</td><td class="sc s2">2</td><td class="m">7/9</td></tr>
+      <tr><td class="n">Mastery</td><td class="sc s2">2</td><td class="sc s2">2</td><td class="sc s2">2</td><td class="m">6/9</td></tr>
+      <tr><td class="n">Social</td><td class="sc s2">2</td><td class="sc s3">3</td><td class="sc s2">2</td><td class="m">7/9</td></tr>
+      <tr class="sub"><td>KISS</td><td>Student</td><td>Docent</td><td></td><td></td></tr>
+      <tr><td class="n">KISS</td><td class="sc s2">2</td><td class="sc s2">2*</td><td class="q">—</td><td class="m">4/6</td></tr>
+      <tr><td class="n" colspan="4">Totaal</td><td class="m">31/42 (74 %)</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">* KISS · Docent steunt op een lezing van de docentmodus door de beoordelaar; de proefrun door een collega (AP-4) is niet gedaan.</p>
+</section>
+
+<!-- 3 -->
+<section id="ksf">
+  <span class="eyebrow">3 · <b>KSF-scorekaart</b></span>
+  <h2>Negen domeinen, alleen de <em>inputlaag</em></h2>
+  <p>Schaal 0–3; vóór de pilot is 2 het plafond. Prio E = essentieel, A = aanvullend. Laag I = input, P = proces, O = opbrengst. <strong>KO</strong> = knock-out (moet ≥ 2). Wie stelde het vast: <b>T</b> test van de repository, <b>B</b> beoordelaar met Playwright of door te lezen, <b>M</b> een mens die de site niet bouwde. Een <code>*</code> betekent: alleen T-bewijs, of steunt op een regel die de beoordelaar niet zelf zag. „n.t.b." = niet te beoordelen vóór de pilot (fase 15), geen 0.</p>
+
+  <h3>A · Didactisch ontwerp en alignment</h3>
+  <div class="tw"><table class="t">
+    <thead><tr><th>ID</th><th>Score</th><th>Prio · laag</th><th>Bewijs en kwaliteit</th><th>Wie</th></tr></thead>
+    <tbody>
+      <tr><td class="n">A1</td><td class="m">2</td><td class="m">E · I</td><td>EL1–EL9 in LRD §3.2 met observeerbare werkwoorden (formuleert, beoordeelt, verbindt), op het niveau van LUK 1 en 5.</td><td class="m">B</td></tr>
+      <tr><td class="n">A2 KO</td><td class="m">2</td><td class="m">E · I</td><td>Elke EV heeft een LUK-koppeling (<code>content-check</code>, BW-12) en de keten LUK → taak → controle → modelantwoord werkt voor EV-01 en EV-04. Twee scheuren: EV-01 noemt „Signaleert knelpunten", dat volgens <code>luk.json</code> niet getoetst wordt; „Betrekt stakeholders" heet gedekt, maar taak 5.1 brengt stakeholders alleen in kaart.</td><td class="m">B, T</td></tr>
+      <tr><td class="n">A3</td><td class="m">2</td><td class="m">A · I</td><td>Het eigen vraagstuk staat op de startpagina vóór alle stof; per taak komt de stof wel vóór de oefencasus.</td><td class="m">B</td></tr>
+      <tr><td class="n">A4</td><td class="m">2</td><td class="m">A · I</td><td>Taak 1.1 haalt voorkennis op (Lean Yellow Belt), „Ik ken dit al" slaat de oefening over, terugblik vanaf leerblok 2.</td><td class="m">B</td></tr>
+      <tr><td class="n">A5</td><td class="m"><span class="chip weg">1</span></td><td class="m">E · I/P</td><td>Elk leerblok zegt „Richttijd: 45 min". De som van de taaktijden: LB1 30, LB2 30, <strong>LB3 105</strong>, LB4 45 minuten, plus 15 terugblik vanaf LB2. B68 noemt het verschil en schuift het naar fase 15; de student ziet het niet.</td><td class="m">B</td></tr>
+      <tr><td class="n">A6</td><td class="m">2</td><td class="m">E · I</td><td>Op <code>index.html</code> staan in één scherm de vier leerblokken, met richttijd, aanbevolen dag en „Eindigt met". De tijden kloppen niet (zie A5).</td><td class="m">B</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>B · Inhoud en multimedia</h3>
+  <div class="tw"><table class="t">
+    <thead><tr><th>ID</th><th>Score</th><th>Prio · laag</th><th>Bewijs en kwaliteit</th><th>Wie</th></tr></thead>
+    <tbody>
+      <tr><td class="n">B1</td><td class="m">2</td><td class="m">E · I</td><td><code>bronnen.html</code> in APA met klikbare in-tekstverwijzingen; link-check ok (15 externe links). In een steekproef van 2.1, 2.2 en 4.1 is de inhoud correct. Kleine fout: „Bakker, J. &amp; De Vries, M." mist de komma vóór &amp; (APA 7). Westmoreland (z.d.) is niet te raadplegen.</td><td class="m">B, T</td></tr>
+      <tr><td class="n">B2</td><td class="m">2</td><td class="m">E · I</td><td>Geen muziek, geen sfeerbeelden. Video's zijn tekstdia's met computerstem.</td><td class="m">B</td></tr>
+      <tr><td class="n">B3</td><td class="m">2</td><td class="m">A · I</td><td>Elke taak: nummer, waarom, tijd, „klaar als". Vaktermen uitgelegd in de zin zelf („Een pain is een last of ergernis…").</td><td class="m">B, T</td></tr>
+      <tr><td class="n">B4</td><td class="m">2</td><td class="m">E · I</td><td>V1–V4 duren 1:54–2:13, met bedieningsknoppen en zonder autoplay; ze laden pas na een klik.</td><td class="m">B</td></tr>
+      <tr><td class="n">B5</td><td class="m">—</td><td class="m">A · I</td><td>Niet waargenomen: de beoordelaar bekeek de dia's niet beeld voor beeld. Valt uit het gemiddelde.</td><td class="m">—</td></tr>
+      <tr><td class="n">B6</td><td class="m">2</td><td class="m">A · I</td><td>Afbouw is er: uitgewerkt voorbeeld (organisatie Y) → oefencasus webshop X met modelantwoord → eigen vraagstuk.</td><td class="m">B</td></tr>
+      <tr><td class="n">B7</td><td class="m">2*</td><td class="m">E · I</td><td>CC BY-SA 4.0 in de voettekst en <code>LICENSE</code>; kijktips alleen als link naar YouTube.</td><td class="m">T, B</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>C · Activering en interactie</h3>
+  <div class="tw"><table class="t">
+    <thead><tr><th>ID</th><th>Score</th><th>Prio · laag</th><th>Bewijs en kwaliteit</th><th>Wie</th></tr></thead>
+    <tbody>
+      <tr><td class="n">C1</td><td class="m">2</td><td class="m">E · I</td><td>ICAP gewogen met richttijd: constructief ± 90 %, interactief ± 4 % (alleen 6.2 met de Wissel), passief ± 3 % (video), actief 0–7 % (spel). De constructieve taken vragen echt eigen tekst op het eigen vraagstuk. Tabel in <a href="#icap">deel 4</a>.</td><td class="m">B</td></tr>
+      <tr><td class="n">C2</td><td class="m">2</td><td class="m">E · I</td><td>Elke taak volgt waarom → stof → oefenen → toepassen → klaar; de controles reageren binnen 1 s.</td><td class="m">B, T</td></tr>
+      <tr><td class="n">C3</td><td class="m">2</td><td class="m">A · I/P</td><td>EV-09 blijft op Bijna zonder feedback van een ander (WS-8); overslaan kost dus iets zichtbaars.</td><td class="m">T, B</td></tr>
+      <tr><td class="n">C4</td><td class="m">2</td><td class="m">A · I</td><td>Het eigen werk komt later terug: 5.1 controleert de gebruiker uit EV-01, 8.1 koppelt aannames aan zoekvragen, 9.4 verbindt modellen.</td><td class="m">B</td></tr>
+      <tr><td class="n">C5</td><td class="m">n.t.b.</td><td class="m">A · P</td><td>Pas na de pilot.</td><td class="m">—</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>D · Toetsing, oefenen en feedback</h3>
+  <div class="tw"><table class="t">
+    <thead><tr><th>ID</th><th>Score</th><th>Prio · laag</th><th>Bewijs en kwaliteit</th><th>Wie</th></tr></thead>
+    <tbody>
+      <tr><td class="n">D1 KO</td><td class="m">2</td><td class="m">E · I</td><td>Oefenversie per taak, overslaanbaar, zonder gevolgen voor de status; modelantwoord pas na een eigen poging. Maar: steeds dezelfde vraag op dezelfde casus, en in de videoroute van leerblok 2 staat het transcript open, mét het modelantwoord van 4.1, terwijl het modelantwoord bij de oefening nog leeg is. Onder elk modelantwoord staat zichtbaar „undefined".</td><td class="m">B</td></tr>
+      <tr><td class="n">D2</td><td class="m"><span class="chip weg">1</span></td><td class="m">E · I</td><td>De terugblik volgt de vier pauzebanden correct (1 uur, 1 dag, 5 en 14 dagen doorgelopen). Maar hij haalt alleen het vorige leerblok op, en de site raadt leerblok 1, 2 en 3 aan op dezelfde dag. In het werkcollege is de pauze dus korter dan 2 uur en krijgt de student alleen de transfervraag.</td><td class="m">B</td></tr>
+      <tr><td class="n">D3</td><td class="m">2</td><td class="m">E · I</td><td>Oefencasussen en transfervragen vragen toepassing; 4 van de 6 kennisvragen in de terugblik zijn reproductie („Noem de vijf AAOCC-criteria").</td><td class="m">B</td></tr>
+      <tr><td class="n">D4 KO</td><td class="m"><span class="chip weg">1</span></td><td class="m">E · I/P</td><td>Zes van tien meldingen geven wat ontbreekt én wat je doet. De woordtelmeldingen zeggen alleen „maak het concreter". Kern van de 1: <strong>drie zoekvragen „bla bla bla?", „ja nee misschien?", „hoe dan?" krijgen Compleet</strong>; „veel" als antwoord op „wat mis je bij één frame" krijgt geen melding. Overgenomen plaatshouders <code>&lt;gebruiker&gt;</code> geven Bijna, geen Nog niet. Meldingen letterlijk in <a href="#meldingen">deel 4</a>.</td><td class="m">B</td></tr>
+      <tr><td class="n">D5</td><td class="m"><span class="chip weg">1</span></td><td class="m">E · I</td><td>„Klaar als" staat bij elke taak en het modelantwoord bij elke oefening. 13 van de 16 „klaar als"-regels en 11 van de 16 „waarom"-regels zijn concept van de bouwer (<code>concept-auteur</code>, 106 waarschuwingen in <code>content-check</code>) en tellen nog niet als bevestigd.</td><td class="m">T, B</td></tr>
+      <tr><td class="n">D6</td><td class="m">2</td><td class="m">E · I</td><td>Alleen de vraag of het dossier dekt wat het claimt (de rest valt bewust buiten de site, X-14). EV-01 t/m EV-11 dekken de vijf „gedekt"-onderdelen; zie de scheuren bij A2.</td><td class="m">B</td></tr>
+      <tr><td class="n">D7</td><td class="m">2</td><td class="m">E · I/P</td><td>Site: binnen 1 s na de laatste toetsaanslag. Docentfeedback op het dossier: n.t.b.</td><td class="m">B, T</td></tr>
+      <tr><td class="n">D8</td><td class="m"><span class="chip weg">1</span></td><td class="m">E · I</td><td>De site zegt eerlijk „Aanwezig en consistent. Of het goed is, bespreek je met je coach." Een AI-tekst haalt Compleet, en nergens staat wat AI bij eigen tekst mag (zie I1). Versiegeschiedenis en coachgesprek zijn het tegenwicht (LRD Deel 9).</td><td class="m">B</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>E · Begeleiding en sociale aanwezigheid</h3>
+  <div class="tw"><table class="t">
+    <thead><tr><th>ID</th><th>Score</th><th>Prio · laag</th><th>Bewijs en kwaliteit</th><th>Wie</th></tr></thead>
+    <tbody>
+      <tr><td class="n">E1</td><td class="m"><span class="chip weg">1</span></td><td class="m">E · I</td><td>De site noemt de coach bij Compleet en bij „Mijn stand". Nergens staat wie de coach is, wanneer je die ziet, of wat je doet als je vastloopt.</td><td class="m">B</td></tr>
+      <tr><td class="n">E2</td><td class="m">n.t.b.</td><td class="m">E · P</td><td>De inputkant is klaar: docentkaart met rondloopvragen en „als het anders loopt" bij elk onderdeel.</td><td class="m">B</td></tr>
+      <tr><td class="n">E3</td><td class="m">n.t.b.</td><td class="m">A · P</td><td>Herinnering na 7 dagen dezelfde status (WS-11); geen mail (X-9, bewust).</td><td class="m">T</td></tr>
+      <tr><td class="n">E4</td><td class="m"><span class="chip weg">1</span></td><td class="m">A · I/P</td><td>Geen plek voor vragen in de site; alleen de zaal. Deels bewust (X-8, X-9), maar ook een zin „stel je vraag in het werkcollege of aan je coach" ontbreekt.</td><td class="m">B</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>F · Navigatie en techniek</h3>
+  <div class="tw"><table class="t">
+    <thead><tr><th>ID</th><th>Score</th><th>Prio · laag</th><th>Bewijs en kwaliteit</th><th>Wie</th></tr></thead>
+    <tbody>
+      <tr><td class="n">F1</td><td class="m">2</td><td class="m">E · I</td><td>Elke pagina in 1 klik via het menu; taken via een inhoudsopgave per leerblok. Het menu mengt student en docent (9 items).</td><td class="m">B</td></tr>
+      <tr><td class="n">F2</td><td class="m">2</td><td class="m">E · I</td><td>577/577 tests, content- en link-check groen; 0 consolefouten op 11 pagina's bij 360 en 1280 px. Eén zichtbare fout: „undefined" onder elk modelantwoord (<code>js/leerblok.js:128</code>).</td><td class="m">T, B</td></tr>
+      <tr><td class="n">F3</td><td class="m">2*</td><td class="m">E · I</td><td>Studentintroductie van één pagina, README, melding bij geblokkeerde opslag (DS-12, alleen door test gezien).</td><td class="m">B, T</td></tr>
+      <tr><td class="n">F4</td><td class="m">2</td><td class="m">A · I</td><td>0 px horizontale scroll op 360 px op alle 11 pagina's. Wel lang: leerblok 3 is op 360 px 33.718 px hoog (± 42 schermen).</td><td class="m">B</td></tr>
+      <tr><td class="n">F5</td><td class="m">2</td><td class="m">A · I</td><td>0 verzoeken naar andere domeinen tijdens de hele doorloop.</td><td class="m">B</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>G · Toegankelijkheid en inclusie</h3>
+  <div class="tw"><table class="t">
+    <thead><tr><th>ID</th><th>Score</th><th>Prio · laag</th><th>Bewijs en kwaliteit</th><th>Wie</th></tr></thead>
+    <tbody>
+      <tr><td class="n">G1 KO</td><td class="m">2</td><td class="m">E · I</td><td>Alle vier video's hebben een Nederlandse WebVTT (V2: 35 cues) en een transcript. Ondertitel en transcript komen uit dezelfde spreektekst als de computerstem. Conceptvideo's, als zodanig gelabeld.</td><td class="m">B</td></tr>
+      <tr><td class="n">G2 KO</td><td class="m">2</td><td class="m">E · I</td><td>Lighthouse toegankelijkheid 100 op leerblok 3 en het dossier (mobiel). Een score van 100 is geen conformiteitsverklaring.</td><td class="m">B</td></tr>
+      <tr><td class="n">G3 KO</td><td class="m">2*</td><td class="m">E · I</td><td>Contrast ≥ 4,5:1 via <code>contrast.test.mjs</code>; docentgids en introductie als HTML met koppen. De afdrukpagina's zijn niet los geaudit.</td><td class="m">T, B</td></tr>
+      <tr><td class="n">G4 KO</td><td class="m">2</td><td class="m">E · I</td><td>Spel Bronnen-detective met alleen Tab en Enter gespeeld; video met Enter gestart; focusrand 4 px op elk bereikt element. Leerblok 1 zonder muis: TG-2-test.</td><td class="m">B, T</td></tr>
+      <tr><td class="n">G5</td><td class="m">2</td><td class="m">A · I</td><td>Tekst, video of spel in alle vier de leerblokken; alles is met alleen tekst te doen (MD-12).</td><td class="m">B</td></tr>
+      <tr><td class="n">G6</td><td class="m"><span class="chip weg">1</span></td><td class="m">A · I</td><td>Geen stereotypen gevonden. Alle voorbeelden komen uit één sector: webshop X en organisatie Y. Eén keer „zijn onderzoeksvraag" waar elders „hij of zij" staat.</td><td class="m">B</td></tr>
+      <tr><td class="n">G7</td><td class="m">n.v.t.</td><td class="m">A · I</td><td>Geen ingekochte tools (PR-1, X-4, X-5).</td><td class="m">—</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>H · Evaluatie, data en verbetering</h3>
+  <div class="tw"><table class="t">
+    <thead><tr><th>ID</th><th>Score</th><th>Prio · laag</th><th>Bewijs en kwaliteit</th><th>Wie</th></tr></thead>
+    <tbody>
+      <tr><td class="n">H1</td><td class="m">n.t.b.</td><td class="m">E · P</td><td>Vragenlijst van 3 vragen gepland (BUILDPLAN 15.4).</td><td class="m">—</td></tr>
+      <tr><td class="n">H2</td><td class="m">n.t.b.</td><td class="m">E · P</td><td>Geen server of analytics (X-1). Niet n.v.t.: het ADR legt nergens vast dat de tijdnotities (AP-2) en de terugbliklogs (TP-8) de vervanging zijn. Zie spanningen.</td><td class="m">—</td></tr>
+      <tr><td class="n">H3</td><td class="m">n.t.b.</td><td class="m">E · P</td><td>72 besluiten, zorgvuldig. Maar geen enkel besluit rust op gegevens van studenten of docenten, en het overslaan van fase 5 staat niet in het ADR.</td><td class="m">B</td></tr>
+      <tr><td class="n">H4</td><td class="m">n.t.b.</td><td class="m">E · O</td><td>Kan het na de pilot? Zoals nu gepland niet: er is geen nulmeting en geen vergelijking. AP-6 en AP-8 komen het dichtst bij.</td><td class="m">B</td></tr>
+      <tr><td class="n">H5</td><td class="m">n.t.b.</td><td class="m">A · O</td><td>AP-3 („ik wist wat ik moest doen") en AP-7 (favoriet medium) meten ervaring. Rapporteer ze zo, niet als leerwinst.</td><td class="m">B</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>I · AI, privacy en integriteit</h3>
+  <div class="tw"><table class="t">
+    <thead><tr><th>ID</th><th>Score</th><th>Prio · laag</th><th>Bewijs en kwaliteit</th><th>Wie</th></tr></thead>
+    <tbody>
+      <tr><td class="n">I1 KO</td><td class="m"><span class="chip weg">1</span></td><td class="m">E · I</td><td>Alleen taak 3.2 regelt AI: route B mag, controleer elke bron, geen namen van de opdrachtgever in een prompt. Voor alle eigen teksten (EV-01 t/m EV-11) staat nergens of AI mag en hoe je dat verantwoordt: niet in de introductie, niet op de startpagina, niet per taak.</td><td class="m">B</td></tr>
+      <tr><td class="n">I2, I3</td><td class="m">n.v.t.</td><td class="m">E</td><td>De site bevat geen AI (X-2).</td><td class="m">—</td></tr>
+      <tr><td class="n">I4</td><td class="m">2</td><td class="m">E · I</td><td>Per constructie: geen AI-beoordeling of proctoring (X-2, X-14).</td><td class="m">B</td></tr>
+      <tr><td class="n">I5</td><td class="m">2</td><td class="m">E · I</td><td>Alles blijft in de browser; export alleen door de student; verificatie lokaal (DS-10, getest met netwerktrace).</td><td class="m">B, T</td></tr>
+      <tr><td class="n">I6</td><td class="m">2</td><td class="m">E · I</td><td>Privacytekst op de start (79 woorden) en bij de Wissel (45 woorden), in gewone taal, en juist.</td><td class="m">B</td></tr>
+      <tr><td class="n">I7</td><td class="m">2</td><td class="m">A · I</td><td>Onderdeel van EL5: stelling 4.2 over AI en de controle van AI-bronnen in 4.1; ook in het spel („Genoemd door een AI-tool").</td><td class="m">B</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Deelscores en knock-outs</h3>
+  <div class="grid g3">
+    <div class="card k k-rev"><b>I · input: 1,79</b><p>75 punten over 42 gescoorde criteria (B5 niet waargenomen, G7, I2 en I3 n.v.t.). Grens 1,8.</p></div>
+    <div class="card k k-later"><b>P · proces: n.t.b.</b><p>C5, E2, E3, H1–H3 en de P-kant van A5, D4 en D7. Te beoordelen na fase 15.</p></div>
+    <div class="card k k-later"><b>O · opbrengst: n.t.b.</b><p>H4, H5. Voor H4 ontbreekt ook na de pilot een nulmeting.</p></div>
+  </div>
+  <p style="margin-top:18px"><strong>E-criteria onder 2:</strong> A5, D2, D4, D5, D8, E1, I1. <strong>Knock-outs onder 2:</strong> D4 en I1. De overige knock-outs (A2, D1, G1–G4) staan op 2.</p>
+</section>
+
+<!-- 4 -->
+<section id="criteria" class="crit">
+  <span class="eyebrow">4 · <b>Per criterium</b></span>
+  <h2>Wat werkt, en wat <em>zwak</em> is</h2>
+
+  <h3>Purpose · 7/9</h3>
+  <p><strong>Team 2.</strong> De A3 is „jullie praatplaat voor de opdrachtgever" (1.1) en 9.2 herschrijft de onderzoeksvraag voor die opdrachtgever. Wat de student maakt, is dus echt.</p>
+  <p class="zwak"><strong>Zwak:</strong> 13 taken heten „Team", maar de site legt ze per student vast; een team ziet nergens zijn gezamenlijke A3 groeien. <em>Verbetering:</em> maak het label eerlijk („Met je team bespreken, hier alleen invullen") of laat de afdruk van leerblok 3 als teamvel dienen.</p>
+  <p><strong>Individu 3.</strong> Het eigen vraagstuk en de waarom-zin staan bovenaan elk leerblok („Jouw vraagstuk"), elke taak begint met een concreet „waarom", het dossier toont per LUK-onderdeel wat de student al bewees.</p>
+  <p><strong>Verschillen 2.</strong> Wie geen scherp vraagstuk heeft, vinkt dat aan en krijgt het label „voorlopig".</p>
+  <p class="zwak"><strong>Zwak:</strong> die student werkt verder op een vaag vraagstuk, zonder reservecasus. <em>Verbetering:</em> bied bij „nog geen scherp vraagstuk" webshop X als tijdelijke eigen casus aan, met het label voorlopig.</p>
+
+  <h3>Autonomy · 7/9</h3>
+  <p><strong>Team 2.</strong> Het team kiest één model (2.2) en splitst zich over route A en B (3.2). <strong>Individu 3.</strong> Volgorde zonder slot, drie routes, oefening overslaan, terugblik overslaan, verdieping, en keuzes in de inhoud (stelling, gedrag in STARR). <strong>Verschillen 2.</strong> Routes en verdieping zijn er; een opstap voor wie vastloopt is er alleen in de vorm van het modelantwoord.</p>
+  <p class="zwak"><strong>Zwak:</strong> de keuzes van het team worden niet vastgelegd als teamkeuze; elke student kiest het model voor zichzelf. <em>Verbetering:</em> geen; dit is de prijs van geen server (X-1). Noem het in de docentgids.</p>
+
+  <h3>Mastery · 6/9</h3>
+  <p><strong>Individu 2.</strong> Het ritme oefenen → modelantwoord → toepassen → controle binnen 1 s is overal hetzelfde en het werkt. De controles op samenhang zijn goed: „Je koos alleen het financiële kapitaal; kies ook een ander kapitaal, zodat de waarde verder gaat dan geld."</p>
+  <p class="zwak"><strong>Zwak:</strong> de maatstaf lekt aan twee kanten. Onzin met een vraagteken is Compleet, en een goede korte zin blijft op Bijna („minder afval ontstaat": drie woorden). Wie leert dat vier woorden genoeg zijn, leert iets anders dan het doel. <em>Verbetering:</em> zie Top 3, punt 2.</p>
+  <p><strong>Team 2.</strong> Post-its van andere teams komen met één teamactie in het dossier (WS-6). <strong>Verschillen 2.</strong> Terugblik op maat van de pauze, verdieping per leerblok.</p>
+
+  <h4 id="meldingen">Tien meldingen, letterlijk</h4>
+  <p class="small">W = de beoordelaar zag hem op de site, C = uit de code. T = zegt wat ontbreekt, P = zegt hoe verder.</p>
+  <blockquote class="m">1. „Je koos alleen het financiële kapitaal; kies ook een ander kapitaal, zodat de waarde verder gaat dan geld." <span class="tiny">W · T+P</span></blockquote>
+  <blockquote class="m">2. „Twee zoekvragen gebruiken hetzelfde frame; kies voor elke zoekvraag een ander frame." <span class="tiny">W · T+P</span></blockquote>
+  <blockquote class="m">3. „Zoekvraag 1 moet eindigen op „?"." <span class="tiny">W · T+P</span></blockquote>
+  <blockquote class="m">4. „De waardecreatie heeft minder dan 4 woorden; maak het concreter." <span class="tiny">W · T, P vaag</span></blockquote>
+  <blockquote class="m">5. „Bekijk de oefening op de oefencasus (het modelantwoord verschijnt nadat je zelf een poging hebt gedaan)." <span class="tiny">W · P</span></blockquote>
+  <blockquote class="m">6. „In je zoekstring staat nog geen zoekoperator; gebruik „aanhalingstekens", AND, OR, NOT, * of ?." <span class="tiny">C · T+P</span></blockquote>
+  <blockquote class="m">7. „Je gebruiker uit EV-01 („…") staat niet in je stakeholderlijst. Zet hem erin, of pas je onderzoeksvraag aan." <span class="tiny">C · T+P</span></blockquote>
+  <blockquote class="m">8. „Je vulde n van de m velden in die ik minstens verwacht; …" <span class="tiny">C · T, P zwak</span></blockquote>
+  <blockquote class="m">9. „Je hebt n verbanden; trek er minstens m." <span class="tiny">C · T</span></blockquote>
+  <blockquote class="m">10. „Aanwezig en consistent. Of het goed is, bespreek je met je coach." <span class="tiny">W · eerlijk, geen inhoud</span></blockquote>
+
+  <h4 id="icap">ICAP, gewogen met richttijd</h4>
+  <div class="tw"><table class="t">
+    <thead><tr><th>Soort</th><th>Minuten</th><th>Aandeel</th><th>Waar</th></tr></thead>
+    <tbody>
+      <tr><td class="n">Constructief</td><td class="m">245</td><td class="m">± 90 %</td><td>15 van de 16 taken en de terugblik: eigen tekst op het eigen vraagstuk</td></tr>
+      <tr><td class="n">Interactief</td><td class="m">10</td><td class="m">± 4 %</td><td>6.2 gallery walk en Wissel</td></tr>
+      <tr><td class="n">Actief</td><td class="m">0–19</td><td class="m">0–7 %</td><td>spel, als de student die route kiest</td></tr>
+      <tr><td class="n">Passief</td><td class="m">± 8</td><td class="m">± 3 %</td><td>video, als de student die route kiest</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Social · 7/9</h3>
+  <p><strong>Individu 3.</strong> De Wissel vraagt feedback aan een teamgenoot, medestudent of coach; EV-09 toont „ontvangen" en „gegeven", en een kopiecontrole ziet het als de tekst van de partner is overgenomen. Dat is een mechanisme met een zichtbaar spoor. <strong>Team 2.</strong> Post-its van andere teams, één teamactie. <strong>Verschillen 2.</strong> De rol „medestudent" laat een partner van buiten het team toe, maar de site stuurt daar niet op.</p>
+  <p class="zwak"><strong>Zwak:</strong> interactie zit in één taak van 10 minuten, aan het eind. <em>Verbetering:</em> geen extra taak; laat de docentmodus na 2.2 één Wisselronde draaien (het paneel staat daar al).</p>
+
+  <h3>KISS · 4/6</h3>
+  <p><strong>Student 2.</strong> Eén ritme van vijf stappen, één plek, één doorlopende oefencasus. Dat is het sterkste punt van de site.</p>
+  <p class="zwak"><strong>Zwak:</strong> er zit ruis in die vertrouwen kost. Onder elk modelantwoord staat „undefined". Boven een leerblok van 105 minuten staat 45 minuten. De statusregels tonen EV-codes. De taken verwijzen naar „het werkboek", „vel 1" en „THEO SM week 3", die niet op de site staan. En leerblok 3 is op een telefoon ± 42 schermen lang. De UX-review in <code>docs/ux-review/</code> (niet gecommit) komt los hiervan tot hetzelfde: „De inhoud is sterk. De ervaring voelt als een formulier."</p>
+  <p><strong>Docent 2*.</strong> De docentmodus heeft een klok, een stapkaart voor het scherm en een docentkaart met rondloopvragen en „als het anders loopt". LRD §5.2 heeft vijftien KISS-afwijzingen met genoemd alternatief.</p>
+  <p class="zwak"><strong>Zwak:</strong> elke docentkaart verwijst naar dianummers in een slidedeck dat niet in de site zit. Kaart 9 zegt zelf „Dia 24 noemt nog Wikipedia: zeg de nieuwe stelling hardop of pas de dia aan". <em>Verbetering:</em> pas dia 24 aan en noem het deck met vindplaats op de eerste docentkaart.</p>
+</section>
+
+<!-- 5 -->
+<section id="spanningen">
+  <span class="eyebrow">5 · <b>Spanningen</b></span>
+  <h2>Waar criteria botsen</h2>
+  <div class="grid g2">
+    <div class="card"><b>Eerlijke vormcontrole tegen feedback (D4)</b><p>De site controleert bewust alleen vorm (X-14, B5) en zegt dat bij elke Compleet. Dat is eerlijk. Maar het woord „Compleet" bij onzin werkt tegen die eerlijkheid in. Het ontwerp kiest eerlijkheid; de controles moeten dan wel strenger op vorm zijn.</p></div>
+    <div class="card"><b>Eenvoud tegen gespreid ophalen (D2)</b><p>Eén terugblik per leerblok, alleen naar het vorige, is eenvoudig. Samen met de planning (LB1–3 op één dag) betekent het dat gespreid ophalen in het werkcollege bijna niet gebeurt. Het ontwerp kiest eenvoud.</p></div>
+    <div class="card"><b>Privacy tegen learning analytics (H2)</b><p>Geen server, geen analytics (X-1, PR-1): de docent ziet alleen wat studenten exporteren. Daarmee valt inzicht weg in waar studenten vastlopen. Het ontwerp kiest privacy; leg in het ADR vast dat AP-2 en TP-8 de vervanging zijn.</p></div>
+    <div class="card"><b>Keuzevrijheid tegen alignment (A2)</b><p>Elk leerblok is vrij te openen, de oefening vrij over te slaan. De bewijsketen blijft intact omdat bewijs alleen uit de toepassing komt (TK-4). Hier lost het ontwerp de botsing goed op.</p></div>
+  </div>
+  <p style="margin-top:18px"><strong>Bewuste exclusies (BLUEPRINT §8), geen vergissingen:</strong> X-1 geen backend of LRS · X-2 geen AI-beoordeling · X-3 geen scores of badges · X-6 geen live klasoverzicht · X-8 geen chat of adaptieve paden · X-9 geen mail · X-14 geen kwaliteitsoordeel over het bewijs.</p>
+</section>
+
+<!-- 6 -->
+<section id="top3">
+  <span class="eyebrow">6 · <b>Top 3 verbeteringen</b></span>
+  <h2>Wat de meeste punten oplevert</h2>
+  <div class="grid g3">
+    <div class="card k k-weg"><b>1 · Zeg wat de student buiten de site doet</b>
+      <p>Zet één alinea in de studentintroductie en op de startpagina. Die zegt wat je met AI mag bij je eigen tekst en hoe je dat vermeldt. En hij zegt wie je coach is en waar je terechtkunt als je vastloopt. Herhaal de AI-regel kort bij 2.1, 9.4 en 6.3.</p>
+      <p class="tiny">I1 1→2 (KO) · D8 1→2 · E1 1→2 · E4 1→2 · moeite: klein, maar de regel zelf is een besluit van de opleiding</p></div>
+    <div class="card k k-weg"><b>2 · Scherp de controles aan en doe alsnog fase 5</b>
+      <p>Woordminimum op zoekvragen, de modelverantwoording en „wat mis je"; <code>&lt;…&gt;</code> geeft Nog niet; elke woordtelmelding krijgt een hoe-verder („noem wie, waar of hoeveel"). Herstel <code>js/leerblok.js:128</code> („undefined") en klap het transcript in tot na de oefenpoging. Leg daarna de controles aan 2–3 echte studenten voor (BUILDPLAN 5.1–5.6), met een ADR-regel als dat niet lukt.</p>
+      <p class="tiny">D4 1→2 (KO) · Mastery · Individu blijft 2 maar sterker · KISS · Student 2→3 mogelijk · moeite: middel</p></div>
+    <div class="card k k-rev"><b>3 · Auteursronde: teksten en tijden</b>
+      <p>Geef akkoord op (of herschrijf) de 13 „klaar als"- en 11 „waarom"-regels. Maak de richttijd eerlijk: splits leerblok 3 of zet er 105 minuten bij. Leg de aanbevolen dag van leerblok 3 of 4 minstens twee dagen na het vorige, zodat de terugblik echt ophaalt.</p>
+      <p class="tiny">D5 1→2 · A5 1→2 · D2 1→2 · KISS · Student · moeite: middel, alleen de auteur kan het</p></div>
+  </div>
+  <p style="margin-top:18px">Met deze drie staan alle E-criteria en knock-outs op 2 en stijgt het I-gemiddelde naar ± 1,95: de module voldoet dan vóór de pilot.</p>
+</section>
+
+<!-- 7 -->
+<section id="behouden">
+  <span class="eyebrow">7 · <b>Niet slopen</b></span>
+  <h2>Wat een herziening moet overleven</h2>
+  <ul class="big">
+    <li>Het ritme waarom → stof → oefenen → toepassen → klaar, in elke taak gelijk.</li>
+    <li>Modelantwoord pas na een eigen poging (in de tekstroute werkt dat al goed).</li>
+    <li>Bewijs alleen uit de toepassing op het eigen vraagstuk; oefening en spel leveren niets op voor het dossier.</li>
+    <li>De eerlijke zin bij Compleet: „Of het goed is, bespreek je met je coach."</li>
+    <li>Controles op samenhang die het eigen werk van eerdere leerblokken gebruiken (gebruiker uit EV-01 in de stakeholderlijst).</li>
+    <li>Tekst, video of spel, alles ook met alleen tekst; spellen volledig met het toetsenbord en met feedback per keuze.</li>
+    <li>De terugblik in vier pauzebanden, met ophalen vóór de meenemen-kaart.</li>
+    <li>Geen server, geen cookies, 0 verzoeken naar derden, en een privacytekst die dat in gewone taal zegt.</li>
+    <li>De testpoort: 577 tests, content- en link-check vóór elke publicatie.</li>
+    <li>De docentkaart met „als het anders loopt" bij elk onderdeel.</li>
+  </ul>
+</section>
+
+<!-- 8 -->
+<section id="verantwoording">
+  <span class="eyebrow">8 · <b>Verantwoording</b></span>
+  <h2>Hoe dit oordeel tot stand kwam</h2>
+
+  <h3>Bewijs en wie het vaststelde</h3>
+  <div class="tw"><table class="t">
+    <thead><tr><th>Bewijsstuk</th><th>Wie</th><th>Uitkomst</th></tr></thead>
+    <tbody>
+      <tr><td>Testpoort (<code>node --test</code>, content-check, link-check)</td><td class="m">T</td><td>577/577; content-check ok met 106 waarschuwingen; 15 externe links ok</td></tr>
+      <tr><td>Doorloop startpagina, leerblok 1 (zes invoeren op 2.1, vier op 2.2), herladen</td><td class="m">B</td><td>Meldingen letterlijk vastgelegd; opslag overleeft herladen</td></tr>
+      <tr><td>Terugblik met tijdstempels op 1 uur, 1 dag, 5 en 14 dagen</td><td class="m">B</td><td>Juiste band bij alle vier</td></tr>
+      <tr><td>Video V2 en spel Bronnen-detective met alleen het toetsenbord</td><td class="m">B</td><td>Werkt; transcript toont het modelantwoord te vroeg</td></tr>
+      <tr><td>11 pagina's op 360 en 1280 px: consolefouten, externe verzoeken, scroll</td><td class="m">B</td><td>0 / 0 / 0 px</td></tr>
+      <tr><td>Lighthouse (mobiel) op leerblok 3 en dossier</td><td class="m">B</td><td>Toegankelijkheid 100</td></tr>
+      <tr><td>Docentmodus deel 1, elf docentkaarten gelezen</td><td class="m">B</td><td>Volledig, leunt op een extern slidedeck</td></tr>
+      <tr><td>Datafiles: ICAP, alignment, concepttekst, vraagniveau, AI-beleid</td><td class="m">B</td><td>Gelezen door een hulpagent van de beoordelaar, steekproefsgewijs nagelopen</td></tr>
+      <tr><td>Export, import en verificatie van het dossier</td><td class="m">T</td><td>Alleen door tests en de Playwright-doorloop van de bouwer; niet opnieuw gedaan</td></tr>
+      <tr><td>Iets vastgesteld door een mens die de site niet bouwde</td><td class="m">M</td><td><strong>Niets.</strong> Fase 5, de proeflezer, de proefrun docent en de controle op de achterste rij wachten allemaal op een mens</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Wat niet te beoordelen was</h3>
+  <ul class="big">
+    <li>Proces en opbrengst (C5, E2, E3, H1–H5): er zijn nog geen studenten geweest. Te verzamelen in fase 15: tijdnotities van de docent (AP-2), de vragenlijst (AP-3, AP-7), de terugbliklogs (AP-8), de lezing van EV-11 (AP-6), en een gesprek met 5–8 studenten.</li>
+    <li>Of een student begrijpt wat de site vraagt (AP-3). Playwright bewijst dat een functie werkt, niet dat een eerstejaars hem snapt.</li>
+    <li>B5 (schermtekst tegen gesproken tekst): niet beeld voor beeld bekeken.</li>
+    <li>Edge en echte Safari (8.9): niet getest, ook niet door de beoordelaar.</li>
+  </ul>
+
+  <h3>Criteria die vervallen</h3>
+  <p>I2 en I3 (AI-tutor, AI-feedback): de site bevat bewust geen AI (BLUEPRINT X-2). G7 (ingekochte tools): er zijn er geen (PR-1, X-4, X-5). H2 is <em>niet</em> als n.v.t. behandeld, omdat het ADR de vervanging niet vastlegt.</p>
+
+  <h3>Vergelijking met de vorige beoordeling</h3>
+  <p>De vorige beoordeling gold LRD 0.12, op papier, met tien cellen (Team en Individu). Deze beoordeling heeft veertien cellen, omdat „Ruimte voor verschillen" er als eigen niveau bij kwam. Vergelijk daarom alleen de tien gedeelde cellen:</p>
+  <div class="tw"><table class="t">
+    <thead><tr><th>Cel</th><th>LRD 0.12 (ontwerp)</th><th>Fase 14 (gebouwd)</th><th>Waarom anders</th></tr></thead>
+    <tbody>
+      <tr><td class="n">Purpose · Team</td><td class="m">3</td><td class="m">2</td><td>„Team"-taken worden per student vastgelegd</td></tr>
+      <tr><td class="n">Purpose · Individu</td><td class="m">3</td><td class="m">3</td><td></td></tr>
+      <tr><td class="n">Autonomy · Team</td><td class="m">3</td><td class="m">2</td><td>Teamkeuzes zijn individuele invoer</td></tr>
+      <tr><td class="n">Autonomy · Individu</td><td class="m">3</td><td class="m">3</td><td></td></tr>
+      <tr><td class="n">Mastery · Team</td><td class="m">3</td><td class="m">2</td><td>Teamfeedback alleen in 6.2</td></tr>
+      <tr><td class="n">Mastery · Individu</td><td class="m">3</td><td class="m">2</td><td>Controles laten onzin door en keuren korte goede zinnen af</td></tr>
+      <tr><td class="n">Social · Team</td><td class="m">3</td><td class="m">2</td><td>Interactie in één taak van 10 minuten</td></tr>
+      <tr><td class="n">Social · Individu</td><td class="m">3</td><td class="m">3</td><td></td></tr>
+      <tr><td class="n">KISS · Student</td><td class="m">3</td><td class="m">2</td><td>Ruis: „undefined", tijden, verwijzingen naar werkboek, paginalengte</td></tr>
+      <tr><td class="n">KISS · Docent</td><td class="m">2*</td><td class="m">2*</td><td>AP-4 nog steeds niet door een collega gedaan</td></tr>
+      <tr><td class="n">Totaal gedeelde cellen</td><td class="m">29/30</td><td class="m">23/30</td><td>Het ontwerp beloofde meer dan de bouw nu laat zien</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Grenzen van dit oordeel</h3>
+  <p>Alle scores komen van één beoordelaar; de kalibratieronde met een tweede beoordelaar uit het KSF-onderzoek ontbreekt. De criteria G, I4 en I5 zijn een technische toets en geen juridisch oordeel: de definitieve lezing van de EAA, de AVG en het Bdto hoort bij de juridische afdeling. De UX-review in <code>docs/ux-review/</code> is als achtergrond gelezen, maar niet als bewijs gebruikt. Dit verslag hoort bij commit <code>6d25ac8</code>; een volgende beoordeling legt haar scores naast deze.</p>
+</section>
+
+</div>
+</body>
+</html>

@@ -32,8 +32,8 @@
 - [x] Fase 12 — Media: mechaniek, twee video's en twee spellen (V2 en V4 zijn conceptvideo's met computerstem, wachten op akkoord auteur of eigen opname; menselijke tester vervangen door Playwright)
 - [x] Fase 13 — Media: de overige video's en spellen (V1 en V3 zijn conceptvideo's, wachten op akkoord auteur; 13.4 is geschat, meten hoort bij de pilot; menselijke tester vervangen door Playwright)
 - [x] Fase 14 — Afdrukken, documentatie en eindcontrole (docentgids, introductie en schema-beschrijving zijn teksten van de bouwer, wachten op akkoord auteur; de proeflezer die de site nog nooit zag wacht op een mens; menselijke tester vervangen door Playwright)
-- [ ] Fase 16 — Eerste indruk en rust (studentervaring, snel)
-- [ ] Fase 17 — Voortgang zichtbaar
+- [x] Fase 16 — Eerste indruk en rust (studentervaring, snel)
+- [x] Fase 17 — Voortgang zichtbaar
 - [ ] Fase 18 — Proefsessie op de telefoon (sluit fase 5 af)
 - [ ] Fase 19 — Eén taak per scherm
 - [ ] Fase 15 — Pilot in een werkcollege en kalibratie (na fase 19, B78)
@@ -622,23 +622,26 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 **Spec.** SX-1 (menu, nog zonder tabbalk), SX-2, SX-8, SX-11, BW-3, TK-16, SI-8.
 
 ### Subtasks
-- [ ] 16.1 `js/index-pagina.js`: `toonHints()` niet meer bij het laden (nu r. 86), wel per veld na `blur` of na „Verder” (SX-2). Verwacht: 0 meldingen bij laden; ≤ 1 melding per veld.
-- [ ] 16.2 Hoofdmenu naar Start, Leerblokken, Dossier, Bronnen in alle 10 HTML-bestanden; docentmodus en verificatie in de voettekst („Voor docenten”); `js/site.js` markeert „Leerblokken” op elke `leerblok-N.html` (SX-1, SI-1). Verwacht: 4 items; docentmodus en verificatie in ≤ 2 klikken.
-- [ ] 16.3 Pilotbanner wordt een aanduiding naast `.han-logo` (`js/site.js`, `css/site.css`) (SI-8). Verwacht: aanduiding bij vlag aan, weg bij uit.
-- [ ] 16.4 Weergavetekst „Nog niet” → „Te doen” in `js/status.js` (`STATUS_TEKST`), `js/dossier-pagina.js`, `js/weergave.js`; de sleutel `nog niet` blijft (B74). `.status-nog-niet` en `.dos-tegel-nog-niet` neutraal met `--leeg`. Verwacht: 0 keer „Nog niet” in zichtbare tekst; bestaande dossiers laden ongewijzigd.
-- [ ] 16.5 Tokens `--link`, `--link-hover` en `--leeg` als hexwaarde in `:root` (de contrastcontrole leest alleen hex) en een `a`-regel (SX-8). Verwacht: contrast-check groen; 0 links in browserblauw.
-- [ ] 16.6 Legend-fix en keuzes als tikbare rij over de volle breedte (DESIGN §6 Fieldset). Verwacht: taak 2.2 op 360 px zonder overlap.
-- [ ] 16.7 Zinstarters als placeholder bij STARR (`data/leerblok-4.json`) en de andere velden van ≥ 3 regels; contentcontrole eist dat een placeholder niet in het modelantwoord voorkomt (SX-11). Verwacht: 100 % van de lange velden.
-- [ ] 16.8 Tests bijwerken die de oude tekst of het oude menu vastleggen: `status.test.mjs`, `weergave.test.mjs`, `sessie.test.mjs`, `dossier.test.mjs`, `smoke.test.mjs` (SI-1 via de voettekst). Verwacht: `node --test` groen.
+- [x] 16.1 `js/index-pagina.js`: `toonHints()` niet meer bij het laden (nu r. 86), wel per veld na `blur` of na „Verder” (SX-2). Verwacht: 0 meldingen bij laden; ≤ 1 melding per veld.
+- [x] 16.2 Hoofdmenu naar Start, Leerblokken, Dossier, Bronnen in alle 10 HTML-bestanden; docentmodus en verificatie in de voettekst („Voor docenten”); `js/site.js` markeert „Leerblokken” op elke `leerblok-N.html` (SX-1, SI-1). Verwacht: 4 items; docentmodus en verificatie in ≤ 2 klikken.
+- [x] 16.3 Pilotbanner wordt een aanduiding naast `.han-logo` (`js/site.js`, `css/site.css`) (SI-8). Verwacht: aanduiding bij vlag aan, weg bij uit.
+- [x] 16.4 Weergavetekst „Nog niet” → „Te doen” in `js/status.js` (`STATUS_TEKST`), `js/dossier-pagina.js`, `js/weergave.js`; de sleutel `nog niet` blijft (B74). `.status-nog-niet` en `.dos-tegel-nog-niet` neutraal met `--leeg`. Verwacht: 0 keer „Nog niet” in zichtbare tekst; bestaande dossiers laden ongewijzigd.
+- [x] 16.5 Tokens `--link`, `--link-hover` en `--leeg` als hexwaarde in `:root` (de contrastcontrole leest alleen hex) en een `a`-regel (SX-8). Verwacht: contrast-check groen; 0 links in browserblauw.
+- [x] 16.6 Legend-fix en keuzes als tikbare rij over de volle breedte (DESIGN §6 Fieldset). Verwacht: taak 2.2 op 360 px zonder overlap.
+- [x] 16.7 Zinstarters als placeholder bij STARR (`data/leerblok-4.json`) en de andere velden van ≥ 3 regels; contentcontrole eist dat een placeholder niet in het modelantwoord voorkomt (SX-11). Verwacht: 100 % van de lange velden.
+- [x] 16.8 Tests bijwerken die de oude tekst of het oude menu vastleggen: `status.test.mjs`, `weergave.test.mjs`, `sessie.test.mjs`, `dossier.test.mjs`, `smoke.test.mjs` (SI-1 via de voettekst). Verwacht: `node --test` groen.
 
 ### Testpoort
-- [ ] Volledige testpoort, plus `tools/contrast-check.mjs` en `tools/gewicht-check.mjs`.
-- [ ] Sabotage SX-2 (roep `toonHints()` weer aan bij laden; de test faalt) en SX-11 (placeholder gelijk aan modelantwoord; contentcontrole faalt).
-- [ ] Playwright op 360 px: startpagina, leerblok 1, dossier; schermafdrukken naast `docs/ux-review/shots/`.
-- [ ] Geclaimde regels met hun methode gecontroleerd.
+- [x] Volledige testpoort, plus `tools/contrast-check.mjs` en `tools/gewicht-check.mjs`.
+- [x] Sabotage SX-2 (roep `toonHints()` weer aan bij laden; de test faalt) en SX-11 (placeholder gelijk aan modelantwoord; contentcontrole faalt).
+- [x] Playwright op 360 px: startpagina, leerblok 1, dossier; schermafdrukken naast `docs/ux-review/shots/`.
+- [x] Geclaimde regels met hun methode gecontroleerd.
 
 ### Afsluiting
-- [ ] commit `SX-1, SX-2, SX-8, SX-11, BW-3, SI-8: eerste indruk en rust`  - [ ] push  - [ ] overzicht afvinken
+- [x] commit `SX-1, SX-2, SX-8, SX-11, BW-3, SI-8: eerste indruk en rust`  - [x] push  - [x] overzicht afvinken
+
+
+**Afwijkingen fase 16.** (1) 16.2: „Leerblokken” in het menu wijst naar het overzicht op de startpagina (`index.html#blokken`); op een leerblokpagina is dat item actief. SI-1 blijft 1 klik: de leerblokken via de lijst die `index-pagina.js` uit `data/leerblokken.json` tekent (de test leest nu beide), docentmodus en verificatie via de voettekst. (2) 16.1: de meldingslogica is een pure functie `zichtbareMeldingen` in `js/profiel.js`, zodat SX-2 een unittest heeft; bij het laden is de set aangeraakte velden leeg. (3) 16.4: ook het label op de leerblokkaart („Nog niet afgerond”) werd „Te doen”; de studentintroductie, de docentgids en het controlelab zeggen „Te doen”. (4) 16.7: zinstarters staan in 65 lange velden van de toepassing (niet in de oefenversie, waar het modelantwoord volgt); velden die een component vult (lijnen, markeringen, feedbackregels, teamactie) tellen niet mee (`ZONDER_ZINSTARTER`). De contentcontrole ving direct een zinstarter die het format van het modelantwoord van 9.2 herhaalde. (5) Gewicht: leerblok 4 staat nu op 388,0 van 400 kB bron; fase 17 begint daarom met gewichtsruimte (17.1). Gesaboteerd: SX-2, SX-8, SX-11. Playwright op 360 px: 0 meldingen bij laden, 1 na blur, 4 menu-items, 0 px horizontale scroll op 10 pagina's, 0 browserblauwe links, 0 consolefouten, legend in 2.2 zonder overlap. Besluiten: ADR B80.
 
 ---
 
@@ -649,24 +652,27 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 **Spec.** SX-3, SX-4, SX-5, SX-7, SX-9, SX-12, TK-15, TK-18, LB-16.
 
 ### Subtasks
-- [ ] 17.1 Gewichtsruimte eerst: leerblok 4 zit op 384,0 van 400 kB bron (`tools/gewicht-check.mjs`). Nieuwe code in een eigen module (`js/voortgang.js`) die met `import()` en een `// gewicht-alleen:`-conditie laadt. Verwacht: elke pagina ≤ 300 kB gzip en ≤ 400 kB bron.
-- [ ] 17.2 Contract: `klaarAls` in `data/leerblok-N.json` wordt een lijst criteria, elk met tekst en een controle-id van soort A of `zelf`; de samengevoegde tekst blijft letterlijk de werkboekregel (TK-2, contentcontrole). Verwacht: 16 taken omgezet; 0 tekens verschil.
-- [ ] 17.3 Checklist onder de taakkop op `sessie.beoordeel().uitkomsten`, bijgewerkt na 600 ms zonder typen; criteria `zelf` vinkt de student af (SX-5). Verwacht: ≤ 1 s; 100 % van de criteria als vakje.
-- [ ] 17.4 `STAPPEN` in `js/weergave.js` naar vier (waarom, stof, oefenen, toepassen); klaar en volgende stap aan het eind van toepassen; verdieping na „klaar” buiten de stappen (TK-18, B76). Verwacht: 4 stappen in 100 % van de taken.
-- [ ] 17.5 Vaste taakkop met „Taak n van m” en segmentbalk (6 px, 3 px tussenruimte, `aria-label`) (SX-4). Verwacht: 100 % van de taken.
-- [ ] 17.6 Studentlabel per bewijsonderdeel in `data/luk.json` („Je onderzoeksvraag”); EV-codes weg uit `js/index-pagina.js`, `js/leerblok.js` en `eindigtMet` in de data; export, verificatie en docentmodus houden ze (SX-3). Verwacht: 0 treffers van `EV-\d` en „bewijsonderdeel” in de zichtbare studenttekst.
-- [ ] 17.7 A3-vak 1 in vier delen op de startpagina en op het afsluitscherm, gevuld per afgerond leerblok (TK-16); „Kopieer naar mijn A3” op het afsluitscherm met de logica van de dossierpagina (SX-12, LB-16, B75). Verwacht: 4 delen; 5 kopieerplaatsen.
-- [ ] 17.8 `.kaart` splitsen in tikbaar (rand en schaduw) en informatief (rand, geen schaduw); kaart-in-kaart weg (`.taak` > `.oefening`, `#media` > `.spel`) (SX-7). Verwacht: 0 informatieve kaarten met schaduw.
-- [ ] 17.9 Mobiele tabbalk onder 40rem, `scroll-padding` op `html`, transities van 150–250 ms en `prefers-reduced-motion` (SX-1, SX-9). Verwacht: tabbalk op 360 px; 0 transities bij reduced motion.
+- [x] 17.1 Gewichtsruimte eerst: leerblok 4 zit op 384,0 van 400 kB bron (`tools/gewicht-check.mjs`). Nieuwe code in een eigen module (`js/voortgang.js`) die met `import()` en een `// gewicht-alleen:`-conditie laadt. Verwacht: elke pagina ≤ 300 kB gzip en ≤ 400 kB bron.
+- [x] 17.2 Contract: `klaarAls` in `data/leerblok-N.json` wordt een lijst criteria, elk met tekst en een controle-id van soort A of `zelf`; de samengevoegde tekst blijft letterlijk de werkboekregel (TK-2, contentcontrole). Verwacht: 16 taken omgezet; 0 tekens verschil.
+- [x] 17.3 Checklist onder de taakkop op `sessie.beoordeel().uitkomsten`, bijgewerkt na 600 ms zonder typen; criteria `zelf` vinkt de student af (SX-5). Verwacht: ≤ 1 s; 100 % van de criteria als vakje.
+- [x] 17.4 `STAPPEN` in `js/weergave.js` naar vier (waarom, stof, oefenen, toepassen); klaar en volgende stap aan het eind van toepassen; verdieping na „klaar” buiten de stappen (TK-18, B76). Verwacht: 4 stappen in 100 % van de taken.
+- [x] 17.5 Vaste taakkop met „Taak n van m” en segmentbalk (6 px, 3 px tussenruimte, `aria-label`) (SX-4). Verwacht: 100 % van de taken.
+- [x] 17.6 Studentlabel per bewijsonderdeel in `data/luk.json` („Je onderzoeksvraag”); EV-codes weg uit `js/index-pagina.js`, `js/leerblok.js` en `eindigtMet` in de data; export, verificatie en docentmodus houden ze (SX-3). Verwacht: 0 treffers van `EV-\d` en „bewijsonderdeel” in de zichtbare studenttekst.
+- [x] 17.7 A3-vak 1 in vier delen op de startpagina en op het afsluitscherm, gevuld per afgerond leerblok (TK-16); „Kopieer naar mijn A3” op het afsluitscherm met de logica van de dossierpagina (SX-12, LB-16, B75). Verwacht: 4 delen; 5 kopieerplaatsen.
+- [x] 17.8 `.kaart` splitsen in tikbaar (rand en schaduw) en informatief (rand, geen schaduw); kaart-in-kaart weg (`.taak` > `.oefening`, `#media` > `.spel`) (SX-7). Verwacht: 0 informatieve kaarten met schaduw.
+- [x] 17.9 Mobiele tabbalk onder 40rem, `scroll-padding` op `html`, transities van 150–250 ms en `prefers-reduced-motion` (SX-1, SX-9). Verwacht: tabbalk op 360 px; 0 transities bij reduced motion.
 
 ### Testpoort
-- [ ] Volledige testpoort, plus contrast- en gewichtcontrole.
-- [ ] Sabotage SX-3 (een EV-code terug in de studenttekst), SX-5 (controle-id weg bij een criterium) en SX-9 (transitie zonder reduced-motion-regel).
-- [ ] Playwright op 360 px en 1280 px: leerblok 1 doorlopen tot het afsluitscherm; toetsenbord alleen (TG-2).
-- [ ] Geclaimde regels met hun methode gecontroleerd.
+- [x] Volledige testpoort, plus contrast- en gewichtcontrole.
+- [x] Sabotage SX-3 (een EV-code terug in de studenttekst), SX-5 (controle-id weg bij een criterium) en SX-9 (transitie zonder reduced-motion-regel).
+- [x] Playwright op 360 px en 1280 px: leerblok 1 doorlopen tot het afsluitscherm; toetsenbord alleen (TG-2).
+- [x] Geclaimde regels met hun methode gecontroleerd.
 
 ### Afsluiting
-- [ ] commit `SX-3, SX-4, SX-5, SX-7, SX-9, SX-12, TK-18, LB-16: voortgang zichtbaar`  - [ ] push  - [ ] overzicht afvinken
+- [x] commit `SX-3, SX-4, SX-5, SX-7, SX-9, SX-12, TK-18, LB-16: voortgang zichtbaar`  - [x] push  - [x] overzicht afvinken
+
+
+**Afwijkingen fase 17.** (1) 17.1: gewichtsruimte kwam niet uit een eigen module, maar uit een eerlijkere meting: een import die pas na een klik laadt (het spel, „Kopieer naar mijn A3”) telt niet als eerste lading (`// gewicht-alleen: naklik`, ADR B81). Leerblok 4 staat daarmee op 377,4 kB bron en 120,5 kB gzip, inclusief alle nieuwe code (`js/voortgang.js`, `js/klembord.js`). (2) 17.2: `klaarAls.criteria` is een lijst van letterlijke stukken van de regel met de controles die erbij horen; de regel zelf blijft staan (TK-2) en de contentcontrole eist dat elk criterium er letterlijk in staat en alleen naar controles van de taak verwijst. 16 taken, 49 criteria, waarvan 5 zonder controle (de student vinkt zelf af, bewaard in de meta-opslag). (3) 17.6: de titels uit `data/luk.json` waren al gewone taal („Onderzoeksvraag”, „Beoordeelde bron”); er is geen apart studentlabel nodig. Ook het scherm „Vorige keer”, de dossierpagina en de verbanden-kaart noemden codes of „bewijsonderdeel”; die zijn vervangen door titels en „resultaat”. De afdruk van het dossier houdt de codes (export). (4) 17.7: de delen van A3-vak 1 volgen de leerblokken: onderzoeksvraag en zoekvragen, bronnen, plaatsing, verbanden en reflectie (ADR B81 corrigeert de labels van B75). Het overzicht staat pas op de startpagina als er werk is (ST-7). (5) 17.5: de vaste taakbalk (taaknummer, segmentbalk, stappenrij) is een direct kind van het taakartikel, anders plakt hij niet. (6) Richttijd staat als „± 10 min” (DESIGN §8); PF-5 test nu op „± ${blok.richttijd} min”. Gesaboteerd: SX-3, SX-5, SX-7, SX-9 en de naklik-marker. Playwright op 360 en 1280 px: leerblok 1 ingevuld tot beide resultaten Compleet, afsluitscherm „Deel 1 van je A3-vak 1 staat.”, bevestiging na „klaar”, 0 codes op 7 studentpagina's, 0 px horizontale scroll, 0 consolefouten, de toepassing van 1.1 met alleen het toetsenbord bereikt. Besluiten: ADR B81.
 
 ---
 
