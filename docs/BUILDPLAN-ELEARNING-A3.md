@@ -742,6 +742,8 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 - [x] 54 hints bij de oefenvragen, achter een knop „Hint” (SX-13); contentcontrole op aanwezigheid en op verklappen (ving 5 hints die te dicht bij het modelantwoord zaten). Gesaboteerd. Besluit: ADR B83.
 - [x] Elke hint zegt waar het antwoord staat (54 vragen: meestal de stof van een taak; bronnen alleen waar de passage is nagegaan: MIT OpenCourseWare, IIRC, Strategyzer, Westmoreland). De invulplekken in de format-zin zijn gemarkeerd. Besluit: ADR B85.
 
+- [x] Taalredactie van alle studentcontent (140 teksten; zinnen boven 20 woorden 104 → 10, zinnen met twee dubbele punten 7 → 2), spreektekst en conceptvideo's V1–V4 opnieuw gebouwd. Besluit: ADR B86.
+
 ---
 
 ## Fase 15 — Pilot in een werkcollege en kalibratie
