@@ -4,7 +4,7 @@ Ontwerprichtlijn voor de studentkant van `hanbedrijfskunde/a3-learning`. Gebasee
 
 Dit document beschrijft **hoe de site moet voelen en werken**. De bestaande eisen blijven gelden: toegankelijkheid (TG-*), privacy (PR-*), gewicht (PF-4), geen score of ranglijst (BW-4, X-3) en modelantwoord pas na eigen poging (TK-6).
 
-Het toetsbare deel van deze richtlijn staat als SX-1 t/m SX-12 in [BLUEPRINT-ELEARNING-A3.md](BLUEPRINT-ELEARNING-A3.md) §6.17; bij verschil gaat het blueprint voor. De besluiten staan in [ADR-ELEARNING-A3.md](ADR-ELEARNING-A3.md) B73 t/m B81, de bouwvolgorde in [BUILDPLAN-ELEARNING-A3.md](BUILDPLAN-ELEARNING-A3.md) fase 16 t/m 19.
+Het toetsbare deel van deze richtlijn staat als SX-1 t/m SX-14 in [BLUEPRINT-ELEARNING-A3.md](BLUEPRINT-ELEARNING-A3.md) §6.17; bij verschil gaat het blueprint voor. De besluiten staan in [ADR-ELEARNING-A3.md](ADR-ELEARNING-A3.md) B73 t/m B81, de bouwvolgorde in [BUILDPLAN-ELEARNING-A3.md](BUILDPLAN-ELEARNING-A3.md) fase 16 t/m 19.
 
 ---
 
@@ -199,6 +199,26 @@ Grid 2 × 2 (bureaublad: 4 × 1), `gap: 4px`, delen met 2 px rand. Labels (Onder
 - **Placeholder als zinstarter** voor lange velden (bijv. STARR: „Tijdens de gallery walk merkte ik…”). De placeholder is nooit het antwoord.
 - Zachte teller bij lange velden („± 2–4 zinnen”), geen harde limiet.
 - Foutmelding pas na `blur` of indienen, onder het veld, in `--fout`.
+
+### Bestandkiezer
+
+Voor het terugzetten van een dossier (dossier, terugblik) en het inlezen op de verificatiepagina. Nooit de kale browserknop: die zegt „Choose file” en „No file chosen” in de taal van de browser, en na het inlezen weer „No file chosen”.
+
+```
+┌─────────────────────────────────────────┐
+│ ┌───┐  Kies je dossierbestand            │
+│ │ ↑ │  Klik of sleep het hierheen · .json │
+│ └───┘  Gekozen: dossier-lisa.json        │
+└─────────────────────────────────────────┘▌
+ ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+```
+
+- Een **brede secundaire knop** over de volle breedte: wit, 3 px rand, `3px 3px 0` schaduw. Geen kaartschaduw van 5 px: de kiezer staat meestal in een kaart (één kaartniveau diep). De primaire knop van het scherm blijft „Bewaar je dossier”.
+- Links een zwart vierkant van 48 px met een witte pijl omhoog; rechts de titel (18 px, 800), met daaronder de hulpregel (14 px, `--grijs-tekst`).
+- Hulpregel: op een telefoon „Tik om te kiezen · .json”, met muis „Klik of sleep het hierheen · .json” (`@media (hover:hover) and (pointer:fine)`).
+- Na de keuze een derde regel in het vet: „Gekozen: ‹bestandsnaam›”, of „Gekozen: 3 bestanden”. Is het geen .json, dan staat daar in `--fout`: „Dat is geen .json-bestand. Kies een dossierbestand.” De uitkomst van het inlezen staat onder de knop, zoals nu.
+- Toestanden: hover `--grijs` en het vierkant wordt `--accent`; slepen: `--roze` vlak, rand gestreept, vierkant `--accent`; indrukken als elke knop; focus: de focusrand van 4 px om de hele knop.
+- Onder de motorkap blijft het echte `<input type="file">` staan, onzichtbaar (`sr-only`) maar focusbaar, in het `<label>`. Toetsenbord, schermlezer en de bestandskiezer van de telefoon werken zo zonder extra ARIA.
 
 ### Fieldset / keuzes
 
