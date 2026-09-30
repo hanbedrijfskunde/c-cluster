@@ -25,7 +25,7 @@
 - [ ] Fase 5 — Proefsessie met 2–3 gebruikers en bijstelling
 - [x] Fase 6 — Leerblok 2 en de bronnenpagina (EV-03 t/m EV-05) (6.1 wacht op akkoord auteur)
 - [x] Fase 7 — Terugblik en werken met tussenpozen
-- [ ] Fase 8 — Huisstijl, toegankelijkheid, responsive en offline
+- [x] Fase 8 — Huisstijl, toegankelijkheid, responsive en offline (PF-2 alleen Chromium, Firefox en WebKit via Playwright; 8.9 wacht op een mens met Edge en Safari)
 - [ ] Fase 9 — Docentmodus: mechaniek en deel 1
 - [ ] Fase 10 — Leerblok 3 en docentmodus deel 2 (EV-06 t/m EV-08)
 - [ ] Fase 11 — Leerblok 4: verbanden, reflectie en afronding (EV-10, EV-11)
@@ -390,25 +390,27 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 **Spec.** TG-1…TG-5, PF-1…PF-5, QA-6.
 
 ### Subtasks
-- [ ] 8.1 Pas `css/site.css` aan naar de HAN-huisstijl (accent `#E50056`, zwart, wit, dikke randen) uit de zusterdocumenten (QA-6). Verwacht: 100 % van de pagina's gebruikt de tokens.
-- [ ] 8.2 Zet contrast op ≥ 4,5:1 voor alle tekst en toon statussen ook als tekst (TG-3, TG-4). Verwacht: 3 statussen elk met tekst.
-- [ ] 8.3 Maak alle invoer met het toetsenbord bedienbaar en geef focus een zichtbare rand (TG-2). Verwacht: leerblok 1 zonder muis in te vullen en te bewaren.
-- [ ] 8.4 Voeg labels en landmarks toe voor schermlezers (TG-5, TG-1). Verwacht: 0 onbereikbare velden in leerblok 1.
-- [ ] 8.5 Maak de pagina's responsive vanaf 360 px (PF-1). Verwacht: 0 px horizontale scroll, alle velden van 4 leerblokken invulbaar.
-- [ ] 8.6 Zorg dat een geladen leerblok zonder netwerk blijft werken (PF-3). Verwacht: 0 netwerkverzoeken tijdens 45 min gebruik.
-- [ ] 8.7 Houd elke pagina ≤ 300 kB zonder video (PF-4). Verwacht: meting per pagina.
-- [ ] 8.8 Toon de richttijd van 45 min per leerblok inclusief media (PF-5). Verwacht: 4 pagina's met 45 min.
-- [ ] 8.9 Test in de twee laatste versies van Chrome, Safari, Firefox en Edge (PF-2). Verwacht: 4 × 2 zonder functieverlies.
-- [ ] 8.10 Draai Lighthouse (toegankelijkheid) op alle pagina's (TG-1). Verwacht: score ≥ 95 op 100 % van de pagina's.
+- [x] 8.1 Pas `css/site.css` aan naar de HAN-huisstijl (accent `#E50056`, zwart, wit, dikke randen) uit de zusterdocumenten (QA-6). Verwacht: 100 % van de pagina's gebruikt de tokens.
+- [x] 8.2 Zet contrast op ≥ 4,5:1 voor alle tekst en toon statussen ook als tekst (TG-3, TG-4). Verwacht: 3 statussen elk met tekst.
+- [x] 8.3 Maak alle invoer met het toetsenbord bedienbaar en geef focus een zichtbare rand (TG-2). Verwacht: leerblok 1 zonder muis in te vullen en te bewaren.
+- [x] 8.4 Voeg labels en landmarks toe voor schermlezers (TG-5, TG-1). Verwacht: 0 onbereikbare velden in leerblok 1.
+- [x] 8.5 Maak de pagina's responsive vanaf 360 px (PF-1). Verwacht: 0 px horizontale scroll, alle velden van 4 leerblokken invulbaar.
+- [x] 8.6 Zorg dat een geladen leerblok zonder netwerk blijft werken (PF-3). Verwacht: 0 netwerkverzoeken tijdens 45 min gebruik.
+- [x] 8.7 Houd elke pagina ≤ 300 kB zonder video (PF-4). Verwacht: meting per pagina.
+- [x] 8.8 Toon de richttijd van 45 min per leerblok inclusief media (PF-5). Verwacht: 4 pagina's met 45 min.
+- [ ] 8.9 (open: alleen Chromium, Firefox 155 en WebKit 26.6 via Playwright, geen Edge of echte Safari; zie ADR B66) Test in de twee laatste versies van Chrome, Safari, Firefox en Edge (PF-2). Verwacht: 4 × 2 zonder functieverlies.
+- [x] 8.10 Draai Lighthouse (toegankelijkheid) op alle pagina's (TG-1). Verwacht: score ≥ 95 op 100 % van de pagina's.
 
 ### Testpoort
-- [ ] Volledige testpoort.
-- [ ] Sabotage TG-3: zet één tekst op lage contrast; de contrastcontrole faalt.
-- [ ] Lighthouse ≥ 95 op alle pagina's; 360 px zonder horizontale scroll; toetsenbordtest leerblok 1; schermlezertest leerblok 1; offlinetest.
-- [ ] Geclaimde regels met hun methode gecontroleerd.
+- [x] Volledige testpoort.
+- [x] Sabotage TG-3: zet één tekst op lage contrast; de contrastcontrole faalt.
+- [x] Lighthouse ≥ 95 op alle pagina's; 360 px zonder horizontale scroll; toetsenbordtest leerblok 1; schermlezertest leerblok 1; offlinetest.
+- [x] Geclaimde regels met hun methode gecontroleerd.
 
 ### Afsluiting
-- [ ] commit `TG-1…TG-5, PF-1…PF-5, QA-6: huisstijl en toegankelijkheid`  - [ ] push  - [ ] overzicht afvinken
+- [x] commit `TG-1…TG-5, PF-1…PF-5, QA-6: huisstijl en toegankelijkheid`  - [x] push  - [x] overzicht afvinken
+
+**Afwijkingen fase 8.** (1) Geen service worker: PF-3 is gehaald doordat alles bij het laden binnenkomt (ADR B66). (2) Menselijke tests vervangen door Playwright (360 px, toetsenbord met press_key en page.keyboard, accessibility-snapshot, netwerk uit) en Lighthouse via chrome-devtools (toegankelijkheid 100 op alle 10 pagina's, mobiel). Geen echte schermlezer (VoiceOver/NVDA) gebruikt: TG-5 is gecontroleerd via de toegankelijkheidsboom en labels, niet met gesproken uitvoer. (3) 8.9 (PF-2) niet afgevinkt: Chromium, Firefox 155 en WebKit 26.6 zonder functieverlies, Edge en echte Safari niet, versies niet getoetst. (4) Gewichtsgrens is een bovengrens van 275 kB voor leerblok 1, 2 en 4: weinig ruimte voor fase 10 tot 13.
 
 ---
 
