@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Werkboek MT-pitch</title>
+<style>
+:root{
+  /* HAN-huisstijl, gelijk aan de docentinstructie en de manual */
+  --han:#E50056; --han2:#FFE1EC; --ink:#000000; --paper:#FFFFFF;
+  --grey:#454545; --grey2:#767676; --wash:#F2F2F0; --panel2:#E6E6E3;
+  --mens2:#FFE875;
+  --bw:3px; --sh:5px 5px 0 var(--ink);
+  --f:"Avenir Next","Avenir","Nunito Sans","Segoe UI",Helvetica,Arial,sans-serif;
+  --fm:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--wash);color:var(--ink);font:15px/1.5 var(--f);-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;display:grid;gap:36px;padding:32px 16px 64px}
+h1,h2,h3,h4{text-wrap:balance;margin:0}
+h1{font-size:clamp(32px,6vw,52px);line-height:.96;letter-spacing:-.035em;font-weight:800;text-transform:uppercase}
+h2{font-size:clamp(22px,3.2vw,28px);line-height:1.05;letter-spacing:-.025em;font-weight:800}
+h3{font-size:17px;line-height:1.2;font-weight:800}
+h4{font-size:14.5px;font-weight:800}
+p{margin:0;max-width:72ch}
+b,strong{font-weight:700}
+a{color:inherit;text-decoration-color:var(--han);text-decoration-thickness:2px;text-underline-offset:3px}
+ul,ol{margin:0;padding-left:22px;display:grid;gap:5px}
+ul{list-style:none;padding-left:22px}
+ul li{position:relative}
+ul li::before{content:"";position:absolute;left:-20px;top:.5em;width:9px;height:9px;background:var(--han)}
+ol li::marker{font:800 13px var(--fm);color:var(--han)}
+.muted{color:var(--grey)}
+.small{font-size:13.5px}
+
+/* ---------- balken ---------- */
+.topbar,.foot{background:var(--ink);color:var(--paper);display:flex;align-items:center;gap:18px;padding:0 20px 0 max(16px,calc((100% - 828px)/2))}
+.topbar{height:56px;border-bottom:4px solid var(--han)}
+.foot{min-height:52px}
+.logo{flex:none;display:block;height:26px;width:62px}
+.who{font:700 12px/1 var(--fm);letter-spacing:.14em;text-transform:uppercase;opacity:.82}
+.sp{flex:1}
+.num{font:800 13px/1 var(--fm);background:var(--han);color:var(--paper);padding:8px 11px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.knoppen{display:flex;gap:8px}
+.pdfknop{font:700 12px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:transparent;
+  border:2px solid var(--paper);padding:8px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.pdfknop:hover,.pdfknop:focus-visible{background:var(--han);border-color:var(--han);outline:none}
+.pdfknop svg{width:14px;height:14px}
+@media (max-width:640px){.topbar .who{display:none}.pdfknop{padding:8px 9px;letter-spacing:.04em}}
+@media (max-width:440px){.pdfknop .lbl{display:none}.pdfknop svg{width:16px;height:16px}}
+
+/* ---------- blad = één A4 ---------- */
+.blad{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:0 0 22px;display:grid;gap:14px;align-content:start}
+.blad>*:not(.bkop){margin-inline:clamp(14px,3vw,26px)}
+.bkop{background:var(--ink);color:var(--paper);display:flex;align-items:center;gap:14px;padding:9px clamp(14px,3vw,26px)}
+.bkop .logo{height:18px;width:44px}
+.bkop .num{margin-left:auto}
+.bkop .who{font-size:11px}
+.sectiekop{font:700 12px/1.2 var(--fm);letter-spacing:.14em;text-transform:uppercase;color:var(--grey);border-bottom:var(--bw) solid var(--ink);padding:6px 0 4px}
+
+/* ---------- omslag ---------- */
+.omslag{background:var(--han);color:var(--paper);border:var(--bw) solid var(--ink);padding:24px 24px 26px;display:grid;gap:14px}
+.eyebrow{justify-self:start;background:var(--paper);color:var(--ink);padding:6px 12px 5px;font:700 12px/1.2 var(--fm);letter-spacing:.14em;text-transform:uppercase}
+.meta{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:3px solid currentColor;padding:6px 10px;font:700 12px/1.15 var(--fm);letter-spacing:.04em;text-transform:uppercase}
+.lede{font-size:17px;line-height:1.45;font-weight:600;max-width:64ch}
+.naamvelden{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px 22px}
+
+/* ---------- blokkop ---------- */
+.blok{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:var(--bw) solid var(--ink);padding-bottom:8px}
+.blok::before{content:"";flex:none;width:14px;height:14px;background:var(--han)}
+.blok .bn{font:800 12px/1 var(--fm);letter-spacing:.12em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:6px 8px}
+.blok .bt{margin-left:auto;font:800 13px/1 var(--fm);color:var(--han);font-variant-numeric:tabular-nums}
+
+/* ---------- opdracht ---------- */
+.act{border:var(--bw) solid var(--ink);display:grid;gap:9px;padding:0 0 12px}
+.act>*:not(.act-kop){margin-inline:14px}
+.act-kop{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--wash);border-bottom:2px solid var(--ink);padding:7px 14px}
+.act-kop .nr{font:800 13px/1 var(--fm);color:var(--han)}
+.act-kop h3{margin-right:auto}
+.vorm,.tijd{font:700 11px/1 var(--fm);letter-spacing:.08em;text-transform:uppercase;padding:5px 7px;border:2px solid var(--ink);white-space:nowrap}
+.vorm.alleen{background:var(--paper)}
+.vorm.duo{background:var(--mens2)}
+.vorm.trio{background:var(--han2)}
+.vorm.team{background:var(--ink);color:var(--paper)}
+.tijd{border-color:transparent;padding-inline:0;color:var(--grey)}
+.waarom,.klaar,.verder{font-size:14px}
+.waarom b,.klaar b,.verder b{font:700 11px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;margin-right:6px;padding:3px 5px;vertical-align:1px}
+.waarom b{background:var(--han);color:var(--paper)}
+.klaar b{background:var(--ink);color:var(--paper)}
+.verder{border-top:2px dashed var(--grey2);padding-top:8px}
+.verder b{background:var(--mens2);border:2px solid var(--ink)}
+.stappen{font-size:14px}
+
+/* ---------- schrijfruimte ---------- */
+.veld{display:grid;gap:0}
+.veld>b{font:700 11px/1.3 var(--fm);letter-spacing:.08em;text-transform:uppercase;color:var(--grey)}
+.veld>span{font-size:12.5px;color:var(--grey)}
+.veld i{display:block;height:27px;border-bottom:1.5px solid var(--ink)}
+.omslag .veld>b{color:var(--paper)}
+.omslag .veld i{border-color:var(--paper)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px 18px}
+.keuze{display:inline-flex;gap:14px;flex-wrap:wrap;font-size:13.5px}
+.keuze span::before{content:"";display:inline-block;width:13px;height:13px;border:2px solid var(--ink);margin-right:6px;vertical-align:-2px}
+
+/* ---------- tabellen ---------- */
+.tab{border:var(--bw) solid var(--ink)}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;vertical-align:top;padding:7px 9px;border-top:1.5px solid var(--ink);font-size:13.5px}
+th{font:700 11px/1.2 var(--fm);letter-spacing:.08em;text-transform:uppercase;color:var(--paper);background:var(--ink);border-top:0}
+td.leeg{height:34px}
+td.t{font:800 13px/1.4 var(--fm);white-space:nowrap;color:var(--han);font-variant-numeric:tabular-nums}
+td.nr{width:30px;font:800 12px/1.5 var(--fm);color:var(--han)}
+td.vakje{width:54px;text-align:center}
+td.vakje span{display:inline-block;width:16px;height:16px;border:2px solid var(--ink)}
+tr.groep td{background:var(--wash);font:700 10.5px/1.2 var(--fm);letter-spacing:.1em;text-transform:uppercase;padding-block:5px}
+.hint{display:block;color:var(--grey);font-size:12px;margin-top:1px}
+.pt{display:inline-grid;place-items:center;width:20px;height:20px;border:2px solid var(--ink);border-radius:50%;font:800 11px/1 var(--fm);margin-right:5px;vertical-align:-4px}
+.schaal{white-space:nowrap}
+.schaal .pt{margin-right:3px}
+
+/* ---------- spiekbrief ---------- */
+.fasen{display:grid;grid-template-columns:repeat(4,1fr);border:var(--bw) solid var(--ink)}
+.fase{padding:9px 10px;border-right:2px solid var(--ink);display:grid;gap:3px;align-content:start;font-size:12.5px;line-height:1.35}
+.fase:last-child{border-right:0}
+.fase .n{justify-self:start;font:700 10px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;background:var(--han);color:var(--paper);padding:3px 6px}
+.fase b{font-size:15px;font-weight:800}
+.fase em{font-style:normal;color:var(--han);font-weight:700}
+@media (max-width:620px){.fasen{grid-template-columns:1fr 1fr}.fase:nth-child(2){border-right:0}.fase:nth-child(-n+2){border-bottom:2px solid var(--ink)}}
+.kaders{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.kader{border:2px solid var(--ink);padding:9px 11px;display:grid;gap:5px;align-content:start;font-size:13px}
+.kader ul{gap:3px}
+.vraagsoorten td{font-size:12.5px;padding:5px 8px}
+.vraagsoorten td:first-child{font-weight:700;white-space:nowrap}
+.vraagsoorten tr.mijden td:first-child{color:var(--han)}
+
+/* ---------- routes ---------- */
+.routes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.routes{grid-template-columns:1fr}}
+.route{border:var(--bw) solid var(--ink);padding:10px 12px;display:grid;gap:5px;align-content:start;font-size:13.5px}
+.route h4::before{content:"";display:inline-block;width:14px;height:14px;border:2.5px solid var(--ink);margin-right:8px;vertical-align:-2px;background:var(--paper)}
+.route.a{background:var(--han2)}
+.route.b{background:var(--mens2)}
+
+/* ---------- mails ---------- */
+.mail{border:var(--bw) solid var(--ink)}
+.mail-head{background:var(--wash);border-bottom:2px solid var(--ink);padding:8px 12px;display:grid;gap:2px;font-size:13.5px}
+.mail-head b{display:inline-block;min-width:86px;font:700 10.5px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
+.mail-body{padding:12px 14px;display:grid;gap:8px;font-size:14px}
+.mail-body h4{margin:4px 0 -5px;font-size:13.5px}
+
+/* ---------- rubric ---------- */
+.rubric td{font-size:11.5px;line-height:1.33;padding:5px 6px}
+.rubric td.crit{width:112px}
+.rubric td.crit b{display:block;font-size:12px}
+.rubric td.crit small{font:700 9.5px/1.3 var(--fm);text-transform:uppercase;letter-spacing:.04em;color:var(--grey)}
+.rubric th.sc,.rubric td.sc{width:44px;text-align:center;border-left:2px solid var(--ink)}
+.rubric td.sc{background:var(--wash)}
+.turf td{padding:6px 9px}
+.turf td.streep{width:42%}
+
+/* ---------- antwoordsleutels ---------- */
+.sleutel td{font-size:13px}
+.sleutel td.soort{width:128px}
+.sleutel td.soort b{display:block}
+.sleutel td.denk{width:34%;background:var(--wash)}
+.sleutel td.denk::before{content:"Denk verder";display:block;font:700 10px/1.3 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--han);margin-bottom:2px}
+.goed{color:#0a7a3a;font-weight:800}
+.fout{color:var(--han);font-weight:800}
+
+/* ---------- docentdeel ---------- */
+.docentdeel{display:grid;gap:36px}
+.scheiding{background:var(--ink);color:var(--paper);padding:16px 20px;display:grid;gap:6px;border:var(--bw) solid var(--ink)}
+.scheiding h2{color:var(--paper)}
+.scheiding p{font-size:14px;opacity:.9}
+.fac .kader{font-size:13px}
+.rolkaart .grid2 ul{font-size:13.5px}
+.feiten td{font-size:13px;padding:6px 9px}
+.feiten td.nr{width:104px;font:700 10.5px/1.5 var(--fm);text-transform:uppercase;letter-spacing:.06em;color:var(--han)}
+.geheim{background:var(--han);color:var(--paper);font:700 12px/1.3 var(--fm);letter-spacing:.08em;text-transform:uppercase;padding:8px 12px}
+footer.bron{font-size:13px;color:var(--grey);border-top:var(--bw) solid var(--ink);padding-top:14px;display:grid;gap:6px}
+
+/* ---------- print ---------- */
+@page{size:A4;margin:11mm 11mm}
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#fff;font-size:12.5px}
+  .topbar,.foot,.pdfknop,.scheiding,footer.bron{display:none}
+  .wrap{display:block;padding:0;max-width:none}
+  .blad{break-before:page;border:0;box-shadow:none;padding:0;display:block}
+  .blad>*+*{margin-top:8px}
+  .blad:first-child{break-before:auto}
+  .blad>*:not(.bkop){margin-inline:0}
+  .docentdeel{display:block}
+  .act,.kader,.route,.tab tr,.fasen,.mail,.veld{break-inside:avoid}
+  .act{gap:6px;padding-bottom:8px}
+  .act-kop{padding:5px 12px}
+  .act>*:not(.act-kop){margin-inline:12px}
+  .waarom,.klaar,.verder,.stappen{font-size:12.5px}
+  th,td{font-size:12px;padding:5px 8px}
+  .veld i{height:24px}
+  .omslag{padding:20px 22px}
+  .rubric td{font-size:10.5px;padding:4px 5px}
+  .mail-body{font-size:12.5px;gap:6px}
+  .mail-head{font-size:12px}
+}
+
+/* ---------- aanvullingen werkboek MT-pitch ---------- */
+.inv{display:inline-block;min-width:44px;border-bottom:1.5px solid var(--ink);height:1.1em;vertical-align:-3px}
+.schema td{font-size:13.5px}
+.schema td.r{font:800 13px/1.4 var(--fm);color:var(--han);white-space:nowrap}
+.alleen-o{display:inline-block;font:700 11px/1 var(--fm);letter-spacing:.08em;text-transform:uppercase;background:var(--han);color:var(--paper);padding:5px 7px}
+.eisen{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px}
+.eis{border:2px solid var(--ink);padding:7px 9px;font-size:13px;display:grid;gap:2px;align-content:start}
+.eis b{font-size:13.5px}
+.vbl{background:var(--wash);border:2px solid var(--ink);padding:8px 11px;font-size:13.5px;display:grid;gap:3px}
+.vbl b{font:700 10.5px/1.3 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--han)}
+/* knipstrook: gaat na de ronde naar de consultant */
+.strook{border:2px dashed var(--ink);padding:9px 12px 11px;display:grid;gap:6px;position:relative}
+.strook::before{content:"✂";position:absolute;top:-11px;left:10px;background:var(--paper);padding:0 4px;font-size:15px;line-height:1}
+.strook .kop{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px}
+.strook .zin{display:grid;grid-template-columns:auto 1fr;gap:0 8px;align-items:end;font-size:13.5px}
+.strook .zin>span{font-weight:700;white-space:nowrap;padding-bottom:3px}
+.strook .zin>i{display:block;height:25px;border-bottom:1.5px solid var(--ink)}
+.strook .zin>i.vol{grid-column:1/-1}
+.strook .van{font:700 10.5px/1.3 var(--fm);letter-spacing:.08em;text-transform:uppercase;color:var(--grey)}
+.leerdoel .zin{display:grid;gap:0}
+.leerdoel .zin>b{font-weight:800;font-size:14px}
+.leerdoel .zin>i{display:block;height:27px;border-bottom:1.5px solid var(--ink)}
+@media print{
+  .strook{break-inside:avoid;padding:7px 10px 9px;gap:4px}
+  .strook .zin>i{height:22px}
+  .eis{font-size:11.5px;padding:5px 7px}
+  .vbl{font-size:12px;padding:6px 9px}
+  #blad-1{gap:8px}
+  #blad-1 .omslag{padding:14px 18px;gap:9px}
+  #blad-1 h1{font-size:38px}
+  #blad-1 .lede{font-size:14px}
+  #blad-1 td.leeg{height:26px}
+  #blad-3{gap:7px}
+  #blad-3 .tab td{padding:4px 7px}
+  #blad-4 .strook,#blad-5 .strook{gap:3px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="hanlogo" viewBox="0 0 82 34"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></symbol></svg>
+
+<div class="topbar"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Praktijkopdracht 5 · C-cluster</span><span class="sp"></span><span class="knoppen"><button type="button" class="pdfknop" onclick="downloadPdf()" title="Opent het afdrukvenster; kies daar 'Opslaan als PDF' of print direct"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6V1h8v5M4 12H2V6h12v6h-2M4 9h8v6H4z"/></svg><span class="lbl">Print / PDF</span></button></span></div>
+
+<div class="wrap">
+
+<!-- ================= BLAD 1 · OMSLAG EN PLAN ================= -->
+<article class="blad" id="blad-1">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Werkboek MT-pitch · week 5</span><span class="num">Blad 1</span></div>
+  <div class="omslag">
+    <div class="eyebrow">Werkboek · Week 5 · Dag 1</div>
+    <h1>Hire us! De MT-pitch</h1>
+    <div class="meta">
+      <span class="chip">Opdracht 5.1 deel B</span>
+      <span class="chip">60 min pitchrondes</span>
+      <span class="chip">LUK 5</span>
+    </div>
+    <p class="lede">De business game is voorbij. Vandaag laat je team zien waarom een opdrachtgever juist jullie moet inhuren. Je pitcht zelf, je speelt opdrachtgever of je observeert, en je krijgt feedback van medestudenten op je eigen aandachtspunt.</p>
+    <div class="naamvelden">
+      <div class="veld"><b>Naam</b><i></i></div>
+      <div class="veld"><b>Team (G1–G5)</b><i></i></div>
+      <div class="veld"><b>Mijn nummer in het team (1–5)</b><i></i></div>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">1.1</span><h3>Wie doet wat?</h3><span class="vorm team">Team</span><span class="tijd">na de loting</span></div>
+    <p class="waarom"><b>Waarom</b>Eén team observeert eerst en pitcht als laatste. De andere vier teams vormen twee paren. Vul in wat de docent op het scherm zet.</p>
+    <p>Observatieteam: <span class="inv"></span> &nbsp;·&nbsp; Paar A: <span class="inv"></span> en <span class="inv"></span> &nbsp;·&nbsp; Paar B: <span class="inv"></span> en <span class="inv"></span></p>
+    <div class="tab"><table class="schema">
+      <thead><tr><th>Ronde</th><th>Paar A</th><th>Paar B</th><th>Observatieteam</th><th>Mijn rol: consultant, opdrachtgever of observator</th></tr></thead>
+      <tbody>
+        <tr><td class="r">1 · 20 min</td><td>1e team is opdrachtgever, 2e team pitcht</td><td>1e team is opdrachtgever, 2e team pitcht</td><td>3 observeren bij A, 2 bij B</td><td class="leeg"></td></tr>
+        <tr><td class="r">2 · 20 min</td><td>de rollen draaien om</td><td>de rollen draaien om</td><td>wisselen van paar</td><td class="leeg"></td></tr>
+        <tr><td class="r">Finale · 20 min</td><td colspan="2">iedereen observeert</td><td>pitcht voor de docent</td><td class="leeg"></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">1.2</span><h3>Mijn aandachtspunt</h3><span class="vorm alleen">Alleen</span><span class="tijd">2 min</span></div>
+    <p class="waarom"><b>Waarom</b>Je medestudenten letten vandaag vooral op dit punt. Zo krijg je feedback op iets waar jij beter in wilt worden.</p>
+    <div class="vbl"><b>Voorbeelden</b><span>rustig blijven bij een lastige vraag · mijn antwoord onderbouwen met een getal uit de game · kort en duidelijk formuleren · anderen laten uitpraten · oogcontact houden met de opdrachtgever</span></div>
+    <div class="veld"><b>Tijdens de rondes wil ik letten op</b><i></i><i></i></div>
+    <p class="klaar"><b>Klaar als</b>je aandachtspunt in één zin op de lijn staat. Noem het aan het begin van je pitchronde aan je observator.</p>
+  </div>
+
+</article>
+
+<!-- ================= BLAD 2 · PITCH VOORBEREIDEN ================= -->
+<article class="blad" id="blad-2">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Werkboek MT-pitch · week 5</span><span class="num">Blad 2</span></div>
+  <div class="blok"><span class="bn">Consultant</span><h2>Waarom zou een opdrachtgever juist jullie inhuren?</h2><span class="bt">10 min</span></div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">2.1</span><h3>Bereid de pitch voor</h3><span class="vorm team">Team</span><span class="tijd">10 min</span></div>
+    <p class="waarom"><b>Waarom</b>Jullie solliciteren als managementteam. De opdrachtgever zoekt een team dat strategisch denkt, keuzes onderbouwt met data, goed samenwerkt en met verandering kan omgaan. Laat met voorbeelden uit de game zien dat jullie dat kunnen.</p>
+    <div class="veld"><b>Wie zijn wij?</b><span>Stel jullie managementrollen kort voor.</span><i></i></div>
+    <div class="tab"><table>
+      <thead><tr><th>Nr</th><th>Naam en rol</th><th>Wat heb ik geleerd? Eén inzicht, met een voorbeeld uit de game</th></tr></thead>
+      <tbody>
+        <tr><td class="nr">1</td><td class="leeg" style="width:30%"></td><td class="leeg"></td></tr>
+        <tr><td class="nr">2</td><td class="leeg"></td><td class="leeg"></td></tr>
+        <tr><td class="nr">3</td><td class="leeg"></td><td class="leeg"></td></tr>
+        <tr><td class="nr">4</td><td class="leeg"></td><td class="leeg"></td></tr>
+        <tr><td class="nr">5</td><td class="leeg"></td><td class="leeg"></td></tr>
+      </tbody>
+    </table></div>
+    <div class="grid2">
+      <div class="veld"><b>Wat voegen wij toe? Drie kwaliteiten</b><i></i><i></i><i></i></div>
+      <div class="veld"><b>Drie adviezen voor een echt bedrijf</b><i></i><i></i><i></i></div>
+    </div>
+    <p class="stappen">Verdeel zelf wie wat vertelt. Iedereen noemt in elk geval het eigen inzicht. Wie graag het woord voert, kan de opening of het slot doen.</p>
+    <p class="klaar"><b>Klaar als</b>de pitch binnen 5 minuten past en iedereen weet wanneer hij of zij aan de beurt is.</p>
+  </div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">2.2</span><h3>Bereid je voor op de vragen</h3><span class="vorm team">Team</span><span class="tijd">als er tijd over is</span></div>
+    <p class="waarom"><b>Waarom</b>Na de pitch krijg je 5 minuten vragen. Deze drie komen zeker.</p>
+    <div class="tab"><table>
+      <thead><tr><th>Vraag</th><th>Ons antwoord in steekwoorden</th></tr></thead>
+      <tbody>
+        <tr><td style="width:36%"><b>Waarom jullie?</b></td><td class="leeg"></td></tr>
+        <tr><td><b>Wat was jullie grootste fout?</b></td><td class="leeg"></td></tr>
+        <tr><td><b>Wat voeren we morgen in?</b></td><td class="leeg"></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</article>
+
+<!-- ================= BLAD 3 · ROLKAART OPDRACHTGEVER ================= -->
+<article class="blad" id="blad-3">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Werkboek MT-pitch · week 5</span><span class="num">Blad 3</span></div>
+  <div class="blok"><span class="bn">Opdrachtgever</span><h2>Rolkaart: jij beslist wie je inhuurt</h2><span class="bt">20 min</span></div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">3.1</span><h3>Jouw rol</h3><span class="vorm team">Team</span><span class="tijd">lezen: 5 min</span></div>
+    <p class="waarom"><b>Waarom</b>Straks zit je tegenover je echte opdrachtgever. Door die rol nu zelf te spelen, merk je wat een pitch overtuigend maakt en waar een opdrachtgever op doorvraagt.</p>
+    <p>Je bent de directie van een bedrijf en zoekt een managementteam. Je huurt alleen een team in dat laat zien dat het:</p>
+    <div class="eisen">
+      <div class="eis"><b>Strategisch denkt</b><span>Ziet het team het grote plaatje?</span></div>
+      <div class="eis"><b>Keuzes onderbouwt met data</b><span>Noemen ze cijfers, of alleen meningen?</span></div>
+      <div class="eis"><b>Goed samenwerkt</b><span>Vullen ze elkaar aan?</span></div>
+      <div class="eis"><b>Met verandering omgaat</b><span>Wat deden ze toen het tegenzat?</span></div>
+    </div>
+    <ol class="stappen">
+      <li>Luister naar de pitch en onderbreek niet. Schrijf per eis op wat je hoort.</li>
+      <li>Stel daarna de drie vaste vragen en vraag minstens één keer door. <b>Iedereen in je team stelt minstens één vraag.</b></li>
+      <li>Overleg hardop met je team, zodat de consultants kunnen meeluisteren. Zeg daarna of je het team inhuurt, en waarom.</li>
+    </ol>
+  </div>
+
+  <div class="grid2">
+    <div class="vbl"><b>De drie vaste vragen</b><span>Waarom jullie? · Wat was jullie grootste fout? · Wat voeren we morgen in?</span></div>
+    <div class="vbl"><b>Zo vraag je door</b><span>Op welk cijfer baseer je dat? · Kun je een voorbeeld geven? · Wat zou je nu anders doen? · Wie in het team besliste dat?</span></div>
+  </div>
+
+  <div class="tab"><table>
+    <thead><tr><th>Eis</th><th>Wat hoorde ik?</th><th>Overtuigd?</th></tr></thead>
+    <tbody>
+      <tr><td style="width:24%"><b>Strategisch denken</b></td><td class="leeg"></td><td style="width:21%"><span class="keuze"><span>ja</span><span>deels</span><span>nee</span></span></td></tr>
+      <tr><td><b>Onderbouwen met data</b></td><td class="leeg"></td><td><span class="keuze"><span>ja</span><span>deels</span><span>nee</span></span></td></tr>
+      <tr><td><b>Samenwerken</b></td><td class="leeg"></td><td><span class="keuze"><span>ja</span><span>deels</span><span>nee</span></span></td></tr>
+      <tr><td><b>Omgaan met verandering</b></td><td class="leeg"></td><td><span class="keuze"><span>ja</span><span>deels</span><span>nee</span></span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="veld"><b>Mijn eigen vraag</b><i></i></div>
+  <div class="veld"><b>Ons besluit</b><span class="keuze" style="margin:4px 0"><span>We huren dit team in</span><span>We huren dit team niet in</span></span><span>omdat …</span><i></i><i></i></div>
+</article>
+
+<!-- ================= BLAD 4 · OBSERVEREN RONDE 1 ================= -->
+<article class="blad" id="blad-4">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Werkboek MT-pitch · week 5</span><span class="num">Blad 4</span></div>
+  <div class="blok"><span class="bn">Observator</span><h2>Ronde 1: schrijf op wat je zag</h2><span class="alleen-o">Alleen observatieteam</span></div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">4.1</span><h3>Zo observeer je</h3><span class="vorm alleen">Alleen</span><span class="tijd">20 min</span></div>
+    <ol class="stappen">
+      <li>Verdeel de consultants met je medeobservators. Volg er twee, of drie als jullie met z'n tweeën zijn.</li>
+      <li>Vraag voor de pitch naar ieders aandachtspunt en schrijf het op.</li>
+      <li>Schrijf op wat je zag of hoorde. Een oordeel ("goed", "saai") helpt niemand. Beschrijf wat de persoon deed en wat dat met jou deed.</li>
+      <li>Lees in de feedbackminuten je strook voor en knip hem daarna af. De consultant krijgt hem mee.</li>
+    </ol>
+  </div>
+
+  <div class="strook">
+    <div class="kop"><div class="veld"><b>Voor</b><i></i></div><div class="veld"><b>Aandachtspunt</b><i></i></div></div>
+    <div class="zin"><span>Toen je</span><i></i><i class="vol"></i></div>
+    <div class="zin"><span>merkte ik dat ik</span><i></i></div>
+    <div class="zin"><span>Toen je</span><i></i><i class="vol"></i></div>
+    <div class="zin"><span>merkte ik dat ik</span><i></i></div>
+    <span class="van">Van: ______________________ · ronde 1</span>
+  </div>
+  <div class="strook">
+    <div class="kop"><div class="veld"><b>Voor</b><i></i></div><div class="veld"><b>Aandachtspunt</b><i></i></div></div>
+    <div class="zin"><span>Toen je</span><i></i><i class="vol"></i></div>
+    <div class="zin"><span>merkte ik dat ik</span><i></i></div>
+    <div class="zin"><span>Toen je</span><i></i><i class="vol"></i></div>
+    <div class="zin"><span>merkte ik dat ik</span><i></i></div>
+    <span class="van">Van: ______________________ · ronde 1</span>
+  </div>
+  <div class="strook">
+    <div class="kop"><div class="veld"><b>Voor</b><i></i></div><div class="veld"><b>Aandachtspunt</b><i></i></div></div>
+    <div class="zin"><span>Toen je</span><i></i><i class="vol"></i></div>
+    <div class="zin"><span>merkte ik dat ik</span><i></i></div>
+    <span class="van">Van: ______________________ · ronde 1</span>
+  </div>
+</article>
+
+<!-- ================= BLAD 5 · OBSERVEREN RONDE 2 ================= -->
+<article class="blad" id="blad-5">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Werkboek MT-pitch · week 5</span><span class="num">Blad 5</span></div>
+  <div class="blok"><span class="bn">Observator</span><h2>Ronde 2: nu bij het andere paar</h2><span class="alleen-o">Alleen observatieteam</span></div>
+  <p class="stappen">Werk zoals in ronde 1 (blad 4). Kijk ook naar wat je voor jullie eigen finale kunt gebruiken, en schrijf dat onderaan op.</p>
+
+  <div class="strook">
+    <div class="kop"><div class="veld"><b>Voor</b><i></i></div><div class="veld"><b>Aandachtspunt</b><i></i></div></div>
+    <div class="zin"><span>Toen je</span><i></i><i class="vol"></i></div>
+    <div class="zin"><span>merkte ik dat ik</span><i></i></div>
+    <div class="zin"><span>Toen je</span><i></i><i class="vol"></i></div>
+    <div class="zin"><span>merkte ik dat ik</span><i></i></div>
+    <span class="van">Van: ______________________ · ronde 2</span>
+  </div>
+  <div class="strook">
+    <div class="kop"><div class="veld"><b>Voor</b><i></i></div><div class="veld"><b>Aandachtspunt</b><i></i></div></div>
+    <div class="zin"><span>Toen je</span><i></i><i class="vol"></i></div>
+    <div class="zin"><span>merkte ik dat ik</span><i></i></div>
+    <div class="zin"><span>Toen je</span><i></i><i class="vol"></i></div>
+    <div class="zin"><span>merkte ik dat ik</span><i></i></div>
+    <span class="van">Van: ______________________ · ronde 2</span>
+  </div>
+  <div class="strook">
+    <div class="kop"><div class="veld"><b>Voor</b><i></i></div><div class="veld"><b>Aandachtspunt</b><i></i></div></div>
+    <div class="zin"><span>Toen je</span><i></i><i class="vol"></i></div>
+    <div class="zin"><span>merkte ik dat ik</span><i></i></div>
+    <span class="van">Van: ______________________ · ronde 2</span>
+  </div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">5.1</span><h3>Wat nemen wij mee naar de finale?</h3><span class="vorm alleen">Alleen</span><span class="tijd">tijdens ronde 1 en 2</span></div>
+    <div class="grid2">
+      <div class="veld"><b>Dit werkte goed, dit nemen we over</b><i></i><i></i></div>
+      <div class="veld"><b>Deze valkuil vermijden we</b><i></i><i></i></div>
+    </div>
+  </div>
+</article>
+
+<!-- ================= BLAD 6 · FINALE ================= -->
+<article class="blad" id="blad-6">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Werkboek MT-pitch · week 5</span><span class="num">Blad 6</span></div>
+  <div class="blok"><span class="bn">Finale</span><h2>Het observatieteam pitcht voor de docent</h2><span class="bt">20 min</span></div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">6.1</span><h3>Observatieteam: jullie finale</h3><span class="alleen-o">Alleen observatieteam</span><span class="tijd">5 min na de vragen</span></div>
+    <p class="waarom"><b>Waarom</b>Jullie hebben vier pitches gezien. Laat zien wat je daarvan hebt geleerd.</p>
+    <ol class="stappen">
+      <li>Pitch 5 minuten voor de docent, die de opdrachtgever speelt.</li>
+      <li>Beantwoord de vragen van de docent.</li>
+      <li>Vertel daarna in 5 minuten wat jullie van de andere teams hebben overgenomen en welke valkuil jullie hebben vermeden. Gebruik blad 5.</li>
+    </ol>
+    <p class="stappen">Verdeel zelf wie welk deel presenteert.</p>
+  </div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">6.2</span><h3>Alle andere teams: geef één strook feedback</h3><span class="vorm alleen">Alleen</span><span class="tijd">20 min</span></div>
+    <ol class="stappen">
+      <li>Je volgt de student uit het observatieteam met <b>hetzelfde nummer als jij</b> in je eigen team (blad 1).</li>
+      <li>Het observatieteam noemt aan het begin van de finale ieders aandachtspunt. Schrijf dat van jouw student op.</li>
+      <li>Geef de strook na afloop aan de student over wie hij gaat.</li>
+    </ol>
+  </div>
+
+  <div class="strook">
+    <div class="kop"><div class="veld"><b>Voor</b><i></i></div><div class="veld"><b>Aandachtspunt</b><i></i></div></div>
+    <div class="zin"><span>Toen je</span><i></i><i class="vol"></i></div>
+    <div class="zin"><span>merkte ik dat ik</span><i></i></div>
+    <div class="zin"><span>Toen je</span><i></i><i class="vol"></i></div>
+    <div class="zin"><span>merkte ik dat ik</span><i></i></div>
+    <span class="van">Van: ______________________ · finale</span>
+  </div>
+</article>
+
+<!-- ================= BLAD 7 · LEERDOEL ================= -->
+<article class="blad" id="blad-7">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Werkboek MT-pitch · week 5</span><span class="num">Blad 7</span></div>
+  <div class="blok"><span class="bn">Reflectie</span><h2>Kies je leerdoel</h2><span class="bt">na de rondes</span></div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">7.1</span><h3>Wat zeggen de stroken over mij?</h3><span class="vorm alleen">Alleen</span><span class="tijd">10 min</span></div>
+    <p class="waarom"><b>Waarom</b>De stroken die je kreeg, zijn bewijs voor LUK 5 in je portfolio. Ze laten zien hoe anderen jouw gedrag ervaren.</p>
+    <ol class="stappen">
+      <li>Leg alle stroken die je kreeg naast elkaar. Als consultant heb je er één of twee. Zat je in het observatieteam, dan heb je er vier uit de finale.</li>
+      <li>Wat komt vaker terug? Wat verrast je?</li>
+    </ol>
+    <div class="veld"><b>Dit komt vaker terug</b><i></i><i></i></div>
+    <div class="veld"><b>Over mijn aandachtspunt (blad 1) zeggen de stroken</b><i></i><i></i></div>
+  </div>
+
+  <div class="act leerdoel">
+    <div class="act-kop"><span class="nr">7.2</span><h3>Mijn leerdoel</h3><span class="vorm alleen">Alleen</span><span class="tijd">10 min</span></div>
+    <p class="waarom"><b>Waarom</b>Dit leerdoel neem je mee naar je project bij de echte opdrachtgever. Het is ook het persoonlijke leerdoel van deel C in het werkboek business game.</p>
+    <div class="zin"><b>Ik wil mij verder ontwikkelen in …</b><i></i><i></i></div>
+    <div class="zin"><b>omdat …</b><i></i><i></i></div>
+    <div class="zin"><b>Dit ga ik doen door … (wat, wanneer, hoe weet ik dat het gelukt is?)</b><i></i><i></i><i></i></div>
+    <p class="klaar"><b>Klaar als</b>de docent je leerdoel heeft gezien. Het is concreet, gaat over jezelf en past bij je project.</p>
+  </div>
+
+  <div class="vbl"><b>Portfolio</b><span>Maak een foto van je stroken en dit blad, en zet ze bij LUK 5 in je portfolio.</span></div>
+</article>
+
+</div>
+
+<div class="foot"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Hogeschool van Arnhem en Nijmegen</span><span class="sp"></span><span class="num">C-cluster · week 5</span></div>
+<script>
+/* De browser maakt de PDF via het afdrukvenster ("Opslaan als PDF"). */
+function downloadPdf(){
+  const titel=document.title;
+  document.title='Werkboek_MT-pitch_week5';
+  window.addEventListener('afterprint',()=>{document.title=titel},{once:true});
+  window.print();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Docentinstructie MT-pitch</title>
+<style>
+:root{
+  /* HAN-huisstijl, overgenomen uit archief/voorbeeld-slide-deck.html:
+     één schreeuwende kleur op zwart-wit */
+  --han:#E50056; --han2:#FFE1EC; --ink:#000000; --paper:#FFFFFF;
+  --grey:#454545; --grey2:#767676; --wash:#F2F2F0; --panel2:#E6E6E3;
+  --mens2:#FFE875;
+  --bw:3px; --sh:5px 5px 0 var(--ink);
+  --f:"Avenir Next","Avenir","Nunito Sans","Segoe UI",Helvetica,Arial,sans-serif;
+  --fm:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--wash);color:var(--ink);font:16px/1.55 var(--f);-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;display:grid;gap:44px;padding:32px 16px 64px}
+h1,h2,h3{text-wrap:balance;margin:0}
+h1{font-size:clamp(32px,6vw,56px);line-height:.96;letter-spacing:-.035em;font-weight:800;text-transform:uppercase}
+h2{font-size:clamp(24px,3.4vw,32px);line-height:1.05;letter-spacing:-.025em;font-weight:800;
+  display:flex;align-items:center;gap:12px;padding-bottom:10px;border-bottom:var(--bw) solid var(--ink)}
+h2::before{content:"";flex:none;width:16px;height:16px;background:var(--han)}
+h3{font-size:18px;line-height:1.2;font-weight:800;margin-top:4px}
+p{margin:0;max-width:68ch}
+b,strong{font-weight:700}
+section{display:grid;gap:18px}
+
+/* ---------- logobalk ---------- */
+.topbar,.foot{background:var(--ink);color:var(--paper);display:flex;align-items:center;gap:18px;padding:0 20px 0 max(16px,calc((100% - 908px)/2))}
+.topbar{height:56px;border-bottom:4px solid var(--han)}
+.foot{min-height:52px}
+.logo{flex:none;display:block;height:26px;width:62px}
+.who{font:700 12px/1 var(--fm);letter-spacing:.16em;text-transform:uppercase;opacity:.82}
+.sp{flex:1}
+.num{font:800 13px/1 var(--fm);background:var(--han);color:var(--paper);padding:8px 11px;letter-spacing:.06em;text-transform:uppercase}
+
+/* ---------- kop ---------- */
+header{background:var(--han);color:var(--paper);border:var(--bw) solid var(--ink);box-shadow:10px 10px 0 var(--ink);
+  padding:28px clamp(18px,4vw,40px) 30px;display:grid;gap:16px}
+.eyebrow{justify-self:start;background:var(--ink);color:var(--paper);padding:6px 12px 5px;
+  font:700 12px/1.2 var(--fm);letter-spacing:.14em;text-transform:uppercase}
+header .eyebrow{background:var(--paper);color:var(--ink)}
+.meta{display:flex;flex-wrap:wrap;gap:10px}
+.chip{border:3px solid currentColor;padding:7px 12px;font:700 13px/1.15 var(--fm);letter-spacing:.04em;text-transform:uppercase}
+.lede{font-size:19px;line-height:1.45;font-weight:600;max-width:64ch}
+header .callout{color:var(--ink)}
+
+/* ---------- blokken ---------- */
+.callout{background:var(--mens2);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:14px 18px;display:grid;gap:8px}
+.callout>strong{justify-self:start;background:var(--ink);color:var(--paper);padding:5px 11px 4px;
+  font:700 12px/1.2 var(--fm);letter-spacing:.12em;text-transform:uppercase}
+.callout.han{background:var(--han);color:var(--paper)}
+.callout.han>strong{background:var(--paper);color:var(--han)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.box{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:16px 18px;display:grid;gap:10px;align-content:start}
+.box h3{margin:0}
+ul,ol{margin:0;padding-left:22px;display:grid;gap:6px}
+li{max-width:66ch}
+ul:not(.check){list-style:none;padding-left:24px}
+ul:not(.check) li{position:relative}
+ul:not(.check) li::before{content:"";position:absolute;left:-22px;top:.5em;width:10px;height:10px;background:var(--han)}
+ol li::marker{font:800 14px var(--fm);color:var(--han)}
+.check{list-style:none;padding-left:26px}
+.check li{position:relative}
+.check li::before{content:"";position:absolute;left:-25px;top:4px;width:14px;height:14px;border:2.5px solid var(--ink);background:var(--paper)}
+.muted{color:var(--grey)}
+.small{font-size:14.5px}
+
+/* ---------- tabellen ---------- */
+.tablewrap{overflow-x:auto;background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh)}
+table{border-collapse:collapse;width:100%;min-width:640px}
+th,td{text-align:left;vertical-align:top;padding:12px 14px;border-top:2px solid var(--ink)}
+th{font:700 12px/1.2 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:var(--ink);border-top:0}
+td.t{font:800 14px/1.4 var(--fm);white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--han)}
+td.t span{display:block;color:var(--grey);font-weight:600;font-size:12px}
+tr.brk td{background:var(--wash);color:var(--grey);padding-block:8px;font-weight:600}
+tr.brk td.t{color:var(--ink)}
+td b{font-weight:700}
+.tag{display:inline-block;font:700 11px/1 var(--fm);letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;
+  background:var(--han2);color:var(--ink);border:2px solid var(--ink);margin:4px 4px 0 0;vertical-align:1px}
+.tag.blad{background:var(--ink);color:var(--paper)}
+
+/* ---------- inhoud ---------- */
+.flaws{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.flaw{background:var(--han2);border:2px solid var(--ink);padding:10px 12px;font-size:14.5px}
+.flaw b{color:var(--han)}
+.phases{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));border:var(--bw) solid var(--ink);background:var(--paper);box-shadow:var(--sh)}
+.phase{padding:14px 16px;border-right:2px solid var(--ink);display:grid;gap:4px;align-content:start}
+.phase:last-child{border-right:0}
+.phase .n{justify-self:start;font:700 11px/1 var(--fm);letter-spacing:.12em;text-transform:uppercase;background:var(--han);color:var(--paper);padding:4px 7px}
+.phase b{font-size:18px;font-weight:800}
+.note{background:var(--paper);border:var(--bw) solid var(--ink);border-top:9px solid var(--han);box-shadow:var(--sh);padding:14px 18px;display:grid;gap:8px}
+.note h3{margin:0}
+footer.bron{font-size:13.5px;color:var(--grey);border-top:var(--bw) solid var(--ink);padding-top:16px;display:grid;gap:6px}
+code{font-family:var(--fm);font-size:12.5px}
+.pdfknop{font:700 12px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:transparent;
+  border:2px solid var(--paper);padding:8px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.pdfknop:hover,.pdfknop:focus-visible{background:var(--han);border-color:var(--han);outline:none}
+.pdfknop svg{width:14px;height:14px}
+a{color:inherit;text-decoration-color:var(--han);text-decoration-thickness:2px;text-underline-offset:3px}
+.knoppen{display:flex;gap:8px}
+@media (max-width:640px){.topbar .who{display:none}.pdfknop{padding:8px 9px;letter-spacing:.04em}}
+@media (max-width:440px){.pdfknop .lbl{display:none}.pdfknop svg{width:16px;height:16px}}
+@page{size:A4;margin:14mm 12mm}
+@media print{
+  .pdfknop{display:none}
+  body{background:#fff}
+  .wrap,section{display:block;padding-block:16px}
+  section{padding-block:0;margin-top:26px}
+  section>*+*{margin-top:14px}
+  .grid2,.flaws{break-inside:avoid}
+  header,.box,.tablewrap,.callout,.phases,.note{box-shadow:none}
+  body{font-size:14px}
+  .box,.note,.callout,.phases,.flaw,tr,h3{break-inside:avoid}
+  h2,h3{break-after:avoid}
+  .tablewrap{overflow:visible}
+  table{min-width:0}
+  th,td{padding:9px 10px}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+.kopieer{font:700 12px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;background:var(--han);color:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:10px 14px;cursor:pointer}
+.kopieer:active{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ink)}
+#studententekst ol,#studententekst ul{font-size:15px}
+@media print{.kopieer,#gekopieerd,.foot{display:none}footer.bron{display:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="hanlogo" viewBox="0 0 82 34"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></symbol></svg>
+
+<div class="topbar"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Praktijkopdracht 5 · C-cluster</span><span class="sp"></span><span class="knoppen"><button type="button" class="pdfknop" onclick="downloadPdf()" aria-label="Download PDF" title="Opent het afdrukvenster; kies daar 'Opslaan als PDF'"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 1v9M4 6l4 4 4-4M2 14h12"/></svg><span class="lbl">Download PDF</span></button></span></div>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Docentinstructie · Week 5 · Dag 1</div>
+  <h1>MT-pitch: van simulatie naar praktijk</h1>
+  <div class="meta">
+    <span class="chip">TUT2 + PO-docent</span>
+    <span class="chip">week 5 · 28 sept–2 okt</span>
+    <span class="chip">120 min</span>
+    <span class="chip">opdracht 5.1</span>
+    <span class="chip">LUK 5</span>
+  </div>
+  <p class="lede">De business game is afgelopen. Teams kijken als managementteam terug en pitchen daarna waarom een opdrachtgever juist hen moet inhuren. Elk team pitcht één keer, speelt opdrachtgever of observeert, en elke student krijgt feedback op een zelfgekozen aandachtspunt. Uit die feedback kiest elke student een leerdoel voor het project bij de echte opdrachtgever.</p>
+  <div class="callout small">
+    <strong>Check vooraf</strong> Welke dag en welk lokaal? Is er een tweede ruimte of een hoek waar één paar kan zitten? Woensdag is de eerste kans van de toets SM/OM.
+  </div>
+</header>
+
+<section>
+  <h2>In één oogopslag</h2>
+  <div class="phases">
+    <div class="phase"><span class="n">0:00 · 5'</span><b>Opening</b><span class="small">loting observatieteam</span></div>
+    <div class="phase"><span class="n">0:05 · 35'</span><b>Terugkijken</b><span class="small">als MT, werkboek business game deel A</span></div>
+    <div class="phase"><span class="n">0:40 · 20'</span><b>Uitleg en voorbereiden</b><span class="small">rondes uitleggen, pitch, aandachtspunt</span></div>
+    <div class="phase"><span class="n">1:00 · 60'</span><b>Pitchrondes</b><span class="small">ronde 1, ronde 2, finale</span></div>
+    <div class="phase"><span class="n">daarna</span><b>Leerdoel</b><span class="small">samen met de coaching</span></div>
+  </div>
+  <div class="grid2">
+    <div class="box"><h3>Materiaal</h3>
+      <ul class="small">
+        <li><a href="Werkboek_MT-pitch_week5.html">Werkboek MT-pitch</a>: 7 bladen per student</li>
+        <li><a href="Slides_MT-pitch_week5.html">Slides MT-pitch</a>: 13 dia's met timer en loting</li>
+        <li>Werkboek business game (deel A en C), dat hebben studenten al</li>
+        <li><a href="ontwerp-fase3-mt-pitch.md">Ontwerpdocument</a> met besluitenregister</li>
+      </ul>
+    </div>
+    <div class="box"><h3>Wat studenten meenemen</h3>
+      <ul class="small">
+        <li>Hun inzicht: welke les nemen ze mee uit de game?</li>
+        <li>Een beschreven feedbackmoment: "Toen je …, merkte ik dat ik …"</li>
+        <li>Een concreet leerdoel voor het project</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Tekst voor studenten</h2>
+  <p>Stuur dit een paar dagen vooraf via Brightspace of mail. Vul de dag en de namen in.</p>
+  <div class="note" id="studententekst">
+    <h3>Onderwerp: Week 5, dag 1: jullie pitchen als managementteam</h3>
+    <p>Hoi allemaal,</p>
+    <p>Op [dag en datum] sluiten we de business game af. Jullie kijken als managementteam terug op de zes rondes. Daarna pitchen jullie waarom een opdrachtgever juist jullie team moet inhuren.</p>
+    <p><b>Zo ziet het blok eruit</b></p>
+    <ol>
+      <li>Terugkijken als MT (35 min), met deel A van het werkboek business game.</li>
+      <li>Pitch voorbereiden (20 min, inclusief uitleg).</li>
+      <li>Pitchrondes (60 min). In twee rondes zijn jullie om beurten consultant en opdrachtgever voor een ander team. Eén team observeert eerst en pitcht als laatste voor de docent. Welk team dat is, loten we aan het begin.</li>
+      <li>Daarna maak je een persoonlijk leerdoel, tijdens de coaching.</li>
+    </ol>
+    <p><b>Neem mee</b></p>
+    <ul>
+      <li>je laptop met de logboeken en dashboards van PhoneVentures</li>
+      <li>het werkboek business game</li>
+    </ul>
+    <p>Het werkboek voor de pitchrondes krijg je op papier.</p>
+    <p><b>Denk alvast na:</b> waar wil jij beter in worden als je presenteert of vragen beantwoordt? Bijvoorbeeld "rustig blijven bij een lastige vraag" of "mijn antwoord onderbouwen met een getal". Tijdens de rondes letten je medestudenten daarop.</p>
+    <p>Tot dan!<br>[namen docenten]</p>
+  </div>
+  <p><button type="button" class="kopieer" onclick="kopieer()">Kopieer tekst</button> <span id="gekopieerd" class="small muted" aria-live="polite"></span></p>
+</section>
+
+<section>
+  <h2>Voorbereiding</h2>
+  <div class="grid2">
+    <div class="box"><h3>Printen</h3>
+      <ul class="check small">
+        <li>Werkboek MT-pitch, één per student. <b>Enkelzijdig</b>: de stroken op blad 4–6 worden afgeknipt.</li>
+        <li>Een schaar per tafel, of laat de stroken langs een liniaal afscheuren.</li>
+        <li>Per team een envelop met de werkboeken, zodat er tijdens de sessie niets uitgedeeld hoeft te worden.</li>
+      </ul>
+    </div>
+    <div class="box"><h3>Lokaal en techniek</h3>
+      <ul class="check small">
+        <li>Twee plekken voor de paren, zo ver mogelijk uit elkaar. Het paar zonder scherm krijgt een telefoontimer.</li>
+        <li>Slides open en getest: klik een team aan op dia 2 en laat de timer even lopen (het geluid gaat aan bij elke overgang).</li>
+        <li>Stoelen voor de finale: vijf voor het observatieteam, één voor de opdrachtgever, de rest in een halve kring.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note">
+    <h3>Afspreken met de PO-docent</h3>
+    <ul class="check small">
+      <li>Wie begeleidt welk paar in ronde 1? (In ronde 2 wisselen jullie.)</li>
+      <li>Wie start de timer? Standaard TUT2, als iedereen zit. Alle blokken duren vijf minuten, dus een telefoontimer bij het andere paar is makkelijk gelijk te houden.</li>
+      <li>Gebruiken we de optie met de echte opdrachtgever? (Zie onderaan.)</li>
+      <li>Hoe gaat de nabespreking van de finale over in de coaching en het leerdoel?</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Draaiboek</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Tijd</th><th>Wat</th><th>Wie</th><th>Dia · blad</th></tr></thead>
+    <tbody>
+      <tr><td class="t">0:00<span>5 min</span></td><td><b>Opening.</b> Doel van de dag. Vraag of een team zich vrijwillig meldt als observatieteam; anders loten. Klik het team aan op dia 2. Studenten vullen blad 1.1 in.</td><td>TUT2</td><td><span class="tag">dia 1–2</span><span class="tag blad">blad 1</span></td></tr>
+      <tr><td class="t">0:05<span>35 min</span></td><td><b>Terugkijken als MT.</b> Twee vraagstukken, beste en slechtste keuze, TOM-model, één managementles. Loop rond en vraag door: <i>Op welke data baseerden jullie dit? Wat zouden jullie nu anders doen?</i> Zie "Stap 1: terugkijken als MT" hieronder.</td><td>beide, elk 2–3 teams</td><td><span class="tag">dia 3</span><span class="tag blad">BG deel A</span></td></tr>
+      <tr><td class="t">0:40<span>5 min</span></td><td><b>Uitleg pitchrondes.</b> Schema, drie rollen, opbouw van een ronde, hoe je feedback geeft.</td><td>TUT2</td><td><span class="tag">dia 4–7</span></td></tr>
+      <tr><td class="t">0:45<span>10 min</span></td><td><b>Pitch voorbereiden.</b> Alle vijf teams, ook het observatieteam. Iedereen noemt minstens het eigen inzicht.</td><td>beide lopen rond</td><td><span class="tag">dia 8</span><span class="tag blad">blad 2</span></td></tr>
+      <tr><td class="t">0:55<span>5 min</span></td><td><b>Aandachtspunt, rolkaart en naar je plek.</b> Iedereen schrijft een aandachtspunt op. De opdrachtgevers van ronde 1 lezen blad 3. Het observatieteam leest blad 4 en verdeelt zich: drie naar paar A, twee naar paar B. Om 1:00 zit iedereen bij zijn paar.</td><td>beide</td><td><span class="tag">dia 9</span><span class="tag blad">blad 1, 3, 4</span></td></tr>
+      <tr><td class="t">1:00<span>20 min</span></td><td><b>Ronde 1.</b> Pitch 5 · vragen 5 · besluit 5 · feedback 5. Bij het besluit overleggen de opdrachtgevers hardop en luisteren de consultants mee. Elke docent bij één paar.</td><td>TUT2 paar A, PO paar B</td><td><span class="tag">dia 10</span><span class="tag blad">blad 2–4</span></td></tr>
+      <tr><td class="t">1:20<span>20 min</span></td><td><b>Ronde 2.</b> Zelfde opbouw. De teams blijven zitten en ruilen van rol; alleen observators en docenten lopen naar het andere paar. Start de timer als iedereen zit. Na afloop komt iedereen naar het lokaal.</td><td>TUT2 paar B, PO paar A</td><td><span class="tag">dia 11</span><span class="tag blad">blad 2, 3, 5</span></td></tr>
+      <tr><td class="t">1:40<span>20 min</span></td><td><b>Finale.</b> Pitch 5 · vragen 5 · wat namen we over 5 · feedback 5. Alle andere studenten vullen één strook in voor de student met hetzelfde nummer.</td><td>TUT2 opdrachtgever, PO nabespreking</td><td><span class="tag">dia 12</span><span class="tag blad">blad 6</span></td></tr>
+      <tr class="brk"><td class="t">2:00</td><td colspan="3">Einde van het blok. Het leerdoel volgt tijdens de coaching (dia 13, blad 7).</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>Stap 1: terugkijken als MT</h2>
+  <p>De teams werken 35 minuten met deel A van het werkboek business game. De vraag op dia 3 vat alles samen: <b>welke beslissing zou je nu anders nemen, en waarom?</b> Wat de teams hier opschrijven, is het bewijs in hun pitch. Hoe meer concrete voorbeelden en getallen uit de game, hoe overtuigender de pitch.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Onderdeel</th><th>Wat teams doen</th><th>Doorvragen</th><th>Wordt in de pitch</th></tr></thead>
+    <tbody>
+      <tr><td class="t">1<span>±10 min</span></td><td><b>Twee vraagstukken uit de game.</b> Bijvoorbeeld: waarom daalde de winst, waarom groeide het marktaandeel niet? Per vraagstuk: de diagnose, waarop die gebaseerd was, en of die achteraf klopte.</td><td>Welk cijfer in het dashboard zag je als eerste bewegen? Was dat een oorzaak of een symptoom? Hoe weet je nu of de diagnose klopte?</td><td>"Wat hebben we geleerd?" en de eis "keuzes onderbouwen met data"</td></tr>
+      <tr><td class="t">2<span>±10 min</span></td><td><b>Beste en slechtste beslissing.</b> Waarom die keuze, welk effect, en hoe die paste bij de strategie en de zes kernwaarden.</td><td>Wat wist je toen, en wat weet je nu? In welke ronde zag je het effect? Wie was het er niet mee eens, en wat deden jullie daarmee?</td><td>Het antwoord op "Wat was jullie grootste fout?" en de drie kwaliteiten</td></tr>
+      <tr><td class="t">3<span>±8 min</span></td><td><b>TOM-model.</b> Wat werkte goed, welke aannames bleken onjuist, wat zou je bij een herstart aanpassen?</td><td>Welke aanname over de klant of de markt klopte niet? Speelde het probleem op strategisch, tactisch of operationeel niveau? Welk vlak zou je anders inrichten?</td><td>De eisen "strategisch denken" en "omgaan met verandering"</td></tr>
+      <tr><td class="t">4<span>±7 min</span></td><td><b>De belangrijkste managementles</b>, als team geformuleerd.</td><td>Kun je het in één zin zeggen, met een voorbeeld? Heeft een echte opdrachtgever hier iets aan?</td><td>De drie adviezen voor een echt bedrijf</td></tr>
+    </tbody>
+  </table></div>
+  <div class="grid2">
+    <div class="box"><h3>Waar je op let</h3>
+      <ul class="small">
+        <li><b>"We hadden pech" of "de markt zat tegen".</b> Vraag wat het team zelf had kunnen zien, en wanneer.</li>
+        <li><b>Geen getal.</b> Laat het team het dashboard of het logboek erbij pakken. Eén getal per vraagstuk is genoeg.</li>
+        <li><b>Achteraf wijs.</b> "We hadden moeten investeren." Vraag: wist je dat toen al, of weet je dat pas nu?</li>
+        <li><b>Het team wil alle zes rondes bespreken.</b> Laat het twee vraagstukken kiezen. Twee goed uitgewerkte vraagstukken zijn genoeg.</li>
+        <li><b>Eén student praat.</b> Stel je vraag aan een ander teamlid.</li>
+      </ul>
+    </div>
+    <div class="box"><h3>Zo verdeel je het</h3>
+      <ul class="small">
+        <li>Jij en je collega nemen elk twee of drie teams. Blijf per bezoek kort: één of twee vragen, dan door.</li>
+        <li>Check na 20 minuten of elk team minstens onderdeel 1 en 2 heeft. Zo niet, laat het dan onderdeel 3 korter houden.</li>
+        <li>Sluit af met: "Dit is jullie materiaal voor de pitch." Leg de koppeling in de laatste kolom van de tabel kort uit bij dia 8.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="small muted">Deel A sluit aan op LUK 1 (een knelpunt signaleren in de data) en LUK 4 (evalueren of een actie werkte). In deel C van het werkboek business game gebruiken studenten dezelfde voorbeelden voor hun individuele reflectie.</p>
+</section>
+
+<section>
+  <h2>Tijdens de rondes</h2>
+  <div class="grid2">
+    <div class="box"><h3>Jouw rol bij een paar</h3>
+      <ul class="small">
+        <li>Bewaak de tijd; de pitch en de vragen zijn van de studenten.</li>
+        <li>Blijft de opdrachtgever te vriendelijk? Stel na de vragenronde één scherpe vraag.</li>
+        <li>Let erop dat iedereen in het opdrachtgeversteam een vraag stelt.</li>
+        <li>Luister of de observators beschrijven wat ze zagen. "Goed gedaan" is geen feedback: vraag "Wat deed ze precies?"</li>
+      </ul>
+    </div>
+    <div class="box"><h3>Scherpe vragen</h3>
+      <ul class="small">
+        <li>Welk getal uit het dashboard laat dat zien?</li>
+        <li>Wie in het team was het daar niet mee eens, en wat deden jullie toen?</li>
+        <li>Wat zouden jullie in ronde 3 anders doen, nu je dit weet?</li>
+        <li>Hoe weet ik over drie maanden of jullie advies werkt?</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Finale</h2>
+  <div class="grid2">
+    <div class="box"><h3>TUT2 speelt de opdrachtgever</h3>
+      <ul class="small">
+        <li>Waarom jullie?</li>
+        <li>Wat was jullie grootste fout?</li>
+        <li>Wat voeren we morgen in?</li>
+        <li>Vraag minstens twee keer door op data. Dit is het niveau dat een echte opdrachtgever verwacht, en de hele groep kijkt mee.</li>
+      </ul>
+    </div>
+    <div class="box"><h3>PO-docent leidt de nabespreking</h3>
+      <ul class="small">
+        <li>Wat zag je het observatieteam overnemen van de andere teams?</li>
+        <li>Welke vraag van de opdrachtgever was het lastigst, en waarom?</li>
+        <li>Welke vraag neem jij mee naar je echte opdrachtgever?</li>
+        <li>Stroken gaan naar de student over wie ze gaan.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Daarna: het leerdoel</h2>
+  <p>Tijdens de coaching leggen studenten hun stroken naast elkaar (blad 7) en schrijven ze een leerdoel: "Ik wil mij verder ontwikkelen in … omdat … Dit ga ik doen door …". Dit is ook het leerdoel van deel C in het werkboek business game.</p>
+  <div class="callout small"><strong>Check per student</strong> Is het leerdoel concreet? Gaat het over de eigen ontwikkeling? Past het bij het project bij de opdrachtgever? Foto van de stroken en blad 7 in het portfolio bij LUK 5.</div>
+</section>
+
+<section>
+  <h2>Als het anders loopt</h2>
+  <div class="flaws">
+    <div class="flaw"><b>Een team heeft maar 3 of 4 studenten.</b> Laat het team de pitch verdelen zoals het uitkomt. Bij de finale volgen twee studenten dezelfde persoon, of een student volgt er twee.</div>
+    <div class="flaw"><b>De tijd loopt uit.</b> Laat het hardop overleggen bij het besluit weg; alleen het besluit zelf blijft. Schrap nooit de feedback, want daar komt het leerdoel uit.</div>
+    <div class="flaw"><b>Een student wil niet presenteren.</b> Laat hem of haar alleen het eigen inzicht noemen en de vragen over data beantwoorden. Een groter aandeel kan later.</div>
+    <div class="flaw"><b>Het observatieteam mist iemand.</b> Verdeel over de paren zoals het uitkomt; elk paar moet minstens één observator hebben.</div>
+    <div class="flaw"><b>Een team wil het observatieteam niet zijn.</b> Het voordeel eerlijk benoemen helpt: het team ziet vier pitches voordat het zelf pitcht.</div>
+    <div class="flaw"><b>Opdrachtgevers geven alleen complimenten.</b> Wijs op de rubriek "Overtuigd?" op blad 3. Een "deels" is ook een antwoord.</div>
+  </div>
+</section>
+
+<section>
+  <h2>Optie: de echte opdrachtgever</h2>
+  <p>Het opdrachtgeversteam vertelt in twee minuten over zijn eigen echte opdrachtgever. De consultants richten hun drie adviezen dan op dat bedrijf. Dat sluit goed aan op de A3 van dag 2, maar de consultants moeten improviseren. Gebruik deze optie alleen als de rondes lopen, en spreek het vooraf af met je collega. Dit staat nog open in het besluitenregister (B10).</p>
+</section>
+
+<section>
+  <h2>Waarom deze opzet</h2>
+  <p>Het ontwerp is getoetst aan vijf kwaliteitscriteria. Hieronder in het kort; de volledige toets en alle besluiten staan in het <a href="ontwerp-fase3-mt-pitch.md">ontwerpdocument</a>.</p>
+  <div class="grid2">
+    <div class="box"><h3>Purpose</h3><p class="small">Studenten oefenen met de vragen van hun echte opdrachtgever. Elke student krijgt feedback die als bewijs voor LUK 5 dient en het leerdoel voedt.</p></div>
+    <div class="box"><h3>Autonomy</h3><p class="small">Teams kiezen de inhoud van de pitch en wie wat vertelt. Elke student kiest een eigen aandachtspunt. Opdrachtgevers beslissen zelf of ze het team inhuren.</p></div>
+    <div class="box"><h3>Mastery</h3><p class="small">Feedback van drie kanten: opdrachtgever, observator en docent. Wie later pitcht, heeft al pitches gezien. De feedback beschrijft gedrag en geeft geen cijfer.</p></div>
+    <div class="box"><h3>Social</h3><p class="small">Alle teams hebben in elke ronde een rol. Studenten die niet graag spreken, dragen als observator schriftelijk bij. De hele groep sluit samen af in de finale.</p></div>
+  </div>
+  <div class="note"><h3>KISS: Keep It Super Simple</h3><p class="small">Studenten besteden hun aandacht aan het leren en hoeven het programma nauwelijks te volgen. Ronde 1 en 2 zijn gelijk, het schema staat steeds in beeld en de timer houdt de tijd bij. De docent kan kijken naar de studenten en de dynamiek. Elke docent heeft één vaste taak, het materiaal ligt vooraf in enveloppen en dit draaiboek is op papier.</p></div>
+</section>
+
+<section>
+  <h2>De slides bedienen</h2>
+  <p>Onderaan het scherm staat een knoppenbalk: vorige en volgende dia, notities, volledig scherm en PDF. De balk verdwijnt na drie seconden en komt terug zodra je de muis beweegt. Met het toetsenbord kan het ook:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Toets</th><th>Wat het doet</th></tr></thead>
+    <tbody>
+      <tr><td class="t">→ ←</td><td>Volgende of vorige dia</td></tr>
+      <tr><td class="t">T of spatie</td><td>Timer starten of pauzeren op een dia met timer (klikken kan ook)</td></tr>
+      <tr><td class="t">R</td><td>Timer opnieuw</td></tr>
+      <tr><td class="t">N</td><td>Docentnotities onderin tonen of verbergen</td></tr>
+      <tr><td class="t">F</td><td>Volledig scherm</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small muted">De slides onthouden het laatst gekozen observatieteam. Heb je bij het testen een team aangeklikt, klik op de dag dan gewoon het echte team aan op dia 2.</p>
+</section>
+
+<footer class="bron">
+  <div>Gebaseerd op het werkboek business game (opdracht 5.1, deel A–C), de docentinstructie business game v4 (21-9), het overzicht weekprogramma week 5 en het formulier peerfeedback ontwikkelcirkel.</div>
+  <div>Opgesteld 24 sept 2026. Het ontwerp en alle besluiten staan in <i>ontwerp-fase3-mt-pitch.md</i>.</div>
+</footer>
+
+</div>
+
+<div class="foot"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Hogeschool van Arnhem en Nijmegen</span><span class="sp"></span><span class="num">C-cluster · week 5</span></div>
+<script>
+/* De browser maakt de PDF via het afdrukvenster ("Opslaan als PDF"). */
+function downloadPdf(){
+  const titel=document.title;
+  document.title='Docentinstructie_MT-pitch_week5';
+  window.addEventListener('afterprint',()=>{document.title=titel},{once:true});
+  window.print();
+}
+/* Kopieert de studententekst als platte tekst, klaar om in een mail of Brightspace te plakken. */
+function kopieer(){
+  const el=document.getElementById('studententekst');
+  const tekst=el.innerText.trim();
+  const klaar=()=>{document.getElementById('gekopieerd').textContent='Gekopieerd.'};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(tekst).then(klaar,()=>kopieerOud(el,klaar))}
+  else kopieerOud(el,klaar);
+}
+function kopieerOud(el,klaar){
+  const r=document.createRange();r.selectNodeContents(el);
+  const sel=getSelection();sel.removeAllRanges();sel.addRange(r);
+  try{document.execCommand('copy');klaar()}catch(e){document.getElementById('gekopieerd').textContent='Selecteer de tekst en kopieer met Ctrl/Cmd+C.'}
+}
+</script>
+</body>
+</html>

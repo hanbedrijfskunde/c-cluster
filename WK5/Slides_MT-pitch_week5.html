@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Slides MT-pitch</title>
+<style>
+:root{
+  /* HAN-huisstijl, gelijk aan het werkboek en de docentinstructie */
+  --han:#E50056; --han2:#FFE1EC; --ink:#000000; --paper:#FFFFFF;
+  --grey:#454545; --grey2:#767676; --wash:#F2F2F0; --mens2:#FFE875;
+  --bw:3px; --sh:5px 5px 0 var(--ink);
+  --f:"Avenir Next","Avenir","Nunito Sans","Segoe UI",Helvetica,Arial,sans-serif;
+  --fm:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  --slw:1280px; --slh:720px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%}
+body{background:var(--wash);color:var(--ink);overflow:hidden;font:16px/1.45 var(--f);-webkit-font-smoothing:antialiased}
+
+/* ---------- podium ---------- */
+#stage{position:fixed;inset:0;overflow:hidden}
+#deck{position:absolute;left:50%;top:50%;width:var(--slw);height:var(--slh);
+  transform:translate(-50%,-50%) scale(var(--scale,1));transform-origin:center}
+.slide{position:absolute;inset:0;width:var(--slw);height:var(--slh);background:var(--paper);
+  padding:38px 56px 78px;overflow:hidden;border:var(--bw) solid var(--ink);
+  box-shadow:10px 10px 0 rgba(0,0,0,.22);display:none;flex-direction:column}
+.slide.on{display:flex}
+.slide::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46px;background:var(--ink);border-top:4px solid var(--han)}
+.slide .hanbalk{position:absolute;left:56px;bottom:11px;height:22px;width:54px;color:var(--paper);z-index:2}
+.slide .nr{position:absolute;right:56px;bottom:13px;z-index:2;font:700 14px/1 var(--fm);letter-spacing:.14em;color:var(--paper);opacity:.8}
+.slide.roze{background:var(--han);color:var(--paper)}
+.slide.zwart{background:var(--ink);color:var(--paper)}
+
+/* ---------- typografie ---------- */
+.eyebrow{align-self:flex-start;margin:0 0 14px;background:var(--ink);color:var(--paper);padding:6px 13px 5px;
+  font:700 15px/1 var(--fm);letter-spacing:.16em;text-transform:uppercase}
+.roze .eyebrow,.zwart .eyebrow{background:var(--paper);color:var(--ink)}
+h1{font-size:84px;line-height:.92;letter-spacing:-.035em;margin:0 0 22px;font-weight:800;text-transform:uppercase}
+h2{font-size:46px;line-height:1.04;letter-spacing:-.025em;margin:0 0 6px;font-weight:800;max-width:28ch}
+h2 em{font-style:normal;color:var(--han)}
+.lead{font-size:28px;line-height:1.3;font-weight:600;margin:0;max-width:40ch}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:22px}
+.bron{font:600 16px/1.3 var(--fm);color:var(--grey2)}
+
+/* ---------- tegels en kaarten ---------- */
+.tegels{display:flex;gap:12px;flex-wrap:wrap}
+.tegels span{border:3px solid currentColor;padding:10px 16px;font:700 19px/1.15 var(--fm);letter-spacing:.02em}
+.tegels span b{color:var(--ink);background:var(--paper);padding:0 6px;margin-left:8px}
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--paper);color:var(--ink);border:var(--bw) solid var(--ink);padding:16px 18px;box-shadow:var(--sh);display:grid;gap:6px;align-content:start}
+.card b{font-size:27px;line-height:1.1;font-weight:800}
+.card span{font-size:22px;line-height:1.3;color:var(--grey)}
+.card i{justify-self:start;font:700 14px/1 var(--fm);font-style:normal;letter-spacing:.1em;text-transform:uppercase;background:var(--han);color:var(--paper);padding:5px 8px}
+.card.top{border-top:10px solid var(--han)}
+
+/* ---------- schema met teams ---------- */
+table.schema{border-collapse:collapse;width:100%;background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh)}
+.schema th,.schema td{text-align:left;padding:14px 16px;border-top:2px solid var(--ink);font-size:24px;line-height:1.2}
+.schema th{font:700 15px/1.2 var(--fm);letter-spacing:.1em;text-transform:uppercase;background:var(--ink);color:var(--paper);border-top:0}
+.schema td:first-child{font:800 20px/1.2 var(--fm);color:var(--han);white-space:nowrap}
+.schema tr.nu td{background:var(--mens2)}
+.schema tr.uit td{color:var(--grey2)}
+.schema tr.uit td:first-child{color:var(--grey2)}
+.schema small{display:block;font-size:17px;color:var(--grey)}
+.t{font-weight:800}
+
+/* ---------- loting ---------- */
+.lot{display:flex;gap:16px}
+.lot button{font:800 44px/1 var(--fm);width:130px;height:130px;border:var(--bw) solid var(--ink);background:var(--paper);box-shadow:var(--sh);cursor:pointer}
+.lot button[aria-pressed="true"]{background:var(--han);color:var(--paper)}
+.lotuit{font-size:30px;font-weight:700}
+.lotuit .t{color:var(--han)}
+
+/* ---------- tijdbalk ---------- */
+.balk{display:flex;border:var(--bw) solid var(--ink);box-shadow:var(--sh);height:120px}
+.balk>div{border-right:2px solid var(--ink);padding:12px 14px;display:grid;align-content:space-between;background:var(--paper)}
+.balk>div:last-child{border-right:0}
+.balk b{font:800 34px/1 var(--fm);color:var(--han)}
+.balk span{font-size:22px;font-weight:700;line-height:1.1}
+
+/* ---------- feedbackstrook ---------- */
+.strook{border:3px dashed var(--ink);padding:22px 26px;display:grid;gap:14px;font-size:32px;line-height:1.3;max-width:900px}
+.strook b{font-weight:800}
+.strook u{text-decoration:none;background:var(--han2);padding:0 6px}
+
+/* ---------- timer ---------- */
+.timer{border:var(--bw) solid var(--ink);box-shadow:var(--sh);background:var(--paper);color:var(--ink);cursor:pointer;user-select:none;display:grid;grid-template-columns:auto 1fr;gap:6px 26px;padding:16px 22px;align-items:center}
+.timer .klok{grid-row:1/3;font:800 96px/1 var(--fm);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.timer .fase{font-size:34px;font-weight:800;line-height:1.1}
+.timer .rest{font:700 17px/1.2 var(--fm);letter-spacing:.06em;text-transform:uppercase;color:var(--grey)}
+.timer .segs{grid-column:1/-1;display:flex;gap:4px;margin-top:8px}
+.timer .seg{height:44px;border:2px solid var(--ink);position:relative;overflow:hidden;display:flex;align-items:center;padding:0 8px;font:700 15px/1 var(--fm);white-space:nowrap}
+.timer .seg u{position:absolute;inset:0 auto 0 0;width:0;background:var(--han2);z-index:0;text-decoration:none}
+.timer .seg.klaar u{width:100%;background:var(--wash)}
+.timer .seg.klaar{color:var(--grey2)}
+.timer .seg.actief{border-width:3px}
+.timer .seg.actief u{background:var(--han)}
+.timer .seg em{position:relative;z-index:1;font-style:normal}
+.timer .seg.actief em{color:var(--ink)}
+.timer.loopt .klok{color:var(--han)}
+.timer.bijna .klok{animation:knipper 1s steps(2) infinite}
+@keyframes knipper{50%{opacity:.25}}
+.timer .hint{grid-column:1/-1;font:600 14px/1 var(--fm);color:var(--grey2);letter-spacing:.04em}
+
+/* ---------- notities ---------- */
+.notes{display:none}
+#notepanel{position:fixed;left:0;right:0;bottom:0;max-height:38vh;overflow:auto;background:var(--ink);color:var(--paper);
+  border-top:4px solid var(--han);padding:14px 22px 18px;font-size:16px;line-height:1.5;display:none;z-index:10}
+#notepanel.open{display:block}
+#notepanel p,#notepanel ul{margin:0 0 8px;max-width:110ch}
+#notepanel b{color:var(--han2)}
+/* bedieningsbalk: verdwijnt na 3 s zonder muisbeweging, zodat hij de dia niet stoort */
+#knoppen{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:12;display:flex;align-items:center;gap:6px;
+  background:var(--ink);border:2px solid var(--paper);box-shadow:4px 4px 0 var(--han);padding:6px;transition:opacity .3s}
+#knoppen.weg{opacity:0;pointer-events:none}
+#knoppen button{font:700 12px/1 var(--fm);letter-spacing:.08em;text-transform:uppercase;background:transparent;color:var(--paper);
+  border:2px solid var(--paper);height:38px;min-width:38px;padding:0 10px;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+#knoppen button:hover,#knoppen button:focus-visible,#knoppen button[aria-pressed="true"]{background:var(--han);border-color:var(--han);outline:none}
+#knoppen button:disabled{opacity:.35;cursor:default;background:transparent;border-color:var(--paper)}
+#knoppen svg{width:16px;height:16px}
+#knoppen .teller{font:700 13px/1 var(--fm);color:var(--paper);min-width:64px;text-align:center;font-variant-numeric:tabular-nums}
+#knoppen .sep{width:2px;height:26px;background:var(--grey)}
+body.notities-open #knoppen{bottom:calc(38vh + 14px)}
+@media (max-width:700px){#knoppen .lbl{display:none}}
+
+/* ---------- print: één dia per A4 liggend ---------- */
+@page{size:A4 landscape;margin:8mm}
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  html,body{height:auto;overflow:visible;background:#fff}
+  #stage{position:static}
+  #deck{position:static;transform:none;width:auto;height:auto}
+  .slide{display:flex!important;position:relative;inset:auto;box-shadow:none;break-after:page;zoom:.84}
+  .slide:last-child{break-after:auto}
+  #notepanel,#knoppen,.timer .hint{display:none!important}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="hanlogo" viewBox="0 0 82 34"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></symbol></svg>
+
+<nav id="knoppen" aria-label="Bediening"><button type="button" id="k-vorige" title="Vorige dia (←)" aria-label="Vorige dia"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2 4 8l6 6"/></svg></button><span class="teller" id="k-teller">1 / 13</span><button type="button" id="k-volgende" title="Volgende dia (→)" aria-label="Volgende dia"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 2 6 6-6 6"/></svg></button><span class="sep"></span><button type="button" id="k-notities" title="Notities tonen of verbergen (N)" aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 1h10v14H3zM6 5h4M6 8h4M6 11h2"/></svg><span class="lbl">Notities</span></button><button type="button" id="k-scherm" title="Volledig scherm (F)" aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 6V1h5M10 1h5v5M15 10v5h-5M6 15H1v-5"/></svg><span class="lbl">Scherm</span></button><button type="button" id="k-pdf" title="Opent het afdrukvenster; kies daar 'Opslaan als PDF'"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 1v9M4 6l4 4 4-4M2 14h12"/></svg><span class="lbl">PDF</span></button></nav>
+
+<div id="stage"><div id="deck">
+
+<!-- 1 -->
+<section class="slide roze" data-title="Titel">
+  <p class="eyebrow">Week 5 · dag 1</p>
+  <div class="body">
+    <h1>Van simulatie naar praktijk</h1>
+    <p class="lead">Waarom zou een opdrachtgever juist jullie managementteam inhuren?</p>
+    <div class="tegels"><span>Terugkijken<b>35'</b></span><span>Voorbereiden<b>20'</b></span><span>Pitchrondes<b>60'</b></span><span>Leerdoel<b>daarna</b></span></div>
+  </div>
+  <div class="notes">
+    <p>Welkom. De game is voorbij; vandaag kijken jullie terug en laten jullie zien wat je ervan geleerd hebt. Dat doe je in een pitch voor een opdrachtgever.</p>
+    <p>Loop de vier stappen kort langs. Het werkboek business game (deel A) gebruik je voor stap 1, het nieuwe werkboek MT-pitch voor de rest.</p>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="slide" data-title="Loting">
+  <p class="eyebrow">Loting</p>
+  <h2>Eén team kijkt eerst en pitcht als <em>laatste</em></h2>
+  <div class="body">
+    <div class="lot" role="group" aria-label="Kies het observatieteam">
+      <button type="button" data-lot="G1">G1</button><button type="button" data-lot="G2">G2</button><button type="button" data-lot="G3">G3</button><button type="button" data-lot="G4">G4</button><button type="button" data-lot="G5">G5</button>
+    </div>
+    <p class="lotuit">Observatieteam: <span class="t" data-team="O">G5</span> · Paar A: <span class="t" data-team="A1">G1</span> en <span class="t" data-team="A2">G2</span> · Paar B: <span class="t" data-team="B1">G3</span> en <span class="t" data-team="B2">G4</span></p>
+  </div>
+  <div class="notes">
+    <p>Vraag eerst of een team zich vrijwillig meldt. Meldt niemand zich, loot dan (dobbelsteen of papiertjes).</p>
+    <p><b>Klik op het team dat observatieteam wordt.</b> De andere vier teams worden automatisch paar A en B, en alle schema's in dit deck nemen de nummers over. Laat studenten dit invullen op blad 1 van het werkboek.</p>
+    <p>Benoem het voordeel: het observatieteam ziet vier pitches en mag daarvan leren. Het nadeel: het pitcht als laatste, voor de hele groep.</p>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="slide" data-title="Stap 1: terugkijken">
+  <p class="eyebrow">Stap 1 · 35 min</p>
+  <h2>Welke beslissing zou je nu <em>anders</em> nemen?</h2>
+  <div class="body">
+    <div class="grid g4">
+      <div class="card"><b>Twee vraagstukken</b><span>diagnose en data</span></div>
+      <div class="card"><b>Beste en slechtste keuze</b><span>effect op de strategie</span></div>
+      <div class="card"><b>TOM-model</b><span>welke aanname klopte niet?</span></div>
+      <div class="card"><b>De les</b><span>één managementles als team</span></div>
+    </div>
+    <div class="timer" data-segs="Terugkijken als MT|35"></div>
+  </div>
+  <div class="notes">
+    <p><b>Doel.</b> Teams kijken als managementteam terug op de zes rondes, met werkboek business game deel A. Wat ze hier opschrijven, is straks het bewijs in hun pitch. De kop van de dia is de vraag waar alles om draait: welke beslissing zou je nu anders nemen, en waarom?</p>
+    <p><b>Tijd.</b> Twee vraagstukken ±10 min · beste en slechtste keuze ±10 · TOM-model ±8 · de les ±7. Check na 20 minuten of elk team minstens de eerste twee onderdelen heeft.</p>
+    <p><b>Doorvragen per onderdeel.</b> Vraagstukken: welk cijfer in het dashboard zag je als eerste bewegen, en was dat een oorzaak of een symptoom? Keuzes: wat wist je toen, en wat weet je nu? Wie was het er niet mee eens? TOM: welke aanname bleek niet te kloppen, en op welk niveau? De les: heeft een echte opdrachtgever hier iets aan?</p>
+    <p><b>Let op.</b> "We hadden pech" of "de markt zat tegen": vraag wat ze zelf hadden kunnen zien. Geen getal: laat ze het dashboard of logboek erbij pakken. Eén student praat: vraag een ander teamlid.</p>
+    <p><b>Brug.</b> Sluit af met: "Dit is jullie materiaal voor de pitch." De slechtste keuze is het antwoord op "Wat was jullie grootste fout?", de les wordt het advies aan de opdrachtgever. Meer uitleg in de docentinstructie.</p>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="slide" data-title="Schema">
+  <p class="eyebrow">Zo werken de pitchrondes</p>
+  <h2>In elke ronde heeft elk team een rol</h2>
+  <div class="body">
+    <table class="schema">
+      <thead><tr><th>Ronde</th><th>Paar A</th><th>Paar B</th><th>Observatieteam <span data-team="O">G5</span></th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><span class="t" data-team="A2">G2</span> pitcht voor <span class="t" data-team="A1">G1</span></td><td><span class="t" data-team="B2">G4</span> pitcht voor <span class="t" data-team="B1">G3</span></td><td>3 bij A, 2 bij B</td></tr>
+        <tr><td>2</td><td><span class="t" data-team="A1">G1</span> pitcht voor <span class="t" data-team="A2">G2</span></td><td><span class="t" data-team="B1">G3</span> pitcht voor <span class="t" data-team="B2">G4</span></td><td>wisselen van paar</td></tr>
+        <tr><td>Finale</td><td colspan="2">iedereen observeert</td><td><span class="t" data-team="O">G5</span> pitcht voor de docent</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="notes">
+    <p>Dit schema blijft de hele tijd zichtbaar op de rondedia's. Laat studenten per ronde hun rol op blad 1 invullen.</p>
+    <p>Wie pitcht, is consultant. Het team waarvoor gepitcht wordt, is opdrachtgever. Het observatieteam verdeelt zich over de paren.</p>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="slide" data-title="Rollen">
+  <p class="eyebrow">Zo werken de pitchrondes</p>
+  <h2>Je bent consultant, opdrachtgever of observator</h2>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card top"><i>Blad 2</i><b>Consultant</b><span>overtuigt in vijf minuten</span></div>
+      <div class="card top"><i>Blad 3</i><b>Opdrachtgever</b><span>vraagt door en beslist</span></div>
+      <div class="card top"><i>Blad 4–6</i><b>Observator</b><span>schrijft op wat je zag</span></div>
+    </div>
+  </div>
+  <div class="notes">
+    <p><b>Consultant:</b> pitch volgens blad 2, iedereen noemt het eigen inzicht.</p>
+    <p><b>Opdrachtgever:</b> rolkaart op blad 3. Stelt de drie vaste vragen, vraagt door, en iedereen in het team stelt minstens één vraag. Aan het eind: huren we dit team in of niet, en waarom?</p>
+    <p><b>Observator:</b> volgt twee of drie consultants en vult per persoon een strook in. De strook gaat na de ronde naar de consultant.</p>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="slide" data-title="Opbouw ronde">
+  <p class="eyebrow">Zo werken de pitchrondes</p>
+  <h2>Een ronde duurt twintig minuten</h2>
+  <div class="body">
+    <div class="balk">
+      <div style="flex:5"><b>5'</b><span>Pitch</span></div>
+      <div style="flex:5"><b>5'</b><span>Vragen</span></div>
+      <div style="flex:5"><b>5'</b><span>Besluit</span></div>
+      <div style="flex:5"><b>5'</b><span>Feedback</span></div>
+    </div>
+  </div>
+  <div class="notes">
+    <p>De timer op de rondedia's loopt precies zo en laat zien in welk deel we zitten. Staat een paar in een andere ruimte, dan zet de docent daar een telefoontimer.</p>
+    <p>Vier blokken van vijf minuten. <b>Besluit:</b> de opdrachtgevers overleggen hardop, de consultants luisteren mee zonder te reageren. Daarna zegt de opdrachtgever of het team wordt ingehuurd en waarom. <b>Feedback:</b> de observators lezen hun stroken voor.</p>
+    <p>Tussen de rondes blijven de teams zitten; alleen de rollen draaien om. Alleen de observators en de docenten lopen naar het andere paar. Start de timer pas als iedereen zit.</p>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="slide" data-title="Feedback">
+  <p class="eyebrow">Zo werken de pitchrondes</p>
+  <h2>Schrijf op wat iemand <em>deed</em> en wat dat met jou deed</h2>
+  <div class="body">
+    <div class="strook">
+      <span><b>Toen je</b> <u>het verlies in ronde 4 uitlegde met de voorraadcijfers</u>,</span>
+      <span><b>merkte ik dat ik</b> <u>jullie advies meteen geloofde</u>.</span>
+    </div>
+    <p class="bron">Peerfeedback ontwikkelcirkel · werkboek blad 4–6</p>
+  </div>
+  <div class="notes">
+    <p>Beschrijf wat iemand deed, en wat dat met jou deed. "Goed gedaan" of "saai" helpt niemand verder.</p>
+    <p>Let vooral op het aandachtspunt dat de consultant zelf koos. De stroken zijn bewijs voor LUK 5 in het portfolio.</p>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="slide" data-title="Stap 2: voorbereiden">
+  <p class="eyebrow">Stap 2 · 10 min</p>
+  <h2>Waarom zou een opdrachtgever juist <em>jullie</em> inhuren?</h2>
+  <div class="body">
+    <div class="grid g4">
+      <div class="card"><b>Wie zijn wij?</b><span>jullie MT-rollen</span></div>
+      <div class="card"><b>Wat leerden we?</b><span>per persoon één inzicht</span></div>
+      <div class="card"><b>Wat voegen we toe?</b><span>drie kwaliteiten</span></div>
+      <div class="card"><b>Ons advies</b><span>drie adviezen voor een echt bedrijf</span></div>
+    </div>
+    <div class="timer" data-segs="Pitch voorbereiden|10"></div>
+  </div>
+  <div class="notes">
+    <p>Werkboek blad 2. Maximaal vijf minuten pitch. Alle teams bereiden een pitch voor, ook het observatieteam.</p>
+    <p>Teams verdelen zelf wie wat vertelt; iedereen noemt minstens het eigen inzicht.</p>
+  </div>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-title="Aandachtspunt">
+  <p class="eyebrow">Stap 2 · 5 min</p>
+  <h2>Kies waar anderen vandaag bij jou op letten</h2>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card"><b>Rustig blijven</b><span>bij een lastige vraag</span></div>
+      <div class="card"><b>Onderbouwen</b><span>met een getal uit de game</span></div>
+      <div class="card"><b>Kort formuleren</b><span>één punt per antwoord</span></div>
+    </div>
+    <div class="timer" data-segs="Aandachtspunt, rolkaart, naar je plek|5"></div>
+  </div>
+  <div class="notes">
+    <p>Iedereen schrijft een eigen aandachtspunt op blad 1. De voorbeelden zijn alleen een startpunt.</p>
+    <p>Teams die in ronde 1 opdrachtgever zijn, lezen nu de rolkaart op blad 3. Het observatieteam leest blad 4 en verdeelt zich: drie naar paar A, twee naar paar B. Aan het eind van deze vijf minuten zit iedereen bij zijn paar.</p>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-title="Ronde 1">
+  <p class="eyebrow">Ronde 1 · 20 min</p>
+  <h2><span data-team="A2">G2</span> en <span data-team="B2">G4</span> pitchen als eerste</h2>
+  <div class="body">
+    <div class="timer" data-segs="Pitch|5;Vragen|5;Besluit|5;Feedback|5"></div>
+    <table class="schema">
+      <tbody>
+        <tr class="nu"><td>1</td><td><span class="t" data-team="A2">G2</span> pitcht voor <span class="t" data-team="A1">G1</span></td><td><span class="t" data-team="B2">G4</span> pitcht voor <span class="t" data-team="B1">G3</span></td><td><span class="t" data-team="O">G5</span>: 3 bij A, 2 bij B</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="notes">
+    <p>Start de timer met <b>T</b> of een klik. Elke docent staat bij één paar, bemoeit zich niet met de pitch en stelt na de vragenronde hooguit één scherpe vraag als de opdrachtgever te vriendelijk bleef.</p>
+    <p>Na de feedback: de teams blijven zitten en ruilen van rol. De observators en de docenten gaan naar het andere paar. Start ronde 2 als iedereen zit; consultants noemen hun aandachtspunt aan de nieuwe observators.</p>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-title="Ronde 2">
+  <p class="eyebrow">Ronde 2 · 20 min</p>
+  <h2>De rollen draaien om</h2>
+  <div class="body">
+    <div class="timer" data-segs="Pitch|5;Vragen|5;Besluit|5;Feedback|5"></div>
+    <table class="schema">
+      <tbody>
+        <tr class="nu"><td>2</td><td><span class="t" data-team="A1">G1</span> pitcht voor <span class="t" data-team="A2">G2</span></td><td><span class="t" data-team="B1">G3</span> pitcht voor <span class="t" data-team="B2">G4</span></td><td><span class="t" data-team="O">G5</span>: wisselen van paar</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="notes">
+    <p>Docenten wisselen ook van paar. Het observatieteam vult naast de stroken blad 5 onderaan in: wat nemen we over, welke valkuil vermijden we?</p>
+    <p>Na de feedback: iedereen terug naar het lokaal voor de finale. Start de finaletimer pas als iedereen zit.</p>
+  </div>
+</section>
+
+<!-- 12 -->
+<section class="slide zwart" data-title="Finale">
+  <p class="eyebrow">Finale · 20 min</p>
+  <h2><span data-team="O">G5</span> pitcht voor de opdrachtgever</h2>
+  <div class="body">
+    <div class="timer" data-segs="Pitch|5;Vragen|5;Overgenomen|5;Feedback|5"></div>
+    <p class="lead">Iedereen volgt de student met hetzelfde nummer als jij · blad 6</p>
+  </div>
+  <div class="notes">
+    <p><b>TUT2</b> speelt de opdrachtgever: Waarom jullie? Wat was jullie grootste fout? Wat voeren we morgen in? Vraag door op data.</p>
+    <p>Na de vragen vertelt het observatieteam wat het van de andere teams overnam en welke valkuil het vermeed.</p>
+    <p><b>PO-docent</b> leidt de feedback: wat zag je het team overnemen? Welke vraag van de opdrachtgever was het lastigst, en waarom? Welke vraag neem je mee naar je echte opdrachtgever?</p>
+  </div>
+</section>
+
+<!-- 13 -->
+<section class="slide roze" data-title="Leerdoel">
+  <p class="eyebrow">Daarna · reflectie</p>
+  <h2>Kies je leerdoel uit wat vaker terugkomt op je stroken</h2>
+  <div class="body">
+    <div class="strook" style="border-color:var(--paper)">
+      <span><b>Ik wil mij verder ontwikkelen in</b> …</span>
+      <span><b>omdat</b> …</span>
+      <span><b>Dit ga ik doen door</b> …</span>
+    </div>
+    <p class="bron" style="color:var(--paper)">Werkboek blad 7 · werkboek business game deel C</p>
+  </div>
+  <div class="notes">
+    <p>Studenten leggen hun stroken naast elkaar en zoeken wat vaker terugkomt. Daaruit komt het leerdoel.</p>
+    <p>Check per student: is het leerdoel concreet, gaat het over de eigen ontwikkeling, en past het bij het project bij de opdrachtgever? Foto van stroken en blad 7 in het portfolio bij LUK 5.</p>
+  </div>
+</section>
+
+</div></div>
+
+<div id="notepanel" aria-live="polite"></div>
+
+<script>
+/* ---------- navigatie en schalen ---------- */
+const slides=[...document.querySelectorAll('.slide')];
+let cur=0;
+slides.forEach((s,i)=>{
+  s.insertAdjacentHTML('beforeend','<svg class="hanbalk" aria-hidden="true"><use href="#hanlogo"/></svg><span class="nr">'+(i+1)+' / '+slides.length+'</span>');
+});
+function fit(){
+  const sc=Math.min(innerWidth/1300,innerHeight/740);
+  document.getElementById('deck').style.setProperty('--scale',sc);
+}
+function show(i){
+  cur=Math.max(0,Math.min(slides.length-1,i));
+  slides.forEach((s,j)=>s.classList.toggle('on',j===cur));
+  const n=slides[cur].querySelector('.notes');
+  document.getElementById('notepanel').innerHTML='<p><b>Dia '+(cur+1)+' · '+slides[cur].dataset.title+'</b></p>'+(n?n.innerHTML:'');
+  try{history.replaceState(null,'','#'+(cur+1))}catch(e){}
+  document.getElementById('k-teller').textContent=(cur+1)+' / '+slides.length;
+  document.getElementById('k-vorige').disabled=cur===0;
+  document.getElementById('k-volgende').disabled=cur===slides.length-1;
+}
+
+/* ---------- bedieningsbalk ---------- */
+function notities(){
+  const open=document.getElementById('notepanel').classList.toggle('open');
+  document.body.classList.toggle('notities-open',open);
+  document.getElementById('k-notities').setAttribute('aria-pressed',open);
+}
+function scherm(){
+  if(document.fullscreenElement)document.exitFullscreen();
+  else document.documentElement.requestFullscreen().catch(()=>{});
+}
+document.addEventListener('fullscreenchange',()=>{
+  document.getElementById('k-scherm').setAttribute('aria-pressed',!!document.fullscreenElement);
+  setTimeout(fit,50);
+});
+document.getElementById('k-vorige').addEventListener('click',()=>show(cur-1));
+document.getElementById('k-volgende').addEventListener('click',()=>show(cur+1));
+document.getElementById('k-notities').addEventListener('click',notities);
+document.getElementById('k-scherm').addEventListener('click',scherm);
+document.getElementById('k-pdf').addEventListener('click',()=>downloadPdf());
+/* knoppen na de klik niet laten 'hangen' als focus, anders vangt spatie ze op */
+document.querySelectorAll('#knoppen button').forEach(b=>b.addEventListener('click',()=>b.blur()));
+let wegTimer;
+function toonKnoppen(){
+  const k=document.getElementById('knoppen');k.classList.remove('weg');
+  clearTimeout(wegTimer);wegTimer=setTimeout(()=>{if(!k.matches(':hover'))k.classList.add('weg')},3000);
+}
+addEventListener('mousemove',toonKnoppen);addEventListener('touchstart',toonKnoppen,{passive:true});
+addEventListener('resize',fit);
+addEventListener('keydown',e=>{
+  if(e.target.closest&&e.target.closest('input,textarea'))return;
+  const k=e.key.toLowerCase();
+  if(k===' '&&timerOp()){e.preventDefault();timerOp().toggle()}
+  else if(['arrowright','pagedown',' '].includes(k)){e.preventDefault();show(cur+1)}
+  else if(['arrowleft','pageup'].includes(k)){e.preventDefault();show(cur-1)}
+  else if(k==='n')notities();
+  else if(k==='f')scherm();
+  else if(k==='t'){const t=timerOp();if(t)t.toggle()}
+  else if(k==='r'){const t=timerOp();if(t)t.reset()}
+});
+function timerOp(){const el=slides[cur].querySelector('.timer');return el&&el._t}
+
+/* ---------- loting: observatieteam kiezen, paren volgen vanzelf ---------- */
+function zetTeams(o){
+  const rest=['G1','G2','G3','G4','G5'].filter(g=>g!==o);
+  const map={O:o,A1:rest[0],A2:rest[1],B1:rest[2],B2:rest[3]};
+  document.querySelectorAll('[data-team]').forEach(el=>el.textContent=map[el.dataset.team]);
+  document.querySelectorAll('[data-lot]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lot===o));
+  try{localStorage.setItem('mtpitch-observatieteam',o)}catch(e){}
+}
+document.querySelectorAll('[data-lot]').forEach(b=>b.addEventListener('click',()=>zetTeams(b.dataset.lot)));
+let bewaard='G5';
+try{bewaard=localStorage.getItem('mtpitch-observatieteam')||'G5'}catch(e){}
+zetTeams(bewaard);
+
+/* ---------- timer: segmenten achter elkaar, met piep bij elke overgang ---------- */
+function piep(){
+  try{
+    const ctx=new (window.AudioContext||window.webkitAudioContext)();
+    const o=ctx.createOscillator(),g=ctx.createGain();
+    o.frequency.value=880;o.connect(g);g.connect(ctx.destination);
+    g.gain.setValueAtTime(.25,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.6);
+    o.start();o.stop(ctx.currentTime+.6);
+  }catch(e){}
+}
+const mmss=s=>{s=Math.max(0,Math.ceil(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
+document.querySelectorAll('.timer').forEach(el=>{
+  /* data-segs="Naam|minuten;Naam|minuten" — puntkomma tussen blokken, zodat een label een komma mag bevatten */
+  const segs=el.dataset.segs.split(';').map(x=>{const [n,m]=x.split('|');return {n:n.trim(),d:(parseFloat(m)||0)*60}}).filter(s=>s.d>0);
+  const tot=segs.reduce((a,s)=>a+s.d,0);
+  el.innerHTML='<span class="klok"></span><span class="fase"></span><span class="rest"></span><div class="segs">'+
+    segs.map(s=>'<div class="seg" style="flex:'+s.d+'"><u></u><em>'+s.n+' '+s.d/60+'\'</em></div>').join('')+
+    '</div><span class="hint">klik of T = start/pauze · R = opnieuw</span>';
+  const segEls=[...el.querySelectorAll('.seg')];
+  let verstreken=0,start=null,raf=null,laatsteSeg=-1;
+  function teken(){
+    const nu=verstreken+(start?(performance.now()-start)/1000:0);
+    let acc=0,i=0;
+    while(i<segs.length-1&&nu>=acc+segs[i].d){acc+=segs[i].d;i++}
+    const inSeg=Math.min(nu-acc,segs[i].d);
+    const klaar=nu>=tot;
+    el.querySelector('.klok').textContent=klaar?'0:00':mmss(segs[i].d-inSeg);
+    el.querySelector('.fase').textContent=klaar?'Tijd!':(segs.length>1?'Nu: ':'')+segs[i].n;
+    el.querySelector('.rest').textContent=segs.length>1?'nog '+mmss(tot-nu)+' in totaal':(start?'loopt':verstreken?'gepauzeerd':'klik om te starten');
+    segEls.forEach((s,j)=>{
+      s.classList.toggle('klaar',j<i||klaar);s.classList.toggle('actief',j===i&&!klaar);
+      s.querySelector('u').style.width=j===i&&!klaar?(inSeg/segs[i].d*100)+'%':'';
+    });
+    el.classList.toggle('bijna',!!start&&!klaar&&segs[i].d-inSeg<=30);
+    if(start&&i!==laatsteSeg&&laatsteSeg!==-1)piep();
+    if(start&&klaar&&laatsteSeg!==segs.length){piep();laatsteSeg=segs.length;stop();return}
+    if(start)laatsteSeg=i;
+    if(start)raf=requestAnimationFrame(teken);
+  }
+  function stop(){if(start){verstreken+=(performance.now()-start)/1000;start=null}cancelAnimationFrame(raf);el.classList.remove('loopt','bijna');teken()}
+  el._t={
+    toggle(){if(start)stop();else{if(verstreken>=tot)this.reset();start=performance.now();laatsteSeg=-1;el.classList.add('loopt');teken()}},
+    reset(){start=null;verstreken=0;laatsteSeg=-1;cancelAnimationFrame(raf);el.classList.remove('loopt','bijna');teken()}
+  };
+  el.addEventListener('click',()=>el._t.toggle());
+  teken();
+});
+
+fit();
+toonKnoppen();
+show((parseInt(location.hash.slice(1))||1)-1);
+
+function downloadPdf(){
+  const titel=document.title;
+  document.title='Slides_MT-pitch_week5';
+  addEventListener('afterprint',()=>{document.title=titel},{once:true});
+  print();
+}
+</script>
+</body>
+</html>

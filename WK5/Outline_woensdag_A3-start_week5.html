@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Outline woensdag week 5</title>
+<style>
+:root{
+  /* HAN-huisstijl, overgenomen uit archief/voorbeeld-slide-deck.html:
+     één schreeuwende kleur op zwart-wit */
+  --han:#E50056; --han2:#FFE1EC; --ink:#000000; --paper:#FFFFFF;
+  --grey:#454545; --grey2:#767676; --wash:#F2F2F0; --panel2:#E6E6E3;
+  --mens2:#FFE875;
+  --bw:3px; --sh:5px 5px 0 var(--ink);
+  --f:"Avenir Next","Avenir","Nunito Sans","Segoe UI",Helvetica,Arial,sans-serif;
+  --fm:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--wash);color:var(--ink);font:16px/1.55 var(--f);-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;display:grid;gap:44px;padding:32px 16px 64px}
+h1,h2,h3{text-wrap:balance;margin:0}
+h1{font-size:clamp(32px,6vw,56px);line-height:.96;letter-spacing:-.035em;font-weight:800;text-transform:uppercase}
+h2{font-size:clamp(24px,3.4vw,32px);line-height:1.05;letter-spacing:-.025em;font-weight:800;
+  display:flex;align-items:center;gap:12px;padding-bottom:10px;border-bottom:var(--bw) solid var(--ink)}
+h2::before{content:"";flex:none;width:16px;height:16px;background:var(--han)}
+h3{font-size:18px;line-height:1.2;font-weight:800;margin-top:4px}
+p{margin:0;max-width:68ch}
+b,strong{font-weight:700}
+section{display:grid;gap:18px}
+
+/* ---------- logobalk ---------- */
+.topbar,.foot{background:var(--ink);color:var(--paper);display:flex;align-items:center;gap:18px;padding:0 20px 0 max(16px,calc((100% - 908px)/2))}
+.topbar{height:56px;border-bottom:4px solid var(--han)}
+.foot{min-height:52px}
+.logo{flex:none;display:block;height:26px;width:62px}
+.who{font:700 12px/1 var(--fm);letter-spacing:.16em;text-transform:uppercase;opacity:.82}
+.sp{flex:1}
+.num{font:800 13px/1 var(--fm);background:var(--han);color:var(--paper);padding:8px 11px;letter-spacing:.06em;text-transform:uppercase}
+
+/* ---------- kop ---------- */
+header{background:var(--han);color:var(--paper);border:var(--bw) solid var(--ink);box-shadow:10px 10px 0 var(--ink);
+  padding:28px clamp(18px,4vw,40px) 30px;display:grid;gap:16px}
+.eyebrow{justify-self:start;background:var(--ink);color:var(--paper);padding:6px 12px 5px;
+  font:700 12px/1.2 var(--fm);letter-spacing:.14em;text-transform:uppercase}
+header .eyebrow{background:var(--paper);color:var(--ink)}
+.meta{display:flex;flex-wrap:wrap;gap:10px}
+.chip{border:3px solid currentColor;padding:7px 12px;font:700 13px/1.15 var(--fm);letter-spacing:.04em;text-transform:uppercase}
+.lede{font-size:19px;line-height:1.45;font-weight:600;max-width:64ch}
+header .callout{color:var(--ink)}
+
+/* ---------- blokken ---------- */
+.callout{background:var(--mens2);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:14px 18px;display:grid;gap:8px}
+.callout>strong{justify-self:start;background:var(--ink);color:var(--paper);padding:5px 11px 4px;
+  font:700 12px/1.2 var(--fm);letter-spacing:.12em;text-transform:uppercase}
+.callout.han{background:var(--han);color:var(--paper)}
+.callout.han>strong{background:var(--paper);color:var(--han)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.box{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:16px 18px;display:grid;gap:10px;align-content:start}
+.box h3{margin:0}
+ul,ol{margin:0;padding-left:22px;display:grid;gap:6px}
+li{max-width:66ch}
+ul:not(.check){list-style:none;padding-left:24px}
+ul:not(.check) li{position:relative}
+ul:not(.check) li::before{content:"";position:absolute;left:-22px;top:.5em;width:10px;height:10px;background:var(--han)}
+ol li::marker{font:800 14px var(--fm);color:var(--han)}
+.check{list-style:none;padding-left:26px}
+.check li{position:relative}
+.check li::before{content:"";position:absolute;left:-25px;top:4px;width:14px;height:14px;border:2.5px solid var(--ink);background:var(--paper)}
+.muted{color:var(--grey)}
+.small{font-size:14.5px}
+
+/* ---------- tabellen ---------- */
+.tablewrap{overflow-x:auto;background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh)}
+table{border-collapse:collapse;width:100%;min-width:640px}
+th,td{text-align:left;vertical-align:top;padding:12px 14px;border-top:2px solid var(--ink)}
+th{font:700 12px/1.2 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:var(--ink);border-top:0}
+td.t{font:800 14px/1.4 var(--fm);white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--han)}
+td.t span{display:block;color:var(--grey);font-weight:600;font-size:12px}
+tr.brk td{background:var(--wash);color:var(--grey);padding-block:8px;font-weight:600}
+tr.brk td.t{color:var(--ink)}
+td b{font-weight:700}
+.tag{display:inline-block;font:700 11px/1 var(--fm);letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;
+  background:var(--han2);color:var(--ink);border:2px solid var(--ink);margin:4px 4px 0 0;vertical-align:1px}
+.tag.blad{background:var(--ink);color:var(--paper)}
+
+/* ---------- inhoud ---------- */
+.flaws{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.flaw{background:var(--han2);border:2px solid var(--ink);padding:10px 12px;font-size:14.5px}
+.flaw b{color:var(--han)}
+.phases{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));border:var(--bw) solid var(--ink);background:var(--paper);box-shadow:var(--sh)}
+.phase{padding:14px 16px;border-right:2px solid var(--ink);display:grid;gap:4px;align-content:start}
+.phase:last-child{border-right:0}
+.phase .n{justify-self:start;font:700 11px/1 var(--fm);letter-spacing:.12em;text-transform:uppercase;background:var(--han);color:var(--paper);padding:4px 7px}
+.phase b{font-size:18px;font-weight:800}
+.note{background:var(--paper);border:var(--bw) solid var(--ink);border-top:9px solid var(--han);box-shadow:var(--sh);padding:14px 18px;display:grid;gap:8px}
+.note h3{margin:0}
+footer.bron{font-size:13.5px;color:var(--grey);border-top:var(--bw) solid var(--ink);padding-top:16px;display:grid;gap:6px}
+code{font-family:var(--fm);font-size:12.5px}
+.pdfknop{font:700 12px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:transparent;
+  border:2px solid var(--paper);padding:8px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.pdfknop:hover,.pdfknop:focus-visible{background:var(--han);border-color:var(--han);outline:none}
+.pdfknop svg{width:14px;height:14px}
+a{color:inherit;text-decoration-color:var(--han);text-decoration-thickness:2px;text-underline-offset:3px}
+.knoppen{display:flex;gap:8px}
+@media (max-width:640px){.topbar .who{display:none}.pdfknop{padding:8px 9px;letter-spacing:.04em}}
+@media (max-width:440px){.pdfknop .lbl{display:none}.pdfknop svg{width:16px;height:16px}}
+@page{size:A4;margin:14mm 12mm}
+@media print{
+  .pdfknop{display:none}
+  body{background:#fff}
+  .wrap,section{display:block;padding-block:16px}
+  section{padding-block:0;margin-top:26px}
+  section>*+*{margin-top:14px}
+  .grid2,.flaws{break-inside:avoid}
+  header,.box,.tablewrap,.callout,.phases,.note{box-shadow:none}
+  body{font-size:14px}
+  .box,.note,.callout,.phases,.flaw,tr,h3{break-inside:avoid}
+  h2,h3{break-after:avoid}
+  .tablewrap{overflow:visible}
+  table{min-width:0}
+  th,td{padding:9px 10px}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+.kopieer{font:700 12px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;background:var(--han);color:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:10px 14px;cursor:pointer}
+.kopieer:active{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ink)}
+#studententekst ol,#studententekst ul{font-size:15px}
+@media print{.kopieer,#gekopieerd,.foot{display:none}footer.bron{display:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="hanlogo" viewBox="0 0 82 34"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></symbol></svg>
+
+<div class="topbar"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Praktijkopdracht 5 · C-cluster</span><span class="sp"></span><span class="knoppen"><button type="button" class="pdfknop" onclick="downloadPdf()" aria-label="Download PDF" title="Opent het afdrukvenster; kies daar 'Opslaan als PDF'"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 1v9M4 6l4 4 4-4M2 14h12"/></svg><span class="lbl">Download PDF</span></button></span></div>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Outline · Week 5 · Dag 2 (woensdag)</div>
+  <h1>Start van de A3: achtergrond van het vraagstuk</h1>
+  <div class="meta">
+    <span class="chip">TUT2 (jij) + PO-docent</span>
+    <span class="chip">wo 30 sept 2026</span>
+    <span class="chip">BKN-C01</span>
+    <span class="chip">opdracht 2 · analyse en diagnose</span>
+    <span class="chip">LUK 1</span>
+  </div>
+  <p class="lede">Op dinsdag sluiten de teams de business game af. Op woensdag gaan ze voor het eerst met de A3 aan de slag voor hun echte opdrachtgever. Jij verzorgt twee blokken: eerst de introductie op de A3 met onderzoeksvaardigheden, daarna het eerste deel van vak 1 van de A3, de plaatsing van het vraagstuk. Tussen die twee blokken coacht de PO-docent.</p>
+  <div class="callout small">
+    <strong>Check vooraf</strong> In de rolverdeling staat "1e kans toets SM &amp; OM, woensdag lesweek 5". Kijk in het rooster of die toets op hetzelfde dagdeel valt als jouw blokken, en zoek de begin- en eindtijden en het lokaal op. In je agenda staat voor die week nog niets.
+  </div>
+</header>
+
+<section>
+  <h2>In één oogopslag</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Blok</th><th>Wie</th><th>Wat studenten doen</th><th>Wat ze opleveren</th></tr></thead>
+    <tbody>
+      <tr><td class="t">Deel 1<span>ca. 90 min</span></td><td><b>TUT2</b></td><td>Kennismaken met de A3 als communicatiemiddel en oefenen met onderzoeksvaardigheden: een onderzoeksvraag formuleren, die opdelen in zoekvragen vanuit verschillende frames, zoeken, bronnen beoordelen.</td><td>Een concrete onderzoeksvraag, drie zoekvragen en één beoordeelde bron (oefencasus)</td></tr>
+      <tr class="brk"><td class="t">Tussendoor</td><td><b>PO-docent</b></td><td colspan="2">Coaching van individuen en groepen</td></tr>
+      <tr><td class="t">Deel 2<span>ca. 140 min incl. pauzes</span></td><td><b>TUT2</b></td><td>Vak 1 van de A3, deel 1 "Plaatsing": waar zit het vraagstuk van de eigen opdrachtgever en wie raakt het?</td><td>Vier producten op twee flipovervellen aan de muur: stakeholdermap en VPC (vel 1), BMC en TOM-model V1 (vel 2), plus een oefenronde gallery walk en eerste conclusies</td></tr>
+      <tr class="brk"><td class="t">Huiswerk</td><td>studenten</td><td colspan="2">De twee vellen afmaken, de feedback van de oefenronde verwerken, een foto maken en de vellen opgerold meenemen naar de gallery walk bij de volgende bijeenkomst (dag 3, TUT1)</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small muted">De tijden per blok zijn schattingen op basis van de tijden in de slides. Het rooster bepaalt hoeveel tijd je werkelijk hebt.</p>
+</section>
+
+<section>
+  <h2>Waar deze dag in het cluster staat</h2>
+  <div class="grid2">
+    <div class="box"><h3>Wat eraan voorafgaat</h3>
+      <ul>
+        <li>Week 4: intakegesprekken met de opdrachtgever. Elk team heeft dus een eigen vraagstuk.</li>
+        <li>Dinsdag (dag 1): terugblik op de business game en de MT-pitch. Studenten oefenen daar met de vragen die een opdrachtgever stelt.</li>
+        <li>THEO SM heeft de six capitals (week 1 en 3) en de stakeholderanalyse naar invloed en belang (week 3) behandeld. Het TOM-model kennen ze uit het hoorcollege TOM in week 1. De stakeholderanalyse kennen ze ook uit jaar 1 (A-cluster P1, week 3).</li>
+        <li>Het VPC en het BMC staan niet in de weekplanning van THEO SM, maar ze zijn wel behandeld in het hoorcollege TOM van week 1 (<i>W1 - Les 3 - TOM-model</i>, dia 10–11). Daar kwamen ze langs als stap van waardebelofte (VPC) naar waardecreatie (BMC) naar het TOM-model. In deel 2 herhaal je ze kort, vlak voordat de teams ermee aan de slag gaan.</li>
+        <li>In datzelfde hoorcollege kregen de teams de opdracht om hun opdrachtgever de komende weken met het TOM-model te analyseren (dia 52). Het TOM-model V1 van vandaag kan daarop voortbouwen.</li>
+      </ul>
+    </div>
+    <div class="box"><h3>Wat erna komt</h3>
+      <ul>
+        <li>Dag 3 (TUT1): gallery walk met de twee flipovervellen per team, in hetzelfde format als de oefenronde van vandaag, daarna vak 1 deel 2 (Weging) en deel 3 (SIPOC).</li>
+        <li>Projectdag: bij de opdrachtgever.</li>
+        <li>Week 6: jij geeft vak 1 deel 4 (Afbakening) en het bedrijfsbezoek aan Scania. De groepen presenteren dan alle tien producten van vak 1 aan medestudenten.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Deel 1: A3-introductie en onderzoeksvaardigheden</h2>
+  <p>Slides: <i>A3 Introductie &amp; onderzoeksvaardigheden.pptx</i> (32 dia's), Brightspace › Project › A3: 1. Achtergrond.</p>
+
+  <h3>1a. De A3-methode (ca. 20 min)</h3>
+  <ul>
+    <li>Filmpje van Bureau Tromp: <i>Wat is de A3 verbetermethode</i> (4:38 min). Studenten kennen de A3 waarschijnlijk al uit de Lean Yellow Belt-training.</li>
+    <li>A3-denken: een "praatplaatje" dat op één A3 past, concreet, compleet en consistent (3xC). Past het niet, dan vertel je te veel of begrijp je het nog niet.</li>
+    <li>Kernboodschap: de A3 is iteratief. Teams bespreken hem elke week met de opdrachtgever en werken hem steeds bij. De vakken mogen in het begin groter zijn en worden later compacter.</li>
+    <li>Laat de lege template zien (acht vakken), een voorbeeld-A3 en de hulpvragen bij vak 1 (aanleiding, klant, omvang van het probleem, effecten, scope).</li>
+  </ul>
+
+  <h3>1b. Praktijkgericht tegenover wetenschappelijk onderzoek (ca. 10 min)</h3>
+  <ul>
+    <li>Praktijkonderzoek bestudeert één geval om een diagnose te stellen en een plan van aanpak voor verbetering te maken. Wetenschappelijk onderzoek zoekt nieuwe algemene kennis.</li>
+    <li>Om te weten welke data je in de praktijk nodig hebt, begin je in de literatuur.</li>
+  </ul>
+
+  <h3>1c. Bronnen zoeken in vijf stappen (ca. 50 min, vooral werkvormen in groepjes)</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Stap</th><th>Werkvorm voor studenten</th><th>Jouw rol</th></tr></thead>
+    <tbody>
+      <tr><td class="t">Voorbereiden</td><td>Kies als groep een tool om bronnen te bundelen, bijvoorbeeld NotebookLM.</td><td>Kort benoemen, niet uitdiepen</td></tr>
+      <tr><td class="t">Onderzoeksvraag en zoekvragen</td><td><b>Opdracht 1:</b> maak "Hoe kan de klanttevredenheid verhoogd worden?" concreet met context (dia 17) en schrijf hem als onderzoeksvraag in het user-story-format: <i>"Wat is de beste oplossing voor &lt;gebruiker&gt; om &lt;probleem / pain / gain&gt;, zodat &lt;waardecreatie volgens de six capitals&gt;?"</i><br><b>Opdracht 2:</b> deel de onderzoeksvraag op in drie zoekvragen, elk vanuit een ander frame (dia 16 en 18).</td><td>De opbouw: probleemformulering (week 4) → onderzoeksvraag → zoekvragen → zoektermen. De onderzoeksvraag is de vraag die de studenten uiteindelijk met onderzoek beantwoorden. De zoekvragen zijn de subvragen.<br><br>Frames kunnen functioneel zijn (HR, financieel, logistiek, marketing), intern of extern, theoretisch of empirisch. Modellen helpen de frames te bepalen: 7S, Strategy Map, Six Capitals. De openingen op dia 18 ("Welke factoren…", "In hoeverre…") passen bij de zoekvragen. De bespreking van opdracht 2 is het belangrijkst: wat mis je als je maar één frame kiest? Er is geen beste frame.<br><br>Let op de volgorde: dia 17 komt vóór dia 16.</td></tr>
+      <tr><td class="t">Zoektermen</td><td><b>Opdracht 3:</b> bepaal zoektermen bij een van de zoekvragen met het schema van de dia.</td><td>Verwijs naar de LibGuide "AOO: Bronnen en informatievaardigheden"</td></tr>
+      <tr><td class="t">Zoekstrategie</td><td><b>Opdracht 4:</b> wedstrijd, welk groepje vindt als eerste een goede bron. Elk team splitst zich: route A zoekt in Google Scholar, HANQuest of vaktijdschriften; route B laat een AI-tool zoeken met een prompt (Perplexity, Claude Research, Gemini of ChatGPT Deep Research). Een bron telt pas als het team hem zelf heeft geopend. Daarna: welke route werkte beter, en klopten de bronnen van de AI?<br><b>Stelling:</b> "Je kunt prima AI gebruiken om inspiratiemateriaal te vinden." Voor links, tegen rechts, en beargumenteer.</td><td>Leid de nabespreking en de stelling. Conclusie over AI: goed om je te oriënteren en aanknopingspunten te vinden. Een bron wordt het pas als je hem zelf hebt geopend en beoordeeld. Dia 24 noemt nog Wikipedia.</td></tr>
+      <tr><td class="t">Beoordelen en verwerken</td><td><b>Opdracht 5:</b> beoordeel de gevonden bron met de AAOCC-criteria. Gebruik je hem of zoek je verder? Daarna APA.</td><td>Controleer of groepen echt beoordelen en niet alleen afvinken</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout small">
+    <strong>Van onderzoeksvraag naar zoekvragen</strong>
+    <p><b>Onderzoeksvraag, format:</b> "Wat is de beste oplossing voor &lt;gebruiker&gt; om &lt;probleem / pain / gain&gt;, zodat &lt;waardecreatie volgens de six capitals&gt;?"</p>
+    <p><b>Six capitals:</b> financieel, productie, intellectueel, menselijk, sociaal en relationeel, natuurlijk kapitaal. Dit sluit aan op de meervoudige waardecreatie uit LUK 2.</p>
+    <p><b>Voorbeeld bij de webshopcasus:</b> "Wat is de beste oplossing voor terugkerende klanten van webshop X om weer een aankoopervaring te krijgen die ze minstens een 8 geven (nu een 6,3), zodat de klantrelatie herstelt (sociaal en relationeel kapitaal) en de omzet uit herhaalaankopen stijgt (financieel kapitaal)?"</p>
+    <p><b>Zoekvragen bij dat voorbeeld, met de Strategy Map als bron van frames:</b> Welke factoren bepalen de klanttevredenheid bij webshops? (klant, theoretisch) · In hoeverre haalt webshop X de beloofde levertijd? (interne processen, empirisch) · In hoeverre kunnen klantenservicemedewerkers klachten zelf oplossen? (leren en groeien) · Wat is de relatie tussen klanttevredenheid en herhaalaankopen bij webshop X? (financieel)</p>
+    <p><b>Brug naar deel 2:</b> gebruiker, pain/gain en value proposition zijn de bouwstenen van het Value Proposition Canvas dat de teams later vandaag maken. Laat ze in deel 2 de onderzoeksvraag voor het eigen vraagstuk in dit format opschrijven, met twee of drie zoekvragen, en die naast het VPC leggen.</p>
+  </div>
+
+  <h3>1d. Betrouwbaarheid en validiteit (ca. 10 min)</h3>
+  <ul>
+    <li>Leg uit met de schietschijf: betrouwbaarheid, en interne, externe en constructvaliditeit.</li>
+    <li>Vertaal het naar het project: neem niet alles over wat de opdrachtgever zegt, want dat is één waarneming vanuit één frame. Bereid sessies om data op te halen goed voor, en controleer elkaars werk.</li>
+    <li>Brug naar deel 2: "Ga verder met punt 1 uit het A3."</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Deel 2: A3 vak 1, deel 1 "Plaatsing"</h2>
+  <p>Slides: <i>A3 1. Achtergrond – deel 1 – Plaatsing.pptx</i> (19 dia's). Leidende vraag: <b>waar bevindt het vraagstuk zich en wie wordt erdoor geraakt?</b> Teams werken nu aan het vraagstuk van hun <b>eigen opdrachtgever</b>.</p>
+  <div class="callout small">
+    <strong>Kader</strong> Vak 1 van de A3 bestaat in totaal uit tien producten, verdeeld over Plaatsing, Weging en Afbakening. Vandaag maken de teams de eerste vier. Laat dia 2 zien, zodat studenten het hele traject overzien.
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Tijd</th><th>Product</th><th>Opdracht</th><th>Plaatst het vraagstuk tegenover</th></tr></thead>
+    <tbody>
+      <tr><td class="t">20 min</td><td><b>1. Stakeholdermap</b></td><td>Op de linkerhelft van vel 1, met het vraagstuk in het midden en de relatie van elke stakeholder tot het vraagstuk</td><td>de stakeholders</td></tr>
+      <tr class="brk"><td class="t">5 min</td><td colspan="3">pauze</td></tr>
+      <tr><td class="t">5 min</td><td><b>Herhaling VPC: de waardebelofte</b> <span class="tag">jij</span></td><td>Bekend uit het hoorcollege TOM (week 1, dia 10). Twee kanten. <b>Klantprofiel:</b> jobs (wat wil de klant gedaan krijgen), pains (wat zit in de weg), gains (wat levert winst op). <b>Waardekaart:</b> producten en diensten, pain relievers en gain creators. Er is een <b>fit</b> als de waardekaart de belangrijkste pains en gains van de klant raakt. Brug: pain/gain en value proposition zijn ook de delen van de onderzoeksvraag uit deel 1.</td><td>—</td></tr>
+      <tr><td class="t">20 min</td><td><b>2. Value Proposition Canvas</b></td><td>Op de rechterhelft van vel 1. Het vraagstuk centraal. Hoe raakt het probleem de klant? Welke pains en gains horen bij het vraagstuk, en waar ontbreekt de fit?</td><td>de klant</td></tr>
+      <tr><td class="t">10 min</td><td><b>Gallery walk, oefenronde</b></td><td>Vervangt de pauze. Host bij de eigen muur, de rest schuift twee muren door (2 × 4 min) en plakt post-its. Laatste 2 minuten: feedback lezen bij de eigen muur</td><td>elkaars vel 1</td></tr>
+      <tr><td class="t">5 min</td><td><b>Herhaling BMC: de waardecreatie</b> <span class="tag">jij</span></td><td>Bekend uit het hoorcollege TOM (week 1, dia 11). Negen bouwstenen. <b>Rechts (klantkant):</b> klantsegmenten, waardepropositie, kanalen, klantrelaties, inkomstenstromen. <b>Links (organisatiekant):</b> kernactiviteiten, kernmiddelen, kernpartners, kostenstructuur. Het VPC van zojuist is een uitvergroting van klantsegment en waardepropositie. Procesvraagstukken zitten vaak links, bij kernactiviteiten en kernmiddelen. Brug naar de six capitals: kosten en inkomsten zijn financieel kapitaal, maar welke andere kapitalen raakt het vraagstuk?</td><td>—</td></tr>
+      <tr><td class="t">20 min</td><td><b>3. Business Model Canvas</b></td><td>Markeer het vraagstuk en werk per bouwsteen de rol ten opzichte van het vraagstuk uit</td><td>de organisatie</td></tr>
+      <tr class="brk"><td class="t">5 min</td><td colspan="3">pauze</td></tr>
+      <tr><td class="t">20 min</td><td><b>4. TOM-model V1</b></td><td>Op de rechterhelft van vel 2. Markeer het vraagstuk en werk per onderdeel uit hoe het probleem dat onderdeel raakt</td><td>de organisatie (strategisch, tactisch, operationeel)</td></tr>
+      <tr class="brk"><td class="t">5 min</td><td colspan="3">pauze</td></tr>
+      <tr><td class="t">25 min</td><td><b>Eerste conclusies</b></td><td>Beantwoord met de vier producten: waar zit het vraagstuk ten opzichte van de stakeholders, de klant en de organisatieonderdelen?</td><td>alle drie</td></tr>
+      <tr><td class="t">slot</td><td><b>Opdracht gallery walk</b></td><td>De twee vellen afmaken, feedback verwerken, foto maken, vellen opgerold meenemen naar de volgende bijeenkomst</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small muted">Op de laatste dia staat "30 minuten resterend", met PO als mogelijke invulling. Spreek met de PO-docent af of die tijd naar coaching gaat.</p>
+</section>
+
+<section>
+  <h2>Jouw rol als TUT2</h2>
+  <div class="grid2">
+    <div class="box"><h3>Tijdens deel 1: instructeur en gespreksleider</h3>
+      <ul>
+        <li>Je presenteert de A3 en de theorie over onderzoeksvaardigheden, maar houdt de uitleg kort.</li>
+        <li>Je zet de werkvormen uit, bewaakt de tijd en leidt de nabesprekingen. Daar zit de meeste leerwaarde.</li>
+        <li>Je legt steeds de link naar het eigen project: welke frames zijn er bij jullie opdrachtgever denkbaar?</li>
+      </ul>
+    </div>
+    <div class="box"><h3>Tijdens deel 2: procesbegeleider van de teams</h3>
+      <ul>
+        <li>Vóór product 2 en 3 herhaal je het VPC en het BMC elk in vijf minuten, met dia 10 en 11 van het hoorcollege TOM. Gebruik dezelfde lijn als in week 1: waardebelofte (VPC), waardecreatie (BMC), en daarna het TOM-model. De teams leren het model vooral door het in te vullen voor hun eigen vraagstuk.</li>
+        <li>Daarna loop je rond langs de teams en stel je vragen. Je vult de modellen niet voor ze in.</li>
+        <li>Je bewaakt dat elk model over het vraagstuk gaat en niet over de organisatie in het algemeen. Het vraagstuk moet in elk product zichtbaar zijn.</li>
+        <li>Je houdt de vier blokken strak (20 minuten), want de conclusie aan het eind verbindt alles.</li>
+        <li>Na vel 1 oefenen de teams de gallery walk (10 minuten, in plaats van de pauze). Eén host blijft bij de muur, de rest schuift met de klok mee en plakt post-its: "Ik zie… / Ik mis… / Ik vraag me af…". De feedback gebruiken ze meteen bij vel 2, en op dag 3 kennen ze het format.</li>
+        <li>Je signaleert teams waarvan het vraagstuk nog te vaag is om te plaatsen. Die geef je door aan de PO-docent of neem je mee naar de week-6-sessie over afbakening.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="box"><h3>Vragen om rond te lopen</h3>
+    <ul>
+      <li>"Welke stakeholder merkt het probleem het eerst? En wie heeft er belang bij dat het blijft zoals het is?"</li>
+      <li>"Welke pain van de klant hoort bij jullie vraagstuk? Hoe weten jullie dat, is dat een feit of een aanname?"</li>
+      <li>"Welke bouwsteen van het BMC wordt het hardst geraakt?"</li>
+      <li>"Speelt het probleem vooral op strategisch, tactisch of operationeel niveau in het TOM-model?"</li>
+      <li>"Welke bron of welk gesprek hebben jullie nodig om dit te onderbouwen?" Zo verbind je deel 2 met deel 1.</li>
+      <li>"Wat is jullie onderzoeksvraag in het user-story-format, en welke zoekvragen horen erbij? Klopt de gebruiker met jullie stakeholdermap, en de pain/gain en de value proposition met jullie VPC? Welke kapitalen groeien er als het vraagstuk is opgelost?"</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Materiaal en voorbereiding</h2>
+  <ul class="check">
+    <li>Beide slidedecks van Brightspace (Project › A3: 1. Achtergrond) en het filmpje van Bureau Tromp</li>
+    <li>Lege A3-template (<i>W5-Template A3_leeg.xlsx</i>, Brightspace › Project) en een voorbeeld-A3</li>
+    <li>Per team een stuk muur en twee flipovervellen, stiften, plakband en post-its. Templates voor VPC, BMC en TOM-model als voorbeeld van de indeling</li>
+    <li>Voor de herhaling: dia 10 (VPC) en 11 (BMC) van <i>W1 - Les 3 - TOM-model</i>. In de Plaatsing-slides staan de bouwstenen op dia 7–12</li>
+    <li>Link naar de LibGuide "AOO: Bronnen en informatievaardigheden" en naar HANQuest</li>
+    <li>Ruimte voor de stelling over AI (links en rechts in het lokaal)</li>
+    <li>Timer op het scherm voor deel 2 (dezelfde aanpak als in je MT-pitch-slides)</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Afstemmen met de PO-docent en TUT1</h2>
+  <ul>
+    <li><b>PO-docent:</b> hoe laat begint en eindigt het coachingsblok tussen deel 1 en deel 2, en wie neemt de resterende 30 minuten?</li>
+    <li><b>PO-docent:</b> gaan de inzichten van dinsdag (de optie met de echte opdrachtgever in de MT-pitch en de leerdoelen uit fase 4) mee naar het coachingsgesprek?</li>
+    <li><b>TUT1:</b> weet TUT1 dat de teams hun twee flipovervellen opgerold meenemen voor een gallery walk aan het begin van dag 3, in het format van de oefenronde? Is er op dag 3 muurruimte?</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Open punten</h2>
+  <ul>
+    <li>Tijden en lokaal voor woensdag. Staan niet in de rolverdeling en nog niet in je agenda.</li>
+    <li>Mogelijke overlap met de eerste kans van de toets SM/OM op woensdag van lesweek 5.</li>
+    <li>Hoeveel studenten nog weten van VPC en BMC uit het hoorcollege TOM van week 1. Vraag aan het begin van deel 2 naar het verschil tussen waardebelofte en waardecreatie. Weten ze het goed, houd de herhaling dan kort.</li>
+    <li>De tijden voor deel 1 zijn een schatting. Het deck geeft geen tijden per onderdeel. Wordt het krap, dan kun je dia 28–30 (betrouwbaarheid en validiteit) inkorten en de kernboodschap voor het project bewaren.</li>
+  </ul>
+</section>
+
+<footer class="bron">
+  <div>Gebaseerd op Brightspace, Praktijkopdracht 5 (2026 P1N): Docentendomein › <i>Rolverdeling en opbouw C-cluster.xlsx</i> (week 5, dag 2, kleur TUT2); Project › A3: 1. Achtergrond › <i>A3 Introductie &amp; onderzoeksvaardigheden.pptx</i> en <i>A3 1. Achtergrond – deel 1 – Plaatsing.pptx</i>; Cursusinformatie › <i>Opdrachtomschrijvingen studenten (per leerboog)</i>, opdracht 2.</div>
+  <div>Opgesteld 25 sept 2026.</div>
+</footer>
+
+</div>
+
+<div class="foot"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Hogeschool van Arnhem en Nijmegen</span><span class="sp"></span><span class="num">C-cluster · week 5</span></div>
+<script>
+function downloadPdf(){
+  const titel=document.title;
+  document.title='Outline_woensdag_A3-start_week5';
+  window.addEventListener('afterprint',()=>{document.title=titel},{once:true});
+  window.print();
+}
+</script>
+</body>
+</html>

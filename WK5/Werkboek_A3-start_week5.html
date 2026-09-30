@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Werkboek A3 start week 5</title>
+<style>
+:root{
+  /* HAN-huisstijl, gelijk aan de docentinstructie en de manual */
+  --han:#E50056; --han2:#FFE1EC; --ink:#000000; --paper:#FFFFFF;
+  --grey:#454545; --grey2:#767676; --wash:#F2F2F0; --panel2:#E6E6E3;
+  --mens2:#FFE875;
+  --bw:3px; --sh:5px 5px 0 var(--ink);
+  --f:"Avenir Next","Avenir","Nunito Sans","Segoe UI",Helvetica,Arial,sans-serif;
+  --fm:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--wash);color:var(--ink);font:15px/1.5 var(--f);-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;display:grid;gap:36px;padding:32px 16px 64px}
+h1,h2,h3,h4{text-wrap:balance;margin:0}
+h1{font-size:clamp(32px,6vw,52px);line-height:.96;letter-spacing:-.035em;font-weight:800;text-transform:uppercase}
+h2{font-size:clamp(22px,3.2vw,28px);line-height:1.05;letter-spacing:-.025em;font-weight:800}
+h3{font-size:17px;line-height:1.2;font-weight:800}
+h4{font-size:14.5px;font-weight:800}
+p{margin:0;max-width:72ch}
+b,strong{font-weight:700}
+a{color:inherit;text-decoration-color:var(--han);text-decoration-thickness:2px;text-underline-offset:3px}
+ul,ol{margin:0;padding-left:22px;display:grid;gap:5px}
+ul{list-style:none;padding-left:22px}
+ul li{position:relative}
+ul li::before{content:"";position:absolute;left:-20px;top:.5em;width:9px;height:9px;background:var(--han)}
+ol li::marker{font:800 13px var(--fm);color:var(--han)}
+.muted{color:var(--grey)}
+.small{font-size:13.5px}
+
+/* ---------- balken ---------- */
+.topbar,.foot{background:var(--ink);color:var(--paper);display:flex;align-items:center;gap:18px;padding:0 20px 0 max(16px,calc((100% - 828px)/2))}
+.topbar{height:56px;border-bottom:4px solid var(--han)}
+.foot{min-height:52px}
+.logo{flex:none;display:block;height:26px;width:62px}
+.who{font:700 12px/1 var(--fm);letter-spacing:.14em;text-transform:uppercase;opacity:.82}
+.sp{flex:1}
+.num{font:800 13px/1 var(--fm);background:var(--han);color:var(--paper);padding:8px 11px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.knoppen{display:flex;gap:8px}
+.pdfknop{font:700 12px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:transparent;
+  border:2px solid var(--paper);padding:8px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.pdfknop:hover,.pdfknop:focus-visible{background:var(--han);border-color:var(--han);outline:none}
+.pdfknop svg{width:14px;height:14px}
+@media (max-width:640px){.topbar .who{display:none}.pdfknop{padding:8px 9px;letter-spacing:.04em}}
+@media (max-width:440px){.pdfknop .lbl{display:none}.pdfknop svg{width:16px;height:16px}}
+
+/* ---------- blad = één A4 ---------- */
+.blad{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:0 0 22px;display:grid;gap:14px;align-content:start}
+.blad>*:not(.bkop){margin-inline:clamp(14px,3vw,26px)}
+.bkop{background:var(--ink);color:var(--paper);display:flex;align-items:center;gap:14px;padding:9px clamp(14px,3vw,26px)}
+.bkop .logo{height:18px;width:44px}
+.bkop .num{margin-left:auto}
+.bkop .who{font-size:11px}
+.sectiekop{font:700 12px/1.2 var(--fm);letter-spacing:.14em;text-transform:uppercase;color:var(--grey);border-bottom:var(--bw) solid var(--ink);padding:6px 0 4px}
+
+/* ---------- omslag ---------- */
+.omslag{background:var(--han);color:var(--paper);border:var(--bw) solid var(--ink);padding:24px 24px 26px;display:grid;gap:14px}
+.eyebrow{justify-self:start;background:var(--paper);color:var(--ink);padding:6px 12px 5px;font:700 12px/1.2 var(--fm);letter-spacing:.14em;text-transform:uppercase}
+.meta{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:3px solid currentColor;padding:6px 10px;font:700 12px/1.15 var(--fm);letter-spacing:.04em;text-transform:uppercase}
+.lede{font-size:17px;line-height:1.45;font-weight:600;max-width:64ch}
+.naamvelden{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px 22px}
+
+/* ---------- blokkop ---------- */
+.blok{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:var(--bw) solid var(--ink);padding-bottom:8px}
+.blok::before{content:"";flex:none;width:14px;height:14px;background:var(--han)}
+.blok .bn{font:800 12px/1 var(--fm);letter-spacing:.12em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:6px 8px}
+.blok .bt{margin-left:auto;font:800 13px/1 var(--fm);color:var(--han);font-variant-numeric:tabular-nums}
+
+/* ---------- opdracht ---------- */
+.act{border:var(--bw) solid var(--ink);display:grid;gap:9px;padding:0 0 12px}
+.act>*:not(.act-kop){margin-inline:14px}
+.act-kop{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--wash);border-bottom:2px solid var(--ink);padding:7px 14px}
+.act-kop .nr{font:800 13px/1 var(--fm);color:var(--han)}
+.act-kop h3{margin-right:auto}
+.vorm,.tijd{font:700 11px/1 var(--fm);letter-spacing:.08em;text-transform:uppercase;padding:5px 7px;border:2px solid var(--ink);white-space:nowrap}
+.vorm.alleen{background:var(--paper)}
+.vorm.duo{background:var(--mens2)}
+.vorm.trio{background:var(--han2)}
+.vorm.team{background:var(--ink);color:var(--paper)}
+.tijd{border-color:transparent;padding-inline:0;color:var(--grey)}
+.waarom,.klaar,.verder{font-size:14px}
+.waarom b,.klaar b,.verder b{font:700 11px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;margin-right:6px;padding:3px 5px;vertical-align:1px}
+.waarom b{background:var(--han);color:var(--paper)}
+.klaar b{background:var(--ink);color:var(--paper)}
+.verder{border-top:2px dashed var(--grey2);padding-top:8px}
+.verder b{background:var(--mens2);border:2px solid var(--ink)}
+.stappen{font-size:14px}
+
+/* ---------- schrijfruimte ---------- */
+.veld{display:grid;gap:0}
+.veld>b{font:700 11px/1.3 var(--fm);letter-spacing:.08em;text-transform:uppercase;color:var(--grey)}
+.veld>span{font-size:12.5px;color:var(--grey)}
+.veld i{display:block;height:27px;border-bottom:1.5px solid var(--ink)}
+.omslag .veld>b{color:var(--paper)}
+.omslag .veld i{border-color:var(--paper)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px 18px}
+.keuze{display:inline-flex;gap:14px;flex-wrap:wrap;font-size:13.5px}
+.keuze span::before{content:"";display:inline-block;width:13px;height:13px;border:2px solid var(--ink);margin-right:6px;vertical-align:-2px}
+
+/* ---------- tabellen ---------- */
+.tab{border:var(--bw) solid var(--ink)}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;vertical-align:top;padding:7px 9px;border-top:1.5px solid var(--ink);font-size:13.5px}
+th{font:700 11px/1.2 var(--fm);letter-spacing:.08em;text-transform:uppercase;color:var(--paper);background:var(--ink);border-top:0}
+td.leeg{height:34px}
+td.t{font:800 13px/1.4 var(--fm);white-space:nowrap;color:var(--han);font-variant-numeric:tabular-nums}
+td.nr{width:30px;font:800 12px/1.5 var(--fm);color:var(--han)}
+td.vakje{width:54px;text-align:center}
+td.vakje span{display:inline-block;width:16px;height:16px;border:2px solid var(--ink)}
+tr.groep td{background:var(--wash);font:700 10.5px/1.2 var(--fm);letter-spacing:.1em;text-transform:uppercase;padding-block:5px}
+.hint{display:block;color:var(--grey);font-size:12px;margin-top:1px}
+.pt{display:inline-grid;place-items:center;width:20px;height:20px;border:2px solid var(--ink);border-radius:50%;font:800 11px/1 var(--fm);margin-right:5px;vertical-align:-4px}
+.schaal{white-space:nowrap}
+.schaal .pt{margin-right:3px}
+
+/* ---------- spiekbrief ---------- */
+.fasen{display:grid;grid-template-columns:repeat(4,1fr);border:var(--bw) solid var(--ink)}
+.fase{padding:9px 10px;border-right:2px solid var(--ink);display:grid;gap:3px;align-content:start;font-size:12.5px;line-height:1.35}
+.fase:last-child{border-right:0}
+.fase .n{justify-self:start;font:700 10px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;background:var(--han);color:var(--paper);padding:3px 6px}
+.fase b{font-size:15px;font-weight:800}
+.fase em{font-style:normal;color:var(--han);font-weight:700}
+@media (max-width:620px){.fasen{grid-template-columns:1fr 1fr}.fase:nth-child(2){border-right:0}.fase:nth-child(-n+2){border-bottom:2px solid var(--ink)}}
+.kaders{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.kader{border:2px solid var(--ink);padding:9px 11px;display:grid;gap:5px;align-content:start;font-size:13px}
+.kader ul{gap:3px}
+.vraagsoorten td{font-size:12.5px;padding:5px 8px}
+.vraagsoorten td:first-child{font-weight:700;white-space:nowrap}
+.vraagsoorten tr.mijden td:first-child{color:var(--han)}
+
+/* ---------- routes ---------- */
+.routes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.routes{grid-template-columns:1fr}}
+.route{border:var(--bw) solid var(--ink);padding:10px 12px;display:grid;gap:5px;align-content:start;font-size:13.5px}
+.route h4::before{content:"";display:inline-block;width:14px;height:14px;border:2.5px solid var(--ink);margin-right:8px;vertical-align:-2px;background:var(--paper)}
+.route.a{background:var(--han2)}
+.route.b{background:var(--mens2)}
+
+/* ---------- mails ---------- */
+.mail{border:var(--bw) solid var(--ink)}
+.mail-head{background:var(--wash);border-bottom:2px solid var(--ink);padding:8px 12px;display:grid;gap:2px;font-size:13.5px}
+.mail-head b{display:inline-block;min-width:86px;font:700 10.5px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
+.mail-body{padding:12px 14px;display:grid;gap:8px;font-size:14px}
+.mail-body h4{margin:4px 0 -5px;font-size:13.5px}
+
+/* ---------- rubric ---------- */
+.rubric td{font-size:11.5px;line-height:1.33;padding:5px 6px}
+.rubric td.crit{width:112px}
+.rubric td.crit b{display:block;font-size:12px}
+.rubric td.crit small{font:700 9.5px/1.3 var(--fm);text-transform:uppercase;letter-spacing:.04em;color:var(--grey)}
+.rubric th.sc,.rubric td.sc{width:44px;text-align:center;border-left:2px solid var(--ink)}
+.rubric td.sc{background:var(--wash)}
+.turf td{padding:6px 9px}
+.turf td.streep{width:42%}
+
+/* ---------- antwoordsleutels ---------- */
+.sleutel td{font-size:13px}
+.sleutel td.soort{width:128px}
+.sleutel td.soort b{display:block}
+.sleutel td.denk{width:34%;background:var(--wash)}
+.sleutel td.denk::before{content:"Denk verder";display:block;font:700 10px/1.3 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--han);margin-bottom:2px}
+.goed{color:#0a7a3a;font-weight:800}
+.fout{color:var(--han);font-weight:800}
+
+/* ---------- docentdeel ---------- */
+.docentdeel{display:grid;gap:36px}
+.scheiding{background:var(--ink);color:var(--paper);padding:16px 20px;display:grid;gap:6px;border:var(--bw) solid var(--ink)}
+.scheiding h2{color:var(--paper)}
+.scheiding p{font-size:14px;opacity:.9}
+.fac .kader{font-size:13px}
+.rolkaart .grid2 ul{font-size:13.5px}
+.feiten td{font-size:13px;padding:6px 9px}
+.feiten td.nr{width:104px;font:700 10.5px/1.5 var(--fm);text-transform:uppercase;letter-spacing:.06em;color:var(--han)}
+.geheim{background:var(--han);color:var(--paper);font:700 12px/1.3 var(--fm);letter-spacing:.08em;text-transform:uppercase;padding:8px 12px}
+footer.bron{font-size:13px;color:var(--grey);border-top:var(--bw) solid var(--ink);padding-top:14px;display:grid;gap:6px}
+
+/* ---------- print ---------- */
+@page{size:A4;margin:11mm 11mm}
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#fff;font-size:12.5px}
+  .topbar,.foot,.pdfknop,.scheiding,footer.bron{display:none}
+  .wrap{display:block;padding:0;max-width:none}
+  .blad{break-before:page;border:0;box-shadow:none;padding:0;display:block}
+  .blad>*+*{margin-top:8px}
+  .blad:first-child{break-before:auto}
+  .blad>*:not(.bkop){margin-inline:0}
+  .docentdeel{display:block}
+  .act,.kader,.route,.tab tr,.fasen,.mail,.veld{break-inside:avoid}
+  .act{gap:6px;padding-bottom:8px}
+  .act-kop{padding:5px 12px}
+  .act>*:not(.act-kop){margin-inline:12px}
+  .waarom,.klaar,.verder,.stappen{font-size:12.5px}
+  th,td{font-size:12px;padding:5px 8px}
+  .veld i{height:24px}
+  .omslag{padding:20px 22px}
+  .rubric td{font-size:10.5px;padding:4px 5px}
+  .mail-body{font-size:12.5px;gap:6px}
+  .mail-head{font-size:12px}
+}
+
+/* ---------- aanvullingen werkboek MT-pitch ---------- */
+.inv{display:inline-block;min-width:44px;border-bottom:1.5px solid var(--ink);height:1.1em;vertical-align:-3px}
+.schema td{font-size:13.5px}
+.schema td.r{font:800 13px/1.4 var(--fm);color:var(--han);white-space:nowrap}
+.alleen-o{display:inline-block;font:700 11px/1 var(--fm);letter-spacing:.08em;text-transform:uppercase;background:var(--han);color:var(--paper);padding:5px 7px}
+.eisen{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px}
+.eis{border:2px solid var(--ink);padding:7px 9px;font-size:13px;display:grid;gap:2px;align-content:start}
+.eis b{font-size:13.5px}
+.vbl{background:var(--wash);border:2px solid var(--ink);padding:8px 11px;font-size:13.5px;display:grid;gap:3px}
+.vbl b{font:700 10.5px/1.3 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--han)}
+/* knipstrook: gaat na de ronde naar de consultant */
+.strook{border:2px dashed var(--ink);padding:9px 12px 11px;display:grid;gap:6px;position:relative}
+.strook::before{content:"✂";position:absolute;top:-11px;left:10px;background:var(--paper);padding:0 4px;font-size:15px;line-height:1}
+.strook .kop{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px}
+.strook .zin{display:grid;grid-template-columns:auto 1fr;gap:0 8px;align-items:end;font-size:13.5px}
+.strook .zin>span{font-weight:700;white-space:nowrap;padding-bottom:3px}
+.strook .zin>i{display:block;height:25px;border-bottom:1.5px solid var(--ink)}
+.strook .zin>i.vol{grid-column:1/-1}
+.strook .van{font:700 10.5px/1.3 var(--fm);letter-spacing:.08em;text-transform:uppercase;color:var(--grey)}
+.leerdoel .zin{display:grid;gap:0}
+.leerdoel .zin>b{font-weight:800;font-size:14px}
+.leerdoel .zin>i{display:block;height:27px;border-bottom:1.5px solid var(--ink)}
+@media print{
+  .strook{break-inside:avoid;padding:7px 10px 9px;gap:4px}
+  .strook .zin>i{height:22px}
+  .eis{font-size:11.5px;padding:5px 7px}
+  .vbl{font-size:12px;padding:6px 9px}
+  #blad-1{gap:8px}
+  #blad-1 .omslag{padding:14px 18px;gap:9px}
+  #blad-1 h1{font-size:38px}
+  #blad-1 .lede{font-size:14px}
+  #blad-1 td.leeg{height:26px}
+  #blad-3{gap:7px}
+  #blad-3 .tab td{padding:4px 7px}
+  #blad-5 .strook,#blad-6 .strook{gap:3px}
+}
+
+/* ---------- aanvullingen werkboek A3-start ---------- */
+.a3{display:grid;grid-template-columns:1fr 1fr;border:var(--bw) solid var(--ink);font-size:12.5px}
+.a3 div{border:1.5px solid var(--ink);padding:6px 8px;min-height:44px}
+.a3 div b{display:block;font:800 11px/1.3 var(--fm);letter-spacing:.06em;text-transform:uppercase}
+.a3 div.nu{border-width:3px;background:var(--han2)}
+.format{border:var(--bw) solid var(--ink);padding:10px 12px;font-size:15px;line-height:1.5;font-weight:600}
+.format em{font-style:normal;font-family:var(--fm);font-size:13px;border:1.5px solid var(--ink);padding:1px 5px;white-space:nowrap}
+.slot{display:grid;grid-template-columns:150px 1fr;gap:0 10px;align-items:end;font-size:13.5px}
+.slot>b{font-weight:800;padding-bottom:4px}
+.slot>i{display:block;height:27px;border-bottom:1.5px solid var(--ink)}
+.slot>i.vol{grid-column:2}
+.kapitalen{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px}
+.kapitalen span::before{content:"";display:inline-block;width:13px;height:13px;border:2px solid var(--ink);margin-right:6px;vertical-align:-2px}
+.canvas{width:100%;height:auto;display:block}
+.canvas text{font-family:"Avenir Next","Nunito Sans","Segoe UI",Helvetica,Arial,sans-serif;fill:#000}
+.bmc{display:grid;grid-template-columns:repeat(10,1fr);grid-template-rows:170px 170px 140px;border:var(--bw) solid var(--ink)}
+.bmc>div{border:1.5px solid var(--ink);padding:5px 7px;display:flex;flex-direction:column;gap:2px;font-size:11.5px}
+.bmc>div b{font:800 11px/1.25 var(--fm);letter-spacing:.04em;text-transform:uppercase}
+.bmc>div span.geraakt{margin-top:auto;font-size:10.5px;color:var(--grey)}
+.bmc>div span.geraakt::before{content:"";display:inline-block;width:11px;height:11px;border:1.5px solid var(--ink);margin-right:5px;vertical-align:-2px}
+.kp{grid-column:1/3;grid-row:1/3}.ka{grid-column:3/5;grid-row:1}.km{grid-column:3/5;grid-row:2}
+.wp{grid-column:5/7;grid-row:1/3}.kr{grid-column:7/9;grid-row:1}.kn{grid-column:7/9;grid-row:2}
+.ks{grid-column:9/11;grid-row:1/3}.kost{grid-column:1/6;grid-row:3}.ink{grid-column:6/11;grid-row:3}
+@media (max-width:640px){.bmc{grid-template-rows:150px 150px 120px}.bmc>div{font-size:10px;padding:4px}.bmc>div b{font-size:9px}}
+.bwnote{border:2px dashed var(--ink);padding:8px 12px;font-size:13px;background:var(--paper)}
+
+/* ---------- ZWART-WIT PRINT ---------- */
+@media print{
+  :root{--han:#000;--han2:#fff;--mens2:#fff;--wash:#fff;--grey:#333;--grey2:#555;--ink:#000;--paper:#fff}
+  *{-webkit-print-color-adjust:economy;print-color-adjust:economy;box-shadow:none!important}
+  .bwnote{display:none}
+  .bkop{background:#fff;color:#000;border-bottom:2px solid #000;padding:4px 0}
+  .bkop .num,.num{background:#fff;color:#000;border:2px solid #000;padding:4px 7px}
+  .omslag{background:#fff;color:#000;border:3px solid #000}
+  .omslag .eyebrow{background:#fff;color:#000;border:2px solid #000}
+  .omslag .veld>b{color:#000}.omslag .veld i{border-color:#000}
+  th{background:#fff;color:#000;border-bottom:2px solid #000}
+  .blok .bn,.vorm.team{background:#fff;color:#000;border:2px solid #000}
+  .act-kop{background:#fff;border-bottom:2px solid #000}
+  .waarom b,.klaar b{background:#fff;color:#000;border:1.5px solid #000}
+  .a3 div.nu{background:#fff;border-width:3px;outline:2px solid #000;outline-offset:-6px}
+  ul li::before{background:#000}
+  .bmc{grid-template-rows:62mm 62mm 42mm}
+  .bmc>div{font-size:10.5px}
+  a{text-decoration:none}
+}
+
+@media print{
+  .blad>*+*{margin-top:6px}
+  .act{gap:5px;padding-bottom:7px}
+  .veld i,.slot>i{height:21px}
+  .format{font-size:12.5px;padding:6px 10px}
+  .format em{font-size:11px}
+  .vbl{font-size:11px;padding:5px 8px}
+  .stappen,.waarom,.klaar,.verder{font-size:11.5px}
+  #blad-2 td.leeg{height:30px!important}
+  #blad-3 td.leeg{height:24px}
+  #blad-3 td{padding:3px 7px}
+  .slot{font-size:12px}
+  .kapitalen,.keuze{font-size:11.5px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="hanlogo" viewBox="0 0 82 34"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></symbol></svg>
+
+<div class="topbar"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Praktijkopdracht 5 · C-cluster</span><span class="sp"></span><span class="knoppen"><button type="button" class="pdfknop" onclick="downloadPdf()" title="Opent het afdrukvenster; kies daar 'Opslaan als PDF' of print direct. De afdruk is zwart-wit."><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6V1h8v5M4 12H2V6h12v6h-2M4 9h8v6H4z"/></svg><span class="lbl">Print / PDF (zwart-wit)</span></button></span></div>
+
+<div class="wrap">
+
+<p class="bwnote"><b>Afdrukken:</b> de afdruk en de PDF zijn automatisch zwart-wit, zonder gekleurde vlakken. Print enkelzijdig op A4, 9 bladen per team plus één set per student voor blad 1–4.</p>
+
+<!-- ============ BLAD 1 ============ -->
+<article class="blad" id="blad-1">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Werkboek A3-start · week 5</span><span class="num">Blad 1</span></div>
+  <div class="omslag">
+    <div class="eyebrow">Werkboek · Week 5 · Dag 2</div>
+    <h1>Start van de A3</h1>
+    <div class="meta">
+      <span class="chip">Deel 1: onderzoeksvaardigheden</span>
+      <span class="chip">Deel 2: plaatsing</span>
+      <span class="chip">Opdracht 2 · LUK 1</span>
+    </div>
+    <p class="lede">Vanaf vandaag werk je voor een echte opdrachtgever. Je leert met de A3 werken. Je formuleert een onderzoeksvraag en deelt die op in zoekvragen. Daarna zoek je uit waar het vraagstuk van je opdrachtgever zit en wie erdoor geraakt wordt.</p>
+    <div class="naamvelden">
+      <div class="veld"><b>Naam</b><i></i></div>
+      <div class="veld"><b>Team</b><i></i></div>
+      <div class="veld"><b>Opdrachtgever</b><i></i></div>
+    </div>
+  </div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">1.1</span><h3>De A3 in één oogopslag</h3><span class="vorm alleen">Alleen</span><span class="tijd">tijdens de uitleg</span></div>
+    <p class="waarom"><b>Waarom</b>De A3 is jullie praatplaat voor de opdrachtgever. Jullie bespreken hem elke week en vullen hem steeds verder aan. Vandaag begin je aan vak 1.</p>
+    <div class="a3">
+      <div class="nu"><b>1 · Aanleiding / achtergrond</b>vandaag</div>
+      <div><b>5 · Toekomstige situatie</b></div>
+      <div><b>2 · Huidige situatie</b></div>
+      <div><b>6 · Implementatie</b></div>
+      <div><b>3 · Doelen</b></div>
+      <div><b>7 · Borging en evaluatie</b></div>
+      <div><b>4 · Analyse</b></div>
+      <div><b>8 · Next steps</b></div>
+    </div>
+    <div class="veld"><b>De A3 moet voldoen aan 3xC. Welke drie?</b><i></i></div>
+    <div class="veld"><b>Wat past er niet op één A3, volgens de uitleg? En wat zegt dat over je begrip?</b><i></i><i></i></div>
+    <div class="veld"><b>Wat weet ik nog van de A3 uit de Lean Yellow Belt-training?</b><i></i></div>
+  </div>
+</article>
+
+<!-- ============ BLAD 2 ============ -->
+<article class="blad" id="blad-2">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Werkboek A3-start · week 5</span><span class="num">Blad 2</span></div>
+  <div class="blok"><span class="bn">Deel 1</span><h2>Van onderzoeksvraag naar zoekvragen</h2><span class="bt">25 min</span></div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">2.1</span><h3>De onderzoeksvraag als user story</h3><span class="vorm team">Team</span><span class="tijd">10 min</span></div>
+    <p class="waarom"><b>Waarom</b>In week 4 formuleerde je een probleem. Nu formuleer je de vraag die je met onderzoek gaat beantwoorden. Het format dwingt je om te benoemen voor wie, welk probleem en welke waarde.</p>
+    <div class="format">Wat is de beste oplossing voor <em>&lt;gebruiker&gt;</em> om <em>&lt;probleem / pain / gain&gt;</em>, zodat <em>&lt;waardecreatie volgens de six capitals&gt;</em>?</div>
+    <p class="stappen"><b>Casus:</b> de klanttevredenheid bij webshop X is gedaald van een 8,1 naar een 6,3. Maak de vraag "Hoe kan de klanttevredenheid verhoogd worden?" concreet. Voeg context toe: waar, onder wie, welke productgroep. Schrijf hem dan in het format.</p>
+    <div class="slot"><b>Gebruiker</b><i></i></div>
+    <div class="slot"><b>Probleem / pain / gain</b><i></i><i class="vol"></i></div>
+    <div class="slot"><b>Waardecreatie</b><i></i><i class="vol"></i></div>
+    <div class="kapitalen"><b>Welke kapitalen?</b><span>financieel</span><span>productie</span><span>intellectueel</span><span>menselijk</span><span>sociaal en relationeel</span><span>natuurlijk</span></div>
+    <p class="klaar"><b>Klaar als</b>alle drie de delen concreet zijn en de waarde verder gaat dan alleen geld.</p>
+  </div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">2.2</span><h3>Zoekvragen vanuit drie frames</h3><span class="vorm team">Team</span><span class="tijd">10 min</span></div>
+    <p class="waarom"><b>Waarom</b>Een onderzoeksvraag beantwoord je niet in één keer. Je deelt hem op in zoekvragen. Elke zoekvraag kijkt vanuit een ander frame, zodat je niets over het hoofd ziet.</p>
+    <div class="vbl"><b>Frames</b><span>functioneel: HR, financieel, logistiek, marketing · intern of extern · theoretisch (wat zegt de literatuur?) of empirisch (wat zie je bij de organisatie?)</span></div>
+    <div class="vbl"><b>Modellen die frames geven</b><span>7S · Strategy Map (financieel, klant, interne processen, leren en groeien) · Six Capitals · TOM-model</span></div>
+    <p class="stappen">Schrijf drie zoekvragen bij je onderzoeksvraag uit 2.1. Begin bijvoorbeeld met "Welke factoren…", "In hoeverre…" of "Wat is de relatie tussen…".</p>
+    <div class="tab"><table>
+      <thead><tr><th style="width:24%">Frame</th><th>Zoekvraag vanuit dit frame</th></tr></thead>
+      <tbody><tr><td class="leeg" style="height:40px"></td><td class="leeg"></td></tr><tr><td class="leeg" style="height:40px"></td><td class="leeg"></td></tr><tr><td class="leeg" style="height:40px"></td><td class="leeg"></td></tr></tbody>
+    </table></div>
+    <div class="veld"><b>Wat mis je als je maar één frame kiest?</b><i></i></div>
+  </div>
+</article>
+
+<!-- ============ BLAD 3 ============ -->
+<article class="blad" id="blad-3">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Werkboek A3-start · week 5</span><span class="num">Blad 3</span></div>
+  <div class="blok"><span class="bn">Deel 1</span><h2>Zoeken</h2><span class="bt">15 min</span></div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">3.1</span><h3>Zoektermen</h3><span class="vorm team">Team</span><span class="tijd">5 min</span></div>
+    <p class="stappen">Kies een van je zoekvragen uit 2.2. Haal de kernbegrippen eruit en zoek per begrip alternatieven.</p>
+    <div class="tab"><table>
+      <thead><tr><th>Kernbegrip</th><th>Synoniemen / verwante termen</th><th>Engelse term</th><th>Breder of smaller</th></tr></thead>
+      <tbody><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr></tbody>
+    </table></div>
+  </div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">3.2</span><h3>Wedstrijd: vind een goede bron</h3><span class="vorm team">Team</span><span class="tijd">10 min</span></div>
+    <p class="stappen">Splits je team in twee groepjes: het ene zoekt via route A, het andere via route B. Een bron telt pas als jullie hem zelf hebben geopend en hij antwoord geeft op je zoekvraag.</p>
+    <div class="routes">
+      <div class="route a"><h4>Route A · databank</h4><span>Combineer je termen: <b>"aanhalingstekens"</b> voor een vaste combinatie, <b>*</b> en <b>?</b> voor varianten, <b>AND / OR / NOT</b>. Zoek in HANQuest, Google Scholar of per vaktijdschrift via de LibGuide Bedrijfskunde.</span><div class="veld"><b>Onze zoekstring</b><i></i></div></div>
+      <div class="route b"><h4>Route B · AI</h4><span>Laat Perplexity, Claude (Research), Gemini (Deep Research) of ChatGPT (Deep Research) zoeken met de prompt hieronder. Deep Research duurt vaak langer dan 10 minuten: start hem meteen, of gebruik Perplexity.</span><div class="veld"><b>Tool</b><i></i></div></div>
+    </div>
+    <div class="vbl"><b>Prompt voor route B, vul aan</b><span>"Zoek wetenschappelijke artikelen of vakpublicaties bij deze vraag: <i>[zoekvraag uit 2.2]</i>. Context: <i>[sector, land, soort organisatie]</i>. Alleen bronnen van na <i>[jaar]</i>, in het Nederlands of Engels. Geef per bron in één zin waarom hij bij de vraag past. Sluit af met een bronnenlijst volgens APA (7e editie), met DOI of link. Verzin geen bronnen. Vind je niets, zeg dat dan."</span></div>
+    <div class="grid2">
+      <div class="veld"><b>Gevonden bron (auteur, jaar, titel)</b><i></i></div>
+      <div class="veld"><b>Route A of B: wat werkte wel, wat niet?</b><i></i></div>
+    </div>
+    <p class="verder"><b>Let op</b>AI verzint soms bronnen of citeert ze verkeerd. Open elke bron, controleer auteur, jaar en titel, en lees zelf of er staat wat de AI zegt. Zet geen namen of vertrouwelijke gegevens van je opdrachtgever in een prompt.</p>
+  </div>
+
+</article>
+
+<!-- ============ BLAD 4 ============ -->
+<article class="blad" id="blad-4">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Werkboek A3-start · week 5</span><span class="num">Blad 4</span></div>
+  <div class="blok"><span class="bn">Deel 1</span><h2>Beoordelen</h2><span class="bt">15 min</span></div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">4.1</span><h3>Is de bron betrouwbaar?</h3><span class="vorm team">Team</span><span class="tijd">10 min</span></div>
+    <div class="tab"><table>
+      <thead><tr><th style="width:20%">Criterium</th><th style="width:34%">Vraag</th><th style="width:16%">Oordeel</th><th>Toelichting</th></tr></thead>
+      <tbody>
+        <tr><td><b>Authority</b></td><td>Wie is de auteur en is die deskundig?</td><td class="schaal">+ &nbsp;? &nbsp;–</td><td class="leeg"></td></tr>
+        <tr><td><b>Accuracy</b></td><td>Klopt de inhoud en is die onderbouwd?</td><td class="schaal">+ &nbsp;? &nbsp;–</td><td class="leeg"></td></tr>
+        <tr><td><b>Objectivity</b></td><td>Is de bron neutraal of heeft die een belang?</td><td class="schaal">+ &nbsp;? &nbsp;–</td><td class="leeg"></td></tr>
+        <tr><td><b>Currency</b></td><td>Is de bron actueel genoeg?</td><td class="schaal">+ &nbsp;? &nbsp;–</td><td class="leeg"></td></tr>
+        <tr><td><b>Coverage</b></td><td>Behandelt de bron het onderwerp volledig genoeg?</td><td class="schaal">+ &nbsp;? &nbsp;–</td><td class="leeg"></td></tr>
+      </tbody>
+    </table></div>
+    <div class="keuze"><b>Via AI gevonden?</b><span>de bron bestaat echt</span><span>er staat in wat de AI zegt</span></div>
+    <div class="keuze"><b>Besluit:</b><span>we gebruiken deze bron</span><span>we zoeken verder</span></div>
+    <div class="veld"><b>De bron in APA</b><i></i><i></i></div>
+  </div>
+
+  <div class="act">
+    <div class="act-kop"><span class="nr">4.2</span><h3>Stelling: "Je kunt prima AI gebruiken om inspiratiemateriaal te vinden."</h3><span class="vorm alleen">Alleen</span><span class="tijd">5 min</span></div>
+    <div class="keuze"><span>voor</span><span>tegen</span></div>
+    <div class="veld"><b>Mijn sterkste argument</b><i></i></div>
+  </div>
+</article>
+
+<!-- ============ BLAD 5 ============ -->
+<article class="blad" id="blad-5">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Werkboek A3-start · week 5</span><span class="num">Blad 5</span></div>
+  <div class="blok"><span class="bn">Deel 2 · Product 1</span><h2>Stakeholdermap: wie wordt er geraakt?</h2><span class="bt">20 min</span></div>
+  <div class="act">
+    <div class="act-kop"><span class="nr">5.1</span><h3>Stakeholders van het vraagstuk</h3><span class="vorm team">Team</span><span class="tijd">20 min</span></div>
+    <p class="waarom"><b>Waarom</b>Je plaatst het vraagstuk ten opzichte van de mensen en partijen die ermee te maken hebben. Gebruik invloed en belang uit THEO SM week 3.</p>
+    <p class="stappen">Teken de map op de <b>linkerhelft van vel 1</b> aan jullie muur, met het vraagstuk in het midden. Gebruik deze tabel als kladblad.</p>
+    <div class="veld"><b>Ons vraagstuk in één zin</b><i></i></div>
+    <div class="tab"><table>
+      <thead><tr><th style="width:24%">Stakeholder</th><th>Hoe raakt het vraagstuk deze stakeholder?</th><th style="width:12%">Invloed<span class="hint" style="color:inherit">H / L</span></th><th style="width:12%">Belang<span class="hint" style="color:inherit">H / L</span></th></tr></thead>
+      <tbody><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr></tbody>
+    </table></div>
+    <div class="grid2">
+      <div class="veld"><b>Wie merkt het probleem het eerst?</b><i></i></div>
+      <div class="veld"><b>Wie heeft belang bij de huidige situatie?</b><i></i></div>
+    </div>
+    <p class="klaar"><b>Klaar als</b>de map op vel 1 staat, het vraagstuk in het midden staat en bij elke stakeholder de relatie met het vraagstuk staat.</p>
+  </div>
+</article>
+
+<!-- ============ BLAD 6 ============ -->
+<article class="blad" id="blad-6">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Werkboek A3-start · week 5</span><span class="num">Blad 6</span></div>
+  <div class="blok"><span class="bn">Deel 2 · Product 2</span><h2>Value Proposition Canvas: hoe raakt het de klant?</h2><span class="bt">30 min</span></div>
+  <div class="act">
+    <div class="act-kop"><span class="nr">6.1</span><h3>Vul het canvas in met het vraagstuk centraal</h3><span class="vorm team">Team</span><span class="tijd">20 min</span></div>
+    <p class="stappen">Je kent het VPC uit het hoorcollege TOM (week 1): het beschrijft de <b>waardebelofte</b> aan de klant. Begin rechts, bij de klant: welke <b>klanttaken</b> probeert de klant gedaan te krijgen, welke <b>pains</b> zitten in de weg en welke <b>gains</b> zoekt hij? Vul dan links in wat de organisatie nu biedt. Werk het uit op de <b>rechterhelft van vel 1</b>; het canvas hieronder is voor een eerste schets. Er is een <b>fit</b> als de gain creators de belangrijkste gains opleveren en de pain relievers de belangrijkste pains wegnemen.</p>
+    <svg class="canvas" viewBox="0 0 760 330" role="img" aria-label="Leeg Value Proposition Canvas">
+<g fill="none" stroke="#000" stroke-width="2.5">
+<rect x="10" y="20" width="300" height="300"/>
+<line x1="160" y1="20" x2="160" y2="320"/><line x1="160" y1="170" x2="310" y2="170"/>
+<circle cx="590" cy="170" r="150"/>
+<line x1="590" y1="170" x2="590" y2="20"/><line x1="590" y1="170" x2="590" y2="320"/><line x1="590" y1="170" x2="440" y2="170"/>
+</g>
+<defs><marker id="vpc-pijl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#000"/></marker></defs>
+<g stroke="#000" stroke-width="2" fill="none" stroke-dasharray="6 5" marker-end="url(#vpc-pijl)"><line x1="318" y1="95" x2="452" y2="95"/><line x1="318" y1="245" x2="452" y2="245"/></g>
+<text x="385" y="87" text-anchor="middle" font-size="11" font-weight="700">gain creators → gains</text>
+<text x="385" y="237" text-anchor="middle" font-size="11" font-weight="700">pain relievers → pains</text>
+<text x="385" y="175" text-anchor="middle" font-size="15" font-weight="800">FIT?</text>
+<text x="160" y="14" text-anchor="middle" font-size="12" font-weight="800">WAARDEKAART</text>
+<text x="590" y="14" text-anchor="middle" font-size="12" font-weight="800">KLANTPROFIEL</text>
+<text x="20" y="42" font-size="13" font-weight="800">Producten en</text><text x="20" y="58" font-size="13" font-weight="800">diensten</text>
+<text x="170" y="42" font-size="13" font-weight="800">Gain creators</text>
+<text x="170" y="192" font-size="13" font-weight="800">Pain relievers</text>
+<text x="600" y="110" font-size="13" font-weight="800">Klanttaken (jobs)</text>
+<text x="470" y="110" font-size="13" font-weight="800">Gains</text>
+<text x="470" y="240" font-size="13" font-weight="800">Pains</text>
+</svg>
+    <div class="veld"><b>Welke pain of gain hoort bij ons vraagstuk? Is dat een feit of een aanname?</b><i></i><i></i></div>
+    <div class="veld"><b>Waar ontbreekt de fit?</b><i></i><i></i></div>
+  </div>
+  <div class="act">
+    <div class="act-kop"><span class="nr">6.2</span><h3>Gallery walk: oefenronde</h3><span class="vorm team">Team</span><span class="tijd">10 min</span></div>
+    <p class="waarom"><b>Waarom</b>Op dag 3 doen jullie een gallery walk met alle vier de overzichten. Nu oefen je hoe het werkt, en je krijgt feedback die je meteen gebruikt bij vel 2.</p>
+    <ol class="stappen">
+      <li>Eén teamlid blijft als host bij jullie muur en legt vel 1 in één minuut uit.</li>
+      <li>De rest schuift met de klok mee naar de volgende muur. Na 4 minuten schuif je nog een muur door. Wissel dan ook de host.</li>
+      <li>Plak per muur minstens één post-it: <b>Ik zie…</b> / <b>Ik mis…</b> / <b>Ik vraag me af…</b></li>
+      <li>Terug bij je eigen muur: lees de post-its (2 min).</li>
+    </ol>
+    <div class="veld"><b>Dit nemen we mee naar vel 2</b><i></i></div>
+  </div>
+</article>
+
+<!-- ============ BLAD 7 ============ -->
+<article class="blad" id="blad-7">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Werkboek A3-start · week 5</span><span class="num">Blad 7</span></div>
+  <div class="blok"><span class="bn">Deel 2 · Product 3</span><h2>Business Model Canvas: hoe raakt het de organisatie?</h2><span class="bt">20 min</span></div>
+  <div class="act">
+    <div class="act-kop"><span class="nr">7.1</span><h3>Markeer het vraagstuk per bouwsteen</h3><span class="vorm team">Team</span><span class="tijd">20 min</span></div>
+    <p class="stappen">Je kent het BMC uit het hoorcollege TOM (week 1): het laat zien hoe de organisatie <b>waarde creëert</b>. Werk het uit op de <b>linkerhelft van vel 2</b>; dit blad is voor een eerste schets. Schrijf per bouwsteen kort wat er nu is en wat de rol van het vraagstuk is. Vink aan welke bouwstenen worden geraakt en arceer ze. Het VPC van blad 6 is een uitvergroting van <b>waardepropositie</b> en <b>klantsegmenten</b>.</p>
+    <div class="bmc">
+      <div class="kp"><b>Kernpartners</b><span class="geraakt">geraakt</span></div>
+      <div class="ka"><b>Kernactiviteiten</b><span class="geraakt">geraakt</span></div>
+      <div class="km"><b>Kernmiddelen</b><span class="geraakt">geraakt</span></div>
+      <div class="wp"><b>Waardepropositie</b><span class="geraakt">geraakt</span></div>
+      <div class="kr"><b>Klantrelaties</b><span class="geraakt">geraakt</span></div>
+      <div class="kn"><b>Kanalen</b><span class="geraakt">geraakt</span></div>
+      <div class="ks"><b>Klantsegmenten</b><span class="geraakt">geraakt</span></div>
+      <div class="kost"><b>Kostenstructuur</b><span class="geraakt">geraakt</span></div>
+      <div class="ink"><b>Inkomstenstromen</b><span class="geraakt">geraakt</span></div>
+    </div>
+    <div class="veld"><b>Welke bouwsteen wordt het hardst geraakt, en waarom?</b><i></i><i></i></div>
+    <div class="veld"><b>Kosten en inkomsten zijn financieel kapitaal. Welke andere kapitalen raakt het vraagstuk?</b><i></i></div>
+  </div>
+</article>
+
+<!-- ============ BLAD 8 ============ -->
+<article class="blad" id="blad-8">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Werkboek A3-start · week 5</span><span class="num">Blad 8</span></div>
+  <div class="blok"><span class="bn">Deel 2 · Product 4</span><h2>TOM-model V1: waar in de organisatie?</h2><span class="bt">20 min</span></div>
+  <div class="act">
+    <div class="act-kop"><span class="nr">8.1</span><h3>Impact van het vraagstuk per onderdeel</h3><span class="vorm team">Team</span><span class="tijd">20 min</span></div>
+    <p class="waarom"><b>Waarom</b>Met het TOM-model zie je op welk niveau van de organisatie het vraagstuk speelt: strategisch, tactisch of operationeel.</p>
+    <p class="stappen">Werk het TOM-model uit op de <b>rechterhelft van vel 2</b>. De template van de docent laat de indeling zien. Neem de onderdelen van het model over in de eerste kolom en noteer per onderdeel hoe het vraagstuk het raakt.</p>
+    <div class="tab"><table>
+      <thead><tr><th style="width:26%">Onderdeel van het TOM-model</th><th>Hoe raakt het vraagstuk dit onderdeel?</th><th style="width:15%">Niveau<span class="hint" style="color:inherit">S / T / O</span></th></tr></thead>
+      <tbody><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr><tr><td class="leeg"></td><td class="leeg"></td><td class="leeg"></td></tr></tbody>
+    </table></div>
+    <div class="veld"><b>Op welk niveau speelt het vraagstuk vooral? Waaraan zie je dat?</b><i></i><i></i></div>
+  </div>
+</article>
+
+<!-- ============ BLAD 9 ============ -->
+<article class="blad" id="blad-9">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Werkboek A3-start · week 5</span><span class="num">Blad 9</span></div>
+  <div class="blok"><span class="bn">Deel 2</span><h2>Eerste conclusies: waar plaatsen we het vraagstuk?</h2><span class="bt">25 min</span></div>
+  <div class="act">
+    <div class="act-kop"><span class="nr">9.1</span><h3>Plaats het vraagstuk</h3><span class="vorm team">Team</span><span class="tijd">15 min</span></div>
+    <p class="stappen">Gebruik de vier overzichten op jullie twee vellen.</p>
+    <div class="veld"><b>Ten opzichte van de stakeholders</b><span>stakeholdermap</span><i></i><i></i></div>
+    <div class="veld"><b>Ten opzichte van de klant</b><span>VPC</span><i></i><i></i></div>
+    <div class="veld"><b>Ten opzichte van de organisatie</b><span>BMC en TOM-model</span><i></i><i></i></div>
+    <div class="veld"><b>Conclusie: hier zit ons vraagstuk</b><i></i><i></i></div>
+  </div>
+  <div class="act">
+    <div class="act-kop"><span class="nr">9.2</span><h3>Onze onderzoeksvraag voor de opdrachtgever</h3><span class="vorm team">Team</span><span class="tijd">10 min</span></div>
+    <div class="format">Wat is de beste oplossing voor <em>&lt;gebruiker&gt;</em> om <em>&lt;probleem / pain / gain&gt;</em>, zodat <em>&lt;waardecreatie volgens de six capitals&gt;</em>?</div>
+    <div class="veld"><b>Onze onderzoeksvraag</b><i></i><i></i></div>
+    <div class="veld"><b>Eerste zoekvragen, elk vanuit een ander frame</b><i></i><i></i></div>
+    <div class="keuze"><b>Check:</b><span>de gebruiker staat op onze stakeholdermap</span><span>pain/gain en waarde kloppen met ons VPC</span><span>het gaat om een feit, niet om een aanname</span></div>
+    <p class="verder"><b>Let op</b>Wat de opdrachtgever zegt, is één waarneming vanuit één frame. Controleer het met data en met andere betrokkenen.</p>
+  </div>
+  <div class="act">
+    <div class="act-kop"><span class="nr">9.3</span><h3>Huiswerk: gallery walk</h3><span class="vorm team">Team</span><span class="tijd">voor dag 3</span></div>
+    <div class="keuze"><span>stakeholdermap</span><span>Value Proposition Canvas</span><span>Business Model Canvas</span><span>TOM-model V1</span></div>
+    <p class="klaar"><b>Klaar als</b>de vier overzichten af zijn, de post-its uit de oefenronde verwerkt zijn, en jullie een foto hebben gemaakt en de twee vellen <b>opgerold</b> meenemen naar de volgende bijeenkomst.</p>
+  </div>
+</article>
+
+<footer class="bron">
+  <div>Gebaseerd op de lesmaterialen van Praktijkopdracht 5 (2026 P1N): <i>A3 Introductie &amp; onderzoeksvaardigheden</i> en <i>A3 1. Achtergrond – deel 1 – Plaatsing</i>. Hoort bij <i>Draaiboek_woensdag_week5.html</i>.</div>
+</footer>
+
+</div>
+
+<div class="foot"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Hogeschool van Arnhem en Nijmegen</span><span class="sp"></span><span class="num">C-cluster · week 5</span></div>
+<script>
+function downloadPdf(){
+  const titel=document.title;
+  document.title='Werkboek_A3-start_week5';
+  window.addEventListener('afterprint',()=>{document.title=titel},{once:true});
+  window.print();
+}
+</script>
+</body>
+</html>

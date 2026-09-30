@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Leeruitkomsten C-cluster</title>
+<style>
+:root{
+  /* HAN-huisstijl, gelijk aan de andere documenten van het C-cluster:
+     één schreeuwende kleur op zwart-wit */
+  --han:#E50056; --han2:#FFE1EC; --ink:#000000; --paper:#FFFFFF;
+  --grey:#454545; --grey2:#767676; --wash:#F2F2F0; --panel2:#E6E6E3;
+  --mens2:#FFE875;
+  --bw:3px; --sh:5px 5px 0 var(--ink);
+  --f:"Avenir Next","Avenir","Nunito Sans","Segoe UI",Helvetica,Arial,sans-serif;
+  --fm:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--wash);color:var(--ink);font:16px/1.55 var(--f);-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;display:grid;gap:44px;padding:32px 16px 64px}
+h1,h2,h3{text-wrap:balance;margin:0}
+h1{font-size:clamp(32px,6vw,56px);line-height:.96;letter-spacing:-.035em;font-weight:800;text-transform:uppercase}
+h2{font-size:clamp(24px,3.4vw,32px);line-height:1.05;letter-spacing:-.025em;font-weight:800;
+  display:flex;align-items:center;gap:12px;padding-bottom:10px;border-bottom:var(--bw) solid var(--ink)}
+h2::before{content:"";flex:none;width:16px;height:16px;background:var(--han)}
+h3{font-size:18px;line-height:1.2;font-weight:800}
+p{margin:0;max-width:68ch}
+b,strong{font-weight:700}
+section{display:grid;gap:18px}
+
+/* ---------- logobalk ---------- */
+.topbar,.foot{background:var(--ink);color:var(--paper);display:flex;align-items:center;gap:18px;padding:0 20px 0 max(16px,calc((100% - 908px)/2))}
+.topbar{height:56px;border-bottom:4px solid var(--han)}
+.foot{min-height:52px}
+.logo{flex:none;display:block;height:26px;width:62px}
+.who{font:700 12px/1 var(--fm);letter-spacing:.16em;text-transform:uppercase;opacity:.82}
+.sp{flex:1}
+.num{font:800 13px/1 var(--fm);background:var(--han);color:var(--paper);padding:8px 11px;letter-spacing:.06em;text-transform:uppercase}
+
+/* ---------- kop ---------- */
+header{background:var(--han);color:var(--paper);border:var(--bw) solid var(--ink);box-shadow:10px 10px 0 var(--ink);
+  padding:28px clamp(18px,4vw,40px) 30px;display:grid;gap:16px}
+.eyebrow{justify-self:start;background:var(--paper);color:var(--ink);padding:6px 12px 5px;
+  font:700 12px/1.2 var(--fm);letter-spacing:.14em;text-transform:uppercase}
+.meta{display:flex;flex-wrap:wrap;gap:10px}
+.chip{border:3px solid currentColor;padding:7px 12px;font:700 13px/1.15 var(--fm);letter-spacing:.04em;text-transform:uppercase}
+.lede{font-size:19px;line-height:1.45;font-weight:600;max-width:64ch}
+
+/* ---------- leeruitkomsten ---------- */
+.luks{display:grid;gap:14px;counter-reset:luk}
+.luk{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);display:grid;grid-template-columns:84px 1fr}
+.luk .nr{background:var(--ink);color:var(--paper);display:grid;place-content:center;text-align:center;gap:2px;padding:12px 0}
+.luk .nr span{font:700 11px/1 var(--fm);letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.luk .nr b{font:800 38px/1 var(--fm);color:var(--han)}
+.luk .txt{padding:14px 18px;display:grid;gap:6px;align-content:start}
+.luk .txt p{font-size:15.5px}
+.luk .tags{display:flex;flex-wrap:wrap;gap:6px}
+.luk .bc{font:700 11px/1 var(--fm);letter-spacing:.08em;text-transform:uppercase;padding:4px 7px;background:var(--han2);border:2px solid var(--ink)}
+
+/* ---------- beoordelingscriteria ---------- */
+.luk .bc.k{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.bcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px}
+.crit{background:var(--paper);border:var(--bw) solid var(--ink);border-top:9px solid var(--han);box-shadow:var(--sh);padding:14px 18px 16px;display:grid;gap:10px;align-content:start}
+.crit .code{font:800 30px/1 var(--fm);color:var(--han);letter-spacing:-.02em}
+.crit h3{font-size:17px}
+.crit dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:14.5px;border-top:2px solid var(--ink);padding-top:10px}
+.crit dt{font:700 11px/1.9 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
+.crit dd{margin:0}
+.schaal{display:grid;grid-template-columns:repeat(3,1fr);border:var(--bw) solid var(--ink);box-shadow:var(--sh);background:var(--paper)}
+.schaal div{padding:12px 14px;border-right:2px solid var(--ink);font-weight:800;display:grid;gap:4px}
+.schaal div:last-child{border-right:0}
+.schaal span{font:700 11px/1 var(--fm);letter-spacing:.12em;text-transform:uppercase;color:var(--grey)}
+.schaal .s2{background:var(--han2)}
+.schaal .s3{background:var(--han);color:var(--paper)}
+.schaal .s3 span{color:var(--paper);opacity:.85}
+.callout ul{padding-left:24px}
+.callout li::before{background:var(--ink)}
+
+/* ---------- matrix ---------- */
+.tablewrap{overflow-x:auto;background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh)}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;vertical-align:top;padding:12px 14px;border-top:2px solid var(--ink)}
+th{font:700 12px/1.2 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:var(--ink);border-top:0}
+.matrix{min-width:560px}
+.matrix th.c,.matrix td.c{text-align:center;width:64px;border-left:2px solid var(--ink)}
+.matrix td{vertical-align:middle}
+.matrix td.c.on{background:var(--han)}
+.matrix td.c.on::after{content:"";display:inline-block;width:14px;height:14px;background:var(--paper);border:2px solid var(--ink);transform:rotate(45deg)}
+.matrix td.naam b{display:block}
+.matrix td.naam span{font:600 12px/1.3 var(--fm);color:var(--grey);letter-spacing:.04em}
+.legend{font-size:14px;color:var(--grey)}
+
+/* ---------- opdrachten ---------- */
+.opdr{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.box{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:16px 18px;display:grid;gap:10px;align-content:start}
+.box .n{justify-self:start;font:700 11px/1 var(--fm);letter-spacing:.12em;text-transform:uppercase;background:var(--han);color:var(--paper);padding:4px 7px}
+.box.portfolio{background:var(--ink);color:var(--paper)}
+.box.portfolio .n{background:var(--paper);color:var(--ink)}
+.box.portfolio ul li::before{background:var(--han)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font:700 11px/1 var(--fm);letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;background:var(--han2);color:var(--ink);border:2px solid var(--ink)}
+.box.portfolio .tag{border-color:var(--paper)}
+
+ul{margin:0;list-style:none;padding-left:24px;display:grid;gap:6px}
+li{max-width:66ch;position:relative;font-size:15px}
+li::before{content:"";position:absolute;left:-22px;top:.5em;width:10px;height:10px;background:var(--han)}
+
+/* ---------- portfolio-teller ---------- */
+.tellers{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border:var(--bw) solid var(--ink);background:var(--paper);box-shadow:var(--sh)}
+.teller{padding:16px 18px;border-right:2px solid var(--ink);display:grid;gap:6px;align-content:start}
+.teller:last-child{border-right:0}
+.teller .big{font:800 44px/1 var(--fm);color:var(--han)}
+.teller b{font-size:17px;font-weight:800}
+.teller p{font-size:14.5px;color:var(--grey)}
+
+.callout{background:var(--mens2);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:14px 18px;display:grid;gap:8px}
+.callout>strong{justify-self:start;background:var(--ink);color:var(--paper);padding:5px 11px 4px;
+  font:700 12px/1.2 var(--fm);letter-spacing:.12em;text-transform:uppercase}
+footer.bron{font-size:13.5px;color:var(--grey);border-top:var(--bw) solid var(--ink);padding-top:16px}
+
+.pdfknop{font:700 12px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:transparent;
+  border:2px solid var(--paper);padding:8px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.pdfknop:hover,.pdfknop:focus-visible{background:var(--han);border-color:var(--han);outline:none}
+.pdfknop svg{width:14px;height:14px}
+@media (max-width:640px){.topbar .who{display:none}.teller{border-right:0;border-bottom:2px solid var(--ink)}.teller:last-child{border-bottom:0}}
+@media (max-width:440px){.pdfknop .lbl{display:none}.pdfknop svg{width:16px;height:16px}.luk{grid-template-columns:60px 1fr}.luk .nr b{font-size:28px}}
+/* ---------- afdrukken ----------
+   Drie vaste pagina's: 1 leeruitkomsten, 2 criteria + matrix,
+   3 opdrachten + portfolio. Chrome zet paginanummers in de marge. */
+@page{size:A4;margin:12mm 12mm 14mm;
+  @bottom-left{content:"Leeruitkomsten C-cluster · Praktijkopdracht 5";font:8pt "Avenir Next",Helvetica,sans-serif;color:#767676}
+  @bottom-right{content:"pagina " counter(page) " van " counter(pages);font:8pt "Avenir Next",Helvetica,sans-serif;color:#767676}}
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .pdfknop,.foot{display:none}
+  body{background:#fff;font-size:10pt;line-height:1.45}
+  .topbar{height:38px;padding:0 14px;border-bottom-width:3px}
+  .logo{height:20px;width:48px}
+  .wrap{max-width:none;padding:14px 0 0;gap:18px}
+  section{gap:10px}
+  .s-bc,.s-opdr{break-before:page}
+  h1{font-size:30pt}
+  h2{font-size:16pt;padding-bottom:6px;border-bottom-width:2px}
+  h2::before{width:11px;height:11px}
+  h3{font-size:11pt}
+  header{box-shadow:none;padding:16px 20px;gap:10px}
+  .chip{padding:4px 8px;font-size:8pt;border-width:2px}
+  .lede{font-size:11pt}
+  header,.box,.tablewrap,.callout,.tellers,.luk,.crit,.schaal{box-shadow:none}
+  .luk,.box,.callout,.tellers,.crit,.schaal,tr,.keep{break-inside:avoid}
+  h2,h3{break-after:avoid}
+  .luks{gap:8px}
+  .luk{grid-template-columns:62px 1fr}
+  .luk .nr b{font-size:28px}
+  .luk .txt{padding:9px 14px;gap:4px}
+  .luk .txt p{font-size:9.5pt}
+  .bcs{grid-template-columns:repeat(3,1fr);gap:10px}
+  .crit{padding:10px 12px 12px;gap:6px;border-top-width:6px}
+  .crit .code{font-size:20px}
+  .crit h3{font-size:10pt}
+  .crit dl{font-size:9pt}
+  .schaal div{padding:8px 12px}
+  .tablewrap{overflow:visible}
+  .matrix{min-width:0}
+  th,td{padding:7px 10px}
+  .opdr{grid-template-columns:repeat(4,1fr);gap:8px}
+  .box{padding:10px 11px;gap:7px}
+  .box h3{font-size:10pt}
+  ul{padding-left:16px;gap:3px}
+  li{font-size:8.5pt}
+  li::before{left:-14px;width:7px;height:7px}
+  .tag{font-size:7pt;padding:3px 4px}
+  .tellers{grid-template-columns:repeat(4,1fr)}
+  .teller{padding:10px 12px;gap:3px;border-right:2px solid var(--ink);border-bottom:0}
+  .teller .big{font-size:28px}
+  .teller b{font-size:10.5pt}
+  .teller p{font-size:8.5pt}
+  .callout{padding:10px 14px}
+  .callout li{font-size:9pt}
+  footer.bron{font-size:8pt;padding-top:8px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="hanlogo" viewBox="0 0 82 34"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></symbol></svg>
+
+<div class="topbar"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Praktijkopdracht 5 · C-cluster</span><span class="sp"></span><button type="button" class="pdfknop" onclick="downloadPdf()" aria-label="Afdrukken of opslaan als PDF" title="Opent het afdrukvenster; kies daar een printer of 'Opslaan als PDF'"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6V1h8v5M4 12H1V6h14v6h-3M4 9h8v6H4z"/></svg><span class="lbl">Print / PDF</span></button></div>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Overzicht · Praktijkopdracht 5</div>
+  <h1>Leeruitkomsten C-cluster</h1>
+  <div class="meta">
+    <span class="chip">5 leeruitkomsten</span>
+    <span class="chip">niveau 2</span>
+    <span class="chip">4 beroepsproducten</span>
+    <span class="chip">1 portfolio</span>
+    <span class="chip">BC1–BC5</span>
+  </div>
+  <p class="lede">Het C-cluster heeft vijf leeruitkomsten, allemaal op niveau 2. Studenten tonen die aan met vier beroepsproducten die ze als groep maken en met een individueel portfolio. De beoordeling loopt via vijf beoordelingscriteria (BC).</p>
+</header>
+
+<section>
+  <h2>De leeruitkomsten</h2>
+  <div class="luks">
+    <article class="luk"><div class="nr"><span>LUK</span><b>1</b></div><div class="txt">
+      <h3>Analyseren en diagnosticeren</h3>
+      <p>Knelpunten in een intern proces signaleren, een onderzoeksvraag formuleren en methodisch een diagnose stellen. Daarbij kiezen studenten zelf welke aangereikte theorieën en modellen passen, betrekken ze stakeholders en nemen ze externe ontwikkelingen mee.</p>
+      <div class="tags"><span class="bc k">BC1</span><span class="bc">Opdracht 1, 2, 3</span></div>
+    </div></article>
+    <article class="luk"><div class="nr"><span>LUK</span><b>2</b></div><div class="txt">
+      <h3>(Her)ontwerpen met oog voor meervoudige waardecreatie</h3>
+      <p>Een onderbouwd verbetervoorstel op tactisch-operationeel niveau dat past bij de strategie. Dit gebeurt via participatief ontwerpen, co-creatie en veldonderzoek.</p>
+      <div class="tags"><span class="bc k">BC3 · BC4</span><span class="bc">Opdracht 4</span></div>
+    </div></article>
+    <article class="luk"><div class="nr"><span>LUK</span><b>3</b></div><div class="txt">
+      <h3>Begeleiden van een bedrijfskundige verandering</h3>
+      <p>Als team methodisch en projectmatig een verbeterproces begeleiden. Daarbij verbinden studenten de betrokkenen en respecteren ze verschillende belangen, met oog voor hun eigen morele kompas.</p>
+      <div class="tags"><span class="bc k">BC2 · BC4</span><span class="bc">Opdracht 3, 4</span></div>
+    </div></article>
+    <article class="luk"><div class="nr"><span>LUK</span><b>4</b></div><div class="txt">
+      <h3>Evalueren van proces en resultaat</h3>
+      <p>Met een methode monitoren, kwantitatief en kwalitatief analyseren en daaruit concrete verbeteracties afleiden.</p>
+      <div class="tags"><span class="bc k">BC4</span><span class="bc">Opdracht 4</span></div>
+    </div></article>
+    <article class="luk"><div class="nr"><span>LUK</span><b>5</b></div><div class="txt">
+      <h3>Ontwikkelen tot bedrijfskundig professional</h3>
+      <p>Feedback ophalen, reflecteren, ontwikkelpunten formuleren en daar aantoonbaar aan werken, met besef van de eigen persoonlijkheid en voorkeuren.</p>
+      <div class="tags"><span class="bc k">BC5</span><span class="bc">Individueel portfolio</span></div>
+    </div></article>
+  </div>
+</section>
+
+<section class="s-bc">
+  <h2>De vijf beoordelingscriteria</h2>
+  <p>Elke leeruitkomst wordt beoordeeld via een of meer beoordelingscriteria. Elk criterium hoort bij vaste opdrachten of bij het portfolio.</p>
+  <div class="bcs">
+    <article class="crit"><span class="code">BC1</span><h3>Analyse, Diagnose &amp; Keuze Quick Win</h3>
+      <dl><dt>LUK</dt><dd>1</dd><dt>Opdracht</dt><dd>1, 2 en 3</dd></dl></article>
+    <article class="crit"><span class="code">BC2</span><h3>Uitvoering &amp; Begeleiding van de Quick Win (Verandering)</h3>
+      <dl><dt>LUK</dt><dd>3</dd><dt>Opdracht</dt><dd>3</dd></dl></article>
+    <article class="crit"><span class="code">BC3</span><h3>Toekomstbestendig Procesontwerp (de "Big Win")</h3>
+      <dl><dt>LUK</dt><dd>2</dd><dt>Opdracht</dt><dd>4</dd></dl></article>
+    <article class="crit"><span class="code">BC4</span><h3>(A3-)Implementatieplan, Monitoring &amp; Borgen</h3>
+      <dl><dt>LUK</dt><dd>2, 3 en 4</dd><dt>Opdracht</dt><dd>4</dd></dl></article>
+    <article class="crit"><span class="code">BC5</span><h3>Professionele Ontwikkeling &amp; reflectie op het project</h3>
+      <dl><dt>LUK</dt><dd>5</dd><dt>Bewijs</dt><dd>Portfolio en de uitvoerende projectactiviteiten</dd></dl></article>
+  </div>
+  <h3>Elk criterium krijgt een van drie scores</h3>
+  <div class="schaal">
+    <div class="s1">In ontwikkeling</div>
+    <div class="s2">Op niveau</div>
+    <div class="s3">Boven niveau</div>
+  </div>
+</section>
+
+<section>
+  <h2>Welke opdracht dekt welke leeruitkomst</h2>
+  <div class="tablewrap">
+    <table class="matrix">
+      <thead><tr><th>Opdracht</th><th class="c">LUK 1</th><th class="c">LUK 2</th><th class="c">LUK 3</th><th class="c">LUK 4</th><th class="c">LUK 5</th></tr></thead>
+      <tbody>
+        <tr><td class="naam"><b>1. Basis en Business Game</b><span>BC1</span></td><td class="c on" aria-label="ja"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+        <tr><td class="naam"><b>2. Analyse en Diagnose</b><span>BC1</span></td><td class="c on" aria-label="ja"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td></tr>
+        <tr><td class="naam"><b>3. Quick Win (OVE)</b><span>BC1, BC2</span></td><td class="c on" aria-label="ja"></td><td class="c"></td><td class="c on" aria-label="ja"></td><td class="c"></td><td class="c"></td></tr>
+        <tr><td class="naam"><b>4. Big Win (DOVE)</b><span>BC3, BC4</span></td><td class="c"></td><td class="c on" aria-label="ja"></td><td class="c on" aria-label="ja"></td><td class="c on" aria-label="ja"></td><td class="c"></td></tr>
+        <tr><td class="naam"><b>Individueel portfolio</b><span>BC5</span></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c on" aria-label="ja"></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="s-opdr">
+  <h2>Wat studenten opleveren</h2>
+  <div class="opdr">
+    <div class="box"><span class="n">Opdracht 1</span><h3>Basis en Business Game</h3>
+      <ul>
+        <li>Verworven opdracht en opdrachtgever</li>
+        <li>Werkboek Business Game</li>
+        <li>Werkcollege-opdracht Strategisch management: "Doe je wat je belooft?"</li>
+      </ul>
+      <div class="tags"><span class="tag">LUK 1</span><span class="tag">BC1</span></div>
+    </div>
+    <div class="box"><span class="n">Opdracht 2</span><h3>Analyse en Diagnose</h3>
+      <ul>
+        <li>A3 onderdeel 1 t/m 3, besproken met de opdrachtgever</li>
+        <li>Ingevuld TOM-model</li>
+        <li>Eventueel een toelichtingsdocument</li>
+        <li>Plan voor het quick-win-experiment, met akkoord van de opdrachtgever</li>
+      </ul>
+      <div class="tags"><span class="tag">LUK 1</span><span class="tag">BC1</span></div>
+    </div>
+    <div class="box"><span class="n">Opdracht 3</span><h3>Quick Win (OVE)</h3>
+      <ul>
+        <li>Presentatie van de quick win</li>
+        <li>Bewijslast van het uitgevoerde experiment: doel, aanpak, metingen, resultaten</li>
+      </ul>
+      <div class="tags"><span class="tag">LUK 1</span><span class="tag">LUK 3</span><span class="tag">BC1</span><span class="tag">BC2</span></div>
+    </div>
+    <div class="box"><span class="n">Opdracht 4</span><h3>Big Win (DOVE)</h3>
+      <ul>
+        <li>A3 onderdeel 1 t/m 8, besproken met de opdrachtgever</li>
+        <li>TOM-model</li>
+        <li>Eventueel een toelichtingsdocument</li>
+        <li>Presentatie van het monitoringssysteem</li>
+        <li>Eindpresentatie</li>
+      </ul>
+      <div class="tags"><span class="tag">LUK 2</span><span class="tag">LUK 3</span><span class="tag">LUK 4</span><span class="tag">BC3</span><span class="tag">BC4</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="keep">
+  <h2>Het individuele portfolio</h2>
+  <p>Met het portfolio toont elke student LUK 5 aan. BC5 beoordeelt het portfolio samen met de uitvoerende projectactiviteiten. Het portfolio bevat vier onderdelen.</p>
+  <div class="tellers">
+    <div class="teller"><span class="big">6</span><b>Reflectieverslagen</b><p>Volgens STARR of Korthagen: één over aanpassingsvermogen, twee over samenwerking en communicatie, twee over andere situaties en één eindreflectie over de rode draad.</p></div>
+    <div class="teller"><span class="big">6</span><b>Feedbackmomenten</b><p>Actief opgehaald, met bewijs, plus drie reflecties op die feedback.</p></div>
+    <div class="teller"><span class="big">3</span><b>Ontwikkelpunten</b><p>Elk met drie concrete acties, bewijslast en een reflectie.</p></div>
+    <div class="teller"><span class="big">4</span><b>Beroepsproducten</b><p>De vier beroepsproducten van de groep.</p></div>
+  </div>
+</section>
+
+<div class="callout">
+  <strong>Let op: twee verschillen in de bronnen</strong>
+  <ul>
+    <li><b>Koppeling BC1.</b> De rubric koppelt BC1 aan opdracht 1, 2 én 3, en BC2 aan opdracht 3. Bij de beschrijving van opdracht 1 en 2 staat alleen LUK 1 genoemd.</li>
+    <li><b>Naam BC4.</b> In de rubric heet BC4 "Implementatieplan, Monitoring &amp; Borgen", bij opdracht 4 "A3-implementatieplan, Monitoring &amp; Borgen".</li>
+  </ul>
+</div>
+
+<footer class="bron">Bron: Brightspace-cursus Praktijkopdracht 5 (2026 P1N): de module "Leeruitkomsten" (met de rubric) en het document "Opdrachtomschrijvingen studenten (per leerboog)".</footer>
+
+</div>
+
+<div class="foot"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Hogeschool van Arnhem en Nijmegen</span><span class="sp"></span><span class="num">C-cluster · leeruitkomsten</span></div>
+<script>
+/* De browser maakt de PDF via het afdrukvenster ("Opslaan als PDF"). */
+function downloadPdf(){
+  const titel=document.title;
+  document.title='Overzicht_leeruitkomsten_C-cluster';
+  window.addEventListener('afterprint',()=>{document.title=titel},{once:true});
+  window.print();
+}
+</script>
+</body>
+</html>

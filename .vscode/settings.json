@@ -17,5 +17,6 @@
         "commandCenter.activeBorder": "#2e6f73",
         "commandCenter.inactiveForeground": "#15202bb3",
         "commandCenter.inactiveBorder": "#388f91"
-    }
+    },
+    "liveServer.settings.port": 5501
 }
