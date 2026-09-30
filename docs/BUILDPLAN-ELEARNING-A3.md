@@ -26,7 +26,7 @@
 - [x] Fase 6 — Leerblok 2 en de bronnenpagina (EV-03 t/m EV-05) (6.1 wacht op akkoord auteur)
 - [x] Fase 7 — Terugblik en werken met tussenpozen
 - [x] Fase 8 — Huisstijl, toegankelijkheid, responsive en offline (PF-2 alleen Chromium, Firefox en WebKit via Playwright; 8.9 wacht op een mens met Edge en Safari)
-- [ ] Fase 9 — Docentmodus: mechaniek en deel 1
+- [x] Fase 9 — Docentmodus: mechaniek en deel 1 (proefrun en leesbaarheid achterste rij wachten op een mens)
 - [ ] Fase 10 — Leerblok 3 en docentmodus deel 2 (EV-06 t/m EV-08)
 - [ ] Fase 11 — Leerblok 4: verbanden, reflectie en afronding (EV-10, EV-11)
 - [ ] Fase 12 — Media: mechaniek, twee video's en twee spellen
@@ -421,30 +421,32 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 **Spec.** DM-1…DM-9, DM-10, DM-11, DM-14…DM-17, PR-3, PR-4.
 
 ### Subtasks
-- [ ] 9.1 Leg het formaat van `data/docent-deel1.json` vast (onderdeel, klok, taaknummer, materiaal, laptop open/dicht, dia's, wat de docent doet, kernboodschap, rondloopvragen, als het anders loopt). Verwacht: één voorbeeldonderdeel valideert.
-- [ ] 9.2 Vul `data/docent-deel1.json` met de 11 onderdelen van deel 1 uit LRD 8.2 en het draaiboek. Verwacht: 11 onderdelen.
-- [ ] 9.3 Maak `js/docent/kies.js`: de docentmodus kiesbaar bij de start of met een adres-toevoeging, zonder inloggen, op dezelfde contentbestanden (DM-1, DM-2). Verwacht: 0 accounts; 1 wijziging in een modelantwoord verschijnt in beide weergaven.
-- [ ] 9.4 Bouw de stapkaart met 7 elementen (taaknummer, opdracht, „klaar als", tijd, materiaal, dia's, laptop open/dicht) (DM-3). Verwacht: 7 elementen per kaart.
-- [ ] 9.5 Bouw `js/docent/klok.js`: klok per deel vanaf 0:00, aftelling per onderdeel, start, pauze, reset (DM-4). Verwacht: afwijking ≤ 1 s over 10 min.
-- [ ] 9.6 Toon de tijd als richttijd zonder blokkade (DM-5) en, voor een ronde, de gallery walk-tijden van 2 × 4 min en 2 min lezen (DM-6; die tijden gelden voor deel 2, de klok kent ze al). Verwacht: 0 blokkades bij 100 % van de richttijd.
-- [ ] 9.7 Bouw de docentkaart met 4 elementen (wat de docent doet, kernboodschap, rondloopvragen, als het anders loopt) en de verborgen modelantwoorden en veelgemaakte fouten (DM-7, DM-8). Verwacht: modelantwoorden 0× zichtbaar vóór de klik.
-- [ ] 9.8 Bouw overslaan, verschuiven en tijd aanpassen met herberekening van de resterende tijd (DM-9). Verwacht: resterende tijd = som van resterende onderdelen ± 1 s na overslaan van 2 onderdelen.
-- [ ] 9.9 Bouw het programmaoverzicht met wat klaar is en wat komt en een veld voor de begintijden uit het rooster (DM-10). Verwacht: 1 overzicht, begintijden invulbaar.
-- [ ] 9.10 Bouw de afdruk van de docentkaarten van een deel als draaiboek (DM-11) en de terugblik-kaart per leerblok uit `data/terugblik.json` (DM-14). Verwacht: afdruk deel 1 bevat 100 % van de onderdelen, tijden en rondloopvragen van het scherm; 3 terugblik-kaarten.
-- [ ] 9.11 Zorg dat de docentmodus na het laden zonder netwerk werkt (DM-15). Verwacht: 15 min zonder netwerk zonder foutmelding.
-- [ ] 9.12 Stel de stapkaart in op tekst ≥ 28 px bij 1280 × 720 en contrast ≥ 4,5:1 (DM-16). Verwacht: meting.
-- [ ] 9.13 Houd beoordelingsinformatie uit de data (DM-17) en bevestig dat de docentmodus geen studentgegevens bewaart en geen koppeling met studentapparaten heeft (PR-3, PR-4). Verwacht: 0 studentgegevens in opslag; 0 verbindingen.
+- [x] 9.1 Leg het formaat van `data/docent-deel1.json` vast (onderdeel, klok, taaknummer, materiaal, laptop open/dicht, dia's, wat de docent doet, kernboodschap, rondloopvragen, als het anders loopt). Verwacht: één voorbeeldonderdeel valideert.
+- [x] 9.2 Vul `data/docent-deel1.json` met de 11 onderdelen van deel 1 uit LRD 8.2 en het draaiboek. Verwacht: 11 onderdelen.
+- [x] 9.3 Maak `js/docent/kies.js`: de docentmodus kiesbaar bij de start of met een adres-toevoeging, zonder inloggen, op dezelfde contentbestanden (DM-1, DM-2). Verwacht: 0 accounts; 1 wijziging in een modelantwoord verschijnt in beide weergaven.
+- [x] 9.4 Bouw de stapkaart met 7 elementen (taaknummer, opdracht, „klaar als", tijd, materiaal, dia's, laptop open/dicht) (DM-3). Verwacht: 7 elementen per kaart.
+- [x] 9.5 Bouw `js/docent/klok.js`: klok per deel vanaf 0:00, aftelling per onderdeel, start, pauze, reset (DM-4). Verwacht: afwijking ≤ 1 s over 10 min.
+- [x] 9.6 Toon de tijd als richttijd zonder blokkade (DM-5) en, voor een ronde, de gallery walk-tijden van 2 × 4 min en 2 min lezen (DM-6; die tijden gelden voor deel 2, de klok kent ze al). Verwacht: 0 blokkades bij 100 % van de richttijd.
+- [x] 9.7 Bouw de docentkaart met 4 elementen (wat de docent doet, kernboodschap, rondloopvragen, als het anders loopt) en de verborgen modelantwoorden en veelgemaakte fouten (DM-7, DM-8). Verwacht: modelantwoorden 0× zichtbaar vóór de klik.
+- [x] 9.8 Bouw overslaan, verschuiven en tijd aanpassen met herberekening van de resterende tijd (DM-9). Verwacht: resterende tijd = som van resterende onderdelen ± 1 s na overslaan van 2 onderdelen.
+- [x] 9.9 Bouw het programmaoverzicht met wat klaar is en wat komt en een veld voor de begintijden uit het rooster (DM-10). Verwacht: 1 overzicht, begintijden invulbaar.
+- [x] 9.10 Bouw de afdruk van de docentkaarten van een deel als draaiboek (DM-11) en de terugblik-kaart per leerblok uit `data/terugblik.json` (DM-14). Verwacht: afdruk deel 1 bevat 100 % van de onderdelen, tijden en rondloopvragen van het scherm; 3 terugblik-kaarten.
+- [x] 9.11 Zorg dat de docentmodus na het laden zonder netwerk werkt (DM-15). Verwacht: 15 min zonder netwerk zonder foutmelding.
+- [x] 9.12 Stel de stapkaart in op tekst ≥ 28 px bij 1280 × 720 en contrast ≥ 4,5:1 (DM-16). Verwacht: meting.
+- [x] 9.13 Houd beoordelingsinformatie uit de data (DM-17) en bevestig dat de docentmodus geen studentgegevens bewaart en geen koppeling met studentapparaten heeft (PR-3, PR-4). Verwacht: 0 studentgegevens in opslag; 0 verbindingen.
 
 ### Testpoort
-- [ ] Volledige testpoort.
-- [ ] Sabotage DM-9: laat de herberekening de overgeslagen tijd meetellen; de test faalt.
-- [ ] Sabotage DM-8: toon modelantwoorden direct; de test faalt.
-- [ ] Docent leidt een proefrun van 10 minuten van deel 1 zonder het draaiboek (voorbereiding AP-4). Notities in het testrapport.
-- [ ] Leesbaarheid vanaf de achterste rij in een lokaal (DM-16).
-- [ ] Geclaimde regels met hun methode gecontroleerd.
+- [x] Volledige testpoort.
+- [x] Sabotage DM-9: laat de herberekening de overgeslagen tijd meetellen; de test faalt.
+- [x] Sabotage DM-8: toon modelantwoorden direct; de test faalt.
+- [ ] (wacht op mens) Docent leidt een proefrun van 10 minuten van deel 1 zonder het draaiboek (voorbereiding AP-4). Notities in het testrapport.
+- [ ] (wacht op mens) Leesbaarheid vanaf de achterste rij in een lokaal (DM-16).
+- [x] Geclaimde regels met hun methode gecontroleerd.
 
 ### Afsluiting
-- [ ] commit `DM-1…DM-17, PR-3, PR-4: docentmodus met deel 1`  - [ ] push  - [ ] overzicht afvinken
+- [x] commit `DM-1…DM-17, PR-3, PR-4: docentmodus met deel 1` (ae77297)  - [x] push  - [x] overzicht afvinken
+
+**Afwijkingen fase 9.** (1) Twee punten wachten op een mens en zijn niet afgevinkt: de proefrun van 10 minuten zonder draaiboek en de leesbaarheid vanaf de achterste rij (DM-16 is alleen gemeten: kleinste tekst 28 px op 1280 × 720, contrast ≥ 4,5:1, alle 11 stapkaarten passen op één scherm). DM-16 blijft daarmee gedeeltelijk open. (2) Mechaniek gecontroleerd met Playwright: klok met `page.clock` (aftelling, overschrijding zonder blokkade, overslaan van 2 onderdelen, herladen), modelantwoord 0× in de pagina vóór de klik, afdruk in printmedia (11 onderdelen), 15 min offline zonder fout, 0 verzoeken naar andere domeinen, alleen `a3d:`-sleutels in de opslag, dit alles ook op de gepubliceerde site. Lighthouse toegankelijkheid 100 op `docent.html`. De gallery walk (DM-6) is met een tijdelijk aangepast bestand in de browser geprobeerd, want geen onderdeel van deel 1 gebruikt hem. (3) Sabotage: 20 mutaties in `klok.js`, `kaarten.js`, `kies.js`, `pagina.js`, `content-check.mjs`, `docent.css` en `docent.html`, elk faalt minstens één test; vier overleefden eerst (cijfer in de verbodenlijst, de rondloopvraag-eis, de grens bij verschuiven, `herstel`) en kregen een test. (4) `tools/contrast-check.mjs` leest nu ook `css/docent.css`. (5) `docent.html` weegt 153 kB (grens 300 kB): de data laadt pas na de keuze. (6) Inhoud: 11 onderdelen uit LRD 8.2 (het draaiboek heeft 12 rijen, 0:20 en 0:25 zijn samen één onderdeel); concepten van de bouwer staan gemarkeerd (zie ADR B67) en wachten op akkoord van de auteur. (7) Voor fase 10: deel 2 vult `data/docent-deel2.json` in hetzelfde formaat (README van a3-learning), meldt zich aan in `DELEN` in `js/docent/pagina.js`, pauzes zijn onderdelen met `"soort": "pauze"`, en `docent.html` heeft nog ruim 145 kB gewichtsruimte.
 
 ---
 
