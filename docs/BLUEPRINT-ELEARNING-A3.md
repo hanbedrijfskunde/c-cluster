@@ -1,6 +1,6 @@
 # BLUEPRINT — Hybride e-learning A3 met automatisch bewijs
 
-> Afgeleid van `docs/LRD-ELEARNING-A3.html` (LRD versie 0.13, 30 september 2026). Dit document beschrijft de doelsituatie van het product: geen bouwvolgorde, geen fasering, geen voortgang. Bouwvolgorde en voortgang staan in het bouwplan (`BUILDPLAN-ELEARNING-A3.md`). Pedagogische onderbouwing en risico's blijven in het LRD; het besluitenregister (B1–B59) staat in `docs/ADR-ELEARNING-A3.md`; regels hier verwijzen daar niet naartoe maar zijn zelfstandig toetsbaar. Bijlage A koppelt elke LRD-eis aan de regels hieronder.
+> Afgeleid van `docs/LRD-ELEARNING-A3.html` (LRD versie 0.14, 30 september 2026). Dit document beschrijft de doelsituatie van het product: geen bouwvolgorde, geen fasering, geen voortgang. Bouwvolgorde en voortgang staan in het bouwplan (`BUILDPLAN-ELEARNING-A3.md`). Pedagogische onderbouwing en risico's blijven in het LRD; het besluitenregister (B1–B59) staat in `docs/ADR-ELEARNING-A3.md`; regels hier verwijzen daar niet naartoe maar zijn zelfstandig toetsbaar. Bijlage A koppelt elke LRD-eis aan de regels hieronder.
 
 **Lezen.** Elke regel heeft een ID (prefix per onderwerp), een verplichtingsniveau (Must, Should, Could), een criterium met getal en eenheid, en een verificatiemethode (Test, Demonstratie, Inspectie, Analyse). „Moet" is de verplichting van het product, niet de volgorde van het werk. De statusnamen Compleet, Bijna en „Nog niet" zijn productterm en geen voortgangstaal.
 
@@ -359,6 +359,7 @@ Elke regel: de site moet het onderdeel alleen als Compleet aanmerken als de geno
 | <a id="md-13"></a>MD-13 | Spel en simulatie moeten in de browser zonder netwerk werken. | Should | 0 netwerkverzoeken tijdens het spelen | Test |
 | <a id="md-14"></a>MD-14 | Video en achtergrond van derden (Bureau Tromp, MIT OpenCourseWare, Atlassian) moeten als gewone link verschijnen, zonder inbedding. | Must | 0 ingebedde frames van derden | Inspectie |
 | <a id="md-15"></a>MD-15 | Elk spel en elke simulatie moet fictieve voorbeelden duidelijk als fictief markeren. | Should | 100 % van de fictieve bronkaarten met aanduiding „fictief" | Inspectie |
+| <a id="md-16"></a>MD-16 | Leerblok 1 moet twee externe kijktips als gewone link tonen: Bureau Tromp (Nederlands) als instap en het MIT OpenCourseWare-fragment over de A3 als denkwijze als verdieping, elk met bron, duur en taal. | Should | 2 links; 2 van 2 met duur en taal; 0 ingebedde frames | Inspectie |
 
 ### 6.13 Bronnen (BR)
 
@@ -516,6 +517,7 @@ Concept-waarden, niet vastgesteld. Ze staan hier zodat ze in één ronde kunnen 
 - **A-8** — De DOI's of links van Cepeda e.a. (2006), Mislevy e.a. (2003), Roediger & Karpicke (2006) en het IIRC-framework (2021) zijn in het LRD als „controleren" gemarkeerd. BR-6 controleert ze bij elke publicatie.
 - **A-9** — De JavaScript van de site valt onder CC BY-SA 4.0, hoewel Creative Commons zijn licenties voor software afraadt. Bewust geaccepteerd; niet apart uitgezocht (LI-4).
 - **A-10** — Standaarden (WCAG 2.1 niveau AA, SHA-256, APA 7e editie, CC BY-SA 4.0) zijn overgenomen uit het LRD en in deze blueprint niet opnieuw tegen de primaire bron gecontroleerd.
+- **A-11** — Het werkboek van week 5 bevat 15 taken, maar slechts 3 „Klaar als"-regels en 6 „Waarom"-regels, terwijl TK-2 beide bij 100 % van de taken eist. De ontbrekende regels moeten door de auteur worden geschreven en goedgekeurd (raakt TK-2, BW-12, QA-3).
 
 ---
 
@@ -569,7 +571,7 @@ Regels zijn hier hergroepeerd en gesplitst tot één verplichting per regel. Elk
 | FR-24 | DS-9 |
 | FR-25 | QA-1 |
 | FR-26 | ST-6 |
-| FR-27 | MD-14 |
+| FR-27 | MD-14, MD-16 |
 | FR-28 | TK-10, TK-11, TK-12 |
 | FR-29 | DM-1, DM-2 |
 | FR-30 | DM-3 |
@@ -650,7 +652,7 @@ Regels zijn hier hergroepeerd en gesplitst tot één verplichting per regel. Elk
 | Deel 6.2 (bewijsrecord) | RC-1, RC-2, RC-3, RC-4 |
 | Deel 6.7 en 8.2 (programma van woensdag, begintijden) | DM-10, DM-18 |
 | Deel 6.9 en risico „vierde invulplaatje" (taak 9.4 zelfstandig, 20 min) | VB-9 |
-| Deel 6.10 en 8.4 (tekst ≤ 300 woorden, fictieve bronkaarten) | MD-3, MD-15 |
+| Deel 6.10 en 8.4 (tekst ≤ 300 woorden, fictieve bronkaarten) | MD-3, MD-15, MD-16 |
 | Deel 12 (risico's: pilotbanner, klembord bij de Wissel, herinnering) | SI-8, WS-10, WS-11 |
 | Deel 10 (deliverables 5, 6, 7) | DL-1, DL-2, DL-3 |
 | Deel 6.7 (docentmodus) | §6.16 |
