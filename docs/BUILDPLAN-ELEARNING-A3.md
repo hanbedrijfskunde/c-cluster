@@ -512,7 +512,7 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 - [x] Volledige testpoort (521 tests, content-check, link-check, gewichtscontrole, gepubliceerde site zonder consolefout en met 0 verzoeken naar andere domeinen; Lighthouse toegankelijkheid 99 op leerblok-4.html en 100 op dossier.html; 360 px zonder horizontale scroll).
 - [x] Sabotage VB-4: toon het ontbrekende verband als antwoord; de test faalt.
 - [x] Sabotage BW-10: verbreek de koppeling EV-11→EV-06; de samenhangcontrole faalt.
-- [ ] Testprofielen: pilotstudent met eigen vraagstuk; profiel „voorlopig vraagstuk" (AC-21); profiel met leeg dossier (AC-40).
+- [x] Testprofielen (Playwright in plaats van een mens, lokaal en live; ook alleen met het toetsenbord): pilotstudent met eigen vraagstuk; profiel „voorlopig vraagstuk" (AC-21); profiel met leeg dossier (AC-40).
 - [x] Geclaimde regels met hun methode gecontroleerd.
 
 ### Afsluiting
