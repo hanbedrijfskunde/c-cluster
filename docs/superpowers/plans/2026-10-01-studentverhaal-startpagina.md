@@ -637,3 +637,223 @@ Expected: `fail 0`, 0 fouten; in a3-learning drie commits (taak 3, 4, 5); in c-c
 - [ ] **Step 4: Overdracht**
 
 Meld de andere sessies (c-cluster-1-72, c-cluster-1-ab) dat B113 klaarstaat op de branches `studentverhaal`. Push niet. Gebruik de skill `superpowers:finishing-a-development-branch` om met de auteur te kiezen hoe het naar `main` gaat (in beide repo's eerst `git rebase origin/main` in de worktree, dan pas pushen).
+
+---
+
+## Uitbreiding na akkoord van de auteur (1 oktober 2026)
+
+Spec §9 (tijd en planning in de studentintroductie) en §10 (B118: de richttijd volgt de taken) kwamen tijdens de uitvoering op verzoek van de auteur erbij. Deze sectie gaat vóór de taken hierboven waar ze verschillen.
+
+**Gewijzigde Global Constraints.**
+- LRD-versie **0.26** (besluit van de auteur; 0.22 en 0.24 blijven ongebruikt). ADR **B113** en **B118**. B42 en B53 krijgen in de statuskolom „Deels vervangen door B118”.
+- Richttijd per leerblok = som van `richttijd.minuten` van de taken in `data/leerblok-N.json` (verdieping telt niet): 30, 45, 105, 45. De terugblik (`terugblik` in `leerblokken.json`, 15 voor leerblok 2–4) komt erbovenop.
+- Totale tijd = Σ richttijd + Σ terugblik = 270 min, afgerond op een half uur: „ongeveer 4½ uur”. Eén functie `totaleTijdTekst(overzicht)` in `tools/content-check.mjs` rekent dat uit; het verhaal en de introductie worden ertegen getoetst.
+- Goedgekeurde teksten: spec §3.3 (verhaal; blok „wat” begint met „Je doet vier leerblokken, samen ongeveer 4½ uur.”) en spec §9 (introductie). Linkregel: tekst „Hoeveel tijd het kost, hoe je plant en hoe je inlevert, lees je in de”, link „introductie van één pagina”.
+- Studentintroductie: 4 onderwerpen (wat je doet, tijd en planning, gegevens, exporteren en inleveren), ≤ 550 woorden, afdruk 1 pagina A4.
+
+**Volgorde van uitvoering:** 2 → 2b → 3 → 4 → 5 → 5b → 6.
+
+### Aanvulling op Task 2 (documenten)
+
+Naast stap 1–8, in dezelfde commit; overal **0.26** in plaats van 0.24 (kop van ADR en LRD, versieregel „0.25: … B115; 0.26: verhaal voor studenten op de startpagina en richttijd volgens de taken, B113 en B118”).
+
+- [ ] **2.A ADR B118** onderaan, na B113:
+
+```markdown
+| B118 | 1-10-2026 | 40 | De richttijd van een leerblok is de som van de richttijden van zijn taken; de verdieping telt niet mee (TK-14) en de terugblik van hoogstens 15 minuten komt er vanaf leerblok 2 bovenop (B53). Nu: leerblok 1 30 min, 2 45 min, 3 105 min, 4 45 min; samen 225 min, met terugblikken hoogstens 270 min. De taken in `data/leerblok-N.json` zijn de bron; `content-check` eist dat de richttijd in het leerblokbestand en in `leerblokken.json` gelijk is aan die som, in plaats van precies 45 (FR-44, NFR-07, LB-1, PF-5). De terugblikpagina noemt de richttijd van het eigen leerblok. De studentintroductie krijgt het onderwerp „Tijd en planning” met de tijden per leerblok en planningsadvies voor zelfstudie (DL-2, B113) | Verzoek van de auteur: studenten krijgen voorlichting over de tijdsinzet, en die moet kloppen. Leerblok 3 heette 45 min terwijl de taken volgens het werkboek 105 min tellen; B68 (punt 6) wees dat al aan (het werkboek telt teamwerk aan de muur mee) en legde de ijking bij de pilot. Een student in zelfstudie plant liever te ruim dan te krap; de pilot (AC-08) blijft de tijd ijken. Afgewezen: (a) eerlijk in de voorlichting en de leerblokkaart later (twee tijden voor hetzelfde blok op één startpagina); (b) 45 min aanhouden tot de pilot (studenten lopen bij leerblok 3 vrijwel zeker uit); (c) een eigen schatting voor leerblok 3 (dan geen controleerbare regel meer) | Verzoek van de auteur; uitwerking Claude | Aangenomen |
+```
+
+- [ ] **2.B ADR B42 en B53:** vervang in hun statuskolom ` Aangenomen ` door ` Aangenomen; deels vervangen door B118 (richttijd per leerblok volgt de taken) `. Controleer eerst met `grep -n "^| B42 \|^| B53 " docs/ADR-ELEARNING-A3.md` wat er nu staat; laat andere statustekst staan en voeg de zin achteraan toe.
+- [ ] **2.C LRD, B118** (zoek op de aangehaalde tekst; regel 119, de versiegeschiedenis „0.7: vier leerblokken van 45 minuten”, blijft staan):
+  - Scope: „van vier leerblokken van 45 minuten met twee gebruiksvormen” → „van vier leerblokken (samen ongeveer 4 uur, met de terugblikken 4½ uur) met twee gebruiksvormen”.
+  - 3.x: „gebundeld in vier leerblokken van 45 minuten (FR-44, B42)” → „gebundeld in vier leerblokken (FR-44, B42, B118)”.
+  - Begrippen: „een van de vier eenheden van 45 minuten van de e-learning (8.1)” → „een van de vier eenheden van de e-learning, elk met een eigen richttijd (8.1)”.
+  - Overal „bovenop de 45 minuten van het leerblok” en „bovenop de 45 minuten” → „bovenop de richttijd van het leerblok” (6.x, FR-62, 8.x, risicotabel).
+  - FR-44: „toont de student vier leerblokken van 45 minuten (” → „toont de student vier leerblokken („ blijft; voeg achter „met per leerblok de richttijd” toe: „ (de som van de richttijden van de taken, B118)”; bronkolom `B42, 3.2` → `B42, B118, 3.2`.
+  - NFR-07: „Elk leerblok heeft een richttijd van 45 minuten op de pagina, inclusief” → „Elk leerblok heeft op de pagina een richttijd die de som is van de richttijden van zijn taken (nu 30, 45, 105 en 45 minuten, B118), inclusief”.
+  - Deel 8: „Programma: vier leerblokken van 45 minuten, en het werkcollege” → „Programma: vier leerblokken en het werkcollege”; „De e-learning heeft vier leerblokken van 45 minuten (richttijd, inclusief media).” → „De e-learning heeft vier leerblokken; de richttijd van een leerblok is de som van zijn taken, inclusief media (30, 45, 105 en 45 minuten, B118).”
+  - Tabel weekprogramma: richttijd leerblok 1 `45` → `30`, leerblok 3 `45 + 15` → `105 + 15`.
+  - AC-08: „binnen 1,25 keer de richttijd van 45 minuten” → „binnen 1,25 keer de richttijd van dat leerblok”.
+  - Controle: `python3 -c "import re;t=re.sub(r'<[^>]+>','',open('docs/LRD-ELEARNING-A3.html').read());print([m.start() for m in re.finditer('45 min',t)])"` geeft alleen nog de versiegeschiedenis.
+- [ ] **2.D BLUEPRINT, B118 en DL-2:**
+  - SMART-tabel: „binnen 1,25 × de richttijd van 45 min” → „binnen 1,25 × de richttijd van dat leerblok”; „Richttijd 45 min per leerblok (+ ≤ 15 min terugblik vanaf leerblok 2)” → „Richttijd per leerblok = som van de taken: 30, 45, 105, 45 min (+ ≤ 15 min terugblik vanaf leerblok 2)”.
+  - §3 Componenten: „vier leerblokken van 45 min met taken” → „vier leerblokken met taken”.
+  - TK-14 criterium: „0 minuten in de richttijd van 45 min” → „0 minuten in de richttijd”.
+  - LB-1 criterium: „4 leerblokken van 45 min;” → „4 leerblokken, elk met een richttijd gelijk aan de som van de taken (30, 45, 105, 45 min);”.
+  - TP-1: „bovenop de 45 min van het leerblok” → „bovenop de richttijd van het leerblok”.
+  - PF-3: „tijdens 45 min gebruik” → „tijdens het gebruik van een geladen leerblok (≥ 45 min)”.
+  - PF-5: eis „Elk leerblok moet een richttijd van 45 min op de pagina tonen, inclusief media.” → „Elk leerblok moet op de pagina een richttijd tonen die gelijk is aan de som van de richttijden van zijn taken, inclusief media.”; criterium „45 min;” → „richttijd = som van de taken (B118);”.
+  - DL-2: eis → „Er moet een studentintroductie zijn over wat je doet, tijd en planning, waar je gegevens staan en hoe je exporteert en inlevert.”; criterium → „≤ 1 pagina A4; 4 onderwerpen; ≤ 550 woorden; de tijd per leerblok gelijk aan de data”.
+- [ ] **2.E DESIGN §5.1**: in het punt over de linkregel staat al „de link naar de introductie van één pagina”; voeg toe: „(„Hoeveel tijd het kost, hoe je plant en hoe je inlevert, lees je in de introductie van één pagina.”)”.
+
+Commitbericht: `ADR B113, B118; LRD 0.26; FR-44, FR-75, NFR-07, AC-08, AC-51, ST-8, ST-9, LB-1, PF-5, TK-14, DL-2: verhaal voor studenten op de startpagina, richttijd volgens de taken (LRD, ADR, BLUEPRINT, DESIGN)`.
+
+### Task 2b: De richttijd volgt de taken op de site (B118)
+
+**Files (a3-learning-worktree):** `tools/content-check.mjs`, `data/leerblokken.json`, `data/leerblok-1.json`, `data/leerblok-3.json`, de fixtures in `tests/fixtures/content-*/`, `js/terugblik-pagina.js`, `tests/content-check.test.mjs`, `tests/toegankelijk.test.mjs`, `tests/weergave.test.mjs`, `tests/lb4.test.mjs`, `tests/terugblik.test.mjs`.
+
+**Interfaces — Produces:** `controleerRichttijden(overzicht, blokken) → string[]` en `totaleTijdTekst(overzicht) → string` (bv. `'4½ uur'`) uit `tools/content-check.mjs`.
+
+- [ ] **Step 1: falende tests.** In `tests/content-check.test.mjs` (import uitbreiden met `controleerRichttijden, totaleTijdTekst`), direct na de test `LB-1/ST-1/ST-2 …`:
+
+```js
+test('B118: de richttijd van een leerblok is de som van zijn taken, in het leerblokbestand en in het overzicht', () => {
+  const blokken = [1, 2, 3, 4].map((n) => JSON.parse(readFileSync(resolve(root, `data/leerblok-${n}.json`), 'utf8')));
+  assert.deepEqual(controleerRichttijden(overzicht(), blokken), []);
+  assert.deepEqual(blokken.map((b) => b.richttijd), [30, 45, 105, 45]);
+  const fout = structuredClone(blokken); fout[2].richttijd = 45;
+  assert.match(controleerRichttijden(overzicht(), fout).join('\n'), /leerblok-3\.json: richttijd 45 min, maar de taken tellen op tot 105 min/);
+  const o = overzicht(); o.leerblokken[0].richttijd = 45;
+  assert.match(controleerRichttijden(o, blokken).join('\n'), /leerblokken\.json: leerblok 1 heeft richttijd 45 min, maar de taken tellen op tot 30 min/);
+});
+
+test('B118: de totale tijd is de som van richttijden en terugblikken, afgerond op een half uur', () => {
+  assert.equal(totaleTijdTekst(overzicht()), '4½ uur');
+  const o = overzicht(); o.leerblokken[2].richttijd = 45;
+  assert.equal(totaleTijdTekst(o), '3½ uur');
+  o.leerblokken[2].richttijd = 75;
+  assert.equal(totaleTijdTekst(o), '4 uur');
+});
+```
+
+Pas in `tests/toegankelijk.test.mjs` de test `PF-5: …` aan: naam „PF-5: elk leerblok toont zijn richttijd, de som van de taken zonder verdieping (B118)”; vervang `for (const b of overzicht.leerblokken) assert.equal(b.richttijd, 45, …)` door
+
+```js
+  for (const b of overzicht.leerblokken) {
+    const blok = JSON.parse(lees(`data/leerblok-${b.nummer}.json`));
+    assert.equal(b.richttijd, blok.taken.reduce((s, t) => s + t.richttijd.minuten, 0), `leerblok ${b.nummer}`);
+  }
+```
+
+In `tests/weergave.test.mjs`, test `LB-1/TK-1: …`: naam „… vier leerblokken met hun richttijd …”; vervang `assert.ok(m.every((b) => b.richttijdTekst.startsWith('45 min')));` door `assert.deepEqual(m.map((b) => Number.parseInt(b.richttijdTekst, 10)), [30, 45, 105, 45]);`. In `tests/lb4.test.mjs`, test `TK-14: …`: naam „… 0 minuten in de richttijd door een verdiepingstaak …” en voeg toe `assert.equal(blok4.richttijd, 45);`. In `tests/terugblik.test.mjs` een nieuwe test:
+
+```js
+test('B118: de terugblik noemt de richttijd van het eigen leerblok, geen vaste 45 min', () => {
+  const bron = readFileSync(resolve(root, 'js/terugblik-pagina.js'), 'utf8');
+  assert.doesNotMatch(bron, /bovenop de 45 min/);
+  assert.match(bron, /bovenop de \$\{richttijd\} min van het leerblok/);
+});
+```
+
+(Gebruik in `tests/terugblik.test.mjs` de bestaande `root` of definieer `const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');` als die ontbreekt.)
+
+- [ ] **Step 2: zie ze falen.** `node --test tests/content-check.test.mjs tests/toegankelijk.test.mjs tests/weergave.test.mjs tests/lb4.test.mjs tests/terugblik.test.mjs 2>&1 | grep -E "^not ok|fail "`. Verwacht: B118-tests falen (functies ontbreken, richttijden 45), PF-5 en LB-1 falen op leerblok 1 en 3.
+
+- [ ] **Step 3: content-check.** In `controleerOverzicht`: vervang `if (b.richttijd !== 45) fout(\`leerblok ${i + 1} moet een richttijd van 45 min hebben\`);` door `if (!Number.isInteger(b.richttijd) || b.richttijd <= 0) fout(\`leerblok ${i + 1} mist een richttijd in hele minuten (LB-1)\`);`. Voeg direct na `controleerOverzicht` toe:
+
+```js
+/** B118: de richttijd van een leerblok is de som van de richttijden van zijn taken, zonder verdieping (PF-5, LB-1). */
+export function controleerRichttijden(overzicht, blokken) {
+  const fouten = [];
+  for (const blok of blokken) {
+    const som = (blok.taken ?? []).reduce((s, t) => s + (t.richttijd?.minuten ?? 0), 0);
+    if (blok.richttijd !== som) fouten.push(`leerblok-${blok.leerblok}.json: richttijd ${blok.richttijd} min, maar de taken tellen op tot ${som} min (B118, PF-5)`);
+    const lb = overzicht?.leerblokken?.find((b) => b.nummer === blok.leerblok);
+    if (lb && lb.richttijd !== som) fouten.push(`leerblokken.json: leerblok ${blok.leerblok} heeft richttijd ${lb.richttijd} min, maar de taken tellen op tot ${som} min (B118, LB-1)`);
+  }
+  return fouten;
+}
+
+/** De totale tijd van de vier leerblokken met terugblikken, afgerond op een half uur: „4½ uur” (B113, B118). */
+export function totaleTijdTekst(overzicht) {
+  const min = (overzicht?.leerblokken ?? []).reduce((s, b) => s + (b.richttijd ?? 0) + (b.terugblik ?? 0), 0);
+  const halven = Math.round(min / 30);
+  return `${Math.floor(halven / 2)}${halven % 2 ? '½' : ''} uur`;
+}
+```
+
+In `controleerMap` vervang `else { const o = lees('leerblokken.json'); if (o) fouten.push(...controleerOverzicht(o)); }` door `else { const o = lees('leerblokken.json'); if (o) fouten.push(...controleerOverzicht(o), ...controleerRichttijden(o, blokken)); }`. Werk het commentaar bovenaan (`"richttijd": 45`) bij naar `"richttijd": 30`.
+
+- [ ] **Step 4: data en fixtures.**
+
+```bash
+node -e '
+const fs = require("fs");
+const zet = (dir) => {
+  const op = (p) => fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, "utf8")) : null;
+  const schrijf = (p, o) => fs.writeFileSync(p, JSON.stringify(o, null, 2) + "\n");
+  const ov = op(`${dir}/leerblokken.json`);
+  for (const n of [1, 2, 3, 4]) {
+    const p = `${dir}/leerblok-${n}.json`; const b = op(p); if (!b) continue;
+    const som = b.taken.reduce((s, t) => s + (t.richttijd?.minuten ?? 0), 0);
+    if (b.richttijd !== som) { b.richttijd = som; schrijf(p, b); }
+    const lb = ov?.leerblokken.find((x) => x.nummer === n); if (lb) lb.richttijd = som;
+  }
+  if (ov) schrijf(`${dir}/leerblokken.json`, ov);
+};
+for (const d of ["data", "tests/fixtures/content-goed", "tests/fixtures/content-concept", "tests/fixtures/content-vier-fouten"]) zet(d);
+'
+git diff --stat
+```
+
+Controleer vooraf dat `data/leerblok-N.json` 2-spatie-JSON is (`node -e 'const t=require("fs").readFileSync("data/leerblok-3.json","utf8");console.log(t===JSON.stringify(JSON.parse(t),null,2)+"\n")'` → `true`); zo niet, pas dan alleen de regel `"richttijd": 45` met de hand aan. Let op: de fixture „vier fouten” mag precies 4 fouten houden.
+
+- [ ] **Step 5: terugblikpagina.** In `js/terugblik-pagina.js`, in `vorigeKeerSectie` direct na `const vorig = leerblok - 1;`: `const richttijd = overzicht.leerblokken.find((b) => b.nummer === leerblok)?.richttijd;` en in `tekenKop`: `bovenop de 45 min van het leerblok` → `bovenop de ${richttijd} min van het leerblok`.
+
+- [ ] **Step 6: alles groen.** `node --test 2>&1 | tail -4 && node tools/content-check.mjs | tail -1`. Verwacht `fail 0`, content-check ok.
+
+- [ ] **Step 7: commit.** `git add` van precies de gewijzigde bestanden uit „Files”; bericht: `B118, PF-5, LB-1: richttijd per leerblok is de som van de taken (leerblok 1 30 min, leerblok 3 105 min); content-check controleert dat in plaats van precies 45; terugblik noemt de eigen richttijd`.
+
+### Aanpassing van Task 3 (verhaal in de data)
+
+- Gebruik in stap 3 de goedgekeurde tekst uit spec §3.3 en de nieuwe linkregel (Global Constraints hierboven).
+- Voeg in stap 4 aan de verhaalcontrole toe (na de woordtelling): `const wat = vb.find((b) => b?.id === 'wat'); if (wat && !String(wat.tekst).includes(\`ongeveer ${totaleTijdTekst(inhoud)}\`)) fout(\`het blok „wat” noemt niet de totale tijd „ongeveer ${totaleTijdTekst(inhoud)}” (B118, ST-8)\`);` (`totaleTijdTekst` staat na taak 2b in hetzelfde bestand; een functiedeclaratie is overal in de module bruikbaar).
+- Voeg in stap 1 aan de test toe: `const tijd = overzicht(); tijd.leerblokken[2].richttijd = 45; assert.match(controleerOverzicht(tijd).join('\n'), /noemt niet de totale tijd „ongeveer 3½ uur”/);`
+
+### Task 5b: Tijd en planning in de studentintroductie; docentgids
+
+**Files (a3-learning-worktree):** `docs/studentintroductie.html`, `docs/docentgids.html`, `tests/docs.test.mjs`.
+
+- [ ] **Step 1: falende test.** Vervang in `tests/docs.test.mjs` `'docs/studentintroductie.html': 450` door `550`, en de test `DL-2: …` door:
+
+```js
+test('DL-2: de studentintroductie heeft 4 onderwerpen (wat je doet, tijd en planning, gegevens, exporteren en inleveren) en hoogstens 550 woorden', () => {
+  const html = lees('docs/studentintroductie.html');
+  const h2 = koppen(html, 2);
+  assert.equal(h2.length, 4);
+  assert.match(h2[0], /wat je doet/i);
+  assert.match(h2[1], /tijd en planning/i);
+  assert.match(h2[2], /gegevens/i);
+  assert.match(h2[3], /exporteren en inleveren/i);
+  assert.ok(woorden(html) <= MAX_WOORDEN['docs/studentintroductie.html'], `${woorden(html)} woorden`);
+  assert.match(html, /Dossier exporteren \(JSON\)/, 'de knopnaam van de site staat er letterlijk in');
+  assert.match(html, /Wis alles/);
+});
+
+test('DL-2, B118: „Tijd en planning” noemt de richttijd van elk leerblok en de totale tijd uit de data', () => {
+  const html = lees('docs/studentintroductie.html');
+  const h2 = koppen(html, 2);
+  const tijd = html.slice(html.indexOf(h2[1]), html.indexOf(h2[2]));
+  const overzicht = JSON.parse(lees('data/leerblokken.json'));
+  for (const b of overzicht.leerblokken) assert.match(tijd, new RegExp(`Leerblok ${b.nummer}: ± ${b.richttijd} min`), `leerblok ${b.nummer}`);
+  assert.match(tijd, new RegExp(`ongeveer ${totaleTijdTekst(overzicht)}`));
+});
+```
+
+Importeer `totaleTijdTekst` uit `../tools/content-check.mjs`. Controleer eerst hoe `lees`, `koppen` en `woorden` in dat bestand heten (ze bestaan al).
+
+- [ ] **Step 2: zie hem falen.** `node --test tests/docs.test.mjs 2>&1 | grep -E "^not ok|fail "` → de twee DL-2-tests falen (3 koppen, geen „Tijd en planning”).
+
+- [ ] **Step 3: tekst.** Voeg in `docs/studentintroductie.html` na de sectie `<h2>1. Wat je doet</h2>…` (vóór `<h2>2. Waar je gegevens staan</h2>`) in, en hernummer de volgende koppen naar 3 en 4:
+
+```html
+<h2>2. Tijd en planning</h2>
+<p>De vier leerblokken kosten samen ongeveer 4½ uur:</p>
+<ul>
+<li>Leerblok 1: ± 30 min</li>
+<li>Leerblok 2: ± 45 min, plus hoogstens 15 min terugblik</li>
+<li>Leerblok 3: ± 105 min, plus hoogstens 15 min terugblik</li>
+<li>Leerblok 4: ± 45 min, plus hoogstens 15 min terugblik</li>
+</ul>
+<p>Werk je zelfstandig? Zet elk leerblok als een afspraak in je agenda. Leerblok 3 kun je over twee keer verdelen: de site onthoudt bij welke taak je was. Bij elk leerblok staat wanneer het in het programma aan de beurt is; heb het dan af. Begin op tijd, zodat er tussen twee leerblokken een paar dagen zit. Het volgende leerblok begint met een terugblik: je schrijft uit je hoofd op wat je nog weet. Zo onthoud je het beter.</p>
+```
+
+- [ ] **Step 4: docentgids.** In `docs/docentgids.html`: „Vier leerblokken van 45 minuten: 1 De A3 en je vraag, 2 Zoeken, beoordelen en gebruiken, 3 Het vraagstuk plaatsen, 4 Verbinden en reflecteren.” → „Vier leerblokken: 1 De A3 en je vraag (30 min), 2 Zoeken, beoordelen en gebruiken (45 min), 3 Het vraagstuk plaatsen (105 min), 4 Verbinden en reflecteren (45 min).”
+
+- [ ] **Step 5: groen en 1 A4.** `node --test 2>&1 | tail -4`. Daarna de afdruk: `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu --no-pdf-header-footer --print-to-pdf=<workspace>/intro.pdf "file://$PWD/docs/studentintroductie.html"` en `mdls -name kMDItemNumberOfPages <workspace>/intro.pdf` (of `python3 -c` met een telling van `/Type /Page`). Verwacht: 1 pagina. Meer dan 1: kort de tekst in overleg in (taak 5b is dan niet af) en noteer een Ruling.
+
+- [ ] **Step 6: commit.** `git add docs/studentintroductie.html docs/docentgids.html tests/docs.test.mjs`; bericht: `B113, B118, DL-2: studentintroductie krijgt Tijd en planning (tijd per leerblok uit de data, planningsadvies voor zelfstudie); docentgids noemt de vier richttijden`.
+
+### Aanpassing van Task 6
+
+In de aanvulling in het BUILDPLAN komen ook: „- [x] Richttijd per leerblok volgt de taken (B118): data, content-check, terugblik, tests.” en „- [x] Studentintroductie: Tijd en planning, 1 A4 (DL-2).” Voeg achter punt (5) van de Afwijkingen bij fase 10 (de zin „De werkboektijden van de zes taken tellen op tot 105 min terwijl het leerblok 45 min heet (ADR B68, kalibreren in fase 15).”) toe: „Opgelost met B118 (1-10-2026): de richttijd van leerblok 3 is nu 105 min; de pilot ijkt hem.”
