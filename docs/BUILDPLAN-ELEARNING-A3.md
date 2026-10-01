@@ -788,6 +788,8 @@ Spec: `docs/superpowers/specs/2026-10-01-leerblok2-artikel-gebruiken-design.md`;
 - [x] Content: taak 4.2 „Haal meer uit je artikel” (EV-12), stelling naar 4.3, „Soort bron” in 4.1, bronnen Wu (2011), Oliver (1980) en het fictieve artikel van Visser & El Amrani (2021), terugblik van leerblok 3, docentdata, leerbloktitel „Zoeken, beoordelen en gebruiken” (LB-18, LB-19, EV-12).
 - [x] Docentgids en paginatitel; doorloop in de browser: oefening in duo met model pas na eigen werk, spiegel uit 4.1, AI zonder vinkje Te doen, met vinkje Compleet.
 - [x] Conceptvideo V2 vervangen door de kennisclip „Betrouwbaarheid” van de HAN Bibliotheek (YouTube, 1:42) als link in de video-route van taak 4.1; het mp4- en vtt-bestand zijn weg (ADR B105, MD-17).
+- [x] Conceptvideo V1 vervangen door de kennisclip „Skills booster: Zo formuleer je een onderzoeksvraag” van de Universiteit Utrecht (YouTube, 2:18) als link in de video-route van taak 2.1; het mp4- en vtt-bestand zijn weg (ADR B108, MD-17).
+- [x] Conceptvideo V3 vervangen door „Het gebruik van een stakeholderanalyse” van Bureau Tromp (YouTube, 5:32) als link in de video-route van taak 5.1, als uitzondering op de afzendereis van MD-17; het mp4- en vtt-bestand zijn weg en V4 is de enige eigen video (ADR B109).
 
 ## Bijlage — Dekking van de blueprintregels per fase
 
