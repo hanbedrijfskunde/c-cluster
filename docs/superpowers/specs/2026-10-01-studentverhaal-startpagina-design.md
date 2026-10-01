@@ -58,7 +58,7 @@ Onder de metrokaart (die `metro.js` buiten `main` zet, B110) en de h1, en boven 
 
 ### 3.3 Tekst
 
-Geredigeerd met `redigeer-nederlandse-tekst` en `schrap-ai-taal` (0 meldingen); 140 woorden lopende tekst. Ter goedkeuring bij de auteur.
+Geredigeerd met `redigeer-nederlandse-tekst` en `schrap-ai-taal` (0 meldingen); 140 woorden lopende tekst. Goedgekeurd door de auteur op 1 oktober 2026.
 
 > **Waarom dit?**
 > Je opdrachtgever komt met een vraagstuk dat nog vaag is. Begin je meteen aan een oplossing, dan los je misschien het verkeerde probleem op. Hier maak je van dat vraagstuk een onderzoeksvraag waar je team mee verder kan. Die bespreek je met je opdrachtgever op je A3.
@@ -138,7 +138,7 @@ De pagina laadt geen nieuw bestand: `data/leerblokken.json` wordt al geladen. Er
 
 ## 9. Tijd en planning in de studentintroductie
 
-De studentintroductie (`docs/studentintroductie.html`) krijgt een tweede onderwerp, tussen „Wat je doet” en „Waar je gegevens staan”. DL-2 gaat van 3 naar 4 onderwerpen en van hoogstens 450 naar hoogstens 550 woorden; de introductie blijft 1 A4 (gemeten met de afdruk van Chrome, zoals in B72). Tekst, geredigeerd met beide skills (0 meldingen), ter goedkeuring bij de auteur:
+De studentintroductie (`docs/studentintroductie.html`) krijgt een tweede onderwerp, tussen „Wat je doet” en „Waar je gegevens staan”. DL-2 gaat van 3 naar 4 onderwerpen en van hoogstens 450 naar hoogstens 550 woorden; de introductie blijft 1 A4 (gemeten met de afdruk van Chrome, zoals in B72). Tekst, geredigeerd met beide skills (0 meldingen), goedgekeurd door de auteur op 1 oktober 2026:
 
 > **2. Tijd en planning**
 >
@@ -157,7 +157,7 @@ Op de startpagina noemt het blok „Wat heb je aan het eind?” de totale tijd (
 
 ## 10. De richttijd volgt de taken (B118)
 
-**Wat er mis is.** Elk leerblok heet „± 45 min” (B42, FR-44, NFR-07, PF-5), en `content-check` eist dat. Maar de taken van leerblok 3 tellen volgens het werkboek op tot 105 minuten (5.1, 6.1, 7.1 en 8.1 elk 20, 9.1 15, 9.2 10), en deel 2 van het werkcollege duurt 145 minuten. Leerblok 1 telt op tot 30 minuten. Een student in zelfstudie die op 45 minuten plant, loopt bij leerblok 3 een uur uit.
+**Wat er mis is.** B68 (punt 6) zag het al: de werkboektijden van leerblok 3 tellen teamwerk aan de muur mee, en de ijking stond voor de pilot gepland. De auteur kiest toch voor de som van de taken: een student in zelfstudie plant liever te ruim dan te krap, en de pilot (AC-08) blijft de tijd ijken. Elk leerblok heet „± 45 min” (B42, FR-44, NFR-07, PF-5), en `content-check` eist dat. Maar de taken van leerblok 3 tellen volgens het werkboek op tot 105 minuten (5.1, 6.1, 7.1 en 8.1 elk 20, 9.1 15, 9.2 10), en deel 2 van het werkcollege duurt 145 minuten. Leerblok 1 telt op tot 30 minuten. Een student in zelfstudie die op 45 minuten plant, loopt bij leerblok 3 een uur uit.
 
 **Regel.** De richttijd van een leerblok is de som van de richttijden van zijn taken; de verdieping telt niet mee (TK-14). De terugblik van hoogstens 15 minuten komt er vanaf leerblok 2 bovenop (B53). Nu: leerblok 1 30 min, 2 45 min, 3 105 min, 4 45 min; samen 225 min, met terugblikken hoogstens 270 min (4½ uur).
 
