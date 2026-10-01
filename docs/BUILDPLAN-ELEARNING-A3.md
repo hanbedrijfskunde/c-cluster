@@ -791,6 +791,16 @@ Spec: `docs/superpowers/specs/2026-10-01-leerblok2-artikel-gebruiken-design.md`;
 - [x] Conceptvideo V1 vervangen door de kennisclip „Skills booster: Zo formuleer je een onderzoeksvraag” van de Universiteit Utrecht (YouTube, 2:18) als link in de video-route van taak 2.1; het mp4- en vtt-bestand zijn weg (ADR B108, MD-17).
 - [x] Conceptvideo V3 vervangen door „Het gebruik van een stakeholderanalyse” van Bureau Tromp (YouTube, 5:32) als link in de video-route van taak 5.1, als uitzondering op de afzendereis van MD-17; het mp4- en vtt-bestand zijn weg en V4 is de enige eigen video (ADR B109).
 
+## Aanvulling — Metrokaart (1-10-2026, op verzoek van de auteur)
+
+Spec: `docs/superpowers/specs/2026-10-01-metrokaart-design.md`; plan: `docs/superpowers/plans/2026-10-01-metrokaart.md`. Besluit: ADR B110.
+
+- [x] Veld `spoor` in de leerblokdata (3.2 route A/B, 4.2 artikel 1/2) met contentcontrole (SX-19).
+- [x] Tokens `--lijn-1` … `--lijn-4` en contrastcontrole 3:1 voor lijnen (SX-18).
+- [x] `js/metro-model.js` en `js/metro-indeling.js` met tests: stand, takken, overstappunten, „hier”; stroken ≥ 24 × 24 px zonder overlap op 328, 600 en 1024 px.
+- [x] `js/metro.js` op de zeven studentpagina's; segmentbalk uit de taakkop (SX-4); gewichtscontrole kent `${elders}`.
+- [x] Doorloop in de browser op 360 en 1280 px (11 punten uit het plan). Twee fouten gevonden en hersteld, elk met een test: de kaart lijnde niet uit met de inhoud, en de CSP van het dossier blokkeerde de inline lijnkleur.
+
 ## Bijlage — Dekking van de blueprintregels per fase
 
 Elke regel staat bij de fase die haar realiseert en verifieert. Een regel die in een latere fase opnieuw wordt gecontroleerd (regressie) staat alleen bij haar eigen fase.
