@@ -787,7 +787,7 @@ Spec: `docs/superpowers/specs/2026-10-01-leerblok2-artikel-gebruiken-design.md`;
 - [x] `js/figuren-lb2.js`: IMRAD als eigen zandloper en de twee fictieve mini-artikelen met staafdiagram, lui geladen (PF-4: leerblok 2 op 116,6 kB gzip). Verwacht: 0 px horizontale scroll op 360 px.
 - [x] Content: taak 4.2 „Haal meer uit je artikel” (EV-12), stelling naar 4.3, „Soort bron” in 4.1, bronnen Wu (2011), Oliver (1980) en het fictieve artikel van Visser & El Amrani (2021), terugblik van leerblok 3, docentdata, leerbloktitel „Zoeken, beoordelen en gebruiken” (LB-18, LB-19, EV-12).
 - [x] Docentgids en paginatitel; doorloop in de browser: oefening in duo met model pas na eigen werk, spiegel uit 4.1, AI zonder vinkje Te doen, met vinkje Compleet.
-- [ ] Conceptvideo V2 noemt op de eerste dia nog „Zoeken en beoordelen”; bijwerken bij de volgende opname.
+- [x] Conceptvideo V2 vervangen door de kennisclip „Betrouwbaarheid” van de HAN Bibliotheek (YouTube, 1:42) als link in de video-route van taak 4.1; het mp4- en vtt-bestand zijn weg (ADR B105, MD-17).
 
 ## Bijlage — Dekking van de blueprintregels per fase
 
