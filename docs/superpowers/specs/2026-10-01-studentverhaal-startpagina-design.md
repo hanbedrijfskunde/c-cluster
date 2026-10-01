@@ -3,7 +3,7 @@
 **Status:** ontwerp, ter review
 **Datum:** 1 oktober 2026
 **Product:** hybride e-learning A3 (repository `hanbedrijfskunde/a3-learning`), startpagina `index.html`
-**Na akkoord:** vastleggen in LRD 0.22 (FR-75, AC-51, noot onder Purpose in Deel 5), ADR (B113), BLUEPRINT (ST-8, ST-9, Bijlage A) en DESIGN (§5.1, §5.2); daarna bouwen in a3-learning. De nummers zijn afgestemd met twee parallelle sessies: B112, LRD 0.21, FR-74, AC-50 en SX-20 zijn van het infovenster bij de metrokaart, B114 en LRD 0.23 van de verdieping in leerblok 4.
+**Na akkoord:** vastleggen in LRD 0.24 (FR-75, AC-51, noot onder Purpose in Deel 5), ADR (B113), BLUEPRINT (ST-8, ST-9, Bijlage A en B) en DESIGN (§5.1, §5.2); daarna bouwen in a3-learning. De nummers zijn afgestemd met twee parallelle sessies: B112, LRD 0.21, FR-74, AC-50 en SX-20 zijn van het infovenster bij de metrokaart, B114 en LRD 0.23 van de verdieping in leerblok 4. LRD 0.22 was voor dit ontwerp gereserveerd, maar 0.23 was eerder klaar; deze ronde wordt 0.24, zodat 0.23 achteraf niet van inhoud verandert. 0.22 blijft ongebruikt.
 
 ## 1. Doel
 
@@ -20,7 +20,7 @@ Purpose: de student leest eerst het probleem dat hij of zij deze week echt heeft
 | Waar staat het verhaal | Bovenaan de startpagina, bij een eerste bezoek boven het formulier; bij een terugkerend bezoek ingeklapt | een aparte pagina `welkom.html` als ingang (negende pagina en een klik extra; B80 wees een negende pagina al af); de studentintroductie herschrijven en de link prominenter maken (blijft een document waar je heen moet klikken, geen landing) |
 | Vorm | Drie korte blokken met een vraag als kop, samen hoogstens 150 woorden; de Golden Circle bepaalt de volgorde maar wordt niet genoemd | de Golden Circle als figuur met drie ringen (een extra model dat niets met de A3 te maken heeft; noem je het, dan moet de figuur erbij, DESIGN-principe 8); één lopende alinea zonder koppen (de opbouw verdwijnt, wie scant slaat hem over) |
 | Waarmee opent het waarom | Het probleem van de opdrachtgever: een vage vraag, het risico het verkeerde probleem op te lossen, de onderzoeksvraag die je op je A3 met de opdrachtgever bespreekt. Het portfolio komt als één zin in het blok „wat” | het portfolio als waarom (de externe reden die het LRD zwak noemt); beide even zwaar in het waarom (langer, de kern minder scherp) |
-| Waar staat de tekst | In `data/leerblokken.json` onder `start.verhaal`, getekend door `js/index-pagina.js` | vaste HTML in `index.html` (werkt zonder JavaScript, maar `index-pagina.js` maakt `main` leeg en de tekst staat dan als enige studenttekst buiten de data, buiten bereik van de taalcontrole en van de docent die teksten aanpast zonder code, docentgids §5) |
+| Waar staat de tekst | In `data/leerblokken.json` onder `start.verhaal`, getekend door `js/index-pagina.js` | vaste HTML in `index.html` (werkt zonder JavaScript, maar `index-pagina.js` maakt `main` leeg en de tekst staat dan als enige studenttekst buiten de data, buiten bereik van de contentcontrole en van de docent die teksten aanpast zonder code, docentgids §5) |
 
 ## 3. Wat de student ziet
 
@@ -95,7 +95,7 @@ Hetzelfde patroon als de rest van de startpagina: de beslissing zonder DOM is ap
 
 | Eenheid | Rol | Hangt af van |
 |---|---|---|
-| `data/leerblokken.json` | Nieuw object `start.verhaal`: `{ "kop": "Waar gaat dit over?", "blokken": [{ "id": "waarom", "kop": "Waarom dit?", "tekst": "…" }, { "id": "hoe", … }, { "id": "wat", … }], "knop": "Start met je vraagstuk", "introductie": { "tekst": "Hoe je je werk bewaart en inlevert, lees je in de", "link": "introductie van één pagina" } }`. De pagina zet de link achter `tekst` en sluit af met een punt. Geen sleutel `voor`: die slaat de taalcontrole over (`NIET_ZICHTBAAR`) | content-check en `tests/taal.test.mjs` lezen het automatisch mee |
+| `data/leerblokken.json` | Nieuw object `start.verhaal`: `{ "kop": "Waar gaat dit over?", "blokken": [{ "id": "waarom", "kop": "Waarom dit?", "tekst": "…" }, { "id": "hoe", … }, { "id": "wat", … }], "knop": "Start met je vraagstuk", "introductie": { "tekst": "Hoe je je werk bewaart en inlevert, lees je in de", "link": "introductie van één pagina" } }`. De pagina zet de link achter `tekst` en sluit af met een punt | `tools/content-check.mjs` (`controleerOverzicht`) controleert de vorm, de woordgrens en de verboden termen; `tests/taal.test.mjs` leest alleen `data/leerblok-N.json`, dus die controle zit in content-check |
 | `js/weergave.js` | `verhaalOpen(profiel, records)` → `true` of `false`. Geen DOM. | — |
 | `js/index-pagina.js` | Tekent het verhaal: open als `<section id="verhaal">` vóór `#start`, ingeklapt als `<details class="verhaal-details">` na `#blokken`. Haalt de regel „Nieuw hier?” uit `#start`. | `weergave.js`, `profiel.js` (`leesProfiel`), `afgerond.js` (`leesRecords`), `dom.js` (`h`) |
 | `css/site.css` | Een nieuw blok `.verhaal` (raster van de drie kaarten, ruimte rond de knop) en `.verhaal-details`. Niet in het metroblok onderaan (dat wijzigt de sessie van B112). | — |
@@ -114,7 +114,7 @@ De pagina laadt geen nieuw bestand: `data/leerblokken.json` wordt al geladen. Er
 ## 7. Testen
 
 - **Beslissing** (`tests/weergave.test.mjs`): leeg profiel en geen records → open; alleen een alias → ingeklapt; alleen „nog geen scherp vraagstuk” aangevinkt → ingeklapt; leeg profiel met één record → ingeklapt; profiel met spaties alleen → open.
-- **Data** (nieuwe test, of in `tests/weergave.test.mjs` bij ST-1 en ST-2): `start.verhaal.blokken` heeft precies drie blokken met de id's `waarom`, `hoe`, `wat` in die volgorde; hoogstens 150 woorden lopende tekst; geen van de termen Wissel, verdieping, Mijn stand, kopieer naar A3, LUK, BC, EV-, bewijsonderdeel, richttijd, Golden Circle, Sinek.
+- **Data** (`controleerOverzicht` in `tools/content-check.mjs`, getest in `tests/content-check.test.mjs`; de drie fixtures met een eigen `leerblokken.json` krijgen het verhaal erbij): `start.verhaal.blokken` heeft precies drie blokken met de id's `waarom`, `hoe`, `wat` in die volgorde; hoogstens 150 woorden lopende tekst; geen van de termen Wissel, verdieping, Mijn stand, kopieer naar A3, LUK, BC, EV-, bewijsonderdeel, richttijd, Golden Circle, Sinek.
 - **Pagina** (browsercheck met Playwright, op een lokale server): bij lege opslag staat `#verhaal` vóór `#start` en is het open; met een opgeslagen profiel is er geen `#verhaal`-sectie maar een gesloten `.verhaal-details` na `#blokken`; de knop zet de focus in `#start-alias`; op 360 px geen horizontale scroll; de regel „Nieuw hier?” staat niet meer in `#start`.
 - **Bestaande controles**: ST-7 (geen Wissel, verdieping, „Mijn stand” of „kopieer naar A3” op de eerste schermen), de taalcontrole, de content-check en de gewichtscontrole blijven groen.
 
