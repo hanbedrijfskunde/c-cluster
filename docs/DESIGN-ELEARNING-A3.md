@@ -326,7 +326,7 @@ Je-vorm, actief, kort. Knoppen beginnen met een werkwoord.
 
 ## 10. Techniek en gewicht
 
-- Gemeten met `tools/gewicht-check.mjs` (30-9-2026): gzip ruim binnen 300 kB (leerblok 3: 112,8 kB), maar de brongrens van 400 kB knelt: leerblok 4 zit op 384,0 kB. Nieuwe UI-code daarom eerst in een eigen, dynamisch geladen module, en voor de taakweergave **per taak laden**: taakdata en stapcomponenten dynamisch importeren, net als nu `checks/lbN.js`.
+- Gemeten met `tools/gewicht-check.mjs` (30-9-2026): gzip ruim binnen 300 kB (leerblok 3: 112,8 kB), maar de brongrens van 400 kB knelt: leerblok 4 zit op 384,0 kB. Sinds ADR B99 is de brongrens 500 kB; de gzip-grens van 300 kB blijft. Nieuwe UI-code daarom eerst in een eigen, dynamisch geladen module, en voor de taakweergave **per taak laden**: taakdata en stapcomponenten dynamisch importeren, net als nu `checks/lbN.js`.
 - Geen frameworks of externe fonts toevoegen.
 - De taakweergave is een extra laag boven de bestaande DOM-id's (`taak-<nr>`, `oefening-<nr>`, …); `sessie.js`, `store.js` en de controles blijven ongewijzigd.
 
