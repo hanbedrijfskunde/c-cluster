@@ -104,7 +104,7 @@ URL-schema voor de taakweergave (werkt samen met de bestaande id's): `leerblok-1
 
 ### 5.1 Start — eerste bezoek
 
-- Bovenaan: het verhaal in drie blokken met een vraag als kop, in de volgorde waarom, hoe, wat (ADR B113, ST-8), en één knop „Start met je vraagstuk” die de focus in het eerste veld zet. Het waarom begint bij het vage vraagstuk van de opdrachtgever, niet bij het portfolio; het blok „wat” noemt de totale tijd. Informatiekaarten met rand en zonder schaduw; op de telefoon onder elkaar, op een breed scherm naast elkaar. Daaronder de regel „Hoeveel tijd het kost, hoe je plant en hoe je inlevert, lees je in de introductie van één pagina.”
+- Bovenaan: het verhaal in drie blokken met een vraag als kop, in de volgorde waarom, hoe, wat (ADR B113, ST-8), een knop „Lees dit eerst voor je start” naar de introductie, en de hoofdknop „Start met je vraagstuk” die de focus in het eerste veld zet. De introductie heeft onderaan een knop „Start” terug. Het waarom begint bij het vage vraagstuk van de opdrachtgever, niet bij het portfolio; het blok „wat” noemt de totale tijd. Informatiekaarten met rand en zonder schaduw; op de telefoon onder elkaar, op een breed scherm naast elkaar. Daaronder de regel „Hoeveel tijd het kost, hoe je plant en hoe je inlevert, lees je in de introductie van één pagina.”
 - Daarna het profiel **één veld per scherm**: alias → teamnummer → vraagstuk → waarom-zin. Voortgang in stappen (●●○○).
 - Valideren pas **na het verlaten van een veld** of bij „Verder”. Nooit foutmeldingen op een leeg formulier.
 - De privacytekst staat bij het eerste veld, in gewone taal, uitklapbaar.

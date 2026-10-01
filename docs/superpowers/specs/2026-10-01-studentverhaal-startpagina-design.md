@@ -47,7 +47,7 @@ Onder de metrokaart (die `metro.js` buiten `main` zet, B110) en de h1, en boven 
 
 - Een `<section id="verhaal" aria-labelledby="verhaal-kop">` met de kop „Waar gaat dit over?” als h2 in de bestaande `.eyebrow`-stijl.
 - Drie blokken als `.kaart` (rand, geen schaduw: informatie, niet aantikbaar, SX-7), elk met een h3 en één alinea. Ze staan in een raster `repeat(auto-fit, minmax(14rem, 1fr))`: op een telefoon onder elkaar, op een breed scherm naast elkaar. Er komt geen nieuw breekpunt bij.
-- Eén accentknop „Start met je vraagstuk” (het label uit DESIGN §4). Een klik zet de focus in het veld `#start-alias`; de browser scrolt daar vanzelf naartoe.
+- Een gewone knop „Lees dit eerst voor je start” naar `docs/studentintroductie.html` (wit, harde schaduw), en daarnaast één accentknop „Start met je vraagstuk” (het label uit DESIGN §4). Toegevoegd op verzoek van de auteur tijdens de bouw; de accentknop blijft de hoofdactie. Een klik zet de focus in het veld `#start-alias`; de browser scrolt daar vanzelf naartoe.
 - Daaronder een kleine regel met de link naar `docs/studentintroductie.html`: „Hoeveel tijd het kost, hoe je plant en hoe je inlevert, lees je in de introductie van één pagina.” Die vervangt de huidige regel „Nieuw hier? Lees de introductie van één pagina.” in de sectie `#start`.
 
 ### 3.2 Terugkerend bezoek
@@ -152,6 +152,8 @@ De studentintroductie (`docs/studentintroductie.html`) krijgt een tweede onderwe
 > Werk je zelfstandig? Zet elk leerblok als een afspraak in je agenda. Leerblok 3 kun je over twee keer verdelen: de site onthoudt bij welke taak je was. Bij elk leerblok staat wanneer het in het programma aan de beurt is; heb het dan af. Begin op tijd, zodat er tussen twee leerblokken een paar dagen zit. Het volgende leerblok begint met een terugblik: je schrijft uit je hoofd op wat je nog weet. Zo onthoud je het beter.
 
 Het advies volgt uit het ontwerp: de terugblik is gebouwd op spreiden en ophalen (LRD 2.8); bij een pauze van 2 tot en met 13 dagen krijgt de student de volledige terugblik (`data/terugblik.json`, band „volledig”). „De site onthoudt bij welke taak je was” is „Verder waar je was” (DESIGN §5.2), in dezelfde browser.
+
+De introductie heeft onderaan een knop „Start” naar `../index.html`; op papier staat die niet. Om op 1 A4 te blijven heeft `docs/gids.css` voor de afdruk iets krappere witruimte (lijsten .3rem, koppen .8rem, compacte voettekst); de goedgekeurde tekst blijft ongewijzigd.
 
 Op de startpagina noemt het blok „Wat heb je aan het eind?” de totale tijd (§3.3) en luidt de linkregel: „Hoeveel tijd het kost, hoe je plant en hoe je inlevert, lees je in de introductie van één pagina.”
 
