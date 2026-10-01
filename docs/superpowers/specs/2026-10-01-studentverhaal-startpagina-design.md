@@ -3,7 +3,9 @@
 **Status:** ontwerp, ter review
 **Datum:** 1 oktober 2026
 **Product:** hybride e-learning A3 (repository `hanbedrijfskunde/a3-learning`), startpagina `index.html`
-**Na akkoord:** vastleggen in LRD 0.24 (FR-75, AC-51, noot onder Purpose in Deel 5), ADR (B113), BLUEPRINT (ST-8, ST-9, Bijlage A en B) en DESIGN (§5.1, §5.2); daarna bouwen in a3-learning. De nummers zijn afgestemd met twee parallelle sessies: B112, LRD 0.21, FR-74, AC-50 en SX-20 zijn van het infovenster bij de metrokaart, B114 en LRD 0.23 van de verdieping in leerblok 4. LRD 0.22 was voor dit ontwerp gereserveerd, maar 0.23 was eerder klaar; deze ronde wordt 0.24, zodat 0.23 achteraf niet van inhoud verandert. 0.22 blijft ongebruikt.
+**Na akkoord:** vastleggen in LRD 0.26 (FR-75, AC-51, noot onder Purpose in Deel 5; voor B118 ook FR-44, NFR-07, AC-08, de scope-regel en het weekprogramma), ADR (B113 en B118; B42 en B53 krijgen „deels vervangen door B118”), BLUEPRINT (ST-8, ST-9, DL-2, LB-1, PF-5, TK-14, Bijlage A en B) en DESIGN (§5.1, §5.2); daarna bouwen in a3-learning. De nummers zijn afgestemd met de parallelle sessies: B112, LRD 0.21, FR-74, AC-50 en SX-20 (infovenster metrokaart), B114 en LRD 0.23 (verdieping leerblok 4), B115 en LRD 0.25 (kijktip Yale), B117 (feit of aanname). LRD 0.22 en daarna 0.24 waren voor dit ontwerp gereserveerd; omdat 0.23 en 0.25 eerder klaar waren, wordt deze ronde op besluit van de auteur 0.26, zodat geen eerdere versie achteraf van inhoud verandert. 0.22 en 0.24 blijven ongebruikt.
+
+**Uitbreiding (1 oktober 2026, verzoek van de auteur tijdens de uitvoering):** de studentintroductie krijgt een onderwerp over tijdsinzet en planning bij zelfstudie (§9), en de richttijd per leerblok volgt voortaan de taken (§10, B118), zodat de tijd die studenten lezen klopt.
 
 ## 1. Doel
 
@@ -20,6 +22,8 @@ Purpose: de student leest eerst het probleem dat hij of zij deze week echt heeft
 | Waar staat het verhaal | Bovenaan de startpagina, bij een eerste bezoek boven het formulier; bij een terugkerend bezoek ingeklapt | een aparte pagina `welkom.html` als ingang (negende pagina en een klik extra; B80 wees een negende pagina al af); de studentintroductie herschrijven en de link prominenter maken (blijft een document waar je heen moet klikken, geen landing) |
 | Vorm | Drie korte blokken met een vraag als kop, samen hoogstens 150 woorden; de Golden Circle bepaalt de volgorde maar wordt niet genoemd | de Golden Circle als figuur met drie ringen (een extra model dat niets met de A3 te maken heeft; noem je het, dan moet de figuur erbij, DESIGN-principe 8); één lopende alinea zonder koppen (de opbouw verdwijnt, wie scant slaat hem over) |
 | Waarmee opent het waarom | Het probleem van de opdrachtgever: een vage vraag, het risico het verkeerde probleem op te lossen, de onderzoeksvraag die je op je A3 met de opdrachtgever bespreekt. Het portfolio komt als één zin in het blok „wat” | het portfolio als waarom (de externe reden die het LRD zwak noemt); beide even zwaar in het waarom (langer, de kern minder scherp) |
+| Waar komt de voorlichting over tijd en planning | Een onderwerp „Tijd en planning” in de studentintroductie (DL-2 van 3 naar 4 onderwerpen, blijft 1 A4); het blok „wat” van het verhaal noemt de totale tijd en de linkregel noemt tijd, planning en inleveren (§9) | een vierde blok „Hoeveel tijd kost het?” in het verhaal (breekt waarom-hoe-wat en de grens van 150 woorden); alleen in de introductie (de student ziet op de startpagina niet hoeveel tijd het kost) |
+| Welke tijd noemen we bij leerblok 3 | Gelijktrekken: de richttijd van elk leerblok is de som van zijn taken (leerblok 1 30 min, 3 105 min), op de kaart, in het verhaal en in de introductie hetzelfde getal (§10, B118) | eerlijk in de tekst en de kaart later (twee verschillende tijden op één startpagina); 45 minuten aanhouden en in de pilot meten (studenten in zelfstudie lopen bij leerblok 3 vrijwel zeker uit) |
 | Waar staat de tekst | In `data/leerblokken.json` onder `start.verhaal`, getekend door `js/index-pagina.js` | vaste HTML in `index.html` (werkt zonder JavaScript, maar `index-pagina.js` maakt `main` leeg en de tekst staat dan als enige studenttekst buiten de data, buiten bereik van de contentcontrole en van de docent die teksten aanpast zonder code, docentgids §5) |
 
 ## 3. Wat de student ziet
@@ -44,7 +48,7 @@ Onder de metrokaart (die `metro.js` buiten `main` zet, B110) en de h1, en boven 
 - Een `<section id="verhaal" aria-labelledby="verhaal-kop">` met de kop „Waar gaat dit over?” als h2 in de bestaande `.eyebrow`-stijl.
 - Drie blokken als `.kaart` (rand, geen schaduw: informatie, niet aantikbaar, SX-7), elk met een h3 en één alinea. Ze staan in een raster `repeat(auto-fit, minmax(14rem, 1fr))`: op een telefoon onder elkaar, op een breed scherm naast elkaar. Er komt geen nieuw breekpunt bij.
 - Eén accentknop „Start met je vraagstuk” (het label uit DESIGN §4). Een klik zet de focus in het veld `#start-alias`; de browser scrolt daar vanzelf naartoe.
-- Daaronder een kleine regel met de link naar `docs/studentintroductie.html`. Die vervangt de huidige regel „Nieuw hier? Lees de introductie van één pagina.” in de sectie `#start`.
+- Daaronder een kleine regel met de link naar `docs/studentintroductie.html`: „Hoeveel tijd het kost, hoe je plant en hoe je inlevert, lees je in de introductie van één pagina.” Die vervangt de huidige regel „Nieuw hier? Lees de introductie van één pagina.” in de sectie `#start`.
 
 ### 3.2 Terugkerend bezoek
 
@@ -52,18 +56,20 @@ Onder de metrokaart (die `metro.js` buiten `main` zet, B110) en de h1, en boven 
 - Plaats: onder de vier leerblokken, boven „Jouw gegevens”. Wat bovenaan staat (Verder waar je was, A3-vak 1, de leerblokken; DESIGN §5.2) blijft daardoor op zijn plek.
 - De samenvatting krijgt de opmaak van de bestaande `details`-samenvattingen op de site, met een hoogte van minstens 2,75rem (al geregeld voor `summary`).
 
-### 3.3 Concepttekst
+### 3.3 Tekst
 
-Samen 140 woorden lopende tekst. De definitieve tekst gaat vóór het bouwen door `redigeer-nederlandse-tekst` en `schrap-ai-taal` en wordt aan de auteur voorgelegd.
+Geredigeerd met `redigeer-nederlandse-tekst` en `schrap-ai-taal` (0 meldingen); 140 woorden lopende tekst. Ter goedkeuring bij de auteur.
 
 > **Waarom dit?**
-> Je opdrachtgever komt met een vraag die nog vaag is. Begin je meteen aan een oplossing, dan los je misschien het verkeerde probleem op. Hier maak je van die vage vraag een onderzoeksvraag waar je team mee verder kan. Die bespreek je met je opdrachtgever op je A3.
+> Je opdrachtgever komt met een vraagstuk dat nog vaag is. Begin je meteen aan een oplossing, dan los je misschien het verkeerde probleem op. Hier maak je van dat vraagstuk een onderzoeksvraag waar je team mee verder kan. Die bespreek je met je opdrachtgever op je A3.
 >
 > **Hoe werk je?**
-> Je werkt aan je eigen vraagstuk. Elke taak laat het eerst zien met een voorbeeld, webshop X. Daarna doe je hetzelfde voor jouw vraag. Bij elke taak staat wanneer je klaar bent, en de site kijkt meteen mee. Je hebt geen account nodig: alles blijft in deze browser.
+> Bij elke taak oefen je eerst op een voorbeeld, webshop X. Daarna doe je dezelfde opdracht voor je eigen vraagstuk. Je ziet steeds wanneer je klaar bent, en de site controleert meteen of alles erin staat. Je hebt geen account nodig: alles blijft in deze browser.
 >
 > **Wat heb je aan het eind?**
-> Vier leerblokken van ongeveer 45 minuten. Daarna staat het eerste vak van je A3: je onderzoeksvraag, betrouwbare bronnen en een beeld van wie er bij je vraagstuk betrokken zijn. En je hebt een dossier met al je werk, dat je inlevert voor je portfolio.
+> Je doet vier leerblokken, samen ongeveer 4½ uur. Daarna is het eerste vak van je A3 gevuld. Daarin staan je onderzoeksvraag, betrouwbare bronnen en de mensen en de organisatie rond je vraagstuk. En je hebt een dossier met al je werk, dat je inlevert voor je portfolio.
+
+De 4½ uur is de som van de richttijden (30 + 45 + 105 + 45 = 225 min) plus drie terugblikken van hoogstens 15 min (45 min), afgerond op een half uur. Een test rekent dat na uit de data (§10), zodat de zin niet stil gaat afwijken als een richttijd verandert.
 
 **Grenzen voor de tekst** (ook voor latere aanpassingen door een docent):
 
@@ -116,11 +122,59 @@ De pagina laadt geen nieuw bestand: `data/leerblokken.json` wordt al geladen. Er
 - **Beslissing** (`tests/weergave.test.mjs`): leeg profiel en geen records → open; alleen een alias → ingeklapt; alleen „nog geen scherp vraagstuk” aangevinkt → ingeklapt; leeg profiel met één record → ingeklapt; profiel met spaties alleen → open.
 - **Data** (`controleerOverzicht` in `tools/content-check.mjs`, getest in `tests/content-check.test.mjs`; de drie fixtures met een eigen `leerblokken.json` krijgen het verhaal erbij): `start.verhaal.blokken` heeft precies drie blokken met de id's `waarom`, `hoe`, `wat` in die volgorde; hoogstens 150 woorden lopende tekst; geen van de termen Wissel, verdieping, Mijn stand, kopieer naar A3, LUK, BC, EV-, bewijsonderdeel, richttijd, Golden Circle, Sinek.
 - **Pagina** (browsercheck met Playwright, op een lokale server): bij lege opslag staat `#verhaal` vóór `#start` en is het open; met een opgeslagen profiel is er geen `#verhaal`-sectie maar een gesloten `.verhaal-details` na `#blokken`; de knop zet de focus in `#start-alias`; op 360 px geen horizontale scroll; de regel „Nieuw hier?” staat niet meer in `#start`.
+- **Introductie** (`tests/docs.test.mjs`, DL-2): vier onderwerpen in de volgorde wat je doet, tijd en planning, gegevens, exporteren en inleveren; hoogstens 550 woorden; in „Tijd en planning” staat voor elk leerblok „± N min” met N uit `data/leerblokken.json`, en de totale tijd. De afdruk uit Chrome is 1 pagina A4.
+- **Tijd** (§10): richttijd = som van de taken voor elk leerblok, in `leerblokken.json` en in `leerblok-N.json`; de totale tijd in het blok „wat” en in de introductie is gelijk aan (som richttijden + som terugblik), afgerond op een half uur; de terugblikpagina noemt de richttijd van het eigen leerblok.
 - **Bestaande controles**: ST-7 (geen Wissel, verdieping, „Mijn stand” of „kopieer naar A3” op de eerste schermen), de taalcontrole, de content-check en de gewichtscontrole blijven groen.
 
 ## 8. Buiten scope
 
-- De studentintroductie (`docs/studentintroductie.html`, DL-2) blijft zoals ze is: het praktische A4 over gegevens, bewaren en inleveren. De overlap met het blok „Hoe werk je?” is klein en bewust: de introductie is voor wie het op papier wil hebben.
+- De andere drie onderwerpen van de studentintroductie blijven zoals ze zijn. De overlap tussen „Wat je doet” en het blok „Hoe werk je?” is klein en bewust: de introductie is voor wie het op papier wil hebben.
+- De taken van leerblok 3 inkorten tot 45 minuten. B118 maakt de tijd eerlijk; of leerblok 3 korter moet, is een didactische vraag voor na de pilot (AC-08).
+- De docentmodus en de draaiboeken: hun tijden (deel 1 90 min, deel 2 145 min) staan los van de richttijd per leerblok en veranderen niet.
+- Een omrekening van minuten naar uren op de leerblokkaart: die blijft „± 105 min” tonen (DESIGN §8: „± 10 min”).
 - Een andere h1 voor de startpagina („De A3 en je vraag: start”).
 - Het profiel één veld per scherm (DESIGN §5.1, tweede punt). Dat is een losse wijziging.
 - Een video of figuur bij het verhaal.
+
+## 9. Tijd en planning in de studentintroductie
+
+De studentintroductie (`docs/studentintroductie.html`) krijgt een tweede onderwerp, tussen „Wat je doet” en „Waar je gegevens staan”. DL-2 gaat van 3 naar 4 onderwerpen en van hoogstens 450 naar hoogstens 550 woorden; de introductie blijft 1 A4 (gemeten met de afdruk van Chrome, zoals in B72). Tekst, geredigeerd met beide skills (0 meldingen), ter goedkeuring bij de auteur:
+
+> **2. Tijd en planning**
+>
+> De vier leerblokken kosten samen ongeveer 4½ uur:
+>
+> - Leerblok 1: ± 30 min
+> - Leerblok 2: ± 45 min, plus hoogstens 15 min terugblik
+> - Leerblok 3: ± 105 min, plus hoogstens 15 min terugblik
+> - Leerblok 4: ± 45 min, plus hoogstens 15 min terugblik
+>
+> Werk je zelfstandig? Zet elk leerblok als een afspraak in je agenda. Leerblok 3 kun je over twee keer verdelen: de site onthoudt bij welke taak je was. Bij elk leerblok staat wanneer het in het programma aan de beurt is; heb het dan af. Begin op tijd, zodat er tussen twee leerblokken een paar dagen zit. Het volgende leerblok begint met een terugblik: je schrijft uit je hoofd op wat je nog weet. Zo onthoud je het beter.
+
+Het advies volgt uit het ontwerp: de terugblik is gebouwd op spreiden en ophalen (LRD 2.8); bij een pauze van 2 tot en met 13 dagen krijgt de student de volledige terugblik (`data/terugblik.json`, band „volledig”). „De site onthoudt bij welke taak je was” is „Verder waar je was” (DESIGN §5.2), in dezelfde browser.
+
+Op de startpagina noemt het blok „Wat heb je aan het eind?” de totale tijd (§3.3) en luidt de linkregel: „Hoeveel tijd het kost, hoe je plant en hoe je inlevert, lees je in de introductie van één pagina.”
+
+## 10. De richttijd volgt de taken (B118)
+
+**Wat er mis is.** Elk leerblok heet „± 45 min” (B42, FR-44, NFR-07, PF-5), en `content-check` eist dat. Maar de taken van leerblok 3 tellen volgens het werkboek op tot 105 minuten (5.1, 6.1, 7.1 en 8.1 elk 20, 9.1 15, 9.2 10), en deel 2 van het werkcollege duurt 145 minuten. Leerblok 1 telt op tot 30 minuten. Een student in zelfstudie die op 45 minuten plant, loopt bij leerblok 3 een uur uit.
+
+**Regel.** De richttijd van een leerblok is de som van de richttijden van zijn taken; de verdieping telt niet mee (TK-14). De terugblik van hoogstens 15 minuten komt er vanaf leerblok 2 bovenop (B53). Nu: leerblok 1 30 min, 2 45 min, 3 105 min, 4 45 min; samen 225 min, met terugblikken hoogstens 270 min (4½ uur).
+
+**Eén bron.** De taken in `data/leerblok-N.json` zijn de bron. Het veld `richttijd` bovenaan `leerblok-N.json` en de `richttijd` per leerblok in `leerblokken.json` volgen die som; `content-check` controleert dat (in `controleerMap`, waar beide bestanden samenkomen) in plaats van „precies 45”. Wie een taaktijd aanpast, krijgt dus een fout tot de richttijd mee is aangepast.
+
+**Wat er verandert.**
+
+| Waar | Wijziging |
+|---|---|
+| `data/leerblokken.json` | richttijd leerblok 1 → 30, leerblok 3 → 105 |
+| `data/leerblok-1.json`, `data/leerblok-3.json` | veld `richttijd` bovenaan → 30 en 105 (geen taken) |
+| `tools/content-check.mjs` | `richttijd !== 45` vervalt; nieuw: richttijd = som van de taken, en overzicht = leerblokbestand |
+| `js/terugblik-pagina.js` | „bovenop de 45 min van het leerblok” → de richttijd van dat leerblok |
+| tests | PF-5 (`toegankelijk`), LB-1 (`weergave`, `content-check`) en TK-14 (`lb4`) toetsen de som in plaats van 45 |
+| `docs/docentgids.html` | „Vier leerblokken van 45 minuten” → de vier tijden en de terugblik |
+| LRD | FR-44, NFR-07, AC-08 („1,25 keer de richttijd van dat leerblok”), de scope-regel, het weekprogramma (Deel 8) en de andere vermeldingen van „45 min” |
+| BLUEPRINT | LB-1, PF-5 en TK-14: „45 min” → „de som van de taken” |
+| ADR | B118; B42 en B53 krijgen in de statuskolom „deels vervangen door B118” |
+
+De leerblokkaart en de kop van de leerblokpagina tonen de richttijd al uit de data („± 105 min”); daar verandert geen code.
