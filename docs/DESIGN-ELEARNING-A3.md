@@ -4,7 +4,7 @@ Ontwerprichtlijn voor de studentkant van `hanbedrijfskunde/a3-learning`. Gebasee
 
 Dit document beschrijft **hoe de site moet voelen en werken**. De bestaande eisen blijven gelden: toegankelijkheid (TG-*), privacy (PR-*), gewicht (PF-4), geen score of ranglijst (BW-4, X-3) en modelantwoord pas na eigen poging (TK-6).
 
-Het toetsbare deel van deze richtlijn staat als SX-1 t/m SX-16 in [BLUEPRINT-ELEARNING-A3.md](BLUEPRINT-ELEARNING-A3.md) §6.17; bij verschil gaat het blueprint voor. De besluiten staan in [ADR-ELEARNING-A3.md](ADR-ELEARNING-A3.md) B73 t/m B81, de bouwvolgorde in [BUILDPLAN-ELEARNING-A3.md](BUILDPLAN-ELEARNING-A3.md) fase 16 t/m 19.
+Het toetsbare deel van deze richtlijn staat als SX-1 t/m SX-19 in [BLUEPRINT-ELEARNING-A3.md](BLUEPRINT-ELEARNING-A3.md) §6.17; bij verschil gaat het blueprint voor. De besluiten staan in [ADR-ELEARNING-A3.md](ADR-ELEARNING-A3.md) B73 t/m B81 (metrokaart: B110), de bouwvolgorde in [BUILDPLAN-ELEARNING-A3.md](BUILDPLAN-ELEARNING-A3.md) fase 16 t/m 19.
 
 ---
 
@@ -45,6 +45,10 @@ Alle kleuren staan in `:root` van `css/site.css`, en nergens anders (`tests/toeg
 | ➕ `--link` | `#000000` | Linkkleur (nu valt `a` terug op browserblauw). |
 | ➕ `--link-hover` | `#B8004A` (= `--accent-donker`) | Hover op link. Als hex: `tools/contrast-check.mjs` leest alleen hexwaarden. |
 | ➕ `--leeg` | `#F2F2F0` (= `--grijs`) | Achtergrond van „Te doen”-status en lege voortgangssegmenten. |
+| ➕ `--lijn-1` | `#E50056` | Metrolijn van leerblok 1 (4,70:1 met wit). |
+| ➕ `--lijn-2` | `#0063B2` | Metrolijn van leerblok 2 (6,13:1). |
+| ➕ `--lijn-3` | `#00804A` | Metrolijn van leerblok 3 (5,02:1). |
+| ➕ `--lijn-4` | `#C2410C` | Metrolijn van leerblok 4 (5,18:1). Alleen in de metrokaart; elders blijft de huisstijl magenta, zwart en wit. |
 
 ### Typografie
 
@@ -120,8 +124,8 @@ Geen EV-codes, geen richttijdtabel.
 
 ```
 ┌──────────────────────────────┐
+│ ⦿━●━◉·◉·◎·○━○━⦿══            │  metrokaart (scrolt mee, §6)
 │ ← Leerblok 1     Taak 2 van 3 │  vaste kop
-│ ▬▬▬▬ ▬▬▬▬ ▬▬▬▬ ░░░░           │  segmentbalk: stappen van deze taak
 │ Waarom · Stof · Oefenen · Toep.│  stappenrij, huidige onderstreept
 ├──────────────────────────────┤
 │ [2.1]  Alleen · 10 min        │
@@ -134,7 +138,7 @@ Geen EV-codes, geen richttijdtabel.
 ```
 
 - **Vier stappen** per taak (TK-18, B76): Waarom → Stof → Oefenen → Toepassen. „Klaar” en de volgende stap sluiten Toepassen af; de verdieping verschijnt daarna en is geen segment. Elke stap past zo veel mogelijk in één scherm; langere stof wordt opgesplitst in kaarten die je doorveegt of doorklikt.
-- **Segmentbalk**: voltooid = `--zwart`, actief = `--accent`, open = `--grijs`. 6 px hoog, 3 px tussenruimte.
+- **Metrokaart** in plaats van de segmentbalk (B110): de stappen van deze taak zijn de stap-haltes van de opengeklapte huidige taak (zie §6 Metrokaart).
 - **Klaar-als als live checklist**: elk criterium uit `klaarAls` is een regel met een vakje. Vinkt af zodra de bijbehorende controle (soort A) slaagt. Criteria die niet automatisch te controleren zijn, vinkt de student zelf af.
 - **Vaste voet**: één primaire knop (accent, volle breedte min secundaire knop). Tekst per stap: „Verder” → „Naar oefenen” → „Check en zie modelantwoord” → „Bewaar in dossier”.
 - **Modelantwoord** verschijnt na „Check” als uitklappend paneel met de kop „Zo zou het kunnen”. Presenteer het als beloning, niet als correctie.
@@ -188,7 +192,36 @@ Maximaal één primaire knop per scherm.
 
 ### Segmentbalk
 
-Flex/grid met `gap: 3px`, segmenten 6 px hoog. Altijd met een tekstalternatief (`aria-label="Taak 2 van 3, stap 3 van 4"`).
+Flex/grid met `gap: 3px`, segmenten 6 px hoog. Altijd met een tekstalternatief. Alleen nog op de startpagina, bij de vier leerblokregels (resultaten per leerblok). In de taakkop is hij vervangen door de metrokaart (B110).
+
+### Metrokaart
+
+Bovenaan elke studentpagina, onder het hoofdmenu en boven `main`; scrolt mee. Eén leerblok tegelijk, als inline SVG.
+
+```
+ ⦿━━━━━●━━━━━●━━┳━ A ━●━┳━━◉━━━━━○━━━━━○━━━━━⦿══ 3
+ Vorige keer 3.1   3.2 ┗━ B ┅○┅┛  4.1   4.2   4.3   Afsluiten
+                                  hier
+```
+
+| Onderdeel | Vorm |
+|---|---|
+| Lijn | 6 px in `--lijn-N`; een gestippelde tak of zijtak: zelfde kleur, streep 6/4 |
+| Taakhalte afgerond | cirkel 14 px, gevuld in `--lijn-N`, rand 3 px `--lijn-N` |
+| Taakhalte open | cirkel 14 px, `--wit`, rand 3 px `--lijn-N` |
+| Hier | cirkel 14 px, `--wit`, ring 3 px `--zwart`, label „hier” eronder in 13 px vet |
+| Stap-halte | cirkel 10 px, zelfde standen; alleen bij de huidige taak, labels W · S · O · T |
+| Overstappunt | cirkel 18 px, `--wit`, rand 4 px `--zwart`; gevuld zwart als het leerblok is afgerond |
+| Stompje vorige/volgende lijn | korte lijn in `--lijn-(N±1)` van het overstappunt tot de rand; decoratief (`aria-hidden`), de overstap staat in de naam van het overstappunt |
+| Labels overstappunten | boven de lijn, links (begin) en rechts (eind) uitgelijnd; overige labels eronder |
+| Labels | 13 px, `--grijs-tekst`; taaknummer onder de halte, takken kort (A, B, Art. 1, Art. 2, T, V, S) |
+
+- **Splitsen en samenkomen**: de tak buigt met een boog van 45° af en sluit op dezelfde manier weer aan. Takken liggen boven en onder de hoofdlijn; bij drie takken (T/V/S) ligt de middelste op de hoofdlijn.
+- **Smalle schermen**: de afstand tussen haltes schaalt mee. Onder 28 px vallen de labels weg, behalve „hier” en de overstappunten. Het tikvlak van een halte is een strook: de volle hoogte van de kaart (≥ 44 px) en de breedte tot halverwege de buren; takken in één kolom delen de strook in de hoogte. Minstens 24 × 24 px (WCAG 2.5.8), zonder overlap. Dit wijkt af van de 44 × 44 in §4, omdat elf haltes van 44 px niet op 328 px passen (B110). De verdieping heeft een eigen smalle kolom, met de halte onder de lijn.
+- **Geen schaduw** (SX-7): een harde schaduw op een lijn van 6 px leest als een tweede lijn.
+- **Tekstregel** onder de kaart, in 13 px `--grijs-tekst`: „Leerblok 2 · taak 3 van 5 · stap 2 van 4”.
+- **Beweging**: alleen het vullen van een halte, 200 ms, niet bij `prefers-reduced-motion`.
+- **Afdruk**: de kaart staat niet op papier.
 
 ### A3-vak 1
 

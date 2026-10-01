@@ -1,6 +1,6 @@
 # BLUEPRINT — Hybride e-learning A3 met automatisch bewijs
 
-> Afgeleid van `docs/LRD-ELEARNING-A3.html` (LRD versie 0.16, 1 oktober 2026). Dit document beschrijft de doelsituatie van het product: geen bouwvolgorde, geen fasering, geen voortgang. Bouwvolgorde en voortgang staan in het bouwplan (`BUILDPLAN-ELEARNING-A3.md`). Pedagogische onderbouwing en risico's blijven in het LRD; het besluitenregister (B1–B88) staat in `docs/ADR-ELEARNING-A3.md`; regels hier verwijzen daar niet naartoe maar zijn zelfstandig toetsbaar. Bijlage A koppelt elke LRD-eis aan de regels hieronder.
+> Afgeleid van `docs/LRD-ELEARNING-A3.html` (LRD versie 0.19, 1 oktober 2026). Dit document beschrijft de doelsituatie van het product: geen bouwvolgorde, geen fasering, geen voortgang. Bouwvolgorde en voortgang staan in het bouwplan (`BUILDPLAN-ELEARNING-A3.md`). Pedagogische onderbouwing en risico's blijven in het LRD; het besluitenregister (B1–B88) staat in `docs/ADR-ELEARNING-A3.md`; regels hier verwijzen daar niet naartoe maar zijn zelfstandig toetsbaar. Bijlage A koppelt elke LRD-eis aan de regels hieronder.
 
 **Lezen.** Elke regel heeft een ID (prefix per onderwerp), een verplichtingsniveau (Must, Should, Could), een criterium met getal en eenheid, en een verificatiemethode (Test, Demonstratie, Inspectie, Analyse). „Moet" is de verplichting van het product, niet de volgorde van het werk. De statusnamen Compleet, Bijna en „Te doen" zijn productterm en geen voortgangstaal. In schema en records heet de derde status `nog niet` (§5); alleen de weergave voor de student zegt „Te doen".
 
@@ -434,7 +434,7 @@ Geldt voor de studentpagina's (start, leerblokken, dossier, bronnen), niet voor 
 | <a id="sx-1"></a>SX-1 | Het hoofdmenu van de studentpagina's moet alleen Start, Leerblokken, Dossier en Bronnen bevatten; docentmodus en verificatie staan in de voettekst. Onder 40rem staat het menu als vaste tabbalk onderin. | Must | ≤ 4 menu-items; 1 tabbalk op 360 px; docentmodus en verificatie in ≤ 2 klikken (SI-1) | Test |
 | <a id="sx-2"></a>SX-2 | De site mag een foutmelding bij een invoerveld pas tonen nadat de student het veld verlaat of het formulier indient. | Must | 0 foutmeldingen bij het laden van een lege startpagina; ≤ 1 melding per veld tegelijk | Test |
 | <a id="sx-3"></a>SX-3 | De studentpagina's mogen geen interne codes of systeemtermen tonen; ze noemen het resultaat in gewone taal. Export, verificatie en docentmodus behouden de codes. | Should | 0 treffers van `EV-` gevolgd door een cijfer en van „bewijsonderdeel" in de zichtbare tekst van de studentpagina's | Test |
-| <a id="sx-4"></a>SX-4 | Elke taak moet een vaste kop hebben met taaknummer in het leerblok en een segmentbalk van de vier stappen (TK-18), met een tekstalternatief. | Should | 100 % van de taken; 4 segmenten; 1 `aria-label` van de vorm „Taak 2 van 3, stap 3 van 4" | Test |
+| <a id="sx-4"></a>SX-4 | Elke taak moet een vaste kop hebben met taaknummer in het leerblok. De vier stappen (TK-18) staan als stap-haltes van de huidige taak op de metrokaart (SX-18), met een tekstalternatief; de taakkop heeft geen eigen segmentbalk. | Should | 100 % van de taken; 4 stap-haltes; 1 `aria-label` van de vorm „Taak 2 van 3, stap 3 van 4" op de kaart; 0 segmentbalken in de taakkop | Test |
 | <a id="sx-5"></a>SX-5 | De „klaar als"-regel moet als checklist verschijnen: criteria met een controle van soort A vinken zichzelf af, de andere vinkt de student af. De tekst blijft letterlijk die van het werkboek (TK-2). | Should | 100 % van de criteria als vakje; afgevinkt ≤ 1 s na 600 ms zonder typen; 0 tekens verschil met de werkboektekst | Test |
 | <a id="sx-6"></a>SX-6 | De site moet één taak en één stap tegelijk tonen, met een vaste voet met hoogstens één primaire knop, een eigen adres per taak en stap, en de focus op de stapkop na een stapwissel. | Should | 1 zichtbare taak; ≤ 1 primaire knop per scherm; terugknop van de browser gaat 1 stap terug; focus op de kop in 100 % van de wissels | Test |
 | <a id="sx-7"></a>SX-7 | Een harde schaduw mag alleen op elementen staan die je kunt aanklikken of aantikken. | Should | 0 informatieve kaarten met schaduw; 0 kaarten met schaduw binnen een kaart met schaduw | Inspectie |
@@ -448,6 +448,8 @@ Geldt voor de studentpagina's (start, leerblokken, dossier, bronnen), niet voor 
 | <a id="sx-15"></a>SX-15 | Waar de stof of de tekstroute een model noemt (iets met assen, vakken of lagen: invloed/belang-raster, VPC, BMC, TOM³, six capitals, A3-vel), moet de figuur van dat model erbij staan, met een tekst die hem uitlegt. Een voorbeeld bij een model staat in de figuur. | Should | 100 % van de genoemde modellen met figuur en uitleg (BMC en TOM³ sinds B92 en B93; TOM³ als bord sinds B98); een model zonder figuur geeft een waarschuwing in de contentcontrole | Test (contentcontrole) |
 | <a id="sx-16"></a>SX-16 | De stakeholders van taak 5.1 moeten bij oefenen en toepassen direct in het invloed/belang-raster te plaatsen zijn (slepen, tikken of toetsenbord), met het vraagstuk in het midden, intern of extern op elke kaart en een tekstweergave. Het voorbeeld in de tekstroute en het modelantwoord staan in hetzelfde raster. De gegevens blijven de velden van EV-06. | Should | 4 manieren om te plaatsen werken (slepen, tikken, pijltjes, detailpaneel); ≤ 2 handelingen per plaatsing; 2 × 2 op 360 px; 0 wijzigingen in dossierschema 1.0 | Test |
 | <a id="sx-17"></a>SX-17 | Het TOM-model van taak 8.1 moet in de stof te verkennen zijn (per cel een vraag, waar je kijkt en de twee kijkrichtingen omhoog en opzij) en bij oefenen en toepassen de invoer zijn: signalen van de oefencasus in een cel zetten, en per cel van het eigen vraagstuk een tekst. Het modelantwoord staat op hetzelfde bord, per signaal naast de plek van de student. Geen score of index (X-13, X-3). | Should | 12 cellen, elk met een vraag en ≥ 2 dingen om naar te kijken; ≤ 2 handelingen per plaatsing; 3 × 4 zonder horizontale scroll op 360 px; 0 wijzigingen in dossierschema 1.0; 0 bytes van het bord in de eerste lading | Test |
+| <a id="sx-18"></a>SX-18 | Bovenaan elke studentpagina moet een metrokaart van één leerblok staan: een lijn in de kleur van dat leerblok, een halte per taak met de stand (afgerond, hier, open), de huidige taak opengeklapt in vier stap-haltes, en aan begin en eind een overstappunt (begin: „Vorige keer”, bij leerblok 1 „Start”; eind: „Afsluiten” met een stompje van de volgende lijn, bij leerblok 4 „Dossier”). Op een leerblokpagina is dat het leerblok van de pagina en volgt „hier” het adres; op start, dossier en bronnen het leerblok met de jongste opgeslagen positie, zonder positie leerblok 1 met „hier” op het beginpunt. Elke halte en elk overstappunt is een link. Kleur is niet de enige drager van de stand. | Should | 7 van 7 studentpagina's, 0 op docentmodus, verificatie en controlelab; 4 lijnkleuren, elk ≥ 3:1 tegen wit; 0 px horizontale scroll op 360 px; tikvlak per halte ≥ 24 × 24 px en kaart ≥ 44 px hoog, zonder overlap; 1 `aria-current="step"`; 100 % van de haltes met een toegankelijke naam met taak en stand | Test |
+| <a id="sx-19"></a>SX-19 | De metrokaart moet splitsingen tonen als takken die na de splitsing weer samenkomen: route A/B in taak 3.2 (oefenen en toepassen), artikel 1/2 in de oefening van taak 4.2, tekst/video/spel in de stap stof van de mediataak (alleen als die taak opengeklapt is), en de verdieping als gestippelde zijtak na haar taak. De gekozen tak is vol getekend en de andere gestippeld; zonder keuze zijn alle takken vol. Splitsingen staan in de leerblokdata (veld `spoor`), niet in de code. | Should | 4 soorten splitsing; 1 volle tak per gemaakte keuze; content-check keurt een `spoor` met een onbekende stap of een tak buiten de opties van het veld af | Test |
 
 ---
 
@@ -647,10 +649,11 @@ Regels zijn hier hergroepeerd en gesplitst tot één verplichting per regel. Elk
 | FR-65 | TP-10, DM-14 |
 | FR-66 | ST-7 |
 | FR-67 | TP-11 |
-| FR-68 | SX-4, SX-5, SX-12, LB-16 |
+| FR-68 | SX-4, SX-5, SX-12, SX-18, LB-16 |
 | FR-69 | SX-1, SX-2, SX-3, SX-6, MD-2 |
 | FR-70 | LB-18, LB-19, EV-12, RC-7 |
 | FR-71 | LB-20 |
+| FR-72 | SX-18, SX-19 |
 | FR-73 | BW-14, DS-13 |
 
 ### Non-functionele requirements
@@ -704,7 +707,7 @@ Regels zijn hier hergroepeerd en gesplitst tot één verplichting per regel. Elk
 | Deel 8 (programma, verdieping, media, terugblik) | §4.2; inhoud blijft bron in het LRD |
 | Deel 9 (toetsing) | §3 („Wat het bewijs is"), X-14, DS-8 |
 | Deel 10 (deliverables) | §7.4 |
-| Deel 11 (AC-01–AC-45) | Bijlage B |
+| Deel 11 (AC-01–AC-48) | Bijlage B |
 | Deel 12 (risico's) | — (risicolijst blijft in het LRD; mitigaties zijn regels hierboven) |
 | Deel 13 (roadmap) | — (bouwvolgorde hoort in het bouwplan) |
 | Besluitenregister (tot LRD 0.12 Bijlage A, B1–B60) | — (staat in `docs/ADR-ELEARNING-A3.md`; vervangen besluiten blijven daar staan; alle besluiten zijn in B58 bevestigd) |
@@ -761,3 +764,6 @@ De acceptatiecriteria van het LRD zijn hier de verificatie van regels, geen apar
 | AC-43 | ST-7 |
 | AC-44 | TP-11 |
 | AC-45 | SX-1, SX-2, SX-4, SX-5, SX-6, SX-12 |
+| AC-46 | LB-18, LB-20 |
+| AC-47 | RC-7 |
+| AC-48 | SX-18, SX-19 |
