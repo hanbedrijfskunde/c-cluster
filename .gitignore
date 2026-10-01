@@ -11,3 +11,6 @@ WK*/*.pptx
 WK*/*.docx
 WK*/*.odt
 WK*/*Copy.pdf
+
+# Lokale git-worktrees
+.worktrees/
