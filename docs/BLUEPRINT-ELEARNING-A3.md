@@ -366,7 +366,7 @@ Elke regel: de site moet het onderdeel alleen als Compleet aanmerken als de geno
 | <a id="md-11"></a>MD-11 | Een spel of simulatie moet deel uitmaken van de oefenversie en mag geen bewijs leveren. | Must | 0 bewijsrecords uit een spel | Test |
 | <a id="md-12"></a>MD-12 | Elk leerblok moet volledig te doen zijn met alleen tekst. | Must | 4 leerblokken afgerond zonder video of spel | Test |
 | <a id="md-13"></a>MD-13 | Spel en simulatie moeten in de browser zonder netwerk werken. | Should | 0 netwerkverzoeken tijdens het spelen | Test |
-| <a id="md-14"></a>MD-14 | Video en achtergrond van derden (Bureau Tromp, MIT OpenCourseWare, Atlassian) moeten als gewone link verschijnen, zonder inbedding. | Must | 0 ingebedde frames van derden | Inspectie |
+| <a id="md-14"></a>MD-14 | Video en achtergrond van derden (Bureau Tromp, MIT OpenCourseWare, Atlassian, Mitsubishi Corporation) moeten als gewone link verschijnen, zonder inbedding. | Must | 0 ingebedde frames van derden | Inspectie |
 | <a id="md-15"></a>MD-15 | Elk spel en elke simulatie moet fictieve voorbeelden duidelijk als fictief markeren. | Should | 100 % van de fictieve bronkaarten met aanduiding „fictief" | Inspectie |
 | <a id="md-16"></a>MD-16 | Leerblok 1 moet twee externe kijktips als gewone link tonen: Bureau Tromp (Nederlands) als instap en het MIT OpenCourseWare-fragment over de A3 als denkwijze als verdieping, elk met bron, duur en taal. | Should | 2 links; 2 van 2 met duur en taal; 0 ingebedde frames | Inspectie |
 

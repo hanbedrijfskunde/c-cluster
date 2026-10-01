@@ -801,6 +801,12 @@ Spec: `docs/superpowers/specs/2026-10-01-metrokaart-design.md`; plan: `docs/supe
 - [x] `js/metro.js` op de zeven studentpagina's; segmentbalk uit de taakkop (SX-4); gewichtscontrole kent `${elders}`.
 - [x] Doorloop in de browser op 360 en 1280 px (11 punten uit het plan). Twee fouten gevonden en hersteld, elk met een test: de kaart lijnde niet uit met de inhoud, en de CSP van het dossier blokkeerde de inline lijnkleur.
 
+## Aanvulling — Verdieping leerblok 4: de zes kapitalen bij Mitsubishi (1-10-2026, op verzoek van de auteur)
+
+Besluit: ADR B114.
+
+- [x] Verdieping van leerblok 4 (na 6.3): de tweede keuze wordt een opdracht bij „The Six Capitals” van Mitsubishi Corporation (2023), met een gewone link in een nieuw tabblad en een bronregel in `bronnen-4.json`; veld `verdieping.link` met contentcontrole (MD-14, BR-4). Verwacht en gehaald: 709 tests groen, `content-check` en `link-check` ok (22 links), leerblok 4 op 135,8 kB gzip, 0 iframes; in de browser klikt de verwijzing naar de bronregel.
+
 ## Bijlage — Dekking van de blueprintregels per fase
 
 Elke regel staat bij de fase die haar realiseert en verifieert. Een regel die in een latere fase opnieuw wordt gecontroleerd (regressie) staat alleen bij haar eigen fase.
