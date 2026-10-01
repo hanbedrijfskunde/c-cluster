@@ -807,6 +807,14 @@ Besluit: ADR B114.
 
 - [x] Verdieping van leerblok 4 (na 6.3): de tweede keuze wordt een opdracht bij „The Six Capitals” van Mitsubishi Corporation (2023), met een gewone link in een nieuw tabblad en een bronregel in `bronnen-4.json`; veld `verdieping.link` met contentcontrole (MD-14, BR-4). Verwacht en gehaald: 709 tests groen, `content-check` en `link-check` ok (22 links), leerblok 4 op 135,8 kB gzip, 0 iframes; in de browser klikt de verwijzing naar de bronregel.
 
+## Aanvulling — Kijktip van Yale in leerblok 4 (1-10-2026, op verzoek van de auteur)
+
+Besluit: ADR B115.
+
+- [x] `data/leerblok-4.json`: sleutel `kijktips` achteraan (na `media`) met één kijktip, rol Verdieping: Yale University (2025), *702 | How Do Social Enterprises Make Money? Revenue Models*, fragment 1:47 tot 6:50 (5:03), Engels; bronregel in `bronnen-4.json` (MD-18, MD-14, BR-4).
+- [x] `tools/content-check.mjs`: één of twee kijktips per leerblok in plaats van precies twee (MD-16, MD-18); tests in `tests/media.test.mjs` voor de kijktip van leerblok 4 en voor de telling (0 en 3 geven een fout, 1 en 2 niet).
+- [x] Gewicht: leerblok 4 laadt `media.js` nu direct (13 kB). Het commentaar in `media.js` noemt geen letterlijk datapad meer, anders telde de gewichtscontrole `leerblok-1.json` mee. Verwacht en gehaald: 712 tests groen, `content-check` en `link-check` ok (23 links), leerblok 4 op 141,1 kB gzip en 434,4 kB bron (grens 500), 0 iframes; in de browser op 360 px staat het blok „Kijktips van anderen” tussen „Jouw vraagstuk” en „Taken in dit leerblok”, zonder horizontale scroll, en de bronnenpagina toont Yale University (2025).
+
 ## Bijlage — Dekking van de blueprintregels per fase
 
 Elke regel staat bij de fase die haar realiseert en verifieert. Een regel die in een latere fase opnieuw wordt gecontroleerd (regressie) staat alleen bij haar eigen fase.
@@ -825,7 +833,7 @@ Elke regel staat bij de fase die haar realiseert en verifieert. Een regel die in
 | 9 | DM-1, DM-2, DM-3, DM-4, DM-5, DM-6, DM-7, DM-8, DM-9, DM-10, DM-11, DM-14, DM-15, DM-16, DM-17, PR-3, PR-4 |
 | 10 | LB-9, LB-10, LB-11, LB-12, LB-13, EV-06, EV-07, EV-08, DM-18, LI-3 |
 | 11 | LB-15, LB-16, LB-17, EV-10, EV-11, VB-1, VB-2, VB-3, VB-4, VB-5, VB-6, VB-7, VB-8, VB-9, VB-10, WS-2, TK-11, TK-12, TK-13, TK-14, ST-3, ST-4, ST-5, BW-10, LI-2 |
-| 12 | MD-1, MD-2, MD-3, MD-5, MD-6, MD-7, MD-9, MD-10, MD-11, MD-13, MD-14, MD-15, MD-16 |
+| 12 | MD-1, MD-2, MD-3, MD-5, MD-6, MD-7, MD-9, MD-10, MD-11, MD-13, MD-14, MD-15, MD-16; aanvulling: MD-18 |
 | 13 | MD-4, MD-8, MD-12, DM-13 |
 | 14 | DM-12, DL-1, DL-2, DL-4, QA-4, QA-5, LI-1 |
 | 15 | AP-1, AP-2, AP-3, AP-4, AP-5, AP-6, AP-7, AP-8, AP-9, DL-3 |

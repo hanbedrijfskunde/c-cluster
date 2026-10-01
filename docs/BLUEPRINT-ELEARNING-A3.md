@@ -366,9 +366,10 @@ Elke regel: de site moet het onderdeel alleen als Compleet aanmerken als de geno
 | <a id="md-11"></a>MD-11 | Een spel of simulatie moet deel uitmaken van de oefenversie en mag geen bewijs leveren. | Must | 0 bewijsrecords uit een spel | Test |
 | <a id="md-12"></a>MD-12 | Elk leerblok moet volledig te doen zijn met alleen tekst. | Must | 4 leerblokken afgerond zonder video of spel | Test |
 | <a id="md-13"></a>MD-13 | Spel en simulatie moeten in de browser zonder netwerk werken. | Should | 0 netwerkverzoeken tijdens het spelen | Test |
-| <a id="md-14"></a>MD-14 | Video en achtergrond van derden (Bureau Tromp, MIT OpenCourseWare, Atlassian, Mitsubishi Corporation) moeten als gewone link verschijnen, zonder inbedding. | Must | 0 ingebedde frames van derden | Inspectie |
+| <a id="md-14"></a>MD-14 | Video en achtergrond van derden (Bureau Tromp, MIT OpenCourseWare, Atlassian, Mitsubishi Corporation, Yale University) moeten als gewone link verschijnen, zonder inbedding. | Must | 0 ingebedde frames van derden | Inspectie |
 | <a id="md-15"></a>MD-15 | Elk spel en elke simulatie moet fictieve voorbeelden duidelijk als fictief markeren. | Should | 100 % van de fictieve bronkaarten met aanduiding „fictief" | Inspectie |
 | <a id="md-16"></a>MD-16 | Leerblok 1 moet twee externe kijktips als gewone link tonen: Bureau Tromp (Nederlands) als instap en het MIT OpenCourseWare-fragment over de A3 als denkwijze als verdieping, elk met bron, duur en taal. | Should | 2 links; 2 van 2 met duur en taal; 0 ingebedde frames | Inspectie |
+| <a id="md-18"></a>MD-18 | Leerblok 4 moet één externe kijktip als gewone link tonen: het fragment 1:47 tot 6:50 van Yale University (Engels) als verdieping, met bron, duur en taal en een beschrijving die zegt dat de video over verdienmodellen gaat en niet over kapitalen (B115). | Should | 1 link; 1 van 1 met bron, duur, taal en fragment; 0 ingebedde frames | Test |
 
 ### 6.13 Bronnen (BR)
 
@@ -570,6 +571,7 @@ Volledige APA-vermeldingen staan in het LRD, Bijlage A. Hier alleen de bronnen w
 - Mayer, R. E. (2004). Should there be a three-strikes rule against pure discovery learning? *American Psychologist, 59*(1), 14–19. (VB-2, VB-4)
 - Mislevy, R. J., Almond, R. G. & Lukas, J. F. (2003). *A brief introduction to evidence-centered design* (RR-03-16). ETS. (§2, EV)
 - Roediger, H. L., III & Karpicke, J. D. (2006). Test-enhanced learning. *Psychological Science, 17*(3), 249–255. (TP-2)
+- Yale University. (2025, 13 augustus). *702 | How do social enterprises make money? Revenue models* [Video]. YouTube. https://www.youtube.com/watch?v=p1CRXRxnpBQ (MD-18)
 - Westmoreland BV. (z.d.). *Architectuur- en implementatieblauwdruk van het TOM³-model* [Ongepubliceerd document]. (LB-11)
 - Interne bronnen: leeruitkomsten en opdrachtomschrijvingen C-cluster; `WK5/Werkboek_A3-start_week5.html`; `WK5/Draaiboek_woensdag_week5.html`; `docs/LRD-ELEARNING-A3.html`.
 
@@ -609,7 +611,7 @@ Regels zijn hier hergroepeerd en gesplitst tot één verplichting per regel. Elk
 | FR-24 | DS-9 |
 | FR-25 | QA-1 |
 | FR-26 | ST-6 |
-| FR-27 | MD-14, MD-16 |
+| FR-27 | MD-14, MD-16, MD-18 |
 | FR-28 | TK-10, TK-11, TK-12 |
 | FR-29 | DM-1, DM-2 |
 | FR-30 | DM-3 |
@@ -698,7 +700,7 @@ Regels zijn hier hergroepeerd en gesplitst tot één verplichting per regel. Elk
 | Deel 6.2 (bewijsrecord) | RC-1, RC-2, RC-3, RC-4 |
 | Deel 6.7 en 8.2 (programma van woensdag, begintijden) | DM-10, DM-18 |
 | Deel 6.9 en risico „vierde invulplaatje" (taak 9.4 zelfstandig, 20 min) | VB-9 |
-| Deel 6.10 en 8.4 (tekst ≤ 300 woorden, fictieve bronkaarten) | MD-3, MD-15, MD-16 |
+| Deel 6.10 en 8.4 (tekst ≤ 300 woorden, fictieve bronkaarten) | MD-3, MD-15, MD-16, MD-18 |
 | Deel 12 (risico's: pilotbanner, klembord bij de Wissel, herinnering) | SI-8, WS-10, WS-11 |
 | Deel 10 (deliverables 5, 6, 7) | DL-1, DL-2, DL-3 |
 | Deel 6.7 (docentmodus) | §6.16 |
