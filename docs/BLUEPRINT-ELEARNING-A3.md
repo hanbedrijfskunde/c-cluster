@@ -338,7 +338,7 @@ Elke regel: de site moet het onderdeel alleen als Compleet aanmerken als de geno
 
 | ID | Eis | Prio | Criterium | Verificatie |
 |---|---|---|---|---|
-| <a id="tp-1"></a>TP-1 | Elk leerblok vanaf 2 moet beginnen met een terugblik van hoogstens 15 min bovenop de richttijd van het leerblok. | Should | 3 leerblokken (2, 3, 4); ≤ 15 min; leerblok samen ≤ 60 min | Test |
+| <a id="tp-1"></a>TP-1 | Elk leerblok vanaf 2 moet beginnen met een terugblik van hoogstens 15 min bovenop de richttijd van het leerblok. | Should | 3 leerblokken (2, 3, 4); ≤ 15 min; leerblok samen ≤ richttijd + 15 min (nu 60, 120 en 60 min, B118) | Test |
 | <a id="tp-2"></a>TP-2 | In de terugblik moet de site de student eerst uit het hoofd minstens drie punten uit het vorige leerblok laten opschrijven en twee kennisvragen laten beantwoorden voordat de meenemen-kaart zichtbaar is. | Should | 0 kaarten zichtbaar vóór ≥ 3 punten of „ik weet het nog"; 2 kennisvragen | Test |
 | <a id="tp-3"></a>TP-3 | De site moet daarna de meenemen-kaart tonen met de belangrijkste items van het vorige leerblok en de eigen bewijsstukken uit dat leerblok. | Should | Items volgens LRD 8.5 voor 3 leerblokken; ≥ 1 eigen bewijsstuk | Test |
 | <a id="tp-4"></a>TP-4 | De site moet de student in twee zinnen laten schrijven waar hij of zij dit nu gebruikt, met één item uit de kaart als startpunt van het leerblok. | Should | 2 zinnen; 1 item gekozen | Test |
