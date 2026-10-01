@@ -1,6 +1,6 @@
 # BLUEPRINT — Hybride e-learning A3 met automatisch bewijs
 
-> Afgeleid van `docs/LRD-ELEARNING-A3.html` (LRD versie 0.19, 1 oktober 2026). Dit document beschrijft de doelsituatie van het product: geen bouwvolgorde, geen fasering, geen voortgang. Bouwvolgorde en voortgang staan in het bouwplan (`BUILDPLAN-ELEARNING-A3.md`). Pedagogische onderbouwing en risico's blijven in het LRD; het besluitenregister (B1–B88) staat in `docs/ADR-ELEARNING-A3.md`; regels hier verwijzen daar niet naartoe maar zijn zelfstandig toetsbaar. Bijlage A koppelt elke LRD-eis aan de regels hieronder.
+> Afgeleid van `docs/LRD-ELEARNING-A3.html` (LRD versie 0.20, 1 oktober 2026). Dit document beschrijft de doelsituatie van het product: geen bouwvolgorde, geen fasering, geen voortgang. Bouwvolgorde en voortgang staan in het bouwplan (`BUILDPLAN-ELEARNING-A3.md`). Pedagogische onderbouwing en risico's blijven in het LRD; het besluitenregister (B1–B88) staat in `docs/ADR-ELEARNING-A3.md`; regels hier verwijzen daar niet naartoe maar zijn zelfstandig toetsbaar. Bijlage A koppelt elke LRD-eis aan de regels hieronder.
 
 **Lezen.** Elke regel heeft een ID (prefix per onderwerp), een verplichtingsniveau (Must, Should, Could), een criterium met getal en eenheid, en een verificatiemethode (Test, Demonstratie, Inspectie, Analyse). „Moet" is de verplichting van het product, niet de volgorde van het werk. De statusnamen Compleet, Bijna en „Te doen" zijn productterm en geen voortgangstaal. In schema en records heet de derde status `nog niet` (§5); alleen de weergave voor de student zegt „Te doen".
 
@@ -374,10 +374,10 @@ Elke regel: de site moet het onderdeel alleen als Compleet aanmerken als de geno
 
 | ID | Eis | Prio | Criterium | Verificatie |
 |---|---|---|---|---|
-| <a id="br-1"></a>BR-1 | De site moet een bronnenpagina bieden met alle bronnen uit de contentbestanden in APA, 7e editie (Nederlandse conventies), alfabetisch. | Must | 100 % van de bronnen op de pagina; 0 volgordefouten | Test (contentcontrole) |
+| <a id="br-1"></a>BR-1 | De site moet een bronnenpagina bieden met alle echte bronnen uit de contentbestanden in APA, 7e editie (Nederlandse conventies), alfabetisch; een verzonnen bron voor een oefening staat er niet op (B111). | Must | 100 % van de echte bronnen op de pagina; 0 verzonnen bronnen; 0 volgordefouten | Test (contentcontrole) |
 | <a id="br-2"></a>BR-2 | De bronnenpagina moet per bron een werkende DOI of URL als link tonen, waar die bestaat. | Must | 0 dode links | Test (linkcontrole) |
 | <a id="br-3"></a>BR-3 | Een bron zonder openbare publicatie moet als „ongepubliceerd document" met de organisatie worden vermeld. | Must | 100 % van de niet-openbare bronnen zo vermeld | Inspectie |
-| <a id="br-4"></a>BR-4 | Teksten, video's en spellen moeten bronnen tonen als in-tekstverwijzing (Auteur, jaar) die naar de bronnenpagina klikt. | Must | 100 % van de verwijzingen klikt naar een bronregel | Test |
+| <a id="br-4"></a>BR-4 | Teksten, video's en spellen moeten bronnen tonen als in-tekstverwijzing (Auteur, jaar) die naar de bronnenpagina klikt; een verwijzing naar een verzonnen bron blijft gewone tekst (B111). | Must | 100 % van de verwijzingen naar een echte bron klikt naar een bronregel; 0 verwijzingen naar een verzonnen bron klikken | Test |
 | <a id="br-5"></a>BR-5 | De contentcontrole moet falen als een verwijzing geen bronregel heeft of een bronregel nergens wordt geciteerd. | Must | 0 verwijzingen zonder bronregel; 0 bronregels zonder citatie | Test |
 | <a id="br-6"></a>BR-6 | De workflow moet bij elke publicatie alle DOI's en URL's op werking controleren. | Must | 100 % van de links gecontroleerd per publicatie | Test |
 
