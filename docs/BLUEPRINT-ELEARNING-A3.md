@@ -1,6 +1,6 @@
 # BLUEPRINT — Hybride e-learning A3 met automatisch bewijs
 
-> Afgeleid van `docs/LRD-ELEARNING-A3.html` (LRD versie 0.15, 30 september 2026). Dit document beschrijft de doelsituatie van het product: geen bouwvolgorde, geen fasering, geen voortgang. Bouwvolgorde en voortgang staan in het bouwplan (`BUILDPLAN-ELEARNING-A3.md`). Pedagogische onderbouwing en risico's blijven in het LRD; het besluitenregister (B1–B88) staat in `docs/ADR-ELEARNING-A3.md`; regels hier verwijzen daar niet naartoe maar zijn zelfstandig toetsbaar. Bijlage A koppelt elke LRD-eis aan de regels hieronder.
+> Afgeleid van `docs/LRD-ELEARNING-A3.html` (LRD versie 0.16, 1 oktober 2026). Dit document beschrijft de doelsituatie van het product: geen bouwvolgorde, geen fasering, geen voortgang. Bouwvolgorde en voortgang staan in het bouwplan (`BUILDPLAN-ELEARNING-A3.md`). Pedagogische onderbouwing en risico's blijven in het LRD; het besluitenregister (B1–B88) staat in `docs/ADR-ELEARNING-A3.md`; regels hier verwijzen daar niet naartoe maar zijn zelfstandig toetsbaar. Bijlage A koppelt elke LRD-eis aan de regels hieronder.
 
 **Lezen.** Elke regel heeft een ID (prefix per onderwerp), een verplichtingsniveau (Must, Should, Could), een criterium met getal en eenheid, en een verificatiemethode (Test, Demonstratie, Inspectie, Analyse). „Moet" is de verplichting van het product, niet de volgorde van het werk. De statusnamen Compleet, Bijna en „Te doen" zijn productterm en geen voortgangstaal. In schema en records heet de derde status `nog niet` (§5); alleen de weergave voor de student zegt „Te doen".
 
@@ -480,7 +480,7 @@ Geldt voor de studentpagina's (start, leerblokken, dossier, bronnen), niet voor 
 
 | ID | Eis | Prio | Criterium | Verificatie |
 |---|---|---|---|---|
-| <a id="dl-1"></a>DL-1 | Er moet een docentgids zijn over het gebruik van de docentmodus (klok, stapkaart, onderdelen verschuiven, afdruk), wat het bewijs is en niet is, het inlezen van dossiers, de steekproef en het aanpassen van een modelantwoord. | Must | ≤ 2 pagina's A4; 5 onderwerpen | Inspectie |
+| <a id="dl-1"></a>DL-1 | Er moet een docentgids zijn met een inleiding (onderwerp, plaats in het programma, leeruitkomsten, inrichting, hoe studenten ermee werken, wat de docent ontvangt, waar de docent op let) en daarna het gebruik van de docentmodus (klok, stapkaart, onderdelen verschuiven, afdruk), wat het bewijs is en niet is, het inlezen van dossiers, de steekproef en het aanpassen van een modelantwoord. | Must | ≤ 3 pagina's A4; ≤ 1100 woorden; inleiding met 7 punten en 5 onderwerpen | Inspectie |
 | <a id="dl-2"></a>DL-2 | Er moet een studentintroductie zijn over wat je doet, waar je gegevens staan en hoe je exporteert en inlevert. | Must | ≤ 1 pagina A4; 3 onderwerpen | Inspectie |
 | <a id="dl-3"></a>DL-3 | Er moet een testrapport zijn met netwerktrace zonder derden, toegankelijkheidscontrole, controle op 360 px en pilotresultaat. | Must | 4 onderdelen | Inspectie |
 | <a id="dl-4"></a>DL-4 | Er moet een beschrijving van dossierschema 1.0 zijn. | Should | 13 velden beschreven | Inspectie |
