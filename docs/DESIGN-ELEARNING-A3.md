@@ -4,7 +4,7 @@ Ontwerprichtlijn voor de studentkant van `hanbedrijfskunde/a3-learning`. Gebasee
 
 Dit document beschrijft **hoe de site moet voelen en werken**. De bestaande eisen blijven gelden: toegankelijkheid (TG-*), privacy (PR-*), gewicht (PF-4), geen score of ranglijst (BW-4, X-3) en modelantwoord pas na eigen poging (TK-6).
 
-Het toetsbare deel van deze richtlijn staat als SX-1 t/m SX-19 in [BLUEPRINT-ELEARNING-A3.md](BLUEPRINT-ELEARNING-A3.md) §6.17; bij verschil gaat het blueprint voor. De besluiten staan in [ADR-ELEARNING-A3.md](ADR-ELEARNING-A3.md) B73 t/m B81 (metrokaart: B110), de bouwvolgorde in [BUILDPLAN-ELEARNING-A3.md](BUILDPLAN-ELEARNING-A3.md) fase 16 t/m 19.
+Het toetsbare deel van deze richtlijn staat als SX-1 t/m SX-20 in [BLUEPRINT-ELEARNING-A3.md](BLUEPRINT-ELEARNING-A3.md) §6.17; bij verschil gaat het blueprint voor. De besluiten staan in [ADR-ELEARNING-A3.md](ADR-ELEARNING-A3.md) B73 t/m B81 (metrokaart: B110; infovenster: B112), de bouwvolgorde in [BUILDPLAN-ELEARNING-A3.md](BUILDPLAN-ELEARNING-A3.md) fase 16 t/m 19.
 
 ---
 
@@ -214,14 +214,27 @@ Bovenaan elke studentpagina, onder het hoofdmenu en boven `main`; scrolt mee. E�
 | Overstappunt | cirkel 18 px, `--wit`, rand 4 px `--zwart`; gevuld zwart als het leerblok is afgerond |
 | Stompje vorige/volgende lijn | korte lijn in `--lijn-(N±1)` van het overstappunt tot de rand; decoratief (`aria-hidden`), de overstap staat in de naam van het overstappunt |
 | Labels overstappunten | boven de lijn, links (begin) en rechts (eind) uitgelijnd; overige labels eronder |
-| Labels | 13 px, `--grijs-tekst`; taaknummer onder de halte, takken kort (A, B, Art. 1, Art. 2, T, V, S) |
+| Labels | 13 px, `--grijs-tekst`; taaknummer onder de halte; takken kort (A, B, Art. 1, Art. 2), mediaroutes als woord (tekst, spel), boven de bovenste en onder de onderste tak; de middelste van drie takken heeft geen label |
 
 - **Splitsen en samenkomen**: de tak buigt met een boog van 45° af en sluit op dezelfde manier weer aan. Takken liggen boven en onder de hoofdlijn; bij drie takken (T/V/S) ligt de middelste op de hoofdlijn.
 - **Smalle schermen**: de afstand tussen haltes schaalt mee. Onder 28 px vallen de labels weg, behalve „hier” en de overstappunten. Het tikvlak van een halte is een strook: de volle hoogte van de kaart (≥ 44 px) en de breedte tot halverwege de buren; takken in één kolom delen de strook in de hoogte. Minstens 24 × 24 px (WCAG 2.5.8), zonder overlap. Dit wijkt af van de 44 × 44 in §4, omdat elf haltes van 44 px niet op 328 px passen (B110). De verdieping heeft een eigen smalle kolom, met de halte onder de lijn.
 - **Geen schaduw** (SX-7): een harde schaduw op een lijn van 6 px leest als een tweede lijn.
 - **Tekstregel** onder de kaart, in 13 px `--grijs-tekst`: „Leerblok 2 · taak 3 van 5 · stap 2 van 4”.
 - **Beweging**: alleen het vullen van een halte, 200 ms, niet bij `prefers-reduced-motion`.
+- **Hoogte**: 112 px, de hoofdlijn op 52 px; zo passen de labels boven en onder de takken.
 - **Afdruk**: de kaart staat niet op papier.
+
+#### Infovenster bij een halte (B112, SX-20)
+
+Bij aanwijzen met de muis en bij toetsenbordfocus verschijnt onder de halte een venster met de titel in 13 px vet en het thema in één zin in 13 px. Wit vlak, rand 3 px `--zwart`, geen schaduw (het venster is niet klikbaar), hoogstens 16rem breed en altijd binnen de breedte van de kaart. Het blijft staan als de muis erop komt en sluit met Esc of als de muis en de focus weg zijn. Op een aanraakscherm verschijnt het niet: daar navigeert een tik direct, en de titel staat al in de naam van de link.
+
+| Halte | Titel | Thema |
+|---|---|---|
+| Taak | „3.2 Wedstrijd: vind een goede bron” | `thema` van de taak |
+| Tak | „3.2 · Route B: AI-tool” | `thema` van de taak |
+| Stap | „3.2 · Oefenen” | vaste zin per stap |
+| Verdieping | „Verdieping na 4.1 (optioneel)” | `verdieping.thema` |
+| Begin, eind | „Vorige keer”, „Start”, „Afsluiten”, „Dossier” | vaste zin |
 
 ### A3-vak 1
 

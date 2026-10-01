@@ -1,6 +1,6 @@
 # BLUEPRINT — Hybride e-learning A3 met automatisch bewijs
 
-> Afgeleid van `docs/LRD-ELEARNING-A3.html` (LRD versie 0.20, 1 oktober 2026). Dit document beschrijft de doelsituatie van het product: geen bouwvolgorde, geen fasering, geen voortgang. Bouwvolgorde en voortgang staan in het bouwplan (`BUILDPLAN-ELEARNING-A3.md`). Pedagogische onderbouwing en risico's blijven in het LRD; het besluitenregister (B1–B88) staat in `docs/ADR-ELEARNING-A3.md`; regels hier verwijzen daar niet naartoe maar zijn zelfstandig toetsbaar. Bijlage A koppelt elke LRD-eis aan de regels hieronder.
+> Afgeleid van `docs/LRD-ELEARNING-A3.html` (LRD versie 0.21, 1 oktober 2026). Dit document beschrijft de doelsituatie van het product: geen bouwvolgorde, geen fasering, geen voortgang. Bouwvolgorde en voortgang staan in het bouwplan (`BUILDPLAN-ELEARNING-A3.md`). Pedagogische onderbouwing en risico's blijven in het LRD; het besluitenregister (B1–B88) staat in `docs/ADR-ELEARNING-A3.md`; regels hier verwijzen daar niet naartoe maar zijn zelfstandig toetsbaar. Bijlage A koppelt elke LRD-eis aan de regels hieronder.
 
 **Lezen.** Elke regel heeft een ID (prefix per onderwerp), een verplichtingsniveau (Must, Should, Could), een criterium met getal en eenheid, en een verificatiemethode (Test, Demonstratie, Inspectie, Analyse). „Moet" is de verplichting van het product, niet de volgorde van het werk. De statusnamen Compleet, Bijna en „Te doen" zijn productterm en geen voortgangstaal. In schema en records heet de derde status `nog niet` (§5); alleen de weergave voor de student zegt „Te doen".
 
@@ -450,6 +450,7 @@ Geldt voor de studentpagina's (start, leerblokken, dossier, bronnen), niet voor 
 | <a id="sx-17"></a>SX-17 | Het TOM-model van taak 8.1 moet in de stof te verkennen zijn (per cel een vraag, waar je kijkt en de twee kijkrichtingen omhoog en opzij) en bij oefenen en toepassen de invoer zijn: signalen van de oefencasus in een cel zetten, en per cel van het eigen vraagstuk een tekst. Het modelantwoord staat op hetzelfde bord, per signaal naast de plek van de student. Geen score of index (X-13, X-3). | Should | 12 cellen, elk met een vraag en ≥ 2 dingen om naar te kijken; ≤ 2 handelingen per plaatsing; 3 × 4 zonder horizontale scroll op 360 px; 0 wijzigingen in dossierschema 1.0; 0 bytes van het bord in de eerste lading | Test |
 | <a id="sx-18"></a>SX-18 | Bovenaan elke studentpagina moet een metrokaart van één leerblok staan: een lijn in de kleur van dat leerblok, een halte per taak met de stand (afgerond, hier, open), de huidige taak opengeklapt in vier stap-haltes, en aan begin en eind een overstappunt (begin: „Vorige keer”, bij leerblok 1 „Start”; eind: „Afsluiten” met een stompje van de volgende lijn, bij leerblok 4 „Dossier”). Op een leerblokpagina is dat het leerblok van de pagina en volgt „hier” het adres; op start, dossier en bronnen het leerblok met de jongste opgeslagen positie, zonder positie leerblok 1 met „hier” op het beginpunt. Elke halte en elk overstappunt is een link. Kleur is niet de enige drager van de stand. | Should | 7 van 7 studentpagina's, 0 op docentmodus, verificatie en controlelab; 4 lijnkleuren, elk ≥ 3:1 tegen wit; 0 px horizontale scroll op 360 px; tikvlak per halte ≥ 24 × 24 px en kaart ≥ 44 px hoog, zonder overlap; 1 `aria-current="step"`; 100 % van de haltes met een toegankelijke naam met taak en stand | Test |
 | <a id="sx-19"></a>SX-19 | De metrokaart moet splitsingen tonen als takken die na de splitsing weer samenkomen: route A/B in taak 3.2 (oefenen en toepassen), artikel 1/2 in de oefening van taak 4.2, tekst/video/spel in de stap stof van de mediataak (alleen als die taak opengeklapt is), en de verdieping als gestippelde zijtak na haar taak. De gekozen tak is vol getekend en de andere gestippeld; zonder keuze zijn alle takken vol. Splitsingen staan in de leerblokdata (veld `spoor`), niet in de code. | Should | 4 soorten splitsing; 1 volle tak per gemaakte keuze; content-check keurt een `spoor` met een onbekende stap of een tak buiten de opties van het veld af | Test |
+| <a id="sx-20"></a>SX-20 | Elke halte van de metrokaart moet een infovenster hebben met de titel van het onderdeel en het thema in één zin: voor een taak en een tak het veld `thema` van de taak, voor de verdieping `verdieping.thema`, voor een stap en een overstappunt een vaste zin. Het venster verschijnt bij aanwijzen met de muis en bij toetsenbordfocus, blijft staan als de muis erop komt, sluit met Esc en is voor schermlezers gekoppeld met `aria-describedby`. Op een aanraakscherm navigeert een tik direct. | Should | 100 % van de haltes met titel en thema; 1 zin van ≤ 140 tekens per thema; 24 thema's in de data (20 taken, 4 verdiepingen); tekst ≥ 13 px; 0 schaduw; venster binnen de breedte van de kaart | Test |
 
 ---
 
@@ -655,6 +656,7 @@ Regels zijn hier hergroepeerd en gesplitst tot één verplichting per regel. Elk
 | FR-71 | LB-20 |
 | FR-72 | SX-18, SX-19 |
 | FR-73 | BW-14, DS-13 |
+| FR-74 | SX-20 |
 
 ### Non-functionele requirements
 
@@ -767,3 +769,4 @@ De acceptatiecriteria van het LRD zijn hier de verificatie van regels, geen apar
 | AC-46 | LB-18, LB-20 |
 | AC-47 | RC-7 |
 | AC-48 | SX-18, SX-19 |
+| AC-50 | SX-20 |
