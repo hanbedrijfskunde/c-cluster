@@ -250,6 +250,7 @@ Elke regel is een anker (`id="xx-n"`). Een bewijsonderdeel (EV) telt als één v
 | <a id="bw-11"></a>BW-11 | Controles van soort C mogen alleen aantal woorden en zinnen tellen en geen kwaliteit van de reden beoordelen. | Must | 0 controles met een inhoudelijk oordeel | Inspectie |
 | <a id="bw-12"></a>BW-12 | Elk bewijsonderdeel moet aan minstens één onderdeel van een LUK zijn gekoppeld. | Must | 11 van 11 onderdelen met ≥ 1 koppeling | Test (contentcontrole) |
 | <a id="bw-13"></a>BW-13 | De site moet het dekkingsoverzicht van §4.3 tonen, bijgewerkt met de status van de student. | Must | 13 onderdelen met dekking en status | Demonstratie |
+| <a id="bw-14"></a>BW-14 | Een veld met lopende tekst of een zoekvraag moet minstens een vast aantal verschillende woorden van 3 of meer letters bevatten (`eigenWoorden` in de data: 3 bij zoekvragen en korte delen, 4 bij lopende tekst); te weinig geeft *let op* (status Bijna) met een melding. Dit telt alleen en beoordeelt geen kwaliteit (BW-11) (B107). | Must | „bla bla bla?”, „ja nee misschien?” en „hoe dan?” → 0 × Compleet; 0 modelantwoorden afgekeurd | Test |
 
 ### 6.6 Bewijsrecord en versies (RC)
 
@@ -298,6 +299,7 @@ Elke regel: de site moet het onderdeel alleen als Compleet aanmerken als de geno
 | <a id="ds-10"></a>DS-10 | De verificatiepagina mag geen dossiergegevens uploaden. | Must | 0 uitgaande verzoeken met dossierinhoud | Test (netwerktrace) |
 | <a id="ds-11"></a>DS-11 | De dossierpagina moet een scherm „Mijn stand" bieden met per bewijsonderdeel alleen de status, groot, zonder inhoud. | Should | 11 statussen; 0 inhoudsvelden | Demonstratie |
 | <a id="ds-12"></a>DS-12 | Als de browseropslag is geblokkeerd, moet de site dat melden en direct export aanbieden. | Must | 1 melding en 1 exportknop ≤ 1 s na het laden in een privévenster | Test |
+| <a id="ds-13"></a>DS-13 | De verificatiepagina moet per bewijsonderdeel als tekst melden hoeveel antwoorden kort of herhalend zijn (controle eigen woorden op *let op*, of een tekst van ≥ 4 woorden waarvan minder dan de helft verschilt), zonder dat de status van de student verandert (B107). | Should | 1 melding per cel met ≥ 1 signaal; 0 statuswijzigingen | Test |
 
 ### 6.9 De Wissel (WS)
 

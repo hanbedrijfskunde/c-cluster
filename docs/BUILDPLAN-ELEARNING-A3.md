@@ -825,7 +825,7 @@ Elke regel staat bij de fase die haar realiseert en verifieert. Een regel die in
 - **B-4** STARR (6.3) vraagt twee keer naar de volgende stap: in het sjabloon en in de voet van de taak (TK-10). Samenvoegen raakt het record van EV-10; besluit nodig.
 - **B-5** Kaart-in-kaart in sommige oefeningen (bijvoorbeeld het kader met de kapitalen in de oefencasus) en „Fictief” drie keer op één spelscherm.
 - **B-6** Inhoud die de controle van de vindplaatsen aan het licht bracht: (1) 3xC (concreet, compleet, consistent) wordt in taak 1.1 niet uitgelegd; het staat alleen in de uitleg onder de knop Tekst bij taak 2.1, en komt uit dia 4 van de introductiepresentatie, die niet in de bronnen staat. (2) Taak 3.2, alinea 3 van de stof is vrijwel het modelantwoord van de zoekstring. (3) Taak 9.2: het modelantwoord zegt „aanname”, de checklist in werkboek week 5 zegt „het gaat om een feit, niet om een aanname”. (4) De MIT-passage bij 1.1 (5:07) valt buiten het aanbevolen kijkfragment (0:44–4:09). Vraagt keuzes van de auteur.
-- **B-1** Onzininvoer (fase 18.3): vier resultaten worden Compleet met „bla bla bla bla?”. Beslissen of een telling van verschillende woorden erbij komt (raakt BW-11) of dat BW-6 en het gesprek met de coach volstaan.
+- ~~**B-1** Onzininvoer~~ Opgelost met ADR B107 (BW-14, DS-13): minimaal aantal eigen woorden per veld, en een signaal voor de docent op de verificatiepagina. De drempels kalibreren we in de proefsessie en de pilot (fase 18 en 15).
 
 - **A-1** TOM³-bron zonder openbare publicatie: opgevraagd in subtask 10.11, gebruikt in fase 10.
 - **A-5** Pauzeband tussen 1 en 2 dagen (TP-7): beslissen vóór fase 7.
