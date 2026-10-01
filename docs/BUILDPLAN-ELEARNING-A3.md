@@ -825,6 +825,7 @@ Spec: `docs/superpowers/specs/2026-10-01-studentverhaal-startpagina-design.md`; 
 - [x] `verhaalOpen` in `js/weergave.js` met tests: open bij een leeg profiel zonder werk, anders ingeklapt (ST-9).
 - [x] Verhaal op de startpagina met de knoppen „Lees dit eerst voor je start” en „Start met je vraagstuk”; de regel „Nieuw hier?” vervangen. Doorloop in de browser op 360 en 1280 px (9 punten uit het plan, alle geslaagd).
 - [x] Studentintroductie: „Tijd en planning” en een knop „Start”; op papier 1 A4 (pdf uit Chrome), docentgids blijft 3 A4 (DL-1, DL-2). De introductie liep eerst over op een tweede pagina; krappere printwitruimte in `docs/gids.css` loste dat op zonder de tekst te raken.
+- [x] Het verhaal altijd bovenaan als zwart vlak, open tot de eerste taak, daarna een balk op dezelfde plek (B119); doorloop op 360 en 1280 px met een leeg profiel, alleen een profiel en met werk.
 
 ## Bijlage — Dekking van de blueprintregels per fase
 

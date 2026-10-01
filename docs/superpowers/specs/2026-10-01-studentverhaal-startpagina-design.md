@@ -180,3 +180,13 @@ Op de startpagina noemt het blok „Wat heb je aan het eind?” de totale tijd (
 | ADR | B118; B42 en B53 krijgen in de statuskolom „deels vervangen door B118” |
 
 De leerblokkaart en de kop van de leerblokpagina tonen de richttijd al uit de data („± 105 min”); daar verandert geen code.
+
+## 11. Altijd bovenaan, zwart vlak (B119, 1 oktober 2026)
+
+Na publicatie zag de auteur het verhaal ingeklapt onderaan de startpagina: de browser van de auteur had een profiel, dus telde het bezoek als terugkerend. Op verzoek van de auteur, en vervangend voor §3.2 en de definitie van „eerste bezoek” in §4:
+
+- Het verhaal is altijd het eerste element na de h1, boven „Verder waar je was”, „Zo staat je A3-vak 1” en de startinvoer.
+- Het is een zwart vlak met witte tekst en een kop van 1,6rem; de drie blokken zijn witte kaarten erin. Links in het vlak zijn wit op zwart (contrastcontrole: kleur en achtergrond in één regel).
+- Open tot de eerste taak: `verhaalOpen(records)` geeft `true` zolang er geen record is. Het profiel telt niet mee.
+- Daarna een `<details class="verhaal verhaal-details">` op dezelfde plek: een zwarte balk „Waar gaat dit over?” met het openklapdriehoekje; opengeklapt de drie blokken, de knop „Lees dit eerst voor je start” en de linkregel, zonder accentknop.
+

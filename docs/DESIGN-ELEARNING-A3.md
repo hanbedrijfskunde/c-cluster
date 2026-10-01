@@ -104,7 +104,7 @@ URL-schema voor de taakweergave (werkt samen met de bestaande id's): `leerblok-1
 
 ### 5.1 Start — eerste bezoek
 
-- Bovenaan: het verhaal in drie blokken met een vraag als kop, in de volgorde waarom, hoe, wat (ADR B113, ST-8), een knop „Lees dit eerst voor je start” naar de introductie, en de hoofdknop „Start met je vraagstuk” die de focus in het eerste veld zet. De introductie heeft onderaan een knop „Start” terug. Het waarom begint bij het vage vraagstuk van de opdrachtgever, niet bij het portfolio; het blok „wat” noemt de totale tijd. Informatiekaarten met rand en zonder schaduw; op de telefoon onder elkaar, op een breed scherm naast elkaar. Daaronder de regel „Hoeveel tijd het kost, hoe je plant en hoe je inlevert, lees je in de introductie van één pagina.”
+- Bovenaan, direct onder de paginatitel: het verhaal als zwart vlak met witte tekst en een grote kop, met drie witte kaarten met een vraag als kop, in de volgorde waarom, hoe, wat (ADR B113, B119, ST-8), een knop „Lees dit eerst voor je start” naar de introductie, en de hoofdknop „Start met je vraagstuk” die de focus in het eerste veld zet. De introductie heeft onderaan een knop „Start” terug. Het waarom begint bij het vage vraagstuk van de opdrachtgever, niet bij het portfolio; het blok „wat” noemt de totale tijd. Informatiekaarten met rand en zonder schaduw; op de telefoon onder elkaar, op een breed scherm naast elkaar. Daaronder de regel „Hoeveel tijd het kost, hoe je plant en hoe je inlevert, lees je in de introductie van één pagina.”
 - Daarna het profiel **één veld per scherm**: alias → teamnummer → vraagstuk → waarom-zin. Voortgang in stappen (●●○○).
 - Valideren pas **na het verlaten van een veld** of bij „Verder”. Nooit foutmeldingen op een leeg formulier.
 - De privacytekst staat bij het eerste veld, in gewone taal, uitklapbaar.
@@ -113,11 +113,11 @@ URL-schema voor de taakweergave (werkt samen met de bestaande id's): `leerblok-1
 
 Van boven naar beneden:
 
+0. **Het verhaal, ingeklapt**, als eerste onder de paginatitel: een zwarte balk „Waar gaat dit over?” (ST-9, B119). Wie hem openklapt, ziet de drie blokken, de knop „Lees dit eerst voor je start” en de link naar de introductie, zonder accentknop. Een ingevuld profiel zonder werk telt nog niet als terugkerend: dan staat het verhaal open (§5.1).
 1. Begroeting met alias, en de kop „Zo staat je A3-vak 1”. Geen percentage (BW-4).
 2. **A3-vak 1 in vier delen** (B75): Onderzoeksvraag en zoekvragen · Bronnen · Plaatsing · Verbanden en reflectie, één per leerblok. Gevulde delen zijn `--accent`, lege alleen rand. Onderschrift: „2 van de 4 delen van vak 1 staan”. De e-learning vult alleen vak 1 (X-15); vak 2 t/m 8 tonen we niet.
 3. **Verder-kaart** (zwart vlak, witte tekst): taaknummer, titel, „Leerblok 1 · stap 3 van 4 · nog ± 10 min”, accentknop „Ga verder”.
 4. Vier leerblokregels, elk met een segmentbalk (één segment per taak). Meta: „2 van 3” of „te doen”.
-5. Het verhaal, ingeklapt: één samenvatting „Waar gaat dit over?” onder de leerblokregels (ST-9). Wie hem openklapt, ziet de drie blokken en de link naar de introductie, zonder knop.
 
 Geen EV-codes, geen richttijdtabel.
 
