@@ -651,6 +651,7 @@ Regels zijn hier hergroepeerd en gesplitst tot één verplichting per regel. Elk
 | FR-69 | SX-1, SX-2, SX-3, SX-6, MD-2 |
 | FR-70 | LB-18, LB-19, EV-12, RC-7 |
 | FR-71 | LB-20 |
+| FR-73 | BW-14, DS-13 |
 
 ### Non-functionele requirements
 
