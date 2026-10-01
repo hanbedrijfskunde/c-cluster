@@ -11,7 +11,7 @@
 | SMART | Doel |
 |---|---|
 | **S**pecifiek | Een statische e-learning op GitHub Pages met vier leerblokken en twee gebruiksvormen: zelfstandig (student) en werkcollege (docent-geleid). Studenten van Praktijkopdracht 5 (HBO Bedrijfskunde, C-cluster) oefenen er de A3 mee op het eigen vraagstuk en bouwen automatisch een bewijsdossier op voor leeruitkomst 1 (grotendeels), leeruitkomst 5 (deels) en de voorbereiding van leeruitkomst 2. Docenten gebruiken dezelfde site als docentmodus tijdens het werkcollege. |
-| **M**eetbaar | 11 bewijsonderdelen (EV-01 t/m EV-11), elk met een automatische controle. 0 verzoeken naar andere domeinen tijdens een volledige doorloop. In een pilot rondt ≥ 80 % van de studenten elk leerblok af binnen 1,25 × de richttijd van 45 min. Een gewijzigd dossier wordt in 100 % van de gevallen gemeld als „gewijzigd na export". |
+| **M**eetbaar | 12 bewijsonderdelen (EV-01 t/m EV-12), elk met een automatische controle. 0 verzoeken naar andere domeinen tijdens een volledige doorloop. In een pilot rondt ≥ 80 % van de studenten elk leerblok af binnen 1,25 × de richttijd van 45 min. Een gewijzigd dossier wordt in 100 % van de gevallen gemeld als „gewijzigd na export". |
 | **A**anpasbaar/haalbaar | Geen backend: alles blijft in de browser van de student, inhoud staat in datafiles, geen bouwstap. Bouwt op het bestaande werkboek van week 5 met „klaar als"-regels per taak, die op vorm te controleren zijn. Te onderhouden door één docent. |
 | **R**elevant | Het portfolio vraagt 4 beroepsproducten, 6 reflectieverslagen, 6 feedbackmomenten en 3 ontwikkelpunten. Studenten verzamelen die achteraf, waarna feedback en eerste versies zijn verdwenen. De taken zijn het bewijs: wat de student invult om het eigen vraagstuk te onderzoeken, wordt met versie, tijd en controles bewaard. |
 | **T**ijdvenster (werking) | Richttijd 45 min per leerblok (+ ≤ 15 min terugblik vanaf leerblok 2). Eerste lading ≤ 300 kB per pagina. Leerblok bruikbaar zonder netwerk na laden. Docent leidt deel 1 van het werkcollege (90 min) met ≤ 2 opzoekmomenten buiten de docentmodus. |
@@ -212,14 +212,14 @@ Elke regel is een anker (`id="xx-n"`). Een bewijsonderdeel (EV) telt als één v
 
 | ID | Eis | Prio | Criterium | Verificatie |
 |---|---|---|---|---|
-| <a id="lb-1"></a>LB-1 | De site moet de student vier leerblokken tonen (1 De A3 en je vraag; 2 Zoeken en beoordelen; 3 Het vraagstuk plaatsen; 4 Verbinden en reflecteren) met per leerblok de richttijd en het afgeronde bewijs waarmee het eindigt. | Must | 4 leerblokken van 45 min; 9 uitkomsten (EL1–EL9) verdeeld volgens §4.2 | Inspectie |
+| <a id="lb-1"></a>LB-1 | De site moet de student vier leerblokken tonen (1 De A3 en je vraag; 2 Zoeken, beoordelen en gebruiken; 3 Het vraagstuk plaatsen; 4 Verbinden en reflecteren) met per leerblok de richttijd en het afgeronde bewijs waarmee het eindigt. | Must | 4 leerblokken van 45 min; 9 uitkomsten (EL1–EL9) verdeeld volgens §4.2 | Inspectie |
 | <a id="lb-2"></a>LB-2 | Leerblok 1 moet een bouwer voor de onderzoeksvraag bieden met drie velden, een keuze uit de zes kapitalen en een live voorbeeld van de samengestelde vraag. | Must | 3 velden; 6 kapitalen; voorbeeld bijgewerkt ≤ 1 s na een toetsaanslag | Test |
 | <a id="lb-3"></a>LB-3 | Leerblok 1 moet drie zoekvragen bieden met een keuzelijst voor het frame (functioneel, intern/extern, theoretisch/empirisch), de keuze van één model uit 7S, Strategy Map, Six Capitals en TOM, en een veld „wat mis je met één frame". | Must | 3 zoekvragen; 3 frames; 4 modellen; 1 veld | Demonstratie |
 | <a id="lb-4"></a>LB-4 | Leerblok 1 moet het team het model samen laten kiezen en elke student de teamkeuze en de eigen verantwoording laten vastleggen. | Should | 2 velden per student (teamkeuze, verantwoording) | Demonstratie |
 | <a id="lb-5"></a>LB-5 | Leerblok 2 moet een zoektermentabel, een veld voor de zoekstring met controle op operatoren en een keuze tussen route A (databank) en route B (AI-tool) bieden. De oefencasus van taak 3.2 biedt dezelfde keuze plus een veld waarin twee studenten met verschillende routes hun resultaten vergelijken (B100). | Must | 1 tabel; 1 zoekstringveld; 2 routes in oefening en toepassing; 1 vergelijkingsveld in de oefening | Demonstratie |
 | <a id="lb-6"></a>LB-6 | Bij route B moet leerblok 2 een promptgenerator bieden die de zoekvraag invult en waarschuwt als een woord uit de door de student ingevulde „niet noemen"-lijst in de prompt staat. | Should | 1 waarschuwing per woord uit de lijst; 0 gemiste woorden in 6 testprompts | Test |
 | <a id="lb-7"></a>LB-7 | Leerblok 2 moet een bronlog bieden met AAOCC-oordelen, twee verificatievinkjes bij route B, een besluit en een APA-veld met formaatcontrole, voor meerdere bronnen. | Must | 5 oordelen; 2 vinkjes; ≥ 2 bronnen invoerbaar | Test |
-| <a id="lb-8"></a>LB-8 | Leerblok 2 moet de stelling over AI en inspiratiemateriaal bieden met een keuze en een argument. | Should | 2 kanten; 1 argumentveld | Demonstratie |
+| <a id="lb-8"></a>LB-8 | Leerblok 2 moet in taak 4.3 de stelling over AI bij het ontleden van een artikel bieden met een keuze en een argument (B102). | Should | 2 kanten; 1 argumentveld | Demonstratie |
 | <a id="lb-9"></a>LB-9 | Leerblok 3 moet een stakeholdertabel bieden die zich automatisch tekent op een invloed/belang-raster, met intern/extern per stakeholder. | Must | 4 kwadranten (H/L × H/L); ≥ 5 stakeholders getekend | Test |
 | <a id="lb-10"></a>LB-10 | Leerblok 3 moet per product (stakeholdermap, VPC, BMC, TOM-model V1) een checklist en een vinkje „foto gemaakt" bieden. | Must | 4 producten; 4 vinkjes | Demonstratie |
 | <a id="lb-11"></a>LB-11 | Het TOM-model V1 moet de TOM³-indeling volgen: drie lagen (strategisch, tactisch, operationeel) × vier kolommen (Methode, Mens, Machine, Informatie & Rapportage). | Must | 3 × 4 = 12 cellen; 0 andere TOM-modellen als keuze | Inspectie |
@@ -229,6 +229,9 @@ Elke regel is een anker (`id="xx-n"`). Een bewijsonderdeel (EV) telt als één v
 | <a id="lb-15"></a>LB-15 | Leerblok 4 moet een STARR-sjabloon bieden met een keuzelijst voor het eigen gedrag en een volgende stap, optioneel gekoppeld aan een feedbackregel. | Must | 5 delen; 1 keuzelijst; 1 koppeling | Demonstratie |
 | <a id="lb-16"></a>LB-16 | Op de dossierpagina en op het afsluitscherm van elk leerblok moet een knop „kopieer naar A3 vak 1" onderzoeksvraag, zoekvragen, plaatsing en de waarom-zin uit leerblok 1 als tekstblok naar het klembord zetten; onderdelen die nog ontbreken staan er als lege kop in. | Should | 4 onderdelen in het klembord; 1 klik; 5 plaatsen (dossier en 4 afsluitschermen) | Test |
 | <a id="lb-17"></a>LB-17 | De site moet bij „kopieer naar A3 vak 1" de datum van het kopiëren in het dossier loggen. | Could | 1 datum per kopieeractie | Test |
+| <a id="lb-18"></a>LB-18 | Leerblok 2 moet in taak 4.2 IMRAD als figuur tonen en per deel Inleiding, Methode en Resultaten vragen wat de auteur doet, waar dat staat en of de student het meeneemt, plus een oogst voor de A3 (B102). | Must | 1 figuur met 4 delen; 3 × (antwoord, vindplaats, keuze ja/deels/nee); 1 oogstveld | Test |
+| <a id="lb-19"></a>LB-19 | De oefening van taak 4.2 moet twee fictieve mini-artikelen bieden, elk met de vier IMRAD-secties, en een vergelijkingsveld voor het duo; het modelantwoord verschijnt pas na eigen werk (B102). | Must | 2 artikelen; 4 secties per artikel; 1 vergelijkingsveld; 0 modelantwoorden na alleen een artikelkeuze | Test |
+| <a id="lb-20"></a>LB-20 | Bij taak 4.2 moet de site een vaste AI-prompt met de titel van het artikel bieden en, bij AI-gebruik om te ontleden, een controlevinkje eisen (B103). | Should | 1 prompt met titel; status Te doen zonder vinkje | Test |
 
 ### 6.5 Bewijsmotor (BW)
 
@@ -258,6 +261,7 @@ Elke regel is een anker (`id="xx-n"`). Een bewijsonderdeel (EV) telt als één v
 | <a id="rc-4"></a>RC-4 | De site moet in een record de invoer van de student (`inhoud`) gescheiden houden van het resultaat van de controles (`controles`). | Should | 2 gescheiden velden in 100 % van de records | Inspectie |
 | <a id="rc-5"></a>RC-5 | Bij elke wijziging in een bewijsonderdeel moet de site een nieuwe versie opslaan en de vorige versies bewaren. | Must | Na 5 wijzigingen: 5 versies aanwezig; `versie` loopt op met 1 | Test |
 | <a id="rc-6"></a>RC-6 | De student moet oudere versies van een bewijsonderdeel kunnen bekijken. | Should | 5 van 5 versies raadpleegbaar | Test |
+| <a id="rc-7"></a>RC-7 | Bij het laden van leerblok 2 moet de site opslag van vóór B102 omzetten (stelling van taak 4.2 naar 4.3) zonder verlies en idempotent. | Must | 0 verloren records of metagegevens; tweede keer laden verandert niets | Test |
 
 ### 6.7 Bewijsonderdelen (EV)
 
@@ -269,13 +273,14 @@ Elke regel: de site moet het onderdeel alleen als Compleet aanmerken als de geno
 | <a id="ev-02"></a>EV-02 | Analyseert methodisch en selecteert een model (LUK 1) · 2.2 | Must | 3 zoekvragen met 3 verschillende frames; elke zoekvraag eindigt op een vraagteken; precies 1 model gekozen met een verantwoording van ≥ 1 zin; antwoord op „wat mis je met één frame" ingevuld | Test |
 | <a id="ev-03"></a>EV-03 | Zoekt gericht naar bronnen (LUK 1) · 3.1, 3.2 | Must | Per kernbegrip ≥ 1 synoniem en ≥ 1 Engelse term; route A: ≥ 1 zoekoperator (aanhalingstekens, AND/OR/NOT, `*`, `?`); route B: 0 woorden uit de „niet noemen"-lijst in de prompt | Test |
 | <a id="ev-04"></a>EV-04 | Beoordeelt een bron (LUK 1) · 4.1 | Must | Auteur, jaar, titel en link ingevuld; 5 AAOCC-oordelen elk met ≥ 1 zin toelichting; route B: 2 verificatievinkjes gezet; jaar in de APA-regel gelijk aan het jaar-veld; link begint met `https://` of `doi.org` | Test |
-| <a id="ev-05"></a>EV-05 | Onderbouwt een oordeel over AI-bronnen (LUK 1) · 4.2 | Should | 1 kant gekozen; argument van ≥ 2 zinnen | Test |
+| <a id="ev-05"></a>EV-05 | Onderbouwt een oordeel over AI-bronnen (LUK 1) · 4.3 | Should | 1 kant gekozen; argument van ≥ 2 zinnen | Test |
 | <a id="ev-06"></a>EV-06 | Betrekt stakeholders (LUK 1) · 5.1 | Must | ≥ 5 stakeholders, ≥ 1 intern en ≥ 1 extern; per stakeholder invloed, belang en relatie ingevuld; de gebruiker uit EV-01 staat in de lijst; vraagstuk in 1 zin | Test |
 | <a id="ev-07"></a>EV-07 | Onderscheidt feit en aanname bij de achtergrond (LUK 1) · 6.1, 7.1, 8.1 | Must | ≥ 3 kernbeweringen elk als feit of aanname gelabeld en aan 1 onderdeel (klanttaak, pain, gain, product of dienst, pain reliever, gain creator, bouwsteen) gekoppeld; elk feit met ≥ 1 bron- of herkomstregel; elke aanname gekoppeld aan 1 zoekvraag uit EV-02 | Test |
 | <a id="ev-08"></a>EV-08 | Plaatst het vraagstuk (LUK 1) · 9.1, 9.2 | Must | 3 antwoorden elk met ≥ 1 stakeholder uit EV-06; vergelijking van pain/gain en waarde met het VPC afgevinkt; onderzoeksvraag als feit of aanname gelabeld; foto-vinkje voor 4 producten gezet | Test |
 | <a id="ev-09"></a>EV-09 | Haalt feedback op en geeft feedback (LUK 5) · 6.2, Wissel in leerblok 1 en 4 | Must | Ik zie, ik mis en ik vraag me af elk ingevuld; 1 actie met 1 status; ≥ 1 zelf gegeven feedbackregel; de eigen EV-01 en EV-02 zijn niet letterlijk gelijk aan het ontvangen wisselblok (0 tekens verschil = `let op`) | Test |
 | <a id="ev-10"></a>EV-10 | Reflecteert op eigen handelen (LUK 5) · STARR | Must | 5 delen (situatie, taak, actie, resultaat, reflectie) ingevuld; reflectie noemt ≥ 1 gedragskeuze uit de keuzelijst en 1 volgende stap | Test |
 | <a id="ev-11"></a>EV-11 | Verbindt modellen tot één beeld (LUK 1, bereidt LUK 2 voor) · 9.4 | Must | ≥ 6 verbanden met ≥ 2 verbandtypen, elk met ≥ 1 zin; elk deel van de user story (gebruiker, pain/gain, waarde) verbonden met ≥ 1 VPC-kaart; de kapitalen uit EV-01 verbonden met ≥ 1 gain, pain reliever of gain creator; ≥ 1 spanning met een stakeholder uit EV-06; synthese-alinea met kaarten uit ≥ 2 modellen; 3 antwoorden op „wat laat dit model niet zien"; niet letterlijk gelijk aan het ontvangen wisselblok | Test |
+| <a id="ev-12"></a>EV-12 | Ontleedt een artikel (LUK 1) · 4.2 | Must | Inleiding, Methode en Resultaten elk met antwoord, vindplaats (sectie of pagina) en keuze; oogst ingevuld (≥ 3 zinnen als feedback, soort C); bij AI om te ontleden het vinkje | Test |
 
 ### 6.8 Dossier en verificatie (DS)
 
@@ -289,7 +294,7 @@ Elke regel: de site moet het onderdeel alleen als Compleet aanmerken als de geno
 | <a id="ds-6"></a>DS-6 | De export moet een SHA-256-controlesom over de inhoud bevatten. | Must | 1 controlesom van 64 hexadecimale tekens | Test |
 | <a id="ds-7"></a>DS-7 | De site moet het dossier ook exporteren als afdrukbare pagina per leeruitkomst, met status per bewijsonderdeel, ingevulde inhoud en de controlesom onderaan. | Must | 3 pagina's (LUK 1, 2 en 5) met 3 onderdelen elk | Inspectie |
 | <a id="ds-8"></a>DS-8 | De verificatiepagina moet een dossier lokaal inlezen, de controlesom herberekenen en bij een afwijking „gewijzigd na export" melden. | Must | 1 gewijzigd teken → 1 melding (100 %); 0 meldingen bij een ongewijzigd bestand; test met 2 bestanden | Test |
-| <a id="ds-9"></a>DS-9 | De verificatiepagina moet meerdere dossiers tegelijk inlezen en een tabel tonen met per student de status per bewijsonderdeel en per leeruitkomst, met de ontbrekende onderdelen bovenaan. | Must | ≥ 5 dossiers tegelijk; 11 bewijsonderdelen en 3 leeruitkomsten per student | Test |
+| <a id="ds-9"></a>DS-9 | De verificatiepagina moet meerdere dossiers tegelijk inlezen en een tabel tonen met per student de status per bewijsonderdeel en per leeruitkomst, met de ontbrekende onderdelen bovenaan. | Must | ≥ 5 dossiers tegelijk; 12 bewijsonderdelen en 3 leeruitkomsten per student | Test |
 | <a id="ds-10"></a>DS-10 | De verificatiepagina mag geen dossiergegevens uploaden. | Must | 0 uitgaande verzoeken met dossierinhoud | Test (netwerktrace) |
 | <a id="ds-11"></a>DS-11 | De dossierpagina moet een scherm „Mijn stand" bieden met per bewijsonderdeel alleen de status, groot, zonder inhoud. | Should | 11 statussen; 0 inhoudsvelden | Demonstratie |
 | <a id="ds-12"></a>DS-12 | Als de browseropslag is geblokkeerd, moet de site dat melden en direct export aanbieden. | Must | 1 melding en 1 exportknop ≤ 1 s na het laden in een privévenster | Test |
@@ -471,7 +476,7 @@ Geldt voor de studentpagina's (start, leerblokken, dossier, bronnen), niet voor 
 |---|---|---|---|---|
 | <a id="qa-1"></a>QA-1 | Alle teksten, werkboekregels, modelantwoorden, LUK-koppelingen en controleparameters moeten uit datafiles komen, zodat een docent ze zonder code kan aanpassen. | Must | 1 modelantwoord aangepast in 1 datafile verschijnt op de site zonder codewijziging (0 codebestanden bewerkt) | Demonstratie |
 | <a id="qa-2"></a>QA-2 | Elke controle moet een unittest hebben met drie goede en drie zwakke voorbeelden. | Must | 6 voorbeelden per controle; 100 % geeft het verwachte resultaat en de verwachte melding | Test |
-| <a id="qa-3"></a>QA-3 | De contentcontrole moet falen als een taak geen LUK-koppeling, „klaar als", controle of modelantwoord heeft. | Must | 4 ontbrekende onderdelen → 4 fouten; 11 van 11 bewijsonderdelen compleet in de content | Test (sabotagetest) |
+| <a id="qa-3"></a>QA-3 | De contentcontrole moet falen als een taak geen LUK-koppeling, „klaar als", controle of modelantwoord heeft. | Must | 4 ontbrekende onderdelen → 4 fouten; 12 van 12 bewijsonderdelen compleet in de content | Test (sabotagetest) |
 | <a id="qa-4"></a>QA-4 | Alle tekst en documentatie moet in het Nederlands zijn, in het register van het werkboek. | Must | 100 % van de zichtbare teksten in het Nederlands, met Engelse vaktermen zoals in het werkboek | Inspectie |
 | <a id="qa-5"></a>QA-5 | Engelse vaktermen (frame, pain, gain, fit, user story) moeten op de plek zelf in één zin worden uitgelegd. | Should | 100 % van de termen met ≤ 1 zin uitleg bij het eerste voorkomen | Inspectie |
 | <a id="qa-6"></a>QA-6 | Het uiterlijk moet de HAN-huisstijl van de zusterdocumenten volgen. | Could | 100 % van de pagina's met de kleur `#E50056` als accent en het lettertype uit de huisstijl | Inspectie |
@@ -641,6 +646,8 @@ Regels zijn hier hergroepeerd en gesplitst tot één verplichting per regel. Elk
 | FR-67 | TP-11 |
 | FR-68 | SX-4, SX-5, SX-12, LB-16 |
 | FR-69 | SX-1, SX-2, SX-3, SX-6, MD-2 |
+| FR-70 | LB-18, LB-19, EV-12, RC-7 |
+| FR-71 | LB-20 |
 
 ### Non-functionele requirements
 

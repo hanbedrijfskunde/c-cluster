@@ -777,6 +777,18 @@ Afgeleid uit het bestandseigenaarschap hierboven.
 
 ---
 
+## Aanvulling — Een artikel gebruiken (1-10-2026, op verzoek van de auteur)
+
+Spec: `docs/superpowers/specs/2026-10-01-leerblok2-artikel-gebruiken-design.md`; plan: `docs/superpowers/plans/2026-10-01-leerblok2-artikel-gebruiken.md`. Besluiten: ADR B102, B103.
+
+- [x] Controles voor EV-12 (`imradIngevuld`, `imradVindplaats`, `imradMeenemen`, `aiGeverifieerd`) en de vaste AI-prompt, elk met 3 goede en 3 zwakke voorbeelden. Verwacht: „ergens vooraan” als vindplaats geeft Bijna; „p. 4”, „Methode” en „§ 3.2” tellen.
+- [x] Omzetting van opslag van vóór B102 (`js/migratie.js`, RC-7). Verwacht: wie de stelling al afrondde, ziet 4.3 klaar en 4.2 open; een tweede keer laden verandert niets.
+- [x] Groep `artikelprompt` in de weergave: prompt met de titel uit „Ander artikel” of uit 4.1, met kopieerknop (LB-20).
+- [x] `js/figuren-lb2.js`: IMRAD als eigen zandloper en de twee fictieve mini-artikelen met staafdiagram, lui geladen (PF-4: leerblok 2 op 116,6 kB gzip). Verwacht: 0 px horizontale scroll op 360 px.
+- [x] Content: taak 4.2 „Haal meer uit je artikel” (EV-12), stelling naar 4.3, „Soort bron” in 4.1, bronnen Wu (2011), Oliver (1980) en het fictieve artikel van Visser & El Amrani (2021), terugblik van leerblok 3, docentdata, leerbloktitel „Zoeken, beoordelen en gebruiken” (LB-18, LB-19, EV-12).
+- [x] Docentgids en paginatitel; doorloop in de browser: oefening in duo met model pas na eigen werk, spiegel uit 4.1, AI zonder vinkje Te doen, met vinkje Compleet.
+- [ ] Conceptvideo V2 noemt op de eerste dia nog „Zoeken en beoordelen”; bijwerken bij de volgende opname.
+
 ## Bijlage — Dekking van de blueprintregels per fase
 
 Elke regel staat bij de fase die haar realiseert en verifieert. Een regel die in een latere fase opnieuw wordt gecontroleerd (regressie) staat alleen bij haar eigen fase.
