@@ -11,10 +11,10 @@
 | SMART | Doel |
 |---|---|
 | **S**pecifiek | Een statische e-learning op GitHub Pages met vier leerblokken en twee gebruiksvormen: zelfstandig (student) en werkcollege (docent-geleid). Studenten van Praktijkopdracht 5 (HBO Bedrijfskunde, C-cluster) oefenen er de A3 mee op het eigen vraagstuk en bouwen automatisch een bewijsdossier op voor leeruitkomst 1 (grotendeels), leeruitkomst 5 (deels) en de voorbereiding van leeruitkomst 2. Docenten gebruiken dezelfde site als docentmodus tijdens het werkcollege. |
-| **M**eetbaar | 12 bewijsonderdelen (EV-01 t/m EV-12), elk met een automatische controle. 0 verzoeken naar andere domeinen tijdens een volledige doorloop. In een pilot rondt ≥ 80 % van de studenten elk leerblok af binnen 1,25 × de richttijd van 45 min. Een gewijzigd dossier wordt in 100 % van de gevallen gemeld als „gewijzigd na export". |
+| **M**eetbaar | 12 bewijsonderdelen (EV-01 t/m EV-12), elk met een automatische controle. 0 verzoeken naar andere domeinen tijdens een volledige doorloop. In een pilot rondt ≥ 80 % van de studenten elk leerblok af binnen 1,25 × de richttijd van dat leerblok. Een gewijzigd dossier wordt in 100 % van de gevallen gemeld als „gewijzigd na export". |
 | **A**anpasbaar/haalbaar | Geen backend: alles blijft in de browser van de student, inhoud staat in datafiles, geen bouwstap. Bouwt op het bestaande werkboek van week 5 met „klaar als"-regels per taak, die op vorm te controleren zijn. Te onderhouden door één docent. |
 | **R**elevant | Het portfolio vraagt 4 beroepsproducten, 6 reflectieverslagen, 6 feedbackmomenten en 3 ontwikkelpunten. Studenten verzamelen die achteraf, waarna feedback en eerste versies zijn verdwenen. De taken zijn het bewijs: wat de student invult om het eigen vraagstuk te onderzoeken, wordt met versie, tijd en controles bewaard. |
-| **T**ijdvenster (werking) | Richttijd 45 min per leerblok (+ ≤ 15 min terugblik vanaf leerblok 2). Eerste lading ≤ 300 kB per pagina. Leerblok bruikbaar zonder netwerk na laden. Docent leidt deel 1 van het werkcollege (90 min) met ≤ 2 opzoekmomenten buiten de docentmodus. |
+| **T**ijdvenster (werking) | Richttijd per leerblok = som van de taken: 30, 45, 105, 45 min (+ ≤ 15 min terugblik vanaf leerblok 2). Eerste lading ≤ 300 kB per pagina. Leerblok bruikbaar zonder netwerk na laden. Docent leidt deel 1 van het werkcollege (90 min) met ≤ 2 opzoekmomenten buiten de docentmodus. |
 
 Elke regel in §6 t/m §7 dient dit doel; de dekking per onderdeel van het doel staat in §4.3.
 
@@ -53,7 +53,7 @@ contentbestanden (tekst, werkboekregels, modelantwoorden, LUK-koppeling,
         └──► docentmodus (beamer): stapkaart, klok, docentkaart, afdruk
 ```
 
-**Componenten.** (1) Contentbestanden: één bron voor student, docent, werkboekafdruk en draaiboekafdruk. (2) Studentweergave: vier leerblokken van 45 min met taken in een vast ritme (waarom, stof en oefenen, toepassen, klaar en volgende stap, optionele verdieping). (3) Bewijsmotor: elke taak levert een bewijsrecord dat op een LUK-onderdeel ligt en deterministisch wordt gecontroleerd op aanwezigheid en samenhang. (4) Dossier: export, import en verificatie zonder server. (5) Docentmodus: tweede weergave van dezelfde content, zonder koppeling met studentapparaten. (6) Media: elk leerblok in tekst, video en spel of simulatie.
+**Componenten.** (1) Contentbestanden: één bron voor student, docent, werkboekafdruk en draaiboekafdruk. (2) Studentweergave: vier leerblokken met taken in een vast ritme (waarom, stof en oefenen, toepassen, klaar en volgende stap, optionele verdieping). (3) Bewijsmotor: elke taak levert een bewijsrecord dat op een LUK-onderdeel ligt en deterministisch wordt gecontroleerd op aanwezigheid en samenhang. (4) Dossier: export, import en verificatie zonder server. (5) Docentmodus: tweede weergave van dezelfde content, zonder koppeling met studentapparaten. (6) Media: elk leerblok in tekst, video en spel of simulatie.
 
 **Wat het bewijs is.** Een tijdgestempeld dossier van geoefende en toegepaste taken op het eigen vraagstuk, met versiegeschiedenis. **Wat het niet is:** een kwaliteitsoordeel, een vervanger van de beroepsproducten, of fraudebestendig. De controlesom toont wijziging na export; de tijdstempel van inlevering is die van Brightspace. De beoordeling van beroepsproducten blijft bij de docent.
 
@@ -183,6 +183,8 @@ Elke regel is een anker (`id="xx-n"`). Een bewijsonderdeel (EV) telt als één v
 | <a id="st-5"></a>ST-5 | Na „opnieuw doen" moet het dossier de oude en de nieuwe versie van het bewijsonderdeel naast elkaar tonen. | Should | 2 versies zichtbaar in het dossier | Test |
 | <a id="st-6"></a>ST-6 | Wanneer de student na één bevestiging „wis alles" kiest, moet de site alle gegevens van de site uit de browseropslag verwijderen. | Must | 1 bevestiging; 0 items van de site in localStorage, sessionStorage en IndexedDB | Test |
 | <a id="st-7"></a>ST-7 | De site moet onderdelen pas tonen op het moment dat ze aan de beurt zijn. | Should | In de eerste 4 schermen van leerblok 1 (alias, vraagstuk, waarom-zin, overzicht van vier leerblokken): 0 zichtbare elementen van Wissel, verdieping, „Mijn stand" en „kopieer naar A3"; „Mijn stand" en „kopieer naar A3" staan op 1 pagina (dossierpagina) | Test (schermafbeelding per stap) |
+| <a id="st-8"></a>ST-8 | Bij een eerste bezoek (bij het laden een leeg profiel en geen werk) moet de startpagina boven de startinvoer een verhaal tonen in drie blokken met een vraag als kop, in de volgorde waarom, hoe, wat, met één knop die de focus in het eerste veld van de startinvoer zet. | Must | 3 blokken in die volgorde; ≤ 150 woorden lopende tekst; 0 keer Wissel, verdieping, „Mijn stand", „kopieer naar A3", LUK, BC, `EV-`, bewijsonderdeel, richttijd, Golden Circle of Sinek; het blok „wat" noemt de totale tijd uit de data; 1 knop; na de klik focus op het aliasveld | Test + inspectie (doorloop op 360 px) |
+| <a id="st-9"></a>ST-9 | Bij een terugkerend bezoek (bij het laden een profiel of werk) moet het verhaal ingeklapt onder het overzicht van de leerblokken staan. | Should | 0 open blokken bij het laden; 1 samenvatting „Waar gaat dit over?" na het leerblokoverzicht; de stand verandert niet tijdens het typen | Test + inspectie |
 
 ### 6.3 Taken en leerroute (TK)
 
@@ -201,7 +203,7 @@ Elke regel is een anker (`id="xx-n"`). Een bewijsonderdeel (EV) telt als één v
 | <a id="tk-11"></a>TK-11 | De site moet aan het eind van leerblok 4 vragen „wat ik hiermee aan mijn A3 heb" en die zin naast de waarom-zin uit leerblok 1 tonen. | Should | 2 zinnen naast elkaar op de dossierpagina | Demonstratie |
 | <a id="tk-12"></a>TK-12 | De dossierpagina moet het zwakste onderdeel van het dekkingsoverzicht tonen. | Could | 1 onderdeel getoond; klopt met de statussen in 3 testprofielen | Test |
 | <a id="tk-13"></a>TK-13 | De site moet in elk leerblok één optionele verdiepingstaak bieden, zichtbaar na „klaar". | Should | 4 verdiepingstaken (1 per leerblok) | Inspectie |
-| <a id="tk-14"></a>TK-14 | De site moet verdiepingstaken buiten de status en de richttijd houden en in het dossier alleen „verdieping gedaan" vermelden. | Should | 0 statuswijzigingen door een verdiepingstaak; 0 minuten in de richttijd van 45 min | Test |
+| <a id="tk-14"></a>TK-14 | De site moet verdiepingstaken buiten de status en de richttijd houden en in het dossier alleen „verdieping gedaan" vermelden. | Should | 0 statuswijzigingen door een verdiepingstaak; 0 minuten in de richttijd | Test |
 | <a id="tk-15"></a>TK-15 | De site moet elk leerblok afsluiten met een scherm dat de status van de bewijsonderdelen van dat leerblok toont, een volgende stap vraagt en de bewaarmelding toont. | Must | 4 afsluitschermen met 3 onderdelen (status, volgende stap, bewaarmelding) | Test |
 | <a id="tk-16"></a>TK-16 | Een leerblok moet als „afgerond" gelden als elk bewijsonderdeel ervan Compleet of Bijna is of het label `voorlopig` heeft, en geen enkel onderdeel „Te doen" is. | Must | 4 testprofielen geven het verwachte resultaat | Test |
 | <a id="tk-17"></a>TK-17 | De site moet de student laten doorgaan zonder een leerblok af te ronden. | Must | 0 blokkades bij een leerblok dat niet is afgerond | Test |
@@ -212,7 +214,7 @@ Elke regel is een anker (`id="xx-n"`). Een bewijsonderdeel (EV) telt als één v
 
 | ID | Eis | Prio | Criterium | Verificatie |
 |---|---|---|---|---|
-| <a id="lb-1"></a>LB-1 | De site moet de student vier leerblokken tonen (1 De A3 en je vraag; 2 Zoeken, beoordelen en gebruiken; 3 Het vraagstuk plaatsen; 4 Verbinden en reflecteren) met per leerblok de richttijd en het afgeronde bewijs waarmee het eindigt. | Must | 4 leerblokken van 45 min; 9 uitkomsten (EL1–EL9) verdeeld volgens §4.2 | Inspectie |
+| <a id="lb-1"></a>LB-1 | De site moet de student vier leerblokken tonen (1 De A3 en je vraag; 2 Zoeken, beoordelen en gebruiken; 3 Het vraagstuk plaatsen; 4 Verbinden en reflecteren) met per leerblok de richttijd en het afgeronde bewijs waarmee het eindigt. | Must | 4 leerblokken, elk met een richttijd gelijk aan de som van de taken (30, 45, 105, 45 min); 9 uitkomsten (EL1–EL9) verdeeld volgens §4.2 | Inspectie |
 | <a id="lb-2"></a>LB-2 | Leerblok 1 moet een bouwer voor de onderzoeksvraag bieden met drie velden, een keuze uit de zes kapitalen en een live voorbeeld van de samengestelde vraag. | Must | 3 velden; 6 kapitalen; voorbeeld bijgewerkt ≤ 1 s na een toetsaanslag | Test |
 | <a id="lb-3"></a>LB-3 | Leerblok 1 moet drie zoekvragen bieden met een keuzelijst voor het frame (functioneel, intern/extern, theoretisch/empirisch), de keuze van één model uit 7S, Strategy Map, Six Capitals en TOM, en een veld „wat mis je met één frame". | Must | 3 zoekvragen; 3 frames; 4 modellen; 1 veld | Demonstratie |
 | <a id="lb-4"></a>LB-4 | Leerblok 1 moet het team het model samen laten kiezen en elke student de teamkeuze en de eigen verantwoording laten vastleggen. | Should | 2 velden per student (teamkeuze, verantwoording) | Demonstratie |
@@ -336,7 +338,7 @@ Elke regel: de site moet het onderdeel alleen als Compleet aanmerken als de geno
 
 | ID | Eis | Prio | Criterium | Verificatie |
 |---|---|---|---|---|
-| <a id="tp-1"></a>TP-1 | Elk leerblok vanaf 2 moet beginnen met een terugblik van hoogstens 15 min bovenop de 45 min van het leerblok. | Should | 3 leerblokken (2, 3, 4); ≤ 15 min; leerblok samen ≤ 60 min | Test |
+| <a id="tp-1"></a>TP-1 | Elk leerblok vanaf 2 moet beginnen met een terugblik van hoogstens 15 min bovenop de richttijd van het leerblok. | Should | 3 leerblokken (2, 3, 4); ≤ 15 min; leerblok samen ≤ 60 min | Test |
 | <a id="tp-2"></a>TP-2 | In de terugblik moet de site de student eerst uit het hoofd minstens drie punten uit het vorige leerblok laten opschrijven en twee kennisvragen laten beantwoorden voordat de meenemen-kaart zichtbaar is. | Should | 0 kaarten zichtbaar vóór ≥ 3 punten of „ik weet het nog"; 2 kennisvragen | Test |
 | <a id="tp-3"></a>TP-3 | De site moet daarna de meenemen-kaart tonen met de belangrijkste items van het vorige leerblok en de eigen bewijsstukken uit dat leerblok. | Should | Items volgens LRD 8.5 voor 3 leerblokken; ≥ 1 eigen bewijsstuk | Test |
 | <a id="tp-4"></a>TP-4 | De site moet de student in twee zinnen laten schrijven waar hij of zij dit nu gebruikt, met één item uit de kaart als startpunt van het leerblok. | Should | 2 zinnen; 1 item gekozen | Test |
@@ -475,7 +477,7 @@ Geldt voor de studentpagina's (start, leerblokken, dossier, bronnen), niet voor 
 | <a id="pf-2"></a>PF-2 | De site moet werken in de twee laatste versies van Chrome, Safari, Firefox en Edge. | Must | 4 browsers × 2 versies zonder functieverlies | Test |
 | <a id="pf-3"></a>PF-3 | Een leerblok moet na het laden zonder netwerk bruikbaar zijn. | Must | 0 netwerkverzoeken tijdens 45 min gebruik van een geladen leerblok, behalve videoklikken | Test |
 | <a id="pf-4"></a>PF-4 | De eerste lading moet klein blijven. | Must | ≤ 300 kB gecomprimeerd en ≤ 500 kB ongecomprimeerd per pagina zonder video (B69, B99); 0 afbeeldingen van andere domeinen; een citaatfiguur laadt lui (niet in de eerste lading) | Test |
-| <a id="pf-5"></a>PF-5 | Elk leerblok moet een richttijd van 45 min op de pagina tonen, inclusief media. | Must | 45 min; video ≤ 3 min; spel ≤ 5 min; verdieping telt niet mee | Inspectie |
+| <a id="pf-5"></a>PF-5 | Elk leerblok moet op de pagina een richttijd tonen die gelijk is aan de som van de richttijden van zijn taken, inclusief media. | Must | richttijd = som van de taken (B118); video ≤ 3 min; spel ≤ 5 min; verdieping telt niet mee | Inspectie |
 
 ### 7.3 Onderhoud en testbaarheid (QA)
 
@@ -493,7 +495,7 @@ Geldt voor de studentpagina's (start, leerblokken, dossier, bronnen), niet voor 
 | ID | Eis | Prio | Criterium | Verificatie |
 |---|---|---|---|---|
 | <a id="dl-1"></a>DL-1 | Er moet een docentgids zijn met een inleiding (onderwerp, plaats in het programma, leeruitkomsten, inrichting, hoe studenten ermee werken, wat de docent ontvangt, waar de docent op let) en daarna het gebruik van de docentmodus (klok, stapkaart, onderdelen verschuiven, afdruk), wat het bewijs is en niet is, het inlezen van dossiers, de steekproef en het aanpassen van een modelantwoord. | Must | ≤ 3 pagina's A4; ≤ 1100 woorden; inleiding met 7 punten en 5 onderwerpen | Inspectie |
-| <a id="dl-2"></a>DL-2 | Er moet een studentintroductie zijn over wat je doet, waar je gegevens staan en hoe je exporteert en inlevert. | Must | ≤ 1 pagina A4; 3 onderwerpen | Inspectie |
+| <a id="dl-2"></a>DL-2 | Er moet een studentintroductie zijn over wat je doet, tijd en planning, waar je gegevens staan en hoe je exporteert en inlevert. | Must | ≤ 1 pagina A4; 4 onderwerpen; ≤ 550 woorden; de tijd per leerblok gelijk aan de data | Test + inspectie (afdruk) |
 | <a id="dl-3"></a>DL-3 | Er moet een testrapport zijn met netwerktrace zonder derden, toegankelijkheidscontrole, controle op 360 px en pilotresultaat. | Must | 4 onderdelen | Inspectie |
 | <a id="dl-4"></a>DL-4 | Er moet een beschrijving van dossierschema 1.0 zijn. | Should | 13 velden beschreven | Inspectie |
 
@@ -659,6 +661,7 @@ Regels zijn hier hergroepeerd en gesplitst tot één verplichting per regel. Elk
 | FR-72 | SX-18, SX-19 |
 | FR-73 | BW-14, DS-13 |
 | FR-74 | SX-20 |
+| FR-75 | ST-8, ST-9, DL-2 |
 
 ### Non-functionele requirements
 
@@ -772,3 +775,4 @@ De acceptatiecriteria van het LRD zijn hier de verificatie van regels, geen apar
 | AC-47 | RC-7 |
 | AC-48 | SX-18, SX-19 |
 | AC-50 | SX-20 |
+| AC-51 | ST-8, ST-9 |
