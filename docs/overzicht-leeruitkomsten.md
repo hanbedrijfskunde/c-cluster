@@ -1,4 +1,4 @@
-This is a unit overview. Let me see the sub-pages.Let me read the pages on the individual assignment and each opdracht (p4 onward) in chunks.Now the "wat lever je op" sections of the four group assignments.Het C-cluster (Praktijkopdracht 5) heeft **vijf leeruitkomsten, allemaal op niveau 2**. Studenten tonen die aan met vier beroepsproducten die ze als groep maken en met een individueel portfolio. De beoordeling loopt via vijf beoordelingscriteria (BC).
+Het C-cluster (Praktijkopdracht 5) heeft **vijf leeruitkomsten, allemaal op niveau 2**. Studenten tonen die aan met vier beroepsproducten die ze als groep maken en met een individueel portfolio. De beoordeling loopt via vijf beoordelingscriteria (BC).
 
 **De leeruitkomsten**
 
