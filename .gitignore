@@ -14,3 +14,6 @@ WK*/*Copy.pdf
 
 # Lokale git-worktrees
 .worktrees/
+
+# Testartefacten van de Playwright-browser (snapshots, consolelogs, schermafbeeldingen)
+.playwright-mcp/
