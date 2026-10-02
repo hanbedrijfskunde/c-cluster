@@ -827,6 +827,13 @@ Spec: `docs/superpowers/specs/2026-10-01-studentverhaal-startpagina-design.md`; 
 - [x] Studentintroductie: „Tijd en planning” en een knop „Start”; op papier 1 A4 (pdf uit Chrome), docentgids blijft 3 A4 (DL-1, DL-2). De introductie liep eerst over op een tweede pagina; krappere printwitruimte in `docs/gids.css` loste dat op zonder de tekst te raken.
 - [x] Het verhaal altijd bovenaan als zwart vlak, open tot de eerste taak, daarna een balk op dezelfde plek (B119); doorloop op 360 en 1280 px met een leeg profiel, alleen een profiel en met werk.
 
+## Aanvulling — Yale-video als video van leerblok 4 (2-10-2026, op verzoek van de auteur)
+
+Besluit: ADR B120 (vervangt B115).
+
+- [x] De video-route van leerblok 4 linkt naar het fragment 1:47 tot 6:52 van Yale University; de link start op 1:47 en `content-check` staat een startplek `&t=…s` toe.
+- [x] Conceptvideo V4 (mp4 en vtt) en de kijktip van Yale verwijderd; `media/metadata.json` leeg; tests voor MD-4, MD-5, LI-1 en de kijktiptelling aangepast aan nul eigen video's.
+
 ## Bijlage — Dekking van de blueprintregels per fase
 
 Elke regel staat bij de fase die haar realiseert en verifieert. Een regel die in een latere fase opnieuw wordt gecontroleerd (regressie) staat alleen bij haar eigen fase.
