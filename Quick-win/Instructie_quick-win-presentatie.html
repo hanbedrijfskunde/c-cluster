@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quick win presenteren</title>
+<style>
+:root{
+  /* HAN-huisstijl, gelijk aan de andere documenten van het C-cluster */
+  --han:#E50056; --han2:#FFE1EC; --ink:#000000; --paper:#FFFFFF;
+  --grey:#454545; --grey2:#767676; --wash:#F2F2F0; --panel2:#E6E6E3;
+  --mens2:#FFE875;
+  --bw:3px; --sh:5px 5px 0 var(--ink);
+  --f:"Avenir Next","Avenir","Nunito Sans","Segoe UI",Helvetica,Arial,sans-serif;
+  --fm:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--wash);color:var(--ink);font:15px/1.5 var(--f);-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;display:grid;gap:36px;padding:32px 16px 64px}
+h1,h2,h3{text-wrap:balance;margin:0}
+h1{font-size:clamp(32px,6vw,52px);line-height:.96;letter-spacing:-.035em;font-weight:800;text-transform:uppercase}
+h2{font-size:clamp(22px,3.2vw,28px);line-height:1.05;letter-spacing:-.025em;font-weight:800}
+h3{font-size:17px;line-height:1.2;font-weight:800}
+p{margin:0;max-width:72ch}
+b,strong{font-weight:700}
+ul,ol{margin:0;padding-left:22px;display:grid;gap:5px}
+ul{list-style:none}
+ul li{position:relative}
+ul li::before{content:"";position:absolute;left:-20px;top:.5em;width:9px;height:9px;background:var(--han)}
+ol li::marker{font:800 13px var(--fm);color:var(--han)}
+section{display:grid;gap:14px}
+
+/* ---------- balken ---------- */
+.topbar,.foot{background:var(--ink);color:var(--paper);display:flex;align-items:center;gap:18px;padding:0 20px 0 max(16px,calc((100% - 828px)/2))}
+.topbar{height:56px;border-bottom:4px solid var(--han)}
+.foot{min-height:52px}
+.logo{flex:none;display:block;height:26px;width:62px}
+.who{font:700 12px/1 var(--fm);letter-spacing:.14em;text-transform:uppercase;opacity:.82}
+.sp{flex:1}
+.num{font:800 13px/1 var(--fm);background:var(--han);color:var(--paper);padding:8px 11px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.pdfknop{font:700 12px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:transparent;
+  border:2px solid var(--paper);padding:8px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.pdfknop:hover,.pdfknop:focus-visible{background:var(--han);border-color:var(--han);outline:none}
+.pdfknop svg{width:14px;height:14px}
+@media (max-width:640px){.topbar .who,.foot .who{display:none}}
+@media (max-width:440px){.topbar .pdfknop .lbl{display:none}.pdfknop svg{width:16px;height:16px}}
+
+/* ---------- omslag ---------- */
+header{background:var(--han);color:var(--paper);border:var(--bw) solid var(--ink);box-shadow:10px 10px 0 var(--ink);
+  padding:26px clamp(18px,4vw,36px) 28px;display:grid;gap:14px}
+.eyebrow{justify-self:start;background:var(--paper);color:var(--ink);padding:6px 12px 5px;font:700 12px/1.2 var(--fm);letter-spacing:.14em;text-transform:uppercase}
+.meta{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:3px solid currentColor;padding:6px 10px;font:700 12px/1.15 var(--fm);letter-spacing:.04em;text-transform:uppercase}
+.lede{font-size:17px;line-height:1.45;font-weight:600;max-width:64ch}
+
+/* ---------- sectiekop ---------- */
+.blok{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:var(--bw) solid var(--ink);padding-bottom:8px}
+.blok::before{content:"";flex:none;width:14px;height:14px;background:var(--han)}
+.blok .bn{font:800 12px/1 var(--fm);letter-spacing:.12em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:6px 8px}
+.blok .bt{margin-left:auto;font:800 13px/1 var(--fm);color:var(--han)}
+
+/* ---------- route: opdracht 2 → 3 → 4 ---------- */
+.route{display:grid;grid-template-columns:1fr 28px 1fr 28px 1fr;align-items:stretch}
+.stap{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:12px 14px;display:grid;gap:5px;align-content:start;font-size:14px}
+.stap .n{justify-self:start;font:700 10.5px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:4px 6px}
+.stap b{font-size:16px;font-weight:800}
+.stap .tag{justify-self:start;font:700 10.5px/1 var(--fm);letter-spacing:.06em;padding:4px 6px;background:var(--han2);border:2px solid var(--ink)}
+.stap.nu{background:var(--han);color:var(--paper)}
+.stap.nu .n{background:var(--paper);color:var(--ink)}
+.stap.nu .tag{background:var(--paper);color:var(--ink)}
+.pijl{display:grid;place-items:center;font:800 20px/1 var(--fm)}
+@media (max-width:620px){.route{grid-template-columns:1fr}.pijl{height:26px;transform:rotate(90deg)}}
+
+/* ---------- tijdlijn ---------- */
+.tijdlijn{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.beurt{display:grid;gap:4px}
+.beurt b{font:800 11px/1 var(--fm);letter-spacing:.08em;text-transform:uppercase}
+.beurt small{font:700 11px/1 var(--fm);color:var(--grey)}
+.balk{display:grid;grid-template-columns:1fr 2fr 1fr;height:30px;border:2px solid var(--ink);background:var(--paper)}
+.balk .p{background:var(--han)}
+.balk .v{background:var(--han2);border-inline:2px solid var(--ink)}
+.balk .w{background:repeating-linear-gradient(135deg,var(--paper) 0 4px,var(--panel2) 4px 8px)}
+.legenda{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;align-items:center}
+.legenda span::before{content:"";display:inline-block;width:14px;height:14px;border:2px solid var(--ink);margin-right:6px;vertical-align:-3px}
+.legenda .p::before{background:var(--han)}
+.legenda .v::before{background:var(--han2)}
+.legenda .w::before{background:repeating-linear-gradient(135deg,var(--paper) 0 3px,var(--panel2) 3px 6px)}
+.legenda .tot{margin-left:auto;font:800 13px/1 var(--fm);color:var(--han)}
+
+/* ---------- tabellen ---------- */
+.tab{border:var(--bw) solid var(--ink);background:var(--paper);box-shadow:var(--sh);overflow-x:auto}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;vertical-align:top;padding:8px 10px;border-top:1.5px solid var(--ink);font-size:13.5px}
+th{font:700 11px/1.2 var(--fm);letter-spacing:.08em;text-transform:uppercase;color:var(--paper);background:var(--ink);border-top:0}
+.wie{min-width:600px}
+.wie th small{display:block;color:var(--han);font-size:11px;letter-spacing:.04em;margin-top:2px}
+.wie th:first-child{width:130px}
+.wie td:first-child{font-weight:800;background:var(--wash)}
+.wie tr.zij td{background:var(--han2);font-size:13px}
+.wie tr.zij td:first-child{background:var(--han2)}
+
+/* ---------- stappen vooraf ---------- */
+.stappen{display:grid;gap:10px;counter-reset:st;padding:0;list-style:none}
+.stappen li{background:var(--paper);border:var(--bw) solid var(--ink);padding:10px 14px 10px 56px;position:relative;font-size:14.5px;min-height:46px}
+.stappen li::before{counter-increment:st;content:counter(st);position:absolute;left:0;top:0;bottom:0;width:42px;display:grid;place-items:center;
+  background:var(--ink);color:var(--paper);font:800 18px/1 var(--fm)}
+.stappen li b{display:block;font-size:15px}
+
+/* ---------- schaal ---------- */
+.schaal{display:grid;grid-template-columns:repeat(3,1fr);border:var(--bw) solid var(--ink);box-shadow:var(--sh);background:var(--paper)}
+.schaal div{padding:10px 12px;border-right:2px solid var(--ink);display:grid;gap:4px;align-content:start;font-size:13.5px}
+.schaal div:last-child{border-right:0}
+.schaal b{font-size:15px;font-weight:800}
+.schaal .s2{background:var(--han2)}
+.schaal .s3{background:var(--han);color:var(--paper)}
+@media (max-width:560px){.schaal{grid-template-columns:1fr}.schaal div{border-right:0;border-bottom:2px solid var(--ink)}.schaal div:last-child{border-bottom:0}}
+.vbl{background:var(--mens2);border:var(--bw) solid var(--ink);padding:10px 14px;display:grid;gap:4px;font-size:14px}
+.vbl>b{justify-self:start;font:700 11px/1.3 var(--fm);letter-spacing:.1em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:4px 8px 3px}
+
+/* ---------- checklist ---------- */
+.mee{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:14px 18px}
+@media (max-width:620px){.mee{grid-template-columns:1fr}}
+.check{list-style:none;padding:0;display:grid;gap:7px;font-size:14.5px}
+.check li{padding-left:28px;position:relative}
+.check li::before{content:"";position:absolute;left:0;top:.18em;width:16px;height:16px;border:2.5px solid var(--ink);background:var(--paper)}
+.check .aantal{font:800 14px/1 var(--fm);color:var(--han)}
+.grootknop{font:800 14px/1 var(--fm);letter-spacing:.08em;text-transform:uppercase;background:var(--han);color:var(--paper);
+  border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:14px 18px;cursor:pointer;display:inline-flex;align-items:center;gap:10px}
+.grootknop:hover,.grootknop:focus-visible{background:var(--ink);outline:none}
+.grootknop:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+.grootknop svg{width:18px;height:18px}
+.grootknop small{display:block;font:600 11px/1.3 var(--f);letter-spacing:0;text-transform:none;opacity:.9;margin-top:4px}
+
+/* ---------- formulier = één A4 ---------- */
+.blad{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:0 0 18px;display:grid;gap:12px;align-content:start}
+.blad>*:not(.bkop){margin-inline:clamp(12px,3vw,24px)}
+.bkop{background:var(--ink);color:var(--paper);display:flex;align-items:center;gap:14px;padding:9px clamp(12px,3vw,24px)}
+.bkop .logo{height:18px;width:44px}
+.bkop .who{font-size:11px}
+.bkop .num{margin-left:auto}
+.ftitel{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:var(--bw) solid var(--ink);padding-bottom:6px}
+.ftitel h2{font-size:24px}
+.ftitel span{font:700 11px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
+.velden{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:10px 18px}
+@media (max-width:560px){.velden{grid-template-columns:1fr}}
+.veld{display:grid}
+.veld>b{font:700 10.5px/1.3 var(--fm);letter-spacing:.08em;text-transform:uppercase;color:var(--grey)}
+.veld i{display:block;height:26px;border-bottom:1.5px solid var(--ink)}
+.fuitleg{font-size:12.5px;background:var(--wash);border:2px solid var(--ink);padding:7px 10px;display:grid;gap:3px}
+.fuitleg b{font-weight:800}
+.rijen{display:grid;border:var(--bw) solid var(--ink)}
+/* links de vraag met daaronder de toelichting, rechts de scores */
+.rij{display:grid;grid-template-columns:1fr 250px;gap:4px 14px;padding:9px 12px 10px;border-top:2px solid var(--ink)}
+.rij:first-child{border-top:0}
+.rij .tekst{grid-column:1;grid-row:1}
+.rij .score{grid-column:2;grid-row:1/span 2}
+.rij .toel{grid-column:1;grid-row:2}
+@media (max-width:620px){.rij{grid-template-columns:1fr}.rij .tekst,.rij .score,.rij .toel{grid-column:auto;grid-row:auto}}
+.rij .tekst{display:grid;gap:3px;align-content:start}
+.rij .kop{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.rij .nr{display:inline-grid;place-items:center;width:24px;height:24px;background:var(--han);color:var(--paper);font:800 13px/1 var(--fm)}
+.rij h3{font-size:15px}
+.rij .bc{font:700 10px/1 var(--fm);letter-spacing:.06em;padding:3px 5px;border:2px solid var(--ink);background:var(--han2)}
+.rij .vraag{font-weight:700;font-size:13.5px}
+.rij .kijk{font-size:12px;color:var(--grey);line-height:1.4}
+.rij .kijk b{font:700 9.5px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--han);margin-right:4px}
+.rij .toel{display:grid}
+.rij .toel>b{font:700 10px/1.3 var(--fm);letter-spacing:.08em;text-transform:uppercase;color:var(--grey)}
+.rij .toel i{display:block;height:24px;border-bottom:1.5px solid var(--ink)}
+.score{border-collapse:collapse;width:100%;align-self:start}
+.score th,.score td{border:2px solid var(--ink);padding:3px 4px;text-align:center;vertical-align:middle;font-size:11px}
+.score th{background:var(--paper);color:var(--ink);font:700 11px/1.15 var(--f);letter-spacing:0;text-transform:none}
+.score th:first-child{border:0;background:transparent}
+.score td:first-child{text-align:left;font:700 10px/1.15 var(--fm);letter-spacing:.04em;text-transform:uppercase;border-left:0;padding-left:0;width:84px}
+.score td.vak{height:26px;width:52px}
+.score td.vak span{display:inline-block;width:15px;height:15px;border:2px solid var(--ink)}
+.score tr.zelf td.vak{background:var(--wash)}
+.fslot{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px}
+@media (max-width:560px){.fslot{grid-template-columns:1fr}}
+/* exemplaar voor een ander team: de zelfscore hoort daar niet op */
+.blad.team tr.zelf{display:none}
+.blad.team .alleen-docent{display:none}
+#printset{display:none}
+
+footer.bron{font-size:13px;color:var(--grey);border-top:var(--bw) solid var(--ink);padding-top:14px}
+
+/* ---------- afdrukken ----------
+   Gewoon afdrukken (Cmd/Ctrl+P): de instructie plus één formulier.
+   Knop "Print formulier": alleen het formulier, zes gelabelde exemplaren. */
+@page{size:A4;margin:11mm 11mm 12mm}
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#fff;font-size:11pt}
+  .topbar,.foot,.pdfknop,.grootknop,footer.bron{display:none}
+  .wrap{display:block;padding:0;max-width:none}
+  .wrap>*+*{margin-top:14px}
+  header,.stap,.tab,.schaal,.mee,.blad{box-shadow:none}
+  header{padding:16px 20px;gap:9px}
+  h1{font-size:34px}
+  .lede{font-size:12pt}
+  h2{font-size:17pt}
+  .tab{overflow:visible}
+  .wie{min-width:0}
+  th,td{font-size:9.5pt;padding:5px 8px}
+  .stappen li{font-size:10pt;padding:7px 10px 7px 48px;min-height:0}
+  .stappen li b{font-size:10.5pt}
+  .route,.tijdlijn,.tab tr,.stappen li,.schaal,.vbl,.mee{break-inside:avoid}
+  h3{break-after:avoid}
+  .blok{break-after:avoid}
+  .mee{grid-template-columns:1fr}
+  /* formulier op een eigen blad, compact zodat het op één A4 past */
+  .blad{break-before:page;border:0;padding:0;gap:2.2mm}
+  .blad>*:not(.bkop){margin-inline:0}
+  .bkop{padding:2mm 4mm}
+  .ftitel{padding-bottom:1.5mm}
+  .ftitel h2{font-size:15pt}
+  .velden{grid-template-columns:1fr 1fr 1.4fr}
+  .veld i{height:6.8mm}
+  .fuitleg{font-size:8pt;line-height:1.35;padding:1.6mm 3mm;gap:.6mm}
+  .rij{grid-template-columns:1fr 58mm;padding:1.8mm 3mm 2.2mm;gap:.8mm 4mm;break-inside:avoid}
+  .rij h3{font-size:10.5pt}
+  .rij .nr{width:5.5mm;height:5.5mm;font-size:9pt}
+  .rij .vraag{font-size:9.5pt}
+  .rij .kijk{font-size:8pt;line-height:1.35}
+  .rij .toel i{height:6.6mm}
+  .score th{font-size:7pt}
+  .score td:first-child{font-size:7pt;width:18mm}
+  .score td.vak{height:6mm;width:13mm}
+  .score td.vak span{width:3.6mm;height:3.6mm}
+  .fslot .veld i{height:6.8mm}
+
+  /* knop "Print formulier": alleen de zes exemplaren */
+  body.alleen-formulier .wrap{display:none}
+  body.alleen-formulier #printset{display:block}
+  #printset .blad:first-child{break-before:auto}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="hanlogo" viewBox="0 0 82 34"><g fill="currentColor"><path d="m82 34h-19v-3h18.9895719z"/><path d="m13.2527473 28v-12.420318h-8.48351653v12.420318h-4.76923077v-28h4.75824176v11.3563397h8.48351644v-11.3563397h4.7582418v28z"/><path d="m55.5599506 28-8.1433869-19.77045366h-.1223733l.0778739 19.77045366h-4.3720643v-28h5.5624227l8.065513 19.8898798h.1557479v-19.8898798h4.2163164v28z"/><path d="m33.1342079 0h-5.7320888l-4.5665994 18.7860465-3.8355197 1.324031 1.1972755 3.6682171 1.5469223-.531783-1.1548941 4.7534884h4.2381433l1.536327-6.3271318 7.2790111-2.496124 2.1190716 8.8232558h4.2381433zm-5.7320888 17.2015504 2.723007-11.17829459h.2754793l2.2780021 9.36589149z"/></g></symbol></svg>
+
+<div class="topbar"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Praktijkopdracht 5 · C-cluster</span><span class="sp"></span><button type="button" class="pdfknop" onclick="printFormulier()" title="Drukt het formulier zes keer af: twee voor de docenten, vier voor de andere teams"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6V1h8v5M4 12H2V6h12v6h-2M4 9h8v6H4z"/></svg><span class="lbl">Print formulier</span></button></div>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Instructie · Opdracht 3 · Quick win</div>
+  <h1>Quick win presenteren</h1>
+  <div class="meta">
+    <span class="chip">5 min presentatie</span>
+    <span class="chip">10 min vragen</span>
+    <span class="chip">5 teams</span>
+    <span class="chip">Formatief</span>
+    <span class="chip">BC1 · BC2</span>
+  </div>
+  <p class="lede">Jullie hebben bij de opdrachtgever een quick win ingevoerd en gemeten of die werkt. Nu laten jullie zien wat jullie hebben gemeten, wanneer jullie hebben bijgestuurd en wat het heeft opgeleverd. Je krijgt feedback van twee docenten en van de vier andere teams.</p>
+</header>
+
+<!-- ================= WAAROM ================= -->
+<section>
+  <div class="blok"><span class="bn">Waarom</span><h2>Wat dit moment oplevert</h2></div>
+  <div class="route" role="img" aria-label="Opdracht 2, analyse en diagnose, leidt tot opdracht 3, de quick win, die vandaag wordt gepresenteerd. Die leidt tot opdracht 4, de Big Win.">
+    <div class="stap"><span class="n">Opdracht 2</span><b>Analyse en diagnose</b><p>Plan voor het experiment, met akkoord van de opdrachtgever</p><span class="tag">BC1</span></div>
+    <div class="pijl" aria-hidden="true">→</div>
+    <div class="stap nu"><span class="n">Opdracht 3 · vandaag</span><b>Quick win</b><p>Ontwerpen, invoeren, monitoren en presenteren</p><span class="tag">BC1 · BC2</span></div>
+    <div class="pijl" aria-hidden="true">→</div>
+    <div class="stap"><span class="n">Opdracht 4</span><b>Big Win</b><p>Verbeteringen op lange termijn monitoren en borgen</p><span class="tag">BC3 · BC4</span></div>
+  </div>
+  <p>Bij BC2 telt of jullie echt hebben geëxperimenteerd. Hebben jullie gemeten of de maatregel werkt? En deden de mensen om wie het gaat mee? Dat laten jullie vandaag zien. Jullie monitoringssysteem is ook het begin van de Big Win. Bij BC4 laat je zien hoe de organisatie verbeteringen op lange termijn kan bewaken. Wat je vandaag leert over meten en bijsturen, gebruik je daar.</p>
+  <p><b>De scores tellen niet mee voor je cijfer.</b> De presentatie hoort wel bij beroepsproduct 3 in je portfolio. Met de feedback van vandaag kun je die nog verbeteren voordat je het portfolio inlevert.</p>
+</section>
+
+<!-- ================= VERLOOP ================= -->
+<section>
+  <div class="blok"><span class="bn">Verloop</span><h2>Zo verloopt de sessie</h2><span class="bt">100 min</span></div>
+  <div class="tijdlijn" role="img" aria-label="Vijf beurten van twintig minuten. Elke beurt: 5 minuten presentatie, 10 minuten vragen en discussie, 5 minuten wisselen. Samen 100 minuten.">
+    <div class="beurt"><b>Team 1</b><div class="balk"><span class="p"></span><span class="v"></span><span class="w"></span></div><small>0:00–0:20</small></div>
+    <div class="beurt"><b>Team 2</b><div class="balk"><span class="p"></span><span class="v"></span><span class="w"></span></div><small>0:20–0:40</small></div>
+    <div class="beurt"><b>Team 3</b><div class="balk"><span class="p"></span><span class="v"></span><span class="w"></span></div><small>0:40–1:00</small></div>
+    <div class="beurt"><b>Team 4</b><div class="balk"><span class="p"></span><span class="v"></span><span class="w"></span></div><small>1:00–1:20</small></div>
+    <div class="beurt"><b>Team 5</b><div class="balk"><span class="p"></span><span class="v"></span><span class="w"></span></div><small>1:20–1:40</small></div>
+  </div>
+  <div class="legenda"><span class="p">Presentatie · 5 min</span><span class="v">Vragen en discussie · 10 min</span><span class="w">Wisselen · 5 min</span><span class="tot">5 × 20 min</span></div>
+
+  <h3>Wie doet wat tijdens een beurt</h3>
+  <div class="tab"><table class="wie">
+    <thead><tr><th></th><th>Presentatie<small>5 min</small></th><th>Vragen en discussie<small>10 min</small></th><th>Wisselen<small>5 min</small></th></tr></thead>
+    <tbody>
+      <tr class="zij"><td>Vooraf</td><td colspan="3">Het presenterende team geeft elk van de twee docenten een formulier met de zelfscore. Dat doen jullie in de wissel vóór jullie beurt; team 1 doet het bij de start.</td></tr>
+      <tr><td>Presenterend team</td><td>Presenteert vanaf de laptop van de docent. Na 5 minuten begint de vragenronde.</td><td>Beantwoordt de vragen en laat bewijs zien als iemand daarom vraagt.</td><td>Krijgt zes formulieren terug: twee van de docenten, vier van de teams.</td></tr>
+      <tr><td>Docenten</td><td>Zetten hun beoordeling naast de zelfscore op het formulier.</td><td>Stellen vragen en maken het formulier af.</td><td>Geven het formulier terug en zetten de volgende presentatie klaar.</td></tr>
+      <tr><td>Andere teams</td><td>Vullen samen één formulier in over het presenterende team.</td><td>Stellen vragen en maken het formulier af.</td><td>Geven het formulier aan het presenterende team.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Vooraf, met je team</h3>
+  <ol class="stappen">
+    <li><b>Deel jullie presentatie in het Teamskanaal</b>Doe dat vóór de sessie begint. Zet je teamnaam in de bestandsnaam, bijvoorbeeld <i>G3_quick-win</i>. Een docent sluit een laptop aan op de beamer en opent daar alle presentaties, zodat het wisselen snel gaat. Zet video's dus in het bestand zelf.</li>
+    <li><b>Print het formulier</b>De knop hieronder drukt het formulier zes keer af: twee exemplaren voor de docenten en vier om de andere teams te beoordelen.</li>
+    <li><b>Vul samen jullie zelfscore in</b>Doe dat op de twee exemplaren voor de docenten. Score eerlijk: van het verschil tussen jullie score en die van de docenten leer je het meest.</li>
+    <li><b>Oefen met de klok erbij</b>Vijf minuten voor vijf vragen is krap. Eén dia per vraag werkt goed. Details en bewijs bewaar je voor de vragenronde.</li>
+  </ol>
+</section>
+
+<!-- ================= BEOORDELING ================= -->
+<section>
+  <div class="blok"><span class="bn">Beoordeling</span><h2>Waar we op letten</h2></div>
+  <p>Docenten en teams beoordelen vijf vragen. Ze staan met kijkpunten op het formulier onderaan deze pagina.</p>
+  <ol>
+    <li><b>Doel:</b> welke KSF's (kritieke succesfactoren) en KPI's (prestatie-indicatoren) hebben jullie bijgehouden, en waarom deze?</li>
+    <li><b>Data:</b> welke data hebben jullie gebruikt om de KPI's te meten?</li>
+    <li><b>Monitoringssysteem:</b> hoe werkt het?</li>
+    <li><b>Resultaat:</b> hebben jullie bijgestuurd, hoe wisten jullie dat dat nodig was, en wat is het resultaat?</li>
+    <li><b>Proces:</b> hoe hebben jullie mensen meegenomen, en wat vonden zij van de maatregel?</li>
+  </ol>
+  <p>Elke vraag krijgt een van de drie scores die ook in de rubric staan:</p>
+  <div class="schaal">
+    <div class="s1"><b>In ontwikkeling</b><span>Het ontbreekt, blijft vaag of is niet onderbouwd.</span></div>
+    <div class="s2"><b>Op niveau</b><span>Het is compleet en onderbouwd met jullie eigen data, voorbeelden of reacties uit de organisatie.</span></div>
+    <div class="s3"><b>Boven niveau</b><span>Daarbovenop scherp gemeten en goed beargumenteerd: je ziet welke keuzes jullie maakten en waarom.</span></div>
+  </div>
+  <div class="vbl"><b>Rubric</b><span>Dit formulier is een oefening. Bij de eindbeoordeling gelden de rubrics van BC1 en BC2.</span></div>
+</section>
+
+<!-- ================= MEENEMEN ================= -->
+<section>
+  <div class="blok"><span class="bn">Checklist</span><h2>Dit neem je mee</h2></div>
+  <div class="mee">
+    <ul class="check">
+      <li>Presentatie gedeeld in het Teamskanaal, met je teamnaam in de bestandsnaam</li>
+      <li><span class="aantal">2×</span> formulier met jullie zelfscore, voor de docenten</li>
+      <li><span class="aantal">4×</span> blanco formulier, voor de andere teams</li>
+      <li>Bewijs voor de vragenronde: de data en het monitoringssysteem zelf</li>
+      <li>Een pen</li>
+    </ul>
+    <button type="button" class="grootknop" onclick="printFormulier()"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6V1h8v5M4 12H2V6h12v6h-2M4 9h8v6H4z"/></svg><span>Print formulier<small>6 pagina's A4, al gelabeld</small></span></button>
+  </div>
+</section>
+
+<!-- ================= NA AFLOOP ================= -->
+<section>
+  <div class="blok"><span class="bn">Na afloop</span><h2>Wat doe je met de zes formulieren?</h2></div>
+  <p>Leg de formulieren naast elkaar. Waar verschilt jullie zelfscore het meest van die van de docenten? Wat noemen de teams vaker dan één keer? Kies samen de twee punten die jullie als eerste verbeteren. Verbeter ze in de presentatie die in het portfolio komt en in het monitoringssysteem voor de Big Win.</p>
+</section>
+
+<!-- ================= FORMULIER ================= -->
+<article class="blad" id="formulier">
+  <div class="bkop"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Quick win presenteren · C-cluster</span><span class="num ex">Formulier</span></div>
+  <div class="ftitel"><h2>Feedbackformulier quick win</h2><span>Formatief · telt niet mee</span></div>
+  <div class="velden">
+    <div class="veld"><b>Presenterend team</b><i></i></div>
+    <div class="veld"><b>Datum</b><i></i></div>
+    <div class="veld"><b>Ingevuld door (docent of team)</b><i></i></div>
+  </div>
+  <div class="fuitleg">
+    <span class="alleen-docent"><b>Presenterend team:</b> vul vooraf de rij <i>Zelfscore</i> in en geef dit formulier vóór jullie presentatie aan een docent.</span>
+    <span><b>Beoordelaar:</b> kruis per vraag één vakje aan bij <i>Beoordeling</i>, licht kort toe en geef het formulier direct na de discussie terug.</span>
+    <span><b>In ontwikkeling</b> ontbreekt, vaag of niet onderbouwd · <b>Op niveau</b> compleet, met eigen data of voorbeelden · <b>Boven niveau</b> ook scherp gemeten en beargumenteerd</span>
+  </div>
+
+  <div class="rijen">
+    <div class="rij">
+      <div class="tekst">
+        <div class="kop"><span class="nr">1</span><h3>Doel van het monitoringssysteem</h3><span class="bc">BC1</span></div>
+        <p class="vraag">Welke KSF's en KPI's hebben jullie bijgehouden, en waarom deze?</p>
+        <p class="kijk"><b>Kijk naar</b>het knelpunt uit de diagnose dat de quick win aanpakt · waarom juist deze KPI's laten zien of de maatregel werkt · de waarde die jullie wilden halen</p>
+      </div>
+      <table class="score"><thead><tr><th></th><th>In ontwikkeling</th><th>Op niveau</th><th>Boven niveau</th></tr></thead>
+        <tbody><tr class="zelf"><td>Zelfscore</td><td class="vak"><span></span></td><td class="vak"><span></span></td><td class="vak"><span></span></td></tr>
+        <tr><td>Beoordeling</td><td class="vak"><span></span></td><td class="vak"><span></span></td><td class="vak"><span></span></td></tr></tbody></table>
+      <div class="toel"><b>Toelichting</b><i></i></div>
+    </div>
+
+    <div class="rij">
+      <div class="tekst">
+        <div class="kop"><span class="nr">2</span><h3>Data</h3><span class="bc">BC2</span></div>
+        <p class="vraag">Welke data hebben jullie gebruikt om de KPI's te meten?</p>
+        <p class="kijk"><b>Kijk naar</b>waar de data vandaan komt · cijfers én ervaringen (kwantitatief en kwalitatief) · een beginmeting om mee te vergelijken</p>
+      </div>
+      <table class="score"><thead><tr><th></th><th>In ontwikkeling</th><th>Op niveau</th><th>Boven niveau</th></tr></thead>
+        <tbody><tr class="zelf"><td>Zelfscore</td><td class="vak"><span></span></td><td class="vak"><span></span></td><td class="vak"><span></span></td></tr>
+        <tr><td>Beoordeling</td><td class="vak"><span></span></td><td class="vak"><span></span></td><td class="vak"><span></span></td></tr></tbody></table>
+      <div class="toel"><b>Toelichting</b><i></i></div>
+    </div>
+
+    <div class="rij">
+      <div class="tekst">
+        <div class="kop"><span class="nr">3</span><h3>Het monitoringssysteem</h3><span class="bc">BC2 · op weg naar BC4</span></div>
+        <p class="vraag">Hoe werkt het monitoringssysteem?</p>
+        <p class="kijk"><b>Kijk naar</b>wie wat meet en hoe vaak · waar de cijfers samenkomen, bijvoorbeeld in een dashboard of turflijst · wie ernaar kijkt en wanneer · het systeem is te zien in de presentatie</p>
+      </div>
+      <table class="score"><thead><tr><th></th><th>In ontwikkeling</th><th>Op niveau</th><th>Boven niveau</th></tr></thead>
+        <tbody><tr class="zelf"><td>Zelfscore</td><td class="vak"><span></span></td><td class="vak"><span></span></td><td class="vak"><span></span></td></tr>
+        <tr><td>Beoordeling</td><td class="vak"><span></span></td><td class="vak"><span></span></td><td class="vak"><span></span></td></tr></tbody></table>
+      <div class="toel"><b>Toelichting</b><i></i></div>
+    </div>
+
+    <div class="rij">
+      <div class="tekst">
+        <div class="kop"><span class="nr">4</span><h3>Resultaat en bijsturen</h3><span class="bc">BC2</span></div>
+        <p class="vraag">Hebben jullie op basis van de monitoring bijgestuurd? Wat is het resultaat, en waar merk je dat aan?</p>
+        <p class="kijk"><b>Kijk naar</b>welk signaal in de data liet zien dat bijsturen nodig was (of waarom het niet nodig was) · wat jullie toen veranderden · het eindresultaat tegenover de beginmeting en het doel · waar de organisatie het aan merkt</p>
+      </div>
+      <table class="score"><thead><tr><th></th><th>In ontwikkeling</th><th>Op niveau</th><th>Boven niveau</th></tr></thead>
+        <tbody><tr class="zelf"><td>Zelfscore</td><td class="vak"><span></span></td><td class="vak"><span></span></td><td class="vak"><span></span></td></tr>
+        <tr><td>Beoordeling</td><td class="vak"><span></span></td><td class="vak"><span></span></td><td class="vak"><span></span></td></tr></tbody></table>
+      <div class="toel"><b>Toelichting</b><i></i></div>
+    </div>
+
+    <div class="rij">
+      <div class="tekst">
+        <div class="kop"><span class="nr">5</span><h3>Het proces</h3><span class="bc">BC2</span></div>
+        <p class="vraag">Hoe hebben jullie mensen meegenomen, en wat vonden zij van de maatregel?</p>
+        <p class="kijk"><b>Kijk naar</b>wie meedacht en meedeed, en hoe · reacties van medewerkers en opdrachtgever · hoe jullie omgingen met twijfel of weerstand</p>
+      </div>
+      <table class="score"><thead><tr><th></th><th>In ontwikkeling</th><th>Op niveau</th><th>Boven niveau</th></tr></thead>
+        <tbody><tr class="zelf"><td>Zelfscore</td><td class="vak"><span></span></td><td class="vak"><span></span></td><td class="vak"><span></span></td></tr>
+        <tr><td>Beoordeling</td><td class="vak"><span></span></td><td class="vak"><span></span></td><td class="vak"><span></span></td></tr></tbody></table>
+      <div class="toel"><b>Toelichting</b><i></i></div>
+    </div>
+  </div>
+
+  <div class="fslot">
+    <div class="veld"><b>Dit is jullie sterkste punt</b><i></i><i></i></div>
+    <div class="veld"><b>Dit verbeteren jullie als eerste</b><i></i><i></i></div>
+  </div>
+</article>
+
+<footer class="bron">Gebaseerd op het document "Opdrachtomschrijvingen studenten (per leerboog)" en de rubric bij de leeruitkomsten in de Brightspace-cursus Praktijkopdracht 5 (opdracht 3, BC1, BC2 en BC4).</footer>
+
+</div>
+
+<!-- hier zet de knop "Print formulier" de zes exemplaren neer -->
+<div id="printset"></div>
+
+<div class="foot"><svg class="logo" role="img" aria-label="Logo HAN"><use href="#hanlogo"/></svg><span class="who">Hogeschool van Arnhem en Nijmegen</span><span class="sp"></span><span class="num">C-cluster · quick win</span></div>
+<script>
+/* Drukt het formulier zes keer af, elk exemplaar met een label.
+   Op de exemplaren voor de andere teams valt de zelfscore weg. */
+const EXEMPLAREN=[
+  ['docent','1/6 · voor docent'],
+  ['docent','2/6 · voor docent'],
+  ['team','3/6 · over een ander team'],
+  ['team','4/6 · over een ander team'],
+  ['team','5/6 · over een ander team'],
+  ['team','6/6 · over een ander team']
+];
+function printFormulier(){
+  const bron=document.getElementById('formulier');
+  const set=document.getElementById('printset');
+  set.replaceChildren(...EXEMPLAREN.map(([rol,label])=>{
+    const kopie=bron.cloneNode(true);
+    kopie.removeAttribute('id');
+    kopie.classList.add(rol);
+    kopie.querySelector('.ex').textContent=label;
+    return kopie;
+  }));
+  const titel=document.title;
+  document.title='Formulier_quick-win-presentatie';
+  document.body.classList.add('alleen-formulier');
+  window.addEventListener('afterprint',()=>{
+    document.body.classList.remove('alleen-formulier');
+    set.replaceChildren();
+    document.title=titel;
+  },{once:true});
+  window.print();
+}
+</script>
+</body>
+</html>
