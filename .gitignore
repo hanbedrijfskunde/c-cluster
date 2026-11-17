@@ -17,3 +17,6 @@ WK*/*Copy.pdf
 
 # Testartefacten van de Playwright-browser (snapshots, consolelogs, schermafbeeldingen)
 .playwright-mcp/
+
+# Ingeleverd studentwerk (privacy)
+inbox/
