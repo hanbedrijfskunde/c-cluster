@@ -91,7 +91,8 @@ svg.mx{display:block;inline-size:100%;block-size:auto}
 .k-bc{--k:var(--bc);--k2:var(--bc2)} .k-prd{--k:var(--prd);--k2:var(--prd2)}
 .k-bp{--k:var(--bp);--k2:var(--bp2)} .k-plan{--k:var(--plan);--k2:var(--plan2)}
 .fasen{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:8px}
-.fasen button{inline-size:100%;text-align:left;font-size:16px}
+.fasen button{inline-size:100%;text-align:left;font-size:16px;font-weight:600;line-height:1.38}
+.fasen button b{font-weight:800}
 .fasen button[aria-pressed="true"]{background:var(--plan);color:var(--ink)}
 
 /* draad */
@@ -244,13 +245,13 @@ footer p{max-inline-size:80ch}
         <div class="kaart">
           <h3>Buildplan</h3>
           <p class="vraag">In welke volgorde komen we daar?</p>
-          <p>Het Buildplan voegt geen vlak toe. Het beschrijft de route naar het Blueprint in stappen. De eerste stap bouwt verder op je quick win. Na elke stap meet je via vlak 10 of je het doel uit de Business Case haalt.</p>
-          <ul class="fasen" aria-label="De drie stappen van het Buildplan">
-            <li><button class="knop" data-fase="0" aria-pressed="false">1 · Week 1 en 2: iedereen werkt met het intakeformulier</button></li>
-            <li><button class="knop" data-fase="1" aria-pressed="false">2 · Week 3 tot 6: alle aanvragen via het klantsysteem</button></li>
-            <li><button class="knop" data-fase="2" aria-pressed="false">3 · Vanaf week 7: elke week de cijfers bespreken</button></li>
+          <p>Het Buildplan voegt geen vlak toe. Het beschrijft de route naar het Blueprint in fasen. Elke fase eindigt met een toets. Als de toets slaagt, begint de volgende fase. Je quick win was al zo'n toets in het klein. De eerste fase bouwt erop verder.</p>
+          <ul class="fasen" aria-label="De drie fasen van het Buildplan">
+            <li><button class="knop" data-fase="0" aria-pressed="false"><b>Fase 1 · week 1 en 2</b><br>Iedereen werkt met het intakeformulier.<br>Toets: elke intake is binnen 1 werkdag klaar.</button></li>
+            <li><button class="knop" data-fase="1" aria-pressed="false"><b>Fase 2 · week 3 tot 6</b><br>Alle aanvragen lopen via het klantsysteem.<br>Toets: elke offerte is binnen 3 werkdagen bij de klant.</button></li>
+            <li><button class="knop" data-fase="2" aria-pressed="false"><b>Fase 3 · vanaf week 7</b><br>Het team bespreekt elke week de cijfers.<br>Toets: het doel blijft drie maanden gehaald.</button></li>
           </ul>
-          <div class="toets"><b>Toets</b>Levert elke stap iets op wat je kunt meten?</div>
+          <div class="toets"><b>Toets</b>Eindigt elke fase met een toets die je kunt meten?</div>
         </div>
       </article>
     </div>
@@ -260,10 +261,10 @@ footer p{max-inline-size:80ch}
 <section id="draad">
   <p class="stapnr">Deel <b>3</b> van 5</p>
   <h2>De rode draad: je opdrachtgever vraagt door</h2>
-  <p class="intro">Vier documenten die bij elkaar horen, hangen aan elkaar. Een doel uit de Business Case wordt een eis in het PRD. De eis wordt een regel in het Blueprint en een stap in het Buildplan. In het schema zie je één draad als voorbeeld.</p>
+  <p class="intro">Vier documenten die bij elkaar horen, hangen aan elkaar. Een doel uit de Business Case wordt een eis in het PRD. De eis wordt een regel in het Blueprint en een fase in het Buildplan. In het schema zie je één draad als voorbeeld.</p>
   <p class="intro">De directeur van Noordkade leest jullie documenten en stelt vier vragen. Kies telkens het antwoord dat de draad laat zien.</p>
   <div class="draadwrap" id="draadsvg"></div>
-  <p class="draadonder" id="draadonder">Voorbeeld: van het doel „De klant weet wanneer de offerte komt” loopt één draad naar een eis, een regel en een stap.</p>
+  <p class="draadonder" id="draadonder">Voorbeeld: van het doel „De klant weet wanneer de offerte komt” loopt één draad naar een eis, een regel en een fase.</p>
   <div class="gesprek" id="gesprek">
     <p class="teller" id="gteller"></p>
     <div class="ballon" id="ballon"><b>De directeur van Noordkade</b><p id="gvraag"></p></div>
@@ -294,7 +295,7 @@ footer p{max-inline-size:80ch}
     <div class="kaart k-bc"><small>Business Case</small><label for="j-bc">Wat bewees jullie quick win, en welk doel van je opdrachtgever dient de big win?</label><textarea id="j-bc"></textarea></div>
     <div class="kaart k-prd"><small>PRD</small><label for="j-prd">Wat moet het proces straks kunnen? Noem een eis voor methode, voor mens en voor machine.</label><textarea id="j-prd"></textarea></div>
     <div class="kaart k-bp"><small>Blueprint</small><label for="j-bp">Wat is er morgen anders op de werkvloer? Noem een instructie, een vaardigheid of een scherm.</label><textarea id="j-bp"></textarea></div>
-    <div class="kaart k-plan"><small>Buildplan</small><label for="j-plan">Wat is de eerste stap na jullie quick win, en wat meet je dan?</label><textarea id="j-plan"></textarea></div>
+    <div class="kaart k-plan"><small>Buildplan</small><label for="j-plan">Wat is de eerste fase van jullie big win, en met welke toets sluit je die af?</label><textarea id="j-plan"></textarea></div>
   </div>
   <div class="rij" style="margin-block-start:22px">
     <button class="knop vol" id="kopieer">Kopieer mijn opzet</button>
@@ -318,7 +319,7 @@ const DOCS={
 const NIVEAUS=['Strategisch','Tactisch','Operationeel'];
 const ELEMENTEN=['Methode','Mens','Machine','Informatie'];
 const VLAKKEN=[
-  {id:1,r:0,c:0,naam:'Value delivery chain',rg:['Value delivery','chain'],uitleg:'De keten van stappen waarmee de organisatie haar belofte aan de klant waarmaakt.',vb:'Van de aanvraag van de klant tot de oplevering van het ingerichte kantoor.'},
+  {id:1,r:0,c:0,naam:'Value delivery chain',rg:['Value delivery','chain'],uitleg:'De keten van activiteiten waarmee de organisatie haar belofte aan de klant waarmaakt.',vb:'Van de aanvraag van de klant tot de oplevering van het ingerichte kantoor.'},
   {id:2,r:0,c:1,naam:'Organisatie',rg:['Organisatie'],uitleg:'Hoe de organisatie is ingedeeld en wie waarover beslist.',vb:'De directeur beslist over geld, de commercieel manager over de offertes.'},
   {id:3,r:0,c:2,naam:'Infrastructuur',rg:['Infrastructuur'],uitleg:'De grote keuzes in gebouwen, systemen en techniek.',vb:'Eén klantsysteem voor alle aanvragen, in plaats van losse mailboxen en Excel-bestanden.'},
   {id:4,r:1,c:0,naam:'Proces',rg:['Proces'],uitleg:'De vaste volgorde van activiteiten, over afdelingen heen.',vb:'Aanvraag, intake, calculatie, offerte, opdracht.'},
@@ -459,7 +460,7 @@ if(d3){
     mx2.stippen(n===0?[4,5,7]:null);
     mx2.verf(n===0?(id,r)=>zacht(['bc','prd','bp'][r]):()=>vol('plan'));
     mx2.lus(n===2);
-    $('#mx2tekst').textContent=['Stap 1 bouwt verder op de quick win. Het intakeformulier geldt nu voor iedereen: vlak 4, 5 en 7.','Stap 2 vult de andere vlakken: tools, kennis en scherm.','Stap 3 borgt het resultaat. Via vlak 10 meet je of het doel gehaald blijft. Dit is je monitoringssysteem.'][n];
+    $('#mx2tekst').textContent=['Fase 1 bouwt verder op de quick win: vlak 4, 5 en 7. De toets laat zien of iedereen de intake haalt.','Fase 2 vult de andere vlakken: tools, kennis en scherm. De toets is het doel uit de Business Case.','Fase 3 borgt het resultaat. Via vlak 10 meet je of het doel gehaald blijft. Dit is je monitoringssysteem.'][n];
   }
   faseKn.forEach((k,i)=>k.addEventListener('click',()=>{stopKlok();fase(i)}));
   const STAPPEN={
@@ -498,10 +499,10 @@ if(d3){
   ];
   const DRAAD={1:[['d1','e1'],['e1','r1'],['r1','s1']],2:[['d2','e2'],['e2','r2'],['r2','s2']],
     3:[['d3','e3'],['e3','r3'],['r3','s3']],4:[['e4','r4'],['r4','s4']]};
-  const KOP=[['Business Case','doel','bc'],['PRD','eis','prd'],['Blueprint','regel','bp'],['Buildplan','stap','plan']];
+  const KOP=[['Business Case','doel','bc'],['PRD','eis','prd'],['Blueprint','regel','bp'],['Buildplan','fase','plan']];
   const DW=980,DH=470,kb=206,kh=74,kx=k=>10+k*(kb+47),ky=r=>62+r*100;
   const ds=d3.select('#draadsvg').append('svg').attr('viewBox',`0 0 ${DW} ${DH}`).attr('role','img')
-    .attr('aria-label','Schema met vier kolommen: doelen, eisen, regels en stappen van Noordkade.');
+    .attr('aria-label','Schema met vier kolommen: doelen, eisen, regels en fasen van Noordkade.');
   KOP.forEach(([n,s,k],i)=>{
     ds.append('rect').attr('x',kx(i)).attr('y',8).attr('width',kb).attr('height',34).attr('fill',DOCS[k].kleur).attr('stroke','#000').attr('stroke-width',3);
     ds.append('text').attr('class','dr-kop').attr('x',kx(i)+12).attr('y',31).attr('fill',DOCS[k].tekst).text(`${n}: ${s}`);
@@ -546,8 +547,8 @@ if(d3){
         ['Nee. De leverancier levert die knop standaard mee in het klantsysteem.',0,'Dat zegt waar de knop vandaan komt. De directeur vraagt waarvoor hij nodig is.']]},
     {wijs:'d3',draad:3,luk:L4,v:'Ik wil op cijfers sturen. Hoe weet ik over een half jaar of dat gelukt is?',
      na:'Je volgde de draad nu van boven naar beneden, tot de meting. Dat is je monitoringssysteem.',
-     o:[['Aan het eind van het project krijgt u van ons een rapport met alle cijfers.',0,'Een rapport achteraf is één meting. De draad eindigt bij een stap die elke week terugkomt.'],
-        ['Dat merkt u aan klanten die tevreden zijn en vaker een opdracht geven.',0,'Tevreden klanten zijn geen cijfer. Welke regel en welke stap leveren het cijfer?'],
+     o:[['Aan het eind van het project krijgt u van ons een rapport met alle cijfers.',0,'Een rapport achteraf is één meting. De draad eindigt bij een meting die elke week terugkomt.'],
+        ['Dat merkt u aan klanten die tevreden zijn en vaker een opdracht geven.',0,'Tevreden klanten zijn geen cijfer. Welke regel en welke fase leveren het cijfer?'],
         ['Het dashboard toont elke week de doorlooptijd. Vanaf week 7 bespreekt het team die cijfers elke week.',1,'']]}
   ];
   let gi=0;
@@ -573,7 +574,7 @@ if(d3){
   $('#gverder').addEventListener('click',()=>{
     if(gi<VRAGEN.length-1){gi++;toonVraag();return}
     kg.classed('wijs',false);
-    $('#draadonder').textContent='Drie draden lopen van doel tot stap. Eén draad is geschrapt.';
+    $('#draadonder').textContent='Drie draden lopen van doel tot fase. Eén draad is geschrapt.';
     $('#gteller').textContent='Gesprek afgerond';
     $('#gvraag').textContent='Dank. Ik zie nu bij elke regel waarvoor hij dient.';
     $('#gantw').innerHTML='';
@@ -593,7 +594,7 @@ const ZINNEN=[
   ['De offertemodule kost € 6.000 per jaar.','bc','Kosten horen bij de afweging of je het doet.'],
   ['Het klantsysteem moet per aanvraag de status en de beloofde datum tonen.','prd','Dit is een eis aan het klantsysteem: wat het moet kunnen.'],
   ['Het intakeformulier heeft vijf vaste vragen.','bp','Zo concreet dat je er morgen mee kunt werken: een werkinstructie.'],
-  ['De offertemodule volgt pas als elke accountmanager het intakeformulier gebruikt.','plan','Een voorwaarde om door te gaan naar de volgende stap.']
+  ['Fase 2 begint als elke intake binnen 1 werkdag klaar is.','plan','Dit is de toets waarmee fase 1 eindigt. Een fase met zijn toets hoort in het Buildplan.']
 ];
 const VOL={bc:'Business Case',prd:'Process Requirement Document',bp:'Blueprint',plan:'Buildplan'};
 let zi=0,uitslag=[];
