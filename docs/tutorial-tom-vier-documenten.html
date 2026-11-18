@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tutorial: het TOM-model en je vier documenten</title>
+<style>
+:root{
+  --han:#E50056; --ink:#000; --paper:#fff; --grey:#454545; --grey2:#767676;
+  --wash:#F2F2F0; --panel2:#E6E6E3;
+  --bc:#E50056;   --bc2:#FFE1EC;
+  --prd:#0038FF;  --prd2:#DCE4FF;
+  --bp:#6B21D9;   --bp2:#E9DBFF;
+  --plan:#FFD400; --plan2:#FFF3B0;
+  --bw:3px; --sh:5px 5px 0 var(--ink);
+  --f:"Avenir Next","Avenir","Nunito Sans","Segoe UI",Helvetica,Arial,sans-serif;
+  --fm:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{color-scheme:light;scroll-behavior:smooth}
+body{margin:0;background:var(--wash);color:var(--ink);font:18px/1.5 var(--f);-webkit-font-smoothing:antialiased}
+:focus-visible{outline:4px solid var(--han);outline-offset:3px}
+h1,h2,h3{margin:0;text-wrap:balance;font-weight:800;letter-spacing:-.02em;line-height:1.05}
+h2{font-size:clamp(28px,4vw,44px);max-inline-size:22ch}
+h3{font-size:24px}
+p{margin:0 0 1em;max-inline-size:66ch}
+.page{max-inline-size:1180px;margin:0 auto;padding:0 clamp(16px,4vw,48px) 90px}
+section{padding-block:64px 30px}
+.intro{font-size:20px;line-height:1.45;margin-block:16px 26px}
+
+.voortgang{position:fixed;inset:0 0 auto 0;block-size:7px;background:var(--han);transform-origin:0 50%;transform:scaleX(0);z-index:50}
+
+.stapnr{display:inline-block;margin:0 0 14px;background:var(--ink);color:var(--paper);padding:7px 12px 6px;font:700 14px/1 var(--fm);letter-spacing:.06em}
+.stapnr b{color:var(--han)}
+
+/* knoppen */
+.knop{font:700 16px/1.2 var(--f);color:var(--ink);background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:10px 15px;cursor:pointer;transition:transform .08s,box-shadow .08s}
+.knop:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
+.knop:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink)}
+.knop[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.knop.vol{background:var(--han);color:var(--paper)}
+.knop[disabled]{opacity:.45;cursor:not-allowed;transform:none;box-shadow:4px 4px 0 var(--ink)}
+.rij{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+
+/* kop */
+header.mast{background:var(--ink);color:var(--paper);margin-block-start:34px;padding:clamp(22px,4vw,48px);box-shadow:10px 10px 0 rgba(0,0,0,.22);display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(18px,3vw,40px);align-items:center}
+.mast .stapnr{background:var(--han)}
+.mast h1{font-size:clamp(36px,4.7vw,64px);text-transform:uppercase;line-height:.94;letter-spacing:-.035em}
+.mast .lead{font-size:clamp(18px,2vw,22px);line-height:1.38;font-weight:600;margin:22px 0 0;max-inline-size:44ch}
+.mast .meta{font:600 14px/1.4 var(--fm);opacity:.8;margin:20px 0 0}
+.toneel canvas{display:block;inline-size:100%;aspect-ratio:5/4;touch-action:pan-y;cursor:grab}
+.toneel canvas:active{cursor:grabbing}
+.toneel .knop{border-color:var(--paper);box-shadow:4px 4px 0 var(--k,var(--paper));font-size:15px;padding:8px 12px}
+.toneel .knop[aria-pressed="true"]{background:var(--k);color:var(--kt,#fff);border-color:var(--k);box-shadow:4px 4px 0 var(--paper)}
+.toneel .bijschrift{font-size:17px;font-weight:600;line-height:1.35;margin:16px 0 0;min-block-size:2.7em;max-inline-size:none}
+.toneel .sleep{font:600 13px/1 var(--fm);opacity:.7;margin:0 0 8px;text-align:right;max-inline-size:none}
+
+/* matrix */
+.kaart{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:18px 20px}
+.mxwrap{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:10px;overflow-x:auto}
+svg.mx{display:block;inline-size:100%;block-size:auto}
+.mx text{font-family:var(--f)}
+.mx-kol{font-weight:800;font-size:17px;text-anchor:middle}
+.mx-rij{font-weight:800;font-size:16px;text-anchor:end}
+.mx-nr{font:700 15px var(--fm)}
+.mx-naam{font-weight:700;font-size:16px}
+.mx-raak{fill:transparent;cursor:pointer;outline-offset:-3px}
+.mx-raak:hover{stroke:var(--han);stroke-width:5}
+.mx-kies{fill:none;stroke:var(--han);stroke-width:7;pointer-events:none}
+.verken{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:24px;align-items:start}
+.verken .mxwrap svg{min-inline-size:600px}
+.detail .nr{font:700 15px/1 var(--fm);color:var(--han)}
+.detail h3{margin:8px 0 4px}
+.detail .plek{font:600 14px/1.3 var(--fm);color:var(--grey);margin:0 0 12px}
+.detail p{font-size:17px;line-height:1.42}
+.vb{border-inline-start:7px solid var(--han);padding:2px 0 2px 14px;margin:14px 0 0}
+.vb b{display:block;font:700 13px/1.3 var(--fm);margin-block-end:3px}
+.lenstekst{font-size:17px;font-weight:600;margin:16px 0 0;min-block-size:3em}
+
+/* scrolly */
+.scrolly{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(20px,3vw,44px)}
+.plak{position:sticky;inset-block-start:26px;align-self:start}
+.plak .onder{font:600 14px/1.35 var(--fm);margin:12px 0 0;color:var(--grey)}
+.stap{min-block-size:78vh;display:flex;align-items:center}
+.stap .kaart{border-block-start:12px solid var(--k);transition:opacity .25s;opacity:.4;inline-size:100%}
+.stap.actief .kaart{opacity:1}
+.stap .vraag{font-size:21px;font-weight:700;line-height:1.25;margin:6px 0 12px}
+.stap .vb{border-color:var(--k)}
+.stap .toets{background:var(--k2);border:2px solid var(--ink);padding:10px 12px;margin:16px 0 0;font-size:16.5px;line-height:1.4}
+.stap .toets b{font:700 13px/1.3 var(--fm);display:block}
+.k-bc{--k:var(--bc);--k2:var(--bc2)} .k-prd{--k:var(--prd);--k2:var(--prd2)}
+.k-bp{--k:var(--bp);--k2:var(--bp2)} .k-plan{--k:var(--plan);--k2:var(--plan2)}
+.fasen{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:8px}
+.fasen button{inline-size:100%;text-align:left;font-size:16px;font-weight:600;line-height:1.38}
+.fasen button b{font-weight:800}
+.fasen button[aria-pressed="true"]{background:var(--plan);color:var(--ink)}
+
+/* draad */
+.draadwrap{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:10px;overflow-x:auto}
+.draadwrap svg{display:block;inline-size:100%;min-inline-size:820px;block-size:auto}
+.dr-kop{font:800 17px var(--f)}
+.dr-knoop rect.vlak{fill:#fff;stroke:#000;stroke-width:3}
+.dr-knoop text{font:600 14.5px var(--f)}
+.dr-knoop.aan rect.vlak{fill:var(--ink)} .dr-knoop.aan text{fill:#fff}
+.dr-knoop.wijs rect.vlak{stroke:var(--han);stroke-width:7}
+.dr-knoop.weg{opacity:.4} .dr-knoop.weg rect.vlak{stroke-dasharray:8 6}
+.dr-lijn{fill:none;stroke:var(--han);stroke-width:5}
+.dr-lijn.weg{stroke:var(--grey2);stroke-dasharray:8 6}
+.draadonder{font:600 14px/1.35 var(--fm);color:var(--grey);margin:12px 0 0}
+.gesprek{margin-block-start:26px;max-inline-size:820px}
+.gesprek .teller{font:700 14px/1 var(--fm);margin:0 0 10px}
+.ballon{background:var(--ink);color:var(--paper);padding:16px 20px;box-shadow:6px 6px 0 var(--han);margin:0 0 20px}
+.ballon b{display:block;font:700 13px/1.3 var(--fm);color:#FF8FB8;margin-block-end:6px}
+.ballon p{font-size:21px;font-weight:700;line-height:1.3;margin:0;max-inline-size:none}
+.antw{display:grid;gap:12px}
+.antw .knop{text-align:left;font-weight:600;font-size:17px;line-height:1.35}
+.antw .knop.juist{background:#00A651;color:#fff;opacity:1}
+.antw .knop.mis{background:var(--bc2);opacity:1}
+.terug{font-size:18px;font-weight:600;margin:18px 0 0;min-block-size:3em}
+.terug.goed{color:#00622C} .terug.fout{color:#A8003F}
+.luk{display:inline-block;font:700 13px/1 var(--fm);background:var(--plan);border:2px solid var(--ink);padding:5px 8px;margin-inline-end:8px;color:var(--ink)}
+
+/* oefenen */
+.oefen{max-inline-size:760px}
+.bolletjes{display:flex;gap:7px;margin:0 0 16px}
+.bolletjes i{inline-size:18px;block-size:18px;border:3px solid var(--ink);background:var(--paper)}
+.bolletjes i.nu{background:var(--ink)} .bolletjes i.goed{background:#00A651} .bolletjes i.fout{background:var(--han)}
+.zin{font-size:clamp(21px,2.6vw,27px);font-weight:700;line-height:1.25;margin:0 0 20px;max-inline-size:none;min-block-size:2.6em}
+.keuzes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.keuzes .knop{border-inline-start:14px solid var(--k);text-align:left}
+.keuzes .knop.juist{background:#00A651;color:#fff}
+.keuzes .knop.mis{background:var(--bc2)}
+.score{font-size:22px;font-weight:800}
+
+/* nu jij */
+.jij{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.jij .kaart{border-block-start:12px solid var(--k)}
+.jij label{display:block;font-weight:700;font-size:18px;line-height:1.3;margin:6px 0 10px}
+.jij small{font:700 13px/1 var(--fm)}
+textarea{inline-size:100%;min-block-size:96px;font:17px/1.4 var(--f);border:var(--bw) solid var(--ink);padding:9px 11px;resize:vertical;background:var(--wash)}
+.melding{background:var(--plan2);border:var(--bw) solid var(--ink);padding:12px 16px;margin-block-start:18px;font-weight:600}
+footer{border-block-start:var(--bw) solid var(--ink);margin-block-start:60px;padding-block-start:18px;font-size:15px;color:var(--grey)}
+footer p{max-inline-size:80ch}
+
+@media (max-width:860px){
+  header.mast,.verken,.scrolly{grid-template-columns:minmax(0,1fr)}
+  .plak{inset-block-start:0;z-index:5;background:var(--wash);padding-block:10px 6px;margin-inline:-6px;padding-inline:6px}
+  .plak .mx-naam,.plak .mx-kol{display:none}
+  .plak .mx-nr{font-size:34px}
+  .plak .onder{display:none}
+  .stap{min-block-size:62vh}
+  .keuzes,.jij{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.knop,.stap .kaart{transition:none}}
+@media print{.voortgang,.toneel,.knop{display:none}header.mast{grid-template-columns:1fr;box-shadow:none}.stap{min-block-size:0;margin-block-end:16px}.stap .kaart{opacity:1}.plak{position:static}}
+</style>
+</head>
+<body>
+<div class="voortgang" id="voortgang" aria-hidden="true"></div>
+<div class="page">
+
+<header class="mast">
+  <div>
+    <p class="stapnr">Praktijkopdracht 5 · start van de big win</p>
+    <h1>Eén model, vier documenten</h1>
+    <p class="lead">Je quick win is uitgevoerd. Voor de big win schrijf je vier documenten: Business Case, Process Requirement Document (PRD), Blueprint en Buildplan. Hier zie je welk deel van het TOM-model elk document invult.</p>
+    <p class="meta">Ongeveer 15 minuten · 5 delen · met oefening</p>
+  </div>
+  <div class="toneel" id="toneel">
+    <p class="sleep" id="sleep" hidden>Sleep om te draaien</p>
+    <canvas id="doek" role="img" aria-label="Het TOM-model als bouwwerk: drie lagen van drie blokken en één hoog blok dat over alle lagen loopt."></canvas>
+    <div class="rij" role="group" aria-label="Kies een document">
+      <button class="knop" data-doc="bc" style="--k:var(--bc)" aria-pressed="false">Business Case</button>
+      <button class="knop" data-doc="prd" style="--k:var(--prd)" aria-pressed="false">PRD</button>
+      <button class="knop" data-doc="bp" style="--k:var(--bp)" aria-pressed="false">Blueprint</button>
+      <button class="knop" data-doc="plan" style="--k:var(--plan);--kt:#000" aria-pressed="false">Buildplan</button>
+    </div>
+    <p class="bijschrift" id="heldtekst" aria-live="polite">Kies een document en kijk welk deel van het model oplicht.</p>
+  </div>
+</header>
+
+<div id="geenlibs" class="melding" hidden>De interactieve onderdelen laden niet. Controleer je internetverbinding en ververs de pagina. De tekst kun je wel lezen.</div>
+
+<section id="model">
+  <p class="stapnr">Deel <b>1</b> van 5</p>
+  <h2>Eerst het model: tien vlakken</h2>
+  <p class="intro">Je kent dit model uit week 1. In je analyse beschreef je ermee hoe de organisatie nu werkt. Voor de big win beschrijf je ermee hoe ze straks werkt. Klik op een vlak om te zien wat erin staat.</p>
+  <p class="intro">De voorbeelden komen van Noordkade, een verzonnen bedrijf van veertig mensen dat kantoren inricht voor zakelijke klanten. Een klant wachtte daar gemiddeld negen werkdagen op een offerte. In de quick win testte één accountmanager een intakeformulier met vijf vaste vragen. Die offertes waren in vijf werkdagen klaar.</p>
+  <div class="verken">
+    <div>
+      <div class="mxwrap" id="mx1"></div>
+      <div class="rij" style="margin-block-start:18px" role="group" aria-label="Lees het model op drie manieren">
+        <button class="knop" data-lens="niveau" aria-pressed="false">Drie niveaus</button>
+        <button class="knop" data-lens="element" aria-pressed="false">Drie elementen</button>
+        <button class="knop" data-lens="tien" aria-pressed="false">Het tiende vlak</button>
+      </div>
+      <p class="lenstekst" id="lenstekst" aria-live="polite"></p>
+    </div>
+    <div class="kaart detail" id="detail" aria-live="polite">
+      <span class="nr">Vlak</span>
+      <h3>Kies een vlak</h3>
+      <p>Hier lees je wat het vlak beschrijft en hoe het er bij Noordkade uitziet.</p>
+    </div>
+  </div>
+</section>
+
+<section id="documenten">
+  <p class="stapnr">Deel <b>2</b> van 5</p>
+  <h2>Elk document vult een deel van het model</h2>
+  <p class="intro">Scrol langs de vier documenten van je big win. In het model zie je welke vlakken elk document invult.</p>
+  <div class="scrolly">
+    <div class="plak">
+      <div class="mxwrap" id="mx2"></div>
+      <p class="onder" id="mx2tekst"></p>
+    </div>
+    <div>
+      <article class="stap k-bc" data-stap="bc">
+        <div class="kaart">
+          <h3>Business Case</h3>
+          <p class="vraag">Waarom doen we dit, en wat levert het op?</p>
+          <p>De Business Case staat op het strategische niveau. Je laat zien welk doel van de organisatie de big win dient, wat hij kost en wat hij oplevert. Het resultaat van je quick win is je eerste bewijs. Leg hier ook het cijfer vast waaraan je het doel later afleest.</p>
+          <div class="vb"><b>Bij Noordkade</b>De quick win haalde 5 werkdagen in plaats van 9. De big win moet elke offerte binnen 3 werkdagen bij de klant brengen. Dat kost een offertemodule van € 6.000 per jaar. Het levert naar schatting 15% meer opdrachten op.</div>
+          <div class="toets"><b>Toets</b>Staat er een doel met een getal in, en is duidelijk wie erover beslist?</div>
+        </div>
+      </article>
+      <article class="stap k-prd" data-stap="prd">
+        <div class="kaart">
+          <h3>Process Requirement Document</h3>
+          <p class="vraag">Wat moet het proces straks kunnen?</p>
+          <p>Het PRD staat op het tactische niveau. Je vertaalt het doel naar eisen aan het proces, aan de rollen en aan de tools en data. Je schrijft op wat er moet kunnen. Hoe het eruitziet, komt in het Blueprint.</p>
+          <div class="vb"><b>Bij Noordkade</b>Elke aanvraag krijgt binnen 1 werkdag een intake. De accountmanager doet de intake, de calculator rekent de offerte door. Het klantsysteem toont per aanvraag de status en de beloofde datum.</div>
+          <div class="toets"><b>Toets van links naar rechts</b>Heeft elke processtap een rol, een tool en een meetpunt?</div>
+        </div>
+      </article>
+      <article class="stap k-bp" data-stap="bp">
+        <div class="kaart">
+          <h3>Blueprint</h3>
+          <p class="vraag">Hoe ziet de nieuwe situatie er precies uit?</p>
+          <p>Het Blueprint is het hele model, ingevuld voor de nieuwe situatie. Nieuw is het operationele niveau: de werkinstructie, de kennis en het scherm waarmee iemand morgen werkt.</p>
+          <div class="vb"><b>Bij Noordkade</b>Het intakeformulier uit de quick win heeft vijf vaste vragen. Calculators leren in twee uur werken met de standaardprijslijst. In het klantsysteem staat per aanvraag één knop: Offerte verstuurd.</div>
+          <div class="toets"><b>Toets van boven naar beneden</b>Kun je bij elke regel de eis en het doel aanwijzen waar hij vandaan komt?</div>
+        </div>
+      </article>
+      <article class="stap k-plan" data-stap="plan">
+        <div class="kaart">
+          <h3>Buildplan</h3>
+          <p class="vraag">In welke volgorde komen we daar?</p>
+          <p>Het Buildplan voegt geen vlak toe. Het beschrijft de route naar het Blueprint in fasen. Elke fase eindigt met een toets. Als de toets slaagt, begint de volgende fase. Je quick win was al zo'n toets in het klein. De eerste fase bouwt erop verder.</p>
+          <ul class="fasen" aria-label="De drie fasen van het Buildplan">
+            <li><button class="knop" data-fase="0" aria-pressed="false"><b>Fase 1 · week 1 en 2</b><br>Iedereen werkt met het intakeformulier.<br>Toets: elke intake is binnen 1 werkdag klaar.</button></li>
+            <li><button class="knop" data-fase="1" aria-pressed="false"><b>Fase 2 · week 3 tot 6</b><br>Alle aanvragen lopen via het klantsysteem.<br>Toets: elke offerte is binnen 3 werkdagen bij de klant.</button></li>
+            <li><button class="knop" data-fase="2" aria-pressed="false"><b>Fase 3 · vanaf week 7</b><br>Het team bespreekt elke week de cijfers.<br>Toets: het doel blijft drie maanden gehaald.</button></li>
+          </ul>
+          <div class="toets"><b>Toets</b>Eindigt elke fase met een toets die je kunt meten?</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="draad">
+  <p class="stapnr">Deel <b>3</b> van 5</p>
+  <h2>De rode draad: je opdrachtgever vraagt door</h2>
+  <p class="intro">Vier documenten die bij elkaar horen, hangen aan elkaar. Een doel uit de Business Case wordt een eis in het PRD. De eis wordt een regel in het Blueprint en een fase in het Buildplan. In het schema zie je één draad als voorbeeld.</p>
+  <p class="intro">De directeur van Noordkade leest jullie documenten en stelt vier vragen. Kies telkens het antwoord dat de draad laat zien.</p>
+  <div class="draadwrap" id="draadsvg"></div>
+  <p class="draadonder" id="draadonder">Voorbeeld: van het doel „De klant weet wanneer de offerte komt” loopt één draad naar een eis, een regel en een fase.</p>
+  <div class="gesprek" id="gesprek">
+    <p class="teller" id="gteller"></p>
+    <div class="ballon" id="ballon"><b>De directeur van Noordkade</b><p id="gvraag"></p></div>
+    <div class="antw" id="gantw"></div>
+    <p class="terug" id="gterug" aria-live="polite"></p>
+    <button class="knop vol" id="gverder" hidden>Volgende vraag</button>
+  </div>
+</section>
+
+<section id="oefenen">
+  <p class="stapnr">Deel <b>4</b> van 5</p>
+  <h2>Oefenen: in welk document hoort deze zin?</h2>
+  <p class="intro">Acht zinnen uit de documenten van Noordkade. Kies bij elke zin het document.</p>
+  <div class="kaart oefen" id="oefen">
+    <div class="bolletjes" id="bolletjes" aria-hidden="true"></div>
+    <p class="zin" id="zin"></p>
+    <div class="keuzes" id="keuzes"></div>
+    <p class="terug" id="oefenterug" aria-live="polite"></p>
+    <button class="knop vol" id="volgende" hidden>Volgende zin</button>
+  </div>
+</section>
+
+<section id="jij">
+  <p class="stapnr">Deel <b>5</b> van 5</p>
+  <h2>Nu jouw big win</h2>
+  <p class="intro">Beantwoord per document één vraag over je eigen big win. Je antwoorden blijven in deze browser staan. Neem ze mee naar je team.</p>
+  <div class="jij">
+    <div class="kaart k-bc"><small>Business Case</small><label for="j-bc">Wat bewees jullie quick win, en welk doel van je opdrachtgever dient de big win?</label><textarea id="j-bc"></textarea></div>
+    <div class="kaart k-prd"><small>PRD</small><label for="j-prd">Wat moet het proces straks kunnen? Noem een eis voor methode, voor mens en voor machine.</label><textarea id="j-prd"></textarea></div>
+    <div class="kaart k-bp"><small>Blueprint</small><label for="j-bp">Wat is er morgen anders op de werkvloer? Noem een instructie, een vaardigheid of een scherm.</label><textarea id="j-bp"></textarea></div>
+    <div class="kaart k-plan"><small>Buildplan</small><label for="j-plan">Wat is de eerste fase van jullie big win, en met welke toets sluit je die af?</label><textarea id="j-plan"></textarea></div>
+  </div>
+  <div class="rij" style="margin-block-start:22px">
+    <button class="knop vol" id="kopieer">Kopieer mijn opzet</button>
+    <span id="kopieerterug" aria-live="polite"></span>
+  </div>
+</section>
+
+<footer>
+  <p>Het TOM³-model is een werkmethode van Westmoreland BV. De weergave op deze pagina is een eigen tekening bij het hoorcollege TOM-model van week 1. De koppeling met de vier documenten en het voorbeeld Noordkade zijn gemaakt voor het C-cluster van HAN Bedrijfskunde.</p>
+</footer>
+</div>
+
+<script type="module">
+/* ---------- gegevens ---------- */
+const DOCS={
+  bc:{naam:'Business Case',kleur:'#E50056',licht:'#FFE1EC',tekst:'#fff'},
+  prd:{naam:'PRD',kleur:'#0038FF',licht:'#DCE4FF',tekst:'#fff'},
+  bp:{naam:'Blueprint',kleur:'#6B21D9',licht:'#E9DBFF',tekst:'#fff'},
+  plan:{naam:'Buildplan',kleur:'#FFD400',licht:'#FFF3B0',tekst:'#000'}
+};
+const NIVEAUS=['Strategisch','Tactisch','Operationeel'];
+const ELEMENTEN=['Methode','Mens','Machine','Informatie'];
+const VLAKKEN=[
+  {id:1,r:0,c:0,naam:'Value delivery chain',rg:['Value delivery','chain'],uitleg:'De keten van activiteiten waarmee de organisatie haar belofte aan de klant waarmaakt.',vb:'Van de aanvraag van de klant tot de oplevering van het ingerichte kantoor.'},
+  {id:2,r:0,c:1,naam:'Organisatie',rg:['Organisatie'],uitleg:'Hoe de organisatie is ingedeeld en wie waarover beslist.',vb:'De directeur beslist over geld, de commercieel manager over de offertes.'},
+  {id:3,r:0,c:2,naam:'Infrastructuur',rg:['Infrastructuur'],uitleg:'De grote keuzes in gebouwen, systemen en techniek.',vb:'Eén klantsysteem voor alle aanvragen, in plaats van losse mailboxen en Excel-bestanden.'},
+  {id:4,r:1,c:0,naam:'Proces',rg:['Proces'],uitleg:'De vaste volgorde van activiteiten, over afdelingen heen.',vb:'Aanvraag, intake, calculatie, offerte, opdracht.'},
+  {id:5,r:1,c:1,naam:'Rol, taken & verantwoordelijkheden',rg:['Rol, taken &','verantwoorde-','lijkheden'],uitleg:'Wie welke processtap doet en wie erop aanspreekbaar is.',vb:'De accountmanager doet de intake, de calculator rekent de offerte door.'},
+  {id:6,r:1,c:2,naam:'Tools & data',rg:['Tools & data'],uitleg:'De programma’s die het proces ondersteunen en de gegevens die ze vastleggen.',vb:'Het klantsysteem legt per aanvraag de status en de beloofde offertedatum vast.'},
+  {id:7,r:2,c:0,naam:'Werkinstructies',rg:['Werkinstructies'],uitleg:'Hoe je één taak uitvoert, handeling voor handeling.',vb:'Het intakeformulier met vijf vaste vragen.'},
+  {id:8,r:2,c:1,naam:'Kennis',rg:['Kennis'],uitleg:'Wat medewerkers moeten weten en kunnen om het werk te doen.',vb:'Calculators kunnen met de standaardprijslijst een offerte opbouwen.'},
+  {id:9,r:2,c:2,naam:'User interface',rg:['User interface'],uitleg:'Het scherm of apparaat waar mens en machine elkaar raken.',vb:'Een scherm in het klantsysteem met per aanvraag één knop: Offerte verstuurd.'},
+  {id:10,r:0,c:3,naam:'Data & managementrapporten',rg:['Data &','management-','rapporten'],uitleg:'De cijfers die van de werkvloer naar boven stromen, en de doelen die terug naar beneden gaan.',
+   vbs:['De directeur ziet elke maand de gemiddelde doorlooptijd van offertes.','De commercieel manager ziet elke week de doorlooptijd per soort opdracht.','Een dashboard op de afdeling toont de aanvragen die openstaan.']}
+];
+const rustig=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const druk=(knoppen,actief)=>knoppen.forEach(k=>k.setAttribute('aria-pressed',String(k===actief)));
+
+/* ---------- bibliotheken ---------- */
+const laad=u=>import(u).catch(()=>null);
+const [d3,THREE,M]=await Promise.all([
+  laad('https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm'),
+  laad('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js'),
+  laad('https://cdn.jsdelivr.net/npm/motion@11.18.2/+esm')
+]);
+if(!d3||!M) $('#geenlibs').hidden=false;
+const beweeg=(doel,kf,opt)=>(M&&!rustig)?M.animate(doel,kf,opt):null;
+const veer={type:'spring',visualDuration:.45,bounce:.35};
+
+if(M&&!rustig) M.scroll(M.animate('#voortgang',{scaleX:[0,1]},{ease:'linear'}));
+
+/* ---------- matrix (D3) ---------- */
+function maakMatrix(host,opKies){
+  const W=780,H=500,L=128,T=58,uid=host.replace('#','');
+  const x=d3.scaleBand().domain(d3.range(4)).range([L,W-10]).paddingInner(.07);
+  const y=d3.scaleBand().domain(d3.range(3)).range([T,H-10]).paddingInner(.09);
+  const bw=x.bandwidth(),bh=y.bandwidth(),hoog=y(2)+bh-y(0);
+  const svg=d3.select(host).append('svg').attr('class','mx').attr('viewBox',`0 0 ${W} ${H}`);
+  svg.append('defs').append('marker').attr('id','pijl-'+uid).attr('viewBox','0 0 10 10').attr('refX',5).attr('refY',5)
+    .attr('markerWidth',4).attr('markerHeight',4).attr('orient','auto-start-reverse')
+    .append('path').attr('d','M0 0L10 5L0 10z');
+  svg.selectAll('.mx-kol').data(ELEMENTEN).join('text').attr('class','mx-kol')
+    .attr('x',(d,i)=>x(i)+bw/2).attr('y',T-22).text(d=>d);
+  svg.selectAll('.mx-rij').data(NIVEAUS).join('text').attr('class','mx-rij')
+    .attr('x',L-14).attr('y',(d,i)=>y(i)+bh/2+5).text(d=>d);
+
+  const g=svg.selectAll('g.vlak').data(VLAKKEN).join('g').attr('class','vlak');
+  g.append('rect').attr('x',d=>x(d.c)+5).attr('y',d=>y(d.r)+5).attr('width',bw).attr('height',d=>d.id===10?hoog:bh);
+  g.append('rect').attr('class','gezicht').attr('x',d=>x(d.c)).attr('y',d=>y(d.r)).attr('width',bw)
+    .attr('height',d=>d.id===10?hoog:bh).attr('fill','#fff').attr('stroke','#000').attr('stroke-width',3);
+  // zones van vlak 10
+  const zones=svg.selectAll('rect.zone').data([0,1,2]).join('rect').attr('class','zone')
+    .attr('x',x(3)+1.5).attr('width',bw-3).attr('fill','transparent')
+    .attr('y',r=>r===0?y(0)+1.5:(y(r)+y(r-1)+bh)/2)
+    .attr('height',r=>(r===2?y(2)+bh-1.5:(y(r)+bh+y(r+1))/2)-(r===0?y(0)+1.5:(y(r)+y(r-1)+bh)/2));
+  svg.selectAll('line.scheid').data([0,1]).join('line').attr('x1',x(3)).attr('x2',x(3)+bw)
+    .attr('y1',r=>(y(r)+bh+y(r+1))/2).attr('y2',r=>(y(r)+bh+y(r+1))/2)
+    .attr('stroke','#000').attr('stroke-width',2).attr('stroke-dasharray','7 6');
+  const nr=svg.selectAll('text.mx-nr').data(VLAKKEN).join('text').attr('class','mx-nr')
+    .attr('x',d=>x(d.c)+13).attr('y',d=>y(d.r)+28).attr('fill','#E50056').text(d=>d.id);
+  const naam=svg.selectAll('text.mx-naam').data(VLAKKEN).join('text').attr('class','mx-naam')
+    .attr('y',d=>(d.id===10?y(1):y(d.r))+60);
+  naam.selectAll('tspan').data(d=>d.rg.map(t=>({t,d}))).join('tspan')
+    .attr('x',o=>x(o.d.c)+13).attr('dy',(o,i)=>i?21:0).text(o=>o.t);
+
+  const extra=svg.append('g').attr('pointer-events','none');
+  const stip=extra.selectAll('circle').data(VLAKKEN).join('circle')
+    .attr('cx',d=>x(d.c)+bw-26).attr('cy',d=>y(d.r)+bh-26).attr('r',0)
+    .attr('fill','#FFD400').attr('stroke','#000').attr('stroke-width',3);
+  const xo=x(3)+bw-15, xn=x(3)+bw-35, top=y(0)+46, bod=y(2)+bh-22;
+  const lus=extra.selectAll('path').data([`M${xo} ${bod}V${top}`,`M${xn} ${top}V${bod}`]).join('path')
+    .attr('d',d=>d).attr('fill','none').attr('stroke','#000').attr('stroke-width',5)
+    .attr('marker-end',`url(#pijl-${uid})`).attr('opacity',0);
+  const kader=extra.append('rect').attr('x',L-8).attr('y',T-8).attr('width',W-L+4).attr('height',H-T+2)
+    .attr('fill','none').attr('stroke','#6B21D9').attr('stroke-width',6).attr('stroke-dasharray','14 8').attr('opacity',0);
+  const kies=extra.append('rect').attr('class','mx-kies').attr('opacity',0);
+
+  // raakvlakken: negen vlakken plus drie zones van vlak 10
+  const raak=[...VLAKKEN.filter(v=>v.id<10).map(v=>({v,r:v.r})),...[0,1,2].map(r=>({v:VLAKKEN[9],r}))];
+  if(opKies){
+    svg.selectAll('rect.mx-raak').data(raak).join('rect').attr('class','mx-raak')
+      .attr('x',d=>x(d.v.c)).attr('y',d=>y(d.r)).attr('width',bw).attr('height',bh)
+      .attr('tabindex',0).attr('role','button')
+      .attr('aria-label',d=>`Vlak ${d.v.id}, ${d.v.naam}, ${NIVEAUS[d.r].toLowerCase()} niveau`)
+      .on('click',(e,d)=>kiesVlak(d))
+      .on('keydown',(e,d)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();kiesVlak(d)}});
+  }
+  function kiesVlak(d){
+    kies.attr('x',x(d.v.c)).attr('y',y(d.r)).attr('width',bw).attr('height',bh).attr('opacity',1);
+    opKies(d.v,d.r);
+  }
+  const tr=()=>d3.transition().duration(rustig?0:420).ease(d3.easeCubicOut);
+  return {
+    /* fn(vlakId,rij) geeft {f,t} of niets */
+    verf(fn,vertraag=()=>0){
+      svg.selectAll('rect.gezicht').filter(d=>d.id<10).transition(tr()).delay(d=>rustig?0:vertraag(d.r,d.c))
+        .attr('fill',d=>fn(d.id,d.r)?.f||'#fff');
+      zones.transition(tr()).delay(r=>rustig?0:vertraag(r,3)).attr('fill',r=>fn(10,r)?.f||'transparent');
+      nr.transition(tr()).attr('fill',d=>fn(d.id,d.r)?.t||'#E50056');
+      naam.transition(tr()).attr('fill',d=>fn(d.id,d.id===10?1:d.r)?.t||'#000');
+    },
+    stippen(ids){stip.transition().duration(rustig?0:350).ease(ids?d3.easeBackOut:d3.easeCubicIn).attr('r',d=>ids?.includes(d.id)?12:0)},
+    lus(aan){lus.transition().duration(rustig?0:400).attr('opacity',aan?1:0)},
+    kader(aan){kader.transition().duration(rustig?0:400).attr('opacity',aan?1:0)}
+  };
+}
+
+if(d3){
+  /* stap 1: verkennen */
+  const detail=$('#detail');
+  const mx1=maakMatrix('#mx1',(v,r)=>{
+    const plek=v.id===10?`${NIVEAUS[r]} × informatie`:`${NIVEAUS[v.r]} × ${ELEMENTEN[v.c].toLowerCase()}`;
+    detail.innerHTML=`<span class="nr">Vlak ${v.id}</span><h3>${v.naam}</h3><p class="plek">${plek}</p><p>${v.uitleg}</p><div class="vb"><b>Bij Noordkade</b>${v.vbs?v.vbs[r]:v.vb}</div>`;
+    beweeg(detail,{scale:[.96,1]},veer);
+  });
+  const tinten=['#E50056','#F2669A','#FAB3CC'], tt=['#fff','#000','#000'];
+  const LENZEN={
+    niveau:{tekst:'Van boven naar beneden wordt het concreter: van de koers (strategisch) via de inrichting (tactisch) naar het dagelijkse werk (operationeel).',
+      doe(){mx1.lus(false);mx1.verf((id,r)=>({f:tinten[r],t:tt[r]}),(r)=>r*260)}},
+    element:{tekst:'Van links naar rechts zie je de werkwijze (methode), de mensen die het werk doen (mens) en de middelen waarmee ze dat doen (machine).',
+      doe(){mx1.lus(false);mx1.verf((id,r)=>{const c=VLAKKEN[id-1].c;return c<3?{f:tinten[c],t:tt[c]}:null},(r,c)=>c*260)}},
+    tien:{tekst:'Het tiende vlak loopt over alle drie de niveaus. Cijfers stromen van de werkvloer omhoog, doelen komen terug omlaag.',
+      doe(){mx1.verf(id=>id===10?{f:'#FFD400',t:'#000'}:null);mx1.lus(true)}}
+  };
+  const lensKn=$$('[data-lens]');
+  lensKn.forEach(k=>k.addEventListener('click',()=>{
+    const aan=k.getAttribute('aria-pressed')==='true';
+    if(aan){druk(lensKn,null);mx1.verf(()=>null);mx1.lus(false);$('#lenstekst').textContent='';return}
+    druk(lensKn,k);LENZEN[k.dataset.lens].doe();$('#lenstekst').textContent=LENZEN[k.dataset.lens].tekst;
+  }));
+
+  /* stap 2: scrolly */
+  const mx2=maakMatrix('#mx2');
+  const D=DOCS, vol=k=>({f:D[k].kleur,t:D[k].tekst}), zacht=k=>({f:D[k].licht,t:'#000'});
+  let klokken=[];
+  const stopKlok=()=>{klokken.forEach(clearTimeout);klokken=[]};
+  const faseKn=$$('[data-fase]');
+  function fase(n){
+    druk(faseKn,faseKn[n]);
+    mx2.kader(false);
+    mx2.stippen(n===0?[4,5,7]:null);
+    mx2.verf(n===0?(id,r)=>zacht(['bc','prd','bp'][r]):()=>vol('plan'));
+    mx2.lus(n===2);
+    $('#mx2tekst').textContent=['Fase 1 bouwt verder op de quick win: vlak 4, 5 en 7. De toets laat zien of iedereen de intake haalt.','Fase 2 vult de andere vlakken: tools, kennis en scherm. De toets is het doel uit de Business Case.','Fase 3 borgt het resultaat. Via vlak 10 meet je of het doel gehaald blijft. Dit is je monitoringssysteem.'][n];
+  }
+  faseKn.forEach((k,i)=>k.addEventListener('click',()=>{stopKlok();fase(i)}));
+  const STAPPEN={
+    bc(){mx2.verf((id,r)=>r===0?vol('bc'):null);$('#mx2tekst').textContent='Business Case: de drie strategische vlakken en het strategische deel van vlak 10.'},
+    prd(){mx2.verf((id,r)=>r===0?zacht('bc'):r===1?vol('prd'):null);$('#mx2tekst').textContent='PRD: de drie tactische vlakken en het tactische deel van vlak 10.'},
+    bp(){mx2.verf((id,r)=>r===0?zacht('bc'):r===1?zacht('prd'):vol('bp'));mx2.kader(true);$('#mx2tekst').textContent='Blueprint: het hele model, met het operationele niveau als nieuwe laag.'},
+    plan(){fase(0);if(!rustig){klokken=[setTimeout(()=>fase(1),2200),setTimeout(()=>fase(2),4400)]}}
+  };
+  let actief=null;
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const naam=e.target.dataset.stap; if(naam===actief) return;
+    actief=naam; stopKlok(); mx2.kader(false); mx2.stippen(null); mx2.lus(false); druk(faseKn,null);
+    $$('.stap').forEach(s=>s.classList.toggle('actief',s===e.target));
+    STAPPEN[naam]();
+  }),{rootMargin:'-45% 0px -45% 0px'});
+  $$('.stap').forEach(s=>io.observe(s));
+
+  /* deel 3: de rode draad, als gesprek met de opdrachtgever */
+  const KN=[
+    {id:'d1',k:0,r:.33,t:'Offerte bij de klant in 3 werkdagen in plaats van 9'},
+    {id:'d2',k:0,r:1.5,t:'De klant weet wanneer de offerte komt'},
+    {id:'d3',k:0,r:2.67,t:'De directeur stuurt op cijfers'},
+    {id:'e1',k:1,r:0,t:'Elke aanvraag krijgt binnen 1 werkdag een intake'},
+    {id:'e4',k:1,r:1,t:'Offertes zien er professioneel uit'},
+    {id:'e2',k:1,r:2,t:'Het klantsysteem toont per aanvraag status en datum'},
+    {id:'e3',k:1,r:3,t:'Elke week een overzicht van de doorlooptijd'},
+    {id:'r1',k:2,r:0,t:'Intakeformulier met vijf vaste vragen'},
+    {id:'r4',k:2,r:1,t:'Nieuw logo op de offertes'},
+    {id:'r2',k:2,r:2,t:'Per aanvraag één knop: Offerte verstuurd'},
+    {id:'r3',k:2,r:3,t:'Dashboard met de aanvragen die openstaan'},
+    {id:'s1',k:3,r:0,t:'Week 1 en 2: iedereen werkt met het intakeformulier'},
+    {id:'s4',k:3,r:1,t:'Week 8: nieuw sjabloon voor offertes'},
+    {id:'s2',k:3,r:2,t:'Week 3 tot 6: alle aanvragen via het klantsysteem'},
+    {id:'s3',k:3,r:3,t:'Vanaf week 7: elke week de cijfers bespreken'}
+  ];
+  const DRAAD={1:[['d1','e1'],['e1','r1'],['r1','s1']],2:[['d2','e2'],['e2','r2'],['r2','s2']],
+    3:[['d3','e3'],['e3','r3'],['r3','s3']],4:[['e4','r4'],['r4','s4']]};
+  const KOP=[['Business Case','doel','bc'],['PRD','eis','prd'],['Blueprint','regel','bp'],['Buildplan','fase','plan']];
+  const DW=980,DH=470,kb=206,kh=74,kx=k=>10+k*(kb+47),ky=r=>62+r*100;
+  const ds=d3.select('#draadsvg').append('svg').attr('viewBox',`0 0 ${DW} ${DH}`).attr('role','img')
+    .attr('aria-label','Schema met vier kolommen: doelen, eisen, regels en fasen van Noordkade.');
+  KOP.forEach(([n,s,k],i)=>{
+    ds.append('rect').attr('x',kx(i)).attr('y',8).attr('width',kb).attr('height',34).attr('fill',DOCS[k].kleur).attr('stroke','#000').attr('stroke-width',3);
+    ds.append('text').attr('class','dr-kop').attr('x',kx(i)+12).attr('y',31).attr('fill',DOCS[k].tekst).text(`${n}: ${s}`);
+  });
+  const lijnG=ds.append('g');
+  const breek=(t,max)=>{const u=[];let r='';for(const w of t.split(' ')){if(r&&(r+' '+w).length>max){u.push(r);r=w}else r=r?r+' '+w:w}u.push(r);return u};
+  const kg=ds.selectAll('g.dr-knoop').data(KN).join('g').attr('class','dr-knoop')
+    .attr('transform',d=>`translate(${kx(d.k)},${ky(d.r)})`);
+  kg.append('rect').attr('x',5).attr('y',5).attr('width',kb).attr('height',kh);
+  kg.append('rect').attr('class','vlak').attr('width',kb).attr('height',kh);
+  kg.append('text').attr('y',d=>kh/2-(breek(d.t,23).length-1)*9+5).selectAll('tspan').data(d=>breek(d.t,23)).join('tspan')
+    .attr('x',11).attr('dy',(t,i)=>i?18:0).text(t=>t);
+  const knoop=id=>KN.find(k=>k.id===id);
+  const verb=d3.linkHorizontal().source(([a])=>[kx(knoop(a).k)+kb+5,ky(knoop(a).r)+kh/2])
+    .target(([,b])=>[kx(knoop(b).k),ky(knoop(b).r)+kh/2]);
+  const getoond=new Set();
+  function trekDraad(n,weg=false){
+    if(getoond.has(n)) return; getoond.add(n);
+    const ids=new Set(DRAAD[n].flat());
+    kg.filter(d=>ids.has(d.id)).classed(weg?'weg':'aan',true);
+    lijnG.selectAll(null).data(DRAAD[n]).join('path').attr('class','dr-lijn'+(weg?' weg':'')).attr('d',verb)
+      .each(function(){if(weg||rustig)return;const l=this.getTotalLength();d3.select(this).attr('stroke-dasharray',l).attr('stroke-dashoffset',l)})
+      .transition().duration(rustig||weg?0:450).delay((l,i)=>rustig||weg?0:i*200).attr('stroke-dashoffset',0);
+  }
+  trekDraad(2);
+  const L2='Leeruitkomst 2: onderbouwd ontwerpen', L4='Leeruitkomst 4: monitoren en evalueren';
+  const VRAGEN=[
+    {wijs:'r1',draad:1,luk:L2,v:'Waarom staat dit intakeformulier in het Blueprint? Dat hadden we toch al in de quick win?',
+     na:'De regel hangt via een eis aan een doel. Dat is een onderbouwing.',
+     o:[['Het formulier werkte goed in de quick win. Daarom nemen we het over in het Blueprint.',0,'Dat bewijst dat het formulier werkt. De directeur vraagt waarvoor het dient. Noem de eis en het doel.'],
+        ['Het formulier maakt een intake binnen 1 werkdag mogelijk. Die eis dient uw doel: een offerte in 3 werkdagen.',1,''],
+        ['Een Blueprint bevat altijd werkinstructies. Dit formulier is de werkinstructie voor de intake.',0,'Het model verplicht geen enkele regel. Een regel staat erin omdat hij een eis en een doel dient.']]},
+    {wijs:'r4',draad:4,weg:true,luk:L2,v:'En dit nieuwe logo, waarom staat dat erin?',
+     na:'De draad stopt bij de eis. Een regel zonder doel hoort niet in het voorstel, tot de opdrachtgever een doel noemt.',
+     o:[['Het logo hoort bij een eis uit het PRD: offertes zien er professioneel uit.',0,'Dat klopt, maar volg de draad verder. Welk doel uit de Business Case dient die eis?'],
+        ['Een nieuw logo kost weinig. Het past dus goed in dit voorstel en het valt klanten op.',0,'Lage kosten zijn geen reden. De vraag is welk doel het logo dient.'],
+        ['Die eis dient geen doel uit de Business Case. We schrappen deze draad, of u noemt het doel.',1,'']]},
+    {wijs:'r2',draad:2,luk:L2,v:'Die knop „Offerte verstuurd” lijkt me een detail. Kan die eruit?',
+     na:'Ook een kleine regel op de werkvloer draagt een doel. Dat laat je zien met de draad.',
+     o:[['Ja. Het is een detail, en details horen niet in een Blueprint thuis.',0,'Het Blueprint beschrijft juist het operationele niveau: het scherm waarmee iemand werkt.'],
+        ['Nee. Zonder de knop kent het klantsysteem de status niet. Dan weet uw klant niet wanneer de offerte komt.',1,''],
+        ['Nee. De leverancier levert die knop standaard mee in het klantsysteem.',0,'Dat zegt waar de knop vandaan komt. De directeur vraagt waarvoor hij nodig is.']]},
+    {wijs:'d3',draad:3,luk:L4,v:'Ik wil op cijfers sturen. Hoe weet ik over een half jaar of dat gelukt is?',
+     na:'Je volgde de draad nu van boven naar beneden, tot de meting. Dat is je monitoringssysteem.',
+     o:[['Aan het eind van het project krijgt u van ons een rapport met alle cijfers.',0,'Een rapport achteraf is één meting. De draad eindigt bij een meting die elke week terugkomt.'],
+        ['Dat merkt u aan klanten die tevreden zijn en vaker een opdracht geven.',0,'Tevreden klanten zijn geen cijfer. Welke regel en welke fase leveren het cijfer?'],
+        ['Het dashboard toont elke week de doorlooptijd. Vanaf week 7 bespreekt het team die cijfers elke week.',1,'']]}
+  ];
+  let gi=0;
+  function toonVraag(){
+    const q=VRAGEN[gi];
+    $('#gteller').textContent=`Vraag ${gi+1} van ${VRAGEN.length}`;
+    $('#gvraag').textContent=q.v; $('#gterug').textContent=''; $('#gterug').className='terug'; $('#gverder').hidden=true;
+    kg.classed('wijs',d=>d.id===q.wijs);
+    $('#draadonder').textContent=`De directeur wijst naar: „${knoop(q.wijs).t}”.`;
+    $('#gantw').innerHTML=q.o.map((o,i)=>`<button class="knop" data-i="${i}">${o[0]}</button>`).join('');
+    $$('#gantw .knop').forEach(b=>b.addEventListener('click',()=>antwoord(b,q)));
+    beweeg('#ballon',{scale:[.94,1],opacity:[0,1]},veer);
+  }
+  function antwoord(b,q){
+    const [,goed,fb]=q.o[+b.dataset.i], t=$('#gterug');
+    b.disabled=true;
+    if(!goed){b.classList.add('mis');t.className='terug fout';t.textContent=fb;beweeg(b,{x:[0,-9,9,-6,6,0]},{duration:.4});return}
+    b.classList.add('juist'); $$('#gantw .knop').forEach(k=>k.disabled=true);
+    trekDraad(q.draad,q.weg);
+    t.className='terug goed'; t.innerHTML=`<span class="luk">${q.luk}</span>${q.na}`;
+    const v=$('#gverder'); v.hidden=false; v.textContent=gi<VRAGEN.length-1?'Volgende vraag':'Rond het gesprek af'; v.focus();
+  }
+  $('#gverder').addEventListener('click',()=>{
+    if(gi<VRAGEN.length-1){gi++;toonVraag();return}
+    kg.classed('wijs',false);
+    $('#draadonder').textContent='Drie draden lopen van doel tot fase. Eén draad is geschrapt.';
+    $('#gteller').textContent='Gesprek afgerond';
+    $('#gvraag').textContent='Dank. Ik zie nu bij elke regel waarvoor hij dient.';
+    $('#gantw').innerHTML='';
+    $('#gterug').className='terug';
+    $('#gterug').textContent='Je hebt twee regels onderbouwd met een eis en een doel. Je hebt één regel geschrapt en één doel gevolgd tot de meting. Je eigen opdrachtgever stelt dezelfde vragen bij jullie big win.';
+    $('#gverder').hidden=true;
+  });
+  toonVraag();
+}
+
+/* ---------- stap 4: oefenen ---------- */
+const ZINNEN=[
+  ['In de quick win was een offerte klaar in 5 werkdagen in plaats van 9.','bc','Het resultaat van de quick win is bewijs dat de big win kan werken. Dat hoort bij het waarom.'],
+  ['De accountmanager doet de intake, de calculator rekent de offerte door.','prd','Wie welke processtap doet, is een eis aan de rollen. Dat is het tactische niveau.'],
+  ['In het klantsysteem staat per aanvraag één knop: Offerte verstuurd.','bp','Dit beschrijft precies hoe het scherm eruitziet. Dat is het operationele niveau.'],
+  ['Week 1 en 2: alle accountmanagers werken met het intakeformulier.','plan','Deze zin gaat over volgorde en tijd.'],
+  ['De offertemodule kost € 6.000 per jaar.','bc','Kosten horen bij de afweging of je het doet.'],
+  ['Het klantsysteem moet per aanvraag de status en de beloofde datum tonen.','prd','Dit is een eis aan het klantsysteem: wat het moet kunnen.'],
+  ['Het intakeformulier heeft vijf vaste vragen.','bp','Zo concreet dat je er morgen mee kunt werken: een werkinstructie.'],
+  ['Fase 2 begint als elke intake binnen 1 werkdag klaar is.','plan','Dit is de toets waarmee fase 1 eindigt. Een fase met zijn toets hoort in het Buildplan.']
+];
+const VOL={bc:'Business Case',prd:'Process Requirement Document',bp:'Blueprint',plan:'Buildplan'};
+let zi=0,uitslag=[];
+function toonZin(){
+  const [zin]=ZINNEN[zi];
+  $('#bolletjes').innerHTML=ZINNEN.map((z,i)=>`<i class="${uitslag[i]??(i===zi?'nu':'')}"></i>`).join('');
+  $('#zin').textContent=`„${zin}”`;
+  $('#oefenterug').textContent='';$('#oefenterug').className='terug';$('#volgende').hidden=true;
+  $('#keuzes').innerHTML=Object.keys(VOL).map(k=>`<button class="knop" data-k="${k}" style="--k:${DOCS[k].kleur}">${VOL[k]}</button>`).join('');
+  $$('#keuzes .knop').forEach(b=>b.addEventListener('click',()=>kies(b)));
+  beweeg('#zin',{opacity:[0,1],x:[24,0]},{duration:.3});
+}
+function kies(b){
+  const [,goed,waarom]=ZINNEN[zi], juist=b.dataset.k===goed;
+  $$('#keuzes .knop').forEach(k=>{k.disabled=true;if(k.dataset.k===goed)k.classList.add('juist')});
+  if(!juist){b.classList.add('mis');beweeg(b,{x:[0,-9,9,-6,6,0]},{duration:.4})}
+  else beweeg(b,{scale:[1,1.06,1]},veer);
+  uitslag[zi]=juist?'goed':'fout';
+  const t=$('#oefenterug');t.className='terug '+(juist?'goed':'fout');
+  t.textContent=(juist?'Goed. ':`Dit hoort in ${goed==='prd'?'het PRD':goed==='bc'?'de Business Case':'het '+VOL[goed]}. `)+waarom;
+  const v=$('#volgende');v.hidden=false;v.textContent=zi<ZINNEN.length-1?'Volgende zin':'Bekijk mijn score';v.focus();
+  $('#bolletjes').innerHTML=ZINNEN.map((z,i)=>`<i class="${uitslag[i]??''}"></i>`).join('');
+}
+let klaar=false;
+$('#volgende').addEventListener('click',()=>{
+  if(klaar){klaar=false;zi=0;uitslag=[];toonZin();return}
+  if(zi<ZINNEN.length-1){zi++;toonZin();return}
+  klaar=true;
+  const n=uitslag.filter(u=>u==='goed').length;
+  $('#zin').innerHTML=`<span class="score">${n} van de ${ZINNEN.length} goed</span>`;
+  $('#keuzes').innerHTML='';
+  $('#oefenterug').className='terug';
+  $('#oefenterug').textContent=n===ZINNEN.length?'Je plaatst elke zin in het goede document.':'Twijfel je bij een zin? Vraag je af op welk niveau hij speelt, of dat hij over volgorde gaat.';
+  $('#volgende').textContent='Opnieuw';
+  beweeg('#zin',{scale:[.8,1]},veer);
+  $('#bolletjes').innerHTML='';
+});
+toonZin();
+
+/* ---------- stap 5: nu jij ---------- */
+const SLEUTEL='tom-tutorial-opzet';
+let bewaard={};
+try{bewaard=JSON.parse(localStorage.getItem(SLEUTEL))||{}}catch{}
+$$('.jij textarea').forEach(t=>{
+  t.value=bewaard[t.id]||'';
+  t.addEventListener('input',()=>{bewaard[t.id]=t.value;try{localStorage.setItem(SLEUTEL,JSON.stringify(bewaard))}catch{}});
+});
+$('#kopieer').addEventListener('click',async()=>{
+  const tekst=$$('.jij .kaart').map(k=>`${k.querySelector('small').textContent}\n${k.querySelector('label').textContent}\n${k.querySelector('textarea').value||'(nog leeg)'}`).join('\n\n');
+  try{await navigator.clipboard.writeText(tekst);$('#kopieerterug').textContent='Gekopieerd. Plak het in het document van je team.'}
+  catch{$('#kopieerterug').textContent='Kopiëren lukt niet in deze browser. Selecteer je antwoorden en kopieer ze met de hand.'}
+});
+
+/* ---------- kop: het model in 3D (Three.js) ---------- */
+function held(){
+  const doek=$('#doek');
+  const r=new THREE.WebGLRenderer({canvas:doek,antialias:true,alpha:true});
+  r.setPixelRatio(Math.min(devicePixelRatio,2));
+  const scene=new THREE.Scene(), cam=new THREE.OrthographicCamera(-1,1,1,-1,.1,50);
+  cam.position.set(2.3,2.1,7); cam.lookAt(0,0,0);
+  const groep=new THREE.Group(); scene.add(groep);
+  const w=1.3,h=.84,d=.7,g=.15,sw=1.05,sh=3*h+2*g;
+  const meng=(a,b,t)=>new THREE.Color(a).lerp(new THREE.Color(b),t);
+  const lijn=new THREE.LineBasicMaterial({color:0x000000});
+
+  function plaat(v,zones){ // zones: per rij {f,t} of niets
+    const tien=v.id===10, c=document.createElement('canvas');
+    c.width=tien?330:520; c.height=tien?Math.round(330*sh/sw):Math.round(520*h/w);
+    const x=c.getContext('2d'); x.fillStyle='#fff'; x.fillRect(0,0,c.width,c.height);
+    const sc=c.height/sh, grens=[0,(h+g/2)*sc,(2*h+1.5*g)*sc,c.height];
+    if(tien) zones.forEach((z,i)=>{if(z){x.fillStyle=z.f;x.fillRect(0,grens[i],c.width,grens[i+1]-grens[i])}});
+    else if(zones[0]){x.fillStyle=zones[0].f;x.fillRect(0,0,c.width,c.height)}
+    x.lineWidth=14;x.strokeStyle='#000';x.strokeRect(0,0,c.width,c.height);
+    const z0=zones[0], zn=tien?zones[1]:zones[0];
+    x.fillStyle=z0?.t||'#E50056'; x.font='700 58px ui-monospace,Menlo,Consolas,monospace'; x.fillText(v.id,26,76);
+    x.fillStyle=zn?.t||'#000'; x.font=`800 ${tien?38:52}px "Avenir Next",Avenir,"Segoe UI",Helvetica,Arial,sans-serif`;
+    const y0=tien?c.height/2-34:168;
+    v.rg.forEach((t,i)=>x.fillText(t,26,y0+i*(tien?46:60)));
+    const tex=new THREE.CanvasTexture(c); tex.colorSpace=THREE.SRGBColorSpace; tex.anisotropy=4; return tex;
+  }
+  const blokken=VLAKKEN.map(v=>{
+    const tien=v.id===10, bw=tien?sw:w, bh=tien?sh:h;
+    const geo=new THREE.BoxGeometry(bw,bh,d);
+    const zij=()=>new THREE.MeshBasicMaterial({color:0xffffff});
+    const mats=[zij(),zij(),zij(),zij(),new THREE.MeshBasicMaterial({map:plaat(v,[])}),zij()];
+    const m=new THREE.Mesh(geo,mats);
+    m.add(new THREE.LineSegments(new THREE.EdgesGeometry(geo),lijn));
+    const midden=(g+sw)/2; // het bouwwerk draait om zijn eigen midden
+    const px=(tien?w+g+w/2+g+sw/2:(v.c-1)*(w+g))-midden, py=tien?0:(1-v.r)*(h+g);
+    m.position.set(px,py,0); m.userData={v,py}; groep.add(m); return m;
+  });
+
+  function kleur(m,zones){
+    const hoofd=zones.find(Boolean)?.f||'#ffffff';
+    m.material[4].map.dispose(); m.material[4].map=plaat(m.userData.v,zones); m.material[4].needsUpdate=true;
+    const alles=m.userData.v.id<10||zones.every(Boolean), basis=alles?hoofd:'#ffffff';
+    m.material[0].color.copy(meng(basis,'#000',basis==='#ffffff'?.22:.3));
+    m.material[2].color.copy(meng(basis,'#fff',basis==='#ffffff'?0:.25));
+  }
+  const zonesVoor=(m,fn)=>m.userData.v.id===10?[0,1,2].map(fn):[fn(m.userData.v.r)];
+  function val(volgorde,start=6,stap=.07){
+    volgorde.forEach((m,i)=>{
+      if(!M||rustig){m.position.y=m.userData.py;return}
+      m.position.y=m.userData.py+start;
+      M.animate(m.position,{y:m.userData.py},{type:'spring',visualDuration:.55,bounce:.28,delay:i*stap});
+    });
+  }
+  const TEKST={
+    bc:'Business Case: het strategische niveau. Waarom doen we dit, en wat levert het op?',
+    prd:'PRD: het tactische niveau. Wat moet het proces straks kunnen?',
+    bp:'Blueprint: het hele model, ingevuld tot op de werkvloer. Hoe ziet de nieuwe situatie eruit?',
+    plan:'Buildplan: de volgorde waarin het model werkelijkheid wordt.',
+    geen:'Kies een document en kijk welk deel van het model oplicht.'
+  };
+  function toon(doc){
+    const D=DOCS[doc], v=D&&{f:D.kleur,t:D.tekst};
+    const rij={bc:0,prd:1}[doc];
+    blokken.forEach(m=>{
+      kleur(m,zonesVoor(m,r=>!doc?null:(rij===undefined||r===rij)?v:null));
+      const raakt=doc&&(rij===undefined||m.userData.v.id===10||m.userData.v.r===rij);
+      if(raakt&&doc!=='plan'&&M&&!rustig){m.scale.set(.86,.86,.86);M.animate(m.scale,{x:1,y:1,z:1},veer)}
+    });
+    if(doc==='plan') val(blokken,6,.16);
+    $('#heldtekst').textContent=TEKST[doc||'geen'];
+  }
+  const kn=$$('#toneel [data-doc]');
+  kn.forEach(k=>k.addEventListener('click',()=>{
+    const uit=k.getAttribute('aria-pressed')==='true';
+    druk(kn,uit?null:k); toon(uit?null:k.dataset.doc);
+  }));
+
+  // draaien
+  let doelhoek=-.2,hoek=-.2,sleep=null;
+  doek.addEventListener('pointerdown',e=>{sleep={x:e.clientX,h:doelhoek};doek.setPointerCapture(e.pointerId)});
+  doek.addEventListener('pointermove',e=>{if(sleep)doelhoek=Math.max(-.85,Math.min(.4,sleep.h+(e.clientX-sleep.x)*.008))});
+  doek.addEventListener('pointerup',()=>sleep=null); doek.addEventListener('pointercancel',()=>sleep=null);
+  $('#sleep').hidden=false;
+
+  function maat(){
+    const b=doek.clientWidth,ho=doek.clientHeight; if(!b||!ho) return;
+    r.setSize(b,ho,false);
+    const a=b/ho, vh=Math.max(3.9,6.1/a);
+    cam.left=-vh*a/2;cam.right=vh*a/2;cam.top=vh/2;cam.bottom=-vh/2;cam.updateProjectionMatrix();
+  }
+  new ResizeObserver(maat).observe(doek); maat();
+  let zichtbaar=true;
+  new IntersectionObserver(e=>zichtbaar=e[0].isIntersecting).observe(doek);
+  const t0=performance.now();
+  (function teken(t){
+    requestAnimationFrame(teken); if(!zichtbaar) return;
+    hoek+=(doelhoek-hoek)*.12;
+    groep.rotation.y=hoek+(rustig||sleep?0:Math.sin((t-t0)/2600)*.05);
+    r.render(scene,cam);
+  })(t0);
+  blokken.forEach(m=>kleur(m,zonesVoor(m,()=>null)));
+  val(blokken);
+}
+if(THREE){try{held()}catch(e){$('#doek').hidden=true;console.warn('3D-weergave niet beschikbaar',e)}}
+else $('#doek').hidden=true;
+</script>
+</body>
+</html>
