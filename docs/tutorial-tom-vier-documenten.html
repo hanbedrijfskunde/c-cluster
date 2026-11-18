@@ -98,15 +98,26 @@ svg.mx{display:block;inline-size:100%;block-size:auto}
 .draadwrap{background:var(--paper);border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:10px;overflow-x:auto}
 .draadwrap svg{display:block;inline-size:100%;min-inline-size:820px;block-size:auto}
 .dr-kop{font:800 17px var(--f)}
-.dr-knoop{cursor:pointer}
 .dr-knoop rect.vlak{fill:#fff;stroke:#000;stroke-width:3}
 .dr-knoop text{font:600 14.5px var(--f)}
 .dr-knoop.aan rect.vlak{fill:var(--ink)} .dr-knoop.aan text{fill:#fff}
-.dr-knoop.gekozen rect.vlak{stroke:var(--han);stroke-width:6}
-.dr-knoop.uit{opacity:.35}
+.dr-knoop.wijs rect.vlak{stroke:var(--han);stroke-width:7}
+.dr-knoop.weg{opacity:.4} .dr-knoop.weg rect.vlak{stroke-dasharray:8 6}
 .dr-lijn{fill:none;stroke:var(--han);stroke-width:5}
+.dr-lijn.weg{stroke:var(--grey2);stroke-dasharray:8 6}
+.draadonder{font:600 14px/1.35 var(--fm);color:var(--grey);margin:12px 0 0}
+.gesprek{margin-block-start:26px;max-inline-size:820px}
+.gesprek .teller{font:700 14px/1 var(--fm);margin:0 0 10px}
+.ballon{background:var(--ink);color:var(--paper);padding:16px 20px;box-shadow:6px 6px 0 var(--han);margin:0 0 20px}
+.ballon b{display:block;font:700 13px/1.3 var(--fm);color:#FF8FB8;margin-block-end:6px}
+.ballon p{font-size:21px;font-weight:700;line-height:1.3;margin:0;max-inline-size:none}
+.antw{display:grid;gap:12px}
+.antw .knop{text-align:left;font-weight:600;font-size:17px;line-height:1.35}
+.antw .knop.juist{background:#00A651;color:#fff;opacity:1}
+.antw .knop.mis{background:var(--bc2);opacity:1}
 .terug{font-size:18px;font-weight:600;margin:18px 0 0;min-block-size:3em}
 .terug.goed{color:#00622C} .terug.fout{color:#A8003F}
+.luk{display:inline-block;font:700 13px/1 var(--fm);background:var(--plan);border:2px solid var(--ink);padding:5px 8px;margin-inline-end:8px;color:var(--ink)}
 
 /* oefenen */
 .oefen{max-inline-size:760px}
@@ -248,14 +259,18 @@ footer p{max-inline-size:80ch}
 
 <section id="draad">
   <p class="stapnr">Deel <b>3</b> van 5</p>
-  <h2>De rode draad: van doel tot bouwstap</h2>
-  <p class="intro">Vier documenten die bij elkaar horen, hangen aan elkaar. Een doel uit de Business Case wordt een eis in het PRD. De eis wordt een regel in het Blueprint en een stap in het Buildplan. Klik op een kaartje om zijn draad te zien.</p>
+  <h2>De rode draad: je opdrachtgever vraagt door</h2>
+  <p class="intro">Vier documenten die bij elkaar horen, hangen aan elkaar. Een doel uit de Business Case wordt een eis in het PRD. De eis wordt een regel in het Blueprint en een stap in het Buildplan. In het schema zie je één draad als voorbeeld.</p>
+  <p class="intro">De directeur van Noordkade leest jullie documenten en stelt vier vragen. Kies telkens het antwoord dat de draad laat zien.</p>
   <div class="draadwrap" id="draadsvg"></div>
-  <div class="rij" style="margin-block-start:20px">
-    <button class="knop vol" id="loskn" disabled>Dit kaartje hangt los</button>
-    <span><b>Opdracht:</b> één kaartje hangt nergens aan vast. Vind het.</span>
+  <p class="draadonder" id="draadonder">Voorbeeld: van het doel „De klant weet wanneer de offerte komt” loopt één draad naar een eis, een regel en een stap.</p>
+  <div class="gesprek" id="gesprek">
+    <p class="teller" id="gteller"></p>
+    <div class="ballon" id="ballon"><b>De directeur van Noordkade</b><p id="gvraag"></p></div>
+    <div class="antw" id="gantw"></div>
+    <p class="terug" id="gterug" aria-live="polite"></p>
+    <button class="knop vol" id="gverder" hidden>Volgende vraag</button>
   </div>
-  <p class="terug" id="draadterug" aria-live="polite"></p>
 </section>
 
 <section id="oefenen">
@@ -463,26 +478,30 @@ if(d3){
   }),{rootMargin:'-45% 0px -45% 0px'});
   $$('.stap').forEach(s=>io.observe(s));
 
-  /* stap 3: de rode draad */
+  /* deel 3: de rode draad, als gesprek met de opdrachtgever */
   const KN=[
-    {id:'d1',k:0,r:0,t:'Offerte bij de klant in 3 werkdagen in plaats van 9'},
-    {id:'d2',k:0,r:1,t:'De klant weet wanneer de offerte komt'},
-    {id:'d3',k:0,r:2,t:'De directeur stuurt op cijfers'},
+    {id:'d1',k:0,r:.33,t:'Offerte bij de klant in 3 werkdagen in plaats van 9'},
+    {id:'d2',k:0,r:1.5,t:'De klant weet wanneer de offerte komt'},
+    {id:'d3',k:0,r:2.67,t:'De directeur stuurt op cijfers'},
     {id:'e1',k:1,r:0,t:'Elke aanvraag krijgt binnen 1 werkdag een intake'},
-    {id:'e2',k:1,r:1,t:'Het klantsysteem toont per aanvraag status en datum'},
-    {id:'e3',k:1,r:2,t:'Elke week een overzicht van de doorlooptijd'},
+    {id:'e4',k:1,r:1,t:'Offertes zien er professioneel uit'},
+    {id:'e2',k:1,r:2,t:'Het klantsysteem toont per aanvraag status en datum'},
+    {id:'e3',k:1,r:3,t:'Elke week een overzicht van de doorlooptijd'},
     {id:'r1',k:2,r:0,t:'Intakeformulier met vijf vaste vragen'},
-    {id:'r2',k:2,r:1,t:'Per aanvraag één knop: Offerte verstuurd'},
-    {id:'r3',k:2,r:2,t:'Dashboard met de aanvragen die openstaan'},
-    {id:'r4',k:2,r:3,t:'Nieuw logo op de offertes',los:true},
+    {id:'r4',k:2,r:1,t:'Nieuw logo op de offertes'},
+    {id:'r2',k:2,r:2,t:'Per aanvraag één knop: Offerte verstuurd'},
+    {id:'r3',k:2,r:3,t:'Dashboard met de aanvragen die openstaan'},
     {id:'s1',k:3,r:0,t:'Week 1 en 2: iedereen werkt met het intakeformulier'},
-    {id:'s2',k:3,r:1,t:'Week 3 tot 6: alle aanvragen via het klantsysteem'},
-    {id:'s3',k:3,r:2,t:'Vanaf week 7: elke week de cijfers bespreken'}
+    {id:'s4',k:3,r:1,t:'Week 8: nieuw sjabloon voor offertes'},
+    {id:'s2',k:3,r:2,t:'Week 3 tot 6: alle aanvragen via het klantsysteem'},
+    {id:'s3',k:3,r:3,t:'Vanaf week 7: elke week de cijfers bespreken'}
   ];
-  const LN=[['d1','e1'],['e1','r1'],['r1','s1'],['d2','e2'],['e2','r2'],['r2','s2'],['d3','e3'],['e3','r3'],['r3','s3']];
+  const DRAAD={1:[['d1','e1'],['e1','r1'],['r1','s1']],2:[['d2','e2'],['e2','r2'],['r2','s2']],
+    3:[['d3','e3'],['e3','r3'],['r3','s3']],4:[['e4','r4'],['r4','s4']]};
   const KOP=[['Business Case','doel','bc'],['PRD','eis','prd'],['Blueprint','regel','bp'],['Buildplan','stap','plan']];
   const DW=980,DH=470,kb=206,kh=74,kx=k=>10+k*(kb+47),ky=r=>62+r*100;
-  const ds=d3.select('#draadsvg').append('svg').attr('viewBox',`0 0 ${DW} ${DH}`);
+  const ds=d3.select('#draadsvg').append('svg').attr('viewBox',`0 0 ${DW} ${DH}`).attr('role','img')
+    .attr('aria-label','Schema met vier kolommen: doelen, eisen, regels en stappen van Noordkade.');
   KOP.forEach(([n,s,k],i)=>{
     ds.append('rect').attr('x',kx(i)).attr('y',8).attr('width',kb).attr('height',34).attr('fill',DOCS[k].kleur).attr('stroke','#000').attr('stroke-width',3);
     ds.append('text').attr('class','dr-kop').attr('x',kx(i)+12).attr('y',31).attr('fill',DOCS[k].tekst).text(`${n}: ${s}`);
@@ -490,36 +509,79 @@ if(d3){
   const lijnG=ds.append('g');
   const breek=(t,max)=>{const u=[];let r='';for(const w of t.split(' ')){if(r&&(r+' '+w).length>max){u.push(r);r=w}else r=r?r+' '+w:w}u.push(r);return u};
   const kg=ds.selectAll('g.dr-knoop').data(KN).join('g').attr('class','dr-knoop')
-    .attr('transform',d=>`translate(${kx(d.k)},${ky(d.r)})`).attr('tabindex',0).attr('role','button')
-    .attr('aria-label',d=>`${KOP[d.k][0]}, ${KOP[d.k][1]}: ${d.t}`);
+    .attr('transform',d=>`translate(${kx(d.k)},${ky(d.r)})`);
   kg.append('rect').attr('x',5).attr('y',5).attr('width',kb).attr('height',kh);
   kg.append('rect').attr('class','vlak').attr('width',kb).attr('height',kh);
   kg.append('text').attr('y',d=>kh/2-(breek(d.t,23).length-1)*9+5).selectAll('tspan').data(d=>breek(d.t,23)).join('tspan')
     .attr('x',11).attr('dy',(t,i)=>i?18:0).text(t=>t);
-  const buren=id=>{const s=new Set([id]);let groei=true;while(groei){groei=false;for(const [a,b] of LN){if(s.has(a)!==s.has(b)){s.add(a);s.add(b);groei=true}}}return s};
-  const verb=d3.linkHorizontal().source(([a])=>{const n=KN.find(k=>k.id===a);return [kx(n.k)+kb,ky(n.r)+kh/2]})
-    .target(([,b])=>{const n=KN.find(k=>k.id===b);return [kx(n.k),ky(n.r)+kh/2]});
-  let gekozen=null,gevonden=false;
-  function kiesKnoop(d){
-    gekozen=d; const s=buren(d.id);
-    kg.classed('aan',k=>s.has(k.id)&&s.size>1).classed('uit',k=>!s.has(k.id)).classed('gekozen',k=>k.id===d.id);
-    const p=lijnG.selectAll('path').data(LN.filter(([a])=>s.has(a)),l=>l.join('-'));
-    p.exit().remove();
-    p.enter().append('path').attr('class','dr-lijn').attr('d',verb)
-      .each(function(){const l=this.getTotalLength();d3.select(this).attr('stroke-dasharray',l).attr('stroke-dashoffset',rustig?0:l)})
-      .transition().duration(rustig?0:450).delay(l=>rustig?0:KN.find(k=>k.id===l[0]).k*180).attr('stroke-dashoffset',0);
-    $('#loskn').disabled=gevonden;
-    if(!gevonden){$('#draadterug').className='terug';$('#draadterug').textContent=''}
+  const knoop=id=>KN.find(k=>k.id===id);
+  const verb=d3.linkHorizontal().source(([a])=>[kx(knoop(a).k)+kb+5,ky(knoop(a).r)+kh/2])
+    .target(([,b])=>[kx(knoop(b).k),ky(knoop(b).r)+kh/2]);
+  const getoond=new Set();
+  function trekDraad(n,weg=false){
+    if(getoond.has(n)) return; getoond.add(n);
+    const ids=new Set(DRAAD[n].flat());
+    kg.filter(d=>ids.has(d.id)).classed(weg?'weg':'aan',true);
+    lijnG.selectAll(null).data(DRAAD[n]).join('path').attr('class','dr-lijn'+(weg?' weg':'')).attr('d',verb)
+      .each(function(){if(weg||rustig)return;const l=this.getTotalLength();d3.select(this).attr('stroke-dasharray',l).attr('stroke-dashoffset',l)})
+      .transition().duration(rustig||weg?0:450).delay((l,i)=>rustig||weg?0:i*200).attr('stroke-dashoffset',0);
   }
-  kg.on('click',(e,d)=>kiesKnoop(d)).on('keydown',(e,d)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();kiesKnoop(d)}});
-  $('#loskn').addEventListener('click',()=>{
-    const t=$('#draadterug');
-    if(gekozen?.los){gevonden=true;$('#loskn').disabled=true;t.className='terug goed';
-      t.textContent='Klopt. Het nieuwe logo dient geen eis en geen doel. Het hoort dus niet in dit Blueprint.';
-      beweeg(t,{scale:[.9,1]},veer);
-    }else{t.className='terug fout';t.textContent='Dit kaartje hangt aan een draad: volg de lijn naar links en je komt bij een doel uit. Zoek verder.';
-      beweeg('#loskn',{x:[0,-9,9,-6,6,0]},{duration:.4});}
+  trekDraad(2);
+  const L2='Leeruitkomst 2: onderbouwd ontwerpen', L4='Leeruitkomst 4: monitoren en evalueren';
+  const VRAGEN=[
+    {wijs:'r1',draad:1,luk:L2,v:'Waarom staat dit intakeformulier in het Blueprint? Dat hadden we toch al in de quick win?',
+     na:'De regel hangt via een eis aan een doel. Dat is een onderbouwing.',
+     o:[['Het formulier werkte goed in de quick win. Daarom nemen we het over in het Blueprint.',0,'Dat bewijst dat het formulier werkt. De directeur vraagt waarvoor het dient. Noem de eis en het doel.'],
+        ['Het formulier maakt een intake binnen 1 werkdag mogelijk. Die eis dient uw doel: een offerte in 3 werkdagen.',1,''],
+        ['Een Blueprint bevat altijd werkinstructies. Dit formulier is de werkinstructie voor de intake.',0,'Het model verplicht geen enkele regel. Een regel staat erin omdat hij een eis en een doel dient.']]},
+    {wijs:'r4',draad:4,weg:true,luk:L2,v:'En dit nieuwe logo, waarom staat dat erin?',
+     na:'De draad stopt bij de eis. Een regel zonder doel hoort niet in het voorstel, tot de opdrachtgever een doel noemt.',
+     o:[['Het logo hoort bij een eis uit het PRD: offertes zien er professioneel uit.',0,'Dat klopt, maar volg de draad verder. Welk doel uit de Business Case dient die eis?'],
+        ['Een nieuw logo kost weinig. Het past dus goed in dit voorstel en het valt klanten op.',0,'Lage kosten zijn geen reden. De vraag is welk doel het logo dient.'],
+        ['Die eis dient geen doel uit de Business Case. We schrappen deze draad, of u noemt het doel.',1,'']]},
+    {wijs:'r2',draad:2,luk:L2,v:'Die knop „Offerte verstuurd” lijkt me een detail. Kan die eruit?',
+     na:'Ook een kleine regel op de werkvloer draagt een doel. Dat laat je zien met de draad.',
+     o:[['Ja. Het is een detail, en details horen niet in een Blueprint thuis.',0,'Het Blueprint beschrijft juist het operationele niveau: het scherm waarmee iemand werkt.'],
+        ['Nee. Zonder de knop kent het klantsysteem de status niet. Dan weet uw klant niet wanneer de offerte komt.',1,''],
+        ['Nee. De leverancier levert die knop standaard mee in het klantsysteem.',0,'Dat zegt waar de knop vandaan komt. De directeur vraagt waarvoor hij nodig is.']]},
+    {wijs:'d3',draad:3,luk:L4,v:'Ik wil op cijfers sturen. Hoe weet ik over een half jaar of dat gelukt is?',
+     na:'Je volgde de draad nu van boven naar beneden, tot de meting. Dat is je monitoringssysteem.',
+     o:[['Aan het eind van het project krijgt u van ons een rapport met alle cijfers.',0,'Een rapport achteraf is één meting. De draad eindigt bij een stap die elke week terugkomt.'],
+        ['Dat merkt u aan klanten die tevreden zijn en vaker een opdracht geven.',0,'Tevreden klanten zijn geen cijfer. Welke regel en welke stap leveren het cijfer?'],
+        ['Het dashboard toont elke week de doorlooptijd. Vanaf week 7 bespreekt het team die cijfers elke week.',1,'']]}
+  ];
+  let gi=0;
+  function toonVraag(){
+    const q=VRAGEN[gi];
+    $('#gteller').textContent=`Vraag ${gi+1} van ${VRAGEN.length}`;
+    $('#gvraag').textContent=q.v; $('#gterug').textContent=''; $('#gterug').className='terug'; $('#gverder').hidden=true;
+    kg.classed('wijs',d=>d.id===q.wijs);
+    $('#draadonder').textContent=`De directeur wijst naar: „${knoop(q.wijs).t}”.`;
+    $('#gantw').innerHTML=q.o.map((o,i)=>`<button class="knop" data-i="${i}">${o[0]}</button>`).join('');
+    $$('#gantw .knop').forEach(b=>b.addEventListener('click',()=>antwoord(b,q)));
+    beweeg('#ballon',{scale:[.94,1],opacity:[0,1]},veer);
+  }
+  function antwoord(b,q){
+    const [,goed,fb]=q.o[+b.dataset.i], t=$('#gterug');
+    b.disabled=true;
+    if(!goed){b.classList.add('mis');t.className='terug fout';t.textContent=fb;beweeg(b,{x:[0,-9,9,-6,6,0]},{duration:.4});return}
+    b.classList.add('juist'); $$('#gantw .knop').forEach(k=>k.disabled=true);
+    trekDraad(q.draad,q.weg);
+    t.className='terug goed'; t.innerHTML=`<span class="luk">${q.luk}</span>${q.na}`;
+    const v=$('#gverder'); v.hidden=false; v.textContent=gi<VRAGEN.length-1?'Volgende vraag':'Rond het gesprek af'; v.focus();
+  }
+  $('#gverder').addEventListener('click',()=>{
+    if(gi<VRAGEN.length-1){gi++;toonVraag();return}
+    kg.classed('wijs',false);
+    $('#draadonder').textContent='Drie draden lopen van doel tot stap. Eén draad is geschrapt.';
+    $('#gteller').textContent='Gesprek afgerond';
+    $('#gvraag').textContent='Dank. Ik zie nu bij elke regel waarvoor hij dient.';
+    $('#gantw').innerHTML='';
+    $('#gterug').className='terug';
+    $('#gterug').textContent='Je hebt twee regels onderbouwd met een eis en een doel. Je hebt één regel geschrapt en één doel gevolgd tot de meting. Je eigen opdrachtgever stelt dezelfde vragen bij jullie big win.';
+    $('#gverder').hidden=true;
   });
+  toonVraag();
 }
 
 /* ---------- stap 4: oefenen ---------- */
