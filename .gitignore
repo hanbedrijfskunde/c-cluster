@@ -11,6 +11,10 @@ WK*/*.pptx
 WK*/*.docx
 WK*/*.odt
 WK*/*Copy.pdf
+docs/*.docx
+docs/*Copy.pdf
+docs/Opdrachtomschrijving - *.pdf
+docs/Beoordelingsformulier *.pdf
 
 # Lokale git-worktrees
 .worktrees/
